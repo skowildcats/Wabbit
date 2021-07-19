@@ -32,6 +32,5 @@
 
 #main-page > a:hover {
   cursor: pointer;
-  color: whitesmoke;
-  background-color: var(--light-green-2);
+  background-color: var(--grey-0);
 }
