@@ -8,10 +8,10 @@ const TaskSchema = new Schema({
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'users'
   },
   completed: {
-    type: String,
+    type: Boolean,
     default: false
   },
   description: {
@@ -34,7 +34,7 @@ const TaskSchema = new Schema({
   },
   subtasks: {
     type: Schema.Types.ObjectId,
-    ref: 'Task'
+    ref: 'tasks'
   }
 },{
   timestamps: true
