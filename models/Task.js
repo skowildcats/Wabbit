@@ -14,6 +14,11 @@ const TaskSchema = new Schema({
         type: Boolean,
         required: true
     },
+    recurrence: {
+        type: String, //my current idea for recurrence is a string "MWF", "WEEKLY", "MTWRFSU"
+        //or something of this nature
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now
