@@ -3,5 +3,5 @@ export const login = (userData) => {
 };
 
 export const upload = (fileData) => {
-    return axios.post('/api/upload', fileData)
+    return axios.post('/upload', fileData)
 }

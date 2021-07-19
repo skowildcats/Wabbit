@@ -5,13 +5,15 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const users = require('./routes/api/users')
-const upload = require('./routes/api/file_upload')
 require('./config/passport')(passport)
 
 //attaching files to mongo
 const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage');
+const { GridFsStorage } = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
+const path = require('path')
+const crypto = require('crypto')
+const methodOverride = require('method-override')
 
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -48,14 +50,19 @@ const storage = new GridFsStorage({
 const upload = multer({ storage });
 
 app.get("/", (req, res) => res.send("Hello World!!!"));
+app.post('/upload', upload.single('file'), (req, res) => {
+  console.log(req)
+  res.json({ file: req.file });
+})
 
-
+//Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(methodOverride('_method'))
 
 app.use(passport.initialize())
 app.use('/api/users', users)
-app.use('/api/upload', upload)
+
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
