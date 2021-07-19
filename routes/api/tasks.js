@@ -47,8 +47,12 @@ router.get('/',(req,res)=>{
 
 // delete a task
 router.delete('/:taskId',(req,res)=>{
-  Task.findById(req.params.taskId)
-    .then
+  Task.deleteOne({_id: req.params.taskId},err => {
+    if(err){
+      res.json({error: err})
+    }
+  })
+  res.json({msg: 'success'})
 })
 
 module.exports = router
