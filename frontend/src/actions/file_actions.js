@@ -7,8 +7,10 @@ export const receiveImages = (imgs) => ({
     imgs
 })
 
-export const fetchImages = (dispatch) => (
+export const fetchImages = () => dispatch => {
+    console.log("Fetching images")
+    return (
     FileUtil.fetchFiles().then((files) => (
         dispatch(receiveImages(files))
     ))
-)
+)}

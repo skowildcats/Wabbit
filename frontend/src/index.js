@@ -18,7 +18,6 @@ import { logout } from './actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
-  window.store = store
   // If a returning user has a session token stored in localStorage
   if (localStorage.jwtToken) {
 
@@ -46,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // If this is a first time user, start with an empty store
     store = configureStore({});
   }
+  window.store = store
   // Render our root component and pass in the store as a prop
   const root = document.getElementById('root');
 
