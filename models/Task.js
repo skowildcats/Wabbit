@@ -6,12 +6,28 @@ const TaskSchema = new Schema({
     type: String,
     required: true
   },
-  status: {
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  completed: {
     type: String,
-    
+    default: false
+  },
+  description: {
+    type: String
+  },
+  dueDate: {
+    type: Date
+  },
+  subtasks: {
+    type: Schema.Types.ObjectId,
+    ref: 'Task'
   }
 },{
   timestamps: true
 })
+
+leola
 
 module.exports = Task = mongoose.model('Task', TaskSchema)
