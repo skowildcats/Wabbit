@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const users = require('./routes/api/users')
+const tasks = require('./routes/api/tasks')
 const fileRouter = require('./routes/api/files')
+
 require('./config/passport')(passport)
 const methodOverride = require('method-override')
 
@@ -25,8 +27,8 @@ app.use(passport.initialize())
 
 //Routes
 app.use('/api/users', users)
+app.use('/api/tasks',tasks)
 app.use('/api/files', fileRouter)
-//file routes
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));

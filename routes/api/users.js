@@ -68,7 +68,7 @@ router.post('/login', (req, res) => {
     })
 })
 
-//route for testing if protected routes work
+//route for returning current user
 
 router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
   res.json({
