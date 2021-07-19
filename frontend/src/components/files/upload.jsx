@@ -3,7 +3,7 @@ import React from 'react'
 export default function Upload() {
     return (
         <div>
-            <form action="/upload" method="post" encType="multipart/form-data">
+            <form action="/api/files" method="post" encType="multipart/form-data">
                 <input type="file" name="file" id="file" />
                 <label htmlFor="file">Choose File</label>
 
