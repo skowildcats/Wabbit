@@ -26,7 +26,7 @@ mongoose.connection.once('open', () => {
 
 // Create storage engine
 const storage = new GridFsStorage({
-  url: mongoURI,
+  url: db,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
       crypto.randomBytes(16, (err, buf) => {
@@ -36,22 +36,24 @@ const storage = new GridFsStorage({
         const filename = buf.toString('hex') + path.extname(file.originalname);
         const fileInfo = {
           filename: filename,
-          bucketName: 'uploads'
+          bucketName: 'icons'
         };
         resolve(fileInfo);
       });
     });
   }
 });
+
 const upload = multer({ storage });
 
 app.get("/", (req, res) => res.send("Hello World!!!"));
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(passport.initialize())
-app.use('/api/users',users)
+app.use('/api/users', users)
 
 
 const port = process.env.PORT || 5000;
