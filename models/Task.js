@@ -17,6 +17,18 @@ const TaskSchema = new Schema({
   description: {
     type: String
   },
+  recurrence: {
+    // d,w,b,m,q,y for daily,weekly,biweekly,monthly,quarterly,yearly
+    type: String
+  },
+  startDate:{
+    type: Date,
+    default: Date.now
+  },
+  daysOfTheWeek:{
+    // M_TW_F__ for a mon tues wed fri repeating task
+    type: String
+  },
   dueDate: {
     type: Date
   },
@@ -27,7 +39,5 @@ const TaskSchema = new Schema({
 },{
   timestamps: true
 })
-
-leola
 
 module.exports = Task = mongoose.model('Task', TaskSchema)
