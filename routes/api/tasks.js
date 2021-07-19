@@ -45,6 +45,12 @@ router.get('/',(req,res)=>{
     .catch(err => res.status(404).json({msg: 'no tasks found'}))
 })
 
+// delete a task
+router.delete('/:taskId',(req,res)=>{
+  Task.findById(req.params.taskId)
+    .then
+})
+
 module.exports = router
 
 // user: 60f588bb3ee3cb100f85728c
