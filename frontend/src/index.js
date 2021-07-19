@@ -18,7 +18,7 @@ import { logout } from './actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
-
+  window.store = store
   // If a returning user has a session token stored in localStorage
   if (localStorage.jwtToken) {
 
@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloadedState = { session: { isAuthenticated: true, user: decodedUser } };
 
     store = configureStore(preloadedState);
+    //Put on window
 
     const currentTime = Date.now() / 1000;
 

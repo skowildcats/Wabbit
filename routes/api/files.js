@@ -39,6 +39,7 @@ const storage = new GridFsStorage({
 
 const upload = multer({ storage });
 
+//get all files
 router.get('/', (req, res) => {
   gfs.files.find().toArray((err, files) => {
     if(!files || files.length === 0){
@@ -50,6 +51,7 @@ router.get('/', (req, res) => {
   })
 })
 
+//get one file
 router.get('/:filename', (req, res) => {
   gfs.files.findOne({filename: req.params.filename}, (err, file) => {
     if(!file || file.length === 0){
@@ -62,6 +64,7 @@ router.get('/:filename', (req, res) => {
   })
 })
 
+//get image
 router.get('/image/:filename', (req, res) => {
     gfs.files.findOne({filename: req.params.filename}, (err, file) => {
     if(!file || file.length === 0){
@@ -81,6 +84,7 @@ router.get('/image/:filename', (req, res) => {
   })
 })
 
+//upload file
 router.post('/', upload.single('file'), (req, res) => {
   res.json({ file: req.file });
 })
