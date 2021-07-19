@@ -3,20 +3,19 @@ const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
   username: {
-    type: string,
+    type: String,
     required: true
   },
   email: {
-    type: string,
+    type: String,
     required: true
   },
   password: {
-    type: string,
+    type: String,
     required: true
   }
 },{
   timestamps: true
-}
-)
+})
 
-module.exports = User = mongoose.model('User','UserSchema')
+module.exports = User = mongoose.model('User', UserSchema)
