@@ -41,6 +41,7 @@ const upload = multer({ storage });
 
 //get all files
 router.get('/', (req, res) => {
+//   debugger
   gfs.files.find().toArray((err, files) => {
     if(!files || files.length === 0){
       return res.status(404).json({

@@ -9,6 +9,7 @@ export const Files = (props) => {
     useEffect(() => {
         props.fetchImages()
     }, [])
+    
     if(!props.images.data) return null;
 
     const images = props.images.data.map(img => {
