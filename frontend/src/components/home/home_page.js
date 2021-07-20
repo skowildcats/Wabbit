@@ -18,9 +18,10 @@ class HomePage extends React.Component {
         cursor: "move",
         helper: "clone",
         opacity: 0.5,
-        revert: 300,
-        delay: 150,
-        tolerance: "pointer"
+        revert: 200,
+        delay: 50,
+        tolerance: "pointer",
+        containment: "parent",
       })
       window.$( "#sortable" ).disableSelection();
     } 
