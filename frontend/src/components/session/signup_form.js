@@ -5,11 +5,11 @@ class SignupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      handle: "",
-      password: "",
-      password2: "",
-      errors: {},
+      email: '',
+      username: '',
+      password: '',
+      password2: '',
+      errors: {}
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,7 +35,7 @@ class SignupForm extends React.Component {
     e.preventDefault();
     let user = {
       email: this.state.email,
-      handle: this.state.handle,
+      username: this.state.username,
       password: this.state.password,
       password2: this.state.password2,
     };
