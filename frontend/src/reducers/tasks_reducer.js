@@ -8,7 +8,6 @@ export default function(state = {}, action){
       action.tasks.forEach(task => newState[task._id] = task);
       return newState
     case RECEIVE_TASK:
-      debugger
       newState[action.task._id] = action.task
       return newState;
     case REMOVE_TASK:
