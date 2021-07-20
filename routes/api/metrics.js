@@ -6,12 +6,12 @@ const User = require('../../models/User')
 router.get('/:userId',(req,res)=>{
   Task.find({user: req.params.userId})
     .then(tasks=>{
-      //finding percent of all tasks completed
       const total = tasks.length
       let numOfCompletedTasks=0
       let countDoneOnTime = 0
       let numOfTasksWithDeadline = 0
       for(const task of tasks){
+        //finding percent of all tasks completed
         if(task.completed){
           numOfCompletedTasks++
         }
