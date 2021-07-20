@@ -29,7 +29,7 @@ router.put('/:taskId',(req,res)=>{
         task[field] = req.body[field]
       }
       task.save()
-      res.json({task})
+      res.json(task)
     })
     .catch(err=>res.status(404).json({error: err}))
   
