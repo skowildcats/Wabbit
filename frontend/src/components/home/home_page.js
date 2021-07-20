@@ -1,5 +1,5 @@
 import React from 'react';
-// import jQuery from 'jquery';
+import Task from './task'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -13,7 +13,17 @@ class HomePage extends React.Component {
 
   componentDidUpdate() {
     if (window.$(".sortable").length > 0) {
-      window.$(".sortable").sortable()
+      window.$(".sortable").sortable({
+        handle: ".sort-handle",
+        cursor: "move",
+        helper: "clone",
+        opacity: 0.5,
+        revert: 200,
+        delay: 50,
+        tolerance: "pointer",
+        containment: "parent",
+      })
+      window.$( "#sortable" ).disableSelection();
     } 
   }
 
@@ -26,13 +36,10 @@ class HomePage extends React.Component {
       return (
         <div id="home-page">
           <ul id="tasks" className="sortable">
-          {tasks.map(task => {
-            return <div  className="ui-state-default" key={task._id}>
-              {task.title}
-            </div>
-          })}
+            {tasks.map(task => {
+              return <Task task={task} key={task._id} />
+            })}
           </ul>
-          
         </div>
       );
     }
