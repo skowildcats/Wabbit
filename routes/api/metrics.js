@@ -9,25 +9,25 @@ router.get('/:userId',(req,res)=>{
       //finding percent of all tasks completed
       const total = tasks.length
       let numOfCompletedTasks=0
-      // let countDoneOnTime = 0
-      // let numOfTasksWithDeadline = 0
+      let countDoneOnTime = 0
+      let numOfTasksWithDeadline = 0
       for(const task of tasks){
         if(task.completed){
           numOfCompletedTasks++
         }
 
-        // // count tasks done before deadline but we need to find a way to pass completedAt date
-        // if(task.dueDate){
-        //   numOfTasksWithDeadline++
-        //   if(task.completedAt<task.dueDate){
-        //     countDoneOnTime++
-        //   }
-        // }
+        // count tasks done before deadline but we need to find a way to pass completedAt date
+        if(task.dueDate){
+          numOfTasksWithDeadline++
+          if(task.completedAt<task.dueDate){
+            countDoneOnTime++
+          }
+        }
       }
       let result = {percentCompleted: numOfCompletedTasks/total}
-      // if(numOfTasksWithDeadline>0){
-      //   result.doneOnTime = countDoneOnTime/numOfTasksWithDeadline
-      // }
+      if(numOfTasksWithDeadline>0){
+        result.doneOnTime = countDoneOnTime/numOfTasksWithDeadline
+      }
       
       res.json(result)
     })

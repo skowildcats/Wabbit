@@ -11,7 +11,7 @@ router.post('/new',(req,res)=>{
     recurrence: req.body.recurrence,
     startDate: req.body.startDate,
     daysOfTheWeek: req.body.daysOfTheWeek,
-    dueDate: req.body.dueDate,
+    dueDate: req.body.dueDate
   })
   newTask.save()
   res.json(newTask)
