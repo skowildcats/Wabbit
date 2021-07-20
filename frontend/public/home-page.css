@@ -1,0 +1,20 @@
+#home-page {
+  margin-top: 100px;
+  width: 80%;
+  margin-left: auto; margin-right: auto;
+}
+
+#tasks {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#tasks > div {
+  border: 1px solid black;
+  width: 150px;
+  height: 200px;
+}
+
+/* #task {
+  border: 1px solid black;
+} */
