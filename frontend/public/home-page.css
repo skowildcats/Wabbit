@@ -13,6 +13,16 @@
   border: 1px solid black;
   width: 150px;
   height: 200px;
+  margin: 15px;
+}
+
+.sort-handle {
+  height: 20px;
+  border: 1px solid black;
+}
+
+.sort-handle:hover {
+  cursor: move;
 }
 
 /* #task {
