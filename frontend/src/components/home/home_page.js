@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import jQuery from 'jquery';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -11,6 +11,12 @@ class HomePage extends React.Component {
     this.props.fetchTasks(this.props.userId).then(() => this.setState({loading: false}))
   }
 
+  componentDidUpdate() {
+    if (window.$(".sortable").length > 0) {
+      window.$(".sortable").sortable()
+    } 
+  }
+
   render() {
     const {tasks} = this.props
 
@@ -19,12 +25,14 @@ class HomePage extends React.Component {
     } else {
       return (
         <div id="home-page">
-          <h1 id="home-header">Task</h1>
+          <ul id="tasks" className="sortable">
           {tasks.map(task => {
-            return <div>
+            return <div  className="ui-state-default" key={task._id}>
               {task.title}
             </div>
           })}
+          </ul>
+          
         </div>
       );
     }
