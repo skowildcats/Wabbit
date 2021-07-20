@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class MainPage extends React.Component {
+export default class Splash extends React.Component {
 
   render() {
     return (
@@ -14,6 +14,4 @@ class MainPage extends React.Component {
       </div>
     );
   }
-}
-
-export default MainPage;
+};

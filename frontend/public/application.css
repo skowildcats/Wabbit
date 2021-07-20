@@ -6,11 +6,6 @@
 @import "nav-bar.css";
 @import "user-form.css";
 
-html, body, #app, #root {
-  height: 100%;
-}
+html, body, #app, #root { height: 100%; }
 
-* {
-  /* border: 1px solid red; */
-  font-family: var(--secondary-font);
-}
+* { font-family: var(--secondary-font); }

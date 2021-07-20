@@ -2,7 +2,6 @@
   position: absolute;
   top: 0; left: 0; bottom: 0;
   right: 45%;
-  z-index: 1;
   background-color: var(--light-green-3);
 }
 
@@ -30,11 +29,14 @@
 }
 
 .user-form h1 {
+  width: 100%;
   position: absolute;
-  /* left: -20px; */
-  bottom: calc(100% + 15px);
-  font-family: var(--primary-font);
-  font-size: 35px;
+  left: 0;
+  bottom: calc(100% + 25px);
+  text-align: center;
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-size: 30px;
   color: var(--dark-grey-3);
 }
 

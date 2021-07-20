@@ -57,6 +57,14 @@ class LoginForm extends React.Component {
     );
   }
 
+  errors() {
+    if (Object.values(this.state.errors.length)) {
+      return (
+        <span>Login or password is invalid</span>
+      );
+    }
+  }
+
   render() {
     return (
         <>
