@@ -1,10 +1,17 @@
 #root {
   --light-green-0: #ebf0ec;
   --light-green-1: #dce3dd;
-  --light-green-2: #acbdaf;
+  --light-green-2: #bcccbf;
+  --light-green-3: #acbdaf;
   --green-0: #95ab99;
   --green-1: #869c8a;
+  --green-2: #798c7c;
   --dark-green-0: #737874;
 
-  --grey-0: #e6e6e6;
+  --light-grey-0: #e6ebe6;
+  --grey-0: #b8bab9;
+  --dark-grey-0: #747474;
+  --dark-grey-1: #525252;
+  --dark-grey-2: #505250;
+  --dark-grey-3: #404140;
 }
