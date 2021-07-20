@@ -4,6 +4,7 @@
 @import "splash.css";
 @import "nav-bar.css";
 @import "user-form.css";
+@import "home-page.css";
 
 /* html, body, #app, #root {
   height: 100vh;
