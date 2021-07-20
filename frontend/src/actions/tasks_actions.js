@@ -34,3 +34,13 @@ export const createTask = (task) => dispatch => (
     .catch(err => console.log(err))
 )
 
+export const updateTask = (task) => dispatch => (
+    TaskUtil.updateTask(task).then(task => dispatch(receiveTask(task)))
+    .catch(err => console.log(err))
+)
+
+export const deleteTask = (taskId) => dispatch => (
+    TaskUtil.deleteTask(taskId).then(() => dispatch(removeTask(taskId)))
+    .catch(err => console.log(err))
+)
+
