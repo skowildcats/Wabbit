@@ -1,15 +1,15 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import { Link, withRouter } from "react-router-dom";
 
 class SignupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      handle: '',
-      password: '',
-      password2: '',
-      errors: {}
+      email: "",
+      handle: "",
+      password: "",
+      password2: "",
+      errors: {},
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,16 +18,17 @@ class SignupForm extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === true) {
-      this.props.history.push('/login');
+      this.props.history.push("/login");
     }
 
-    this.setState({errors: nextProps.errors})
+    this.setState({ errors: nextProps.errors });
   }
 
   update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
+    return (e) =>
+      this.setState({
+        [field]: e.currentTarget.value,
+      });
   }
 
   handleSubmit(e) {
@@ -36,59 +37,66 @@ class SignupForm extends React.Component {
       email: this.state.email,
       handle: this.state.handle,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
     };
 
-    this.props.signup(user, this.props.history); 
+    this.props.signup(user, this.props.history);
   }
 
   renderErrors() {
-    return(
+    return (
       <ul>
         {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {this.state.errors[error]}
-          </li>
+          <li key={`error-${i}`}>{this.state.errors[error]}</li>
         ))}
       </ul>
     );
   }
 
+  errors(field) {
+    for (const error of this.state.errors) {
+      
+    }
+  }
+
   render() {
     return (
-      <div className="user-form">
-        <form onSubmit={this.handleSubmit}>
-          <div className="signup-form">
-            <br/>
-              <input type="text"
-                value={this.state.email}
-                onChange={this.update('email')}
-                placeholder="Email"
-              />
-            <br/>
-              <input type="text"
-                value={this.state.handle}
-                onChange={this.update('handle')}
-                placeholder="Handle"
-              />
-            <br/>
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                placeholder="Password"
-              />
-            <br/>
-              <input type="password"
-                value={this.state.password2}
-                onChange={this.update('password2')}
-                placeholder="Confirm Password"
-              />
-            <br/>
+      <>
+        <div className="user-form-panel"></div>
+        <div className="user-form">
+          <form onSubmit={this.handleSubmit}>
+            <h1>SIGN UP</h1>
+            <input
+              type="text"
+              value={this.state.email}
+              onChange={this.update("email")}
+              placeholder="Email"
+            />
+            <input
+              type="text"
+              value={this.state.handle}
+              onChange={this.update("handle")}
+              placeholder="Handle"
+            />
+            <input
+              type="password"
+              value={this.state.password}
+              onChange={this.update("password")}
+              placeholder="Password"
+            />
+            <input
+              type="password"
+              value={this.state.password2}
+              onChange={this.update("password2")}
+              placeholder="Confirm Password"
+            />
             <input type="submit" value="Submit" />
             {this.renderErrors()}
-          </div>
-        </form>
-      </div>
+            <p>Already have an account?</p>
+            <Link to="/login">Login</Link>
+          </form>
+        </div>
+      </>
     );
   }
 }

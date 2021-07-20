@@ -1,15 +1,16 @@
 @import "variables/colors.css";
 @import "variables/fonts.css";
+@import "variables/keyframes.css";
 @import "reset.css";
 @import "splash.css";
 @import "nav-bar.css";
 @import "user-form.css";
 
-/* html, body, #app, #root {
-  height: 100vh;
-} */
+html, body, #app, #root {
+  height: 100%;
+}
 
-#root * {
+* {
   /* border: 1px solid red; */
   font-family: var(--secondary-font);
 }

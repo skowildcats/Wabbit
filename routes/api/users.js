@@ -7,7 +7,6 @@ const keys = require('../../config/keys')
 const passport = require('passport')
 
 //route for signing up
-
 router.post('/register', (req,res) => {
   User.findOne({email: req.body.email})
     .then(user=>{
@@ -34,7 +33,6 @@ router.post('/register', (req,res) => {
 })
 
 //route for logging in
-
 router.post('/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -69,7 +67,6 @@ router.post('/login', (req, res) => {
 })
 
 //route for returning current user
-
 router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
   res.json({
     id: req.user.id,

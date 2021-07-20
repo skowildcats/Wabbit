@@ -16,12 +16,12 @@
   color: var(--green-1);
   font-size: 100px;
   font-family: var(--primary-font);
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }
 
 #main-page > a {
   padding: 10px;
-  font-size: 22px;
+  font-size: 20px;
   color: var(--green-1);
   letter-spacing: 2px;
   background-color: whitesmoke;
@@ -32,6 +32,6 @@
 
 #main-page > a:hover {
   cursor: pointer;
-  color: whitesmoke;
-  background-color: var(--light-green-2);
+  color: var(--green-2);
+  background-color: var(--light-grey-0);
 }
