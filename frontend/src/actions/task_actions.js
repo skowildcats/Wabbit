@@ -15,32 +15,32 @@ export const receiveTask = task => ({
 });
 
 export const removeTask = taskId => ({
-    type: REMOVE_TASK,
-    taskId
+  type: REMOVE_TASK,
+  taskId
 })
 
 export const fetchTasks = (userId) => dispatch => (
-    TaskUtil.fetchTasksByUser(userId).then(tasks => dispatch(receiveUserTasks(tasks)))
-    .catch(err => cosole.log(err))
+  TaskUtil.fetchTasksByUser(userId).then(tasks => dispatch(receiveUserTasks(tasks.data)))
+  .catch(err => console.log(err))
 )
 
 export const fetchTask = (taskId) => dispatch => (
-    TaskUtil.fetchTask(taskId).then(task => dispatch(receiveTask(task)))
-    .catch(err => console.log(err))
+  TaskUtil.fetchTask(taskId).then(task => dispatch(receiveTask(task.data)))
+  .catch(err => console.log(err))
 )
 
 export const createTask = (task) => dispatch => (
-    TaskUtil.createTask(task).then(task => dispatch(receiveTask(task)))
-    .catch(err => console.log(err))
+  TaskUtil.createTask(task).then(task => dispatch(receiveTask(task.data)))
+  .catch(err => console.log(err))
 )
 
 export const updateTask = (task) => dispatch => (
-    TaskUtil.updateTask(task).then(task => dispatch(receiveTask(task)))
-    .catch(err => console.log(err))
+  TaskUtil.updateTask(task).then(task => dispatch(receiveTask(task.data)))
+  .catch(err => console.log(err))
 )
 
 export const deleteTask = (taskId) => dispatch => (
-    TaskUtil.deleteTask(taskId).then(() => dispatch(removeTask(taskId)))
-    .catch(err => console.log(err))
+  TaskUtil.deleteTask(taskId).then(() => dispatch(removeTask(taskId)))
+  .catch(err => console.log(err))
 )
 
