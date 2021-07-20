@@ -11,10 +11,10 @@ router.post('/new',(req,res)=>{
     recurrence: req.body.recurrence,
     startDate: req.body.startDate,
     daysOfTheWeek: req.body.daysOfTheWeek,
-    dueDate: req.body.dueDate,
+    dueDate: req.body.dueDate
   })
   newTask.save()
-  res.json({msg: 'success'})
+  res.json(newTask)
 })
 
 // update task route
@@ -22,6 +22,10 @@ router.put('/:taskId',(req,res)=>{
   Task.findById(req.params.taskId)
     .then(task=>{
       for(field in req.body){
+        if(field === 'completed'){
+          task.completed = req.body.completed === 'true' ? true : false
+          continue
+        }
         task[field] = req.body[field]
       }
       task.save()
@@ -39,8 +43,8 @@ router.get('/:taskId',(req,res)=>{
 })
 
 // get all tasks
-router.get('/',(req,res)=>{
-  Task.find()
+router.get('/all/:userId',(req,res)=>{
+  Task.find({user: req.params.userId})
     .then(tasks => res.json(tasks))
     .catch(err => res.status(404).json({msg: 'no tasks found'}))
 })
@@ -52,7 +56,7 @@ router.delete('/:taskId',(req,res)=>{
       res.json({error: err})
     }
   })
-  res.json({msg: 'success'})
+  res.json({msg: 'deleted successfully'})
 })
 
 module.exports = router

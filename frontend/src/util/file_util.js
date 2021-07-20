@@ -1,5 +1,5 @@
 import axios from 'axios'
 
-export const fetchFiles = () => {
+export const fetchImages = () => {
   return axios.get('/api/files/')
 }
