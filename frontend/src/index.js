@@ -16,9 +16,10 @@ import { setAuthToken } from './util/session_api_util';
 // We have not created this action yet, but will do so in the next step
 import { logout } from './actions/session_actions';
 
+import * as Actions from './actions/task_actions'
+
 document.addEventListener('DOMContentLoaded', () => {
   let store;
-
   // If a returning user has a session token stored in localStorage
   if (localStorage.jwtToken) {
 
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloadedState = { session: { isAuthenticated: true, user: decodedUser } };
 
     store = configureStore(preloadedState);
+    //Put on window
 
     const currentTime = Date.now() / 1000;
 
@@ -45,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // If this is a first time user, start with an empty store
     store = configureStore({});
   }
+  window.store = store
+  window.actions = Actions
   // Render our root component and pass in the store as a prop
   const root = document.getElementById('root');
 

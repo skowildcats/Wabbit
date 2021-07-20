@@ -3,6 +3,7 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Switch, Route } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
 import Upload from './files/upload';
+import Files from './files/files'
 
 import Splash from './splash/splash';
 import LoginFormContainer from './session/login_form_container';
@@ -13,6 +14,7 @@ const App = () => (
     <NavBarContainer />
     <Switch>
         <Route exact path="/upload" component={Upload} />
+        <Route exact path='/files' component={Files}/>
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <AuthRoute exact path="/" component={Splash} />
