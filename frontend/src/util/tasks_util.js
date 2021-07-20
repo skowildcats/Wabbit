@@ -13,7 +13,7 @@ export const createTask = (taskData) => {
 };
 
 export const updateTask = (taskData) => {
-  return axios.put(`/api/tasks/${taskData.id}`, taskData)
+  return axios.put(`/api/tasks/${taskData._id}`, taskData)
 }
 
 export const deleteTask = (taskId) => {

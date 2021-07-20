@@ -4,8 +4,11 @@ export default function(state = {}, action){
   const newState = Object.assign({}, state)
   switch(action.type){
     case RECEIVE_USER_TASKS:
-      return action.tasks;
+      //need to get _id pointing to the task in state
+      action.tasks.forEach(task => newState[task._id] = task);
+      return newState
     case RECEIVE_TASK:
+      debugger
       newState[action.task._id] = action.task
       return newState;
     case REMOVE_TASK:
