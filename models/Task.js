@@ -32,6 +32,9 @@ const TaskSchema = new Schema({
   dueDate: {
     type: Date
   },
+  completedAt: {
+    type: Date
+  },
   subtasks: {
     type: Schema.Types.ObjectId,
     ref: 'tasks'
