@@ -7,26 +7,37 @@
   padding: 15px;
 
   background-color: $green-1;
+
+   > a, button{
+    width: 100px;
+    padding: 10px;
+
+    color: white;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-align: center;
+
+    background-color: $green-0;
+    border-radius: 3px;
+
+    transition: all 0.2s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $light-green-3;
+    }
+    &:not(:first-child) { margin-left: 20px; }
+  }
+  > #home-btn {
+    position: absolute;
+    left: 10px;
+    padding: 0;
+    background-color: transparent;
+    transform: translateY(2px);
+    > img { height: 30px; }
+    &:hover {
+      filter: brightness(0.94);
+      transform: translateY(0px);
+    }
+  }
 }
-
-#nav-bar > a {
-  width: 100px;
-  padding: 10px;
-
-  color: white;
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-align: center;
-
-  background-color: $green-0;
-  border-radius: 3px;
-
-  transition: all 0.2s;
-}
-
-#nav-bar > a:hover {
-  cursor: pointer;
-  background-color: $light-green-3;
-}
-
-#nav-bar > a:last-child { margin-left: 20px; }
