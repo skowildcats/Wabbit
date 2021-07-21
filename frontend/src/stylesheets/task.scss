@@ -1,8 +1,8 @@
-// #tasks {
-//   height: 65vh;
-//   overflow: scroll;
-//   border: 1px solid black;
-// }
+#tasks {
+  height: 65vh;
+  overflow: scroll;
+  border: 1px solid black;
+}
 
 #tasks > div {
   // border: 1px solid black;
@@ -20,17 +20,8 @@
 }
 
 .drag-handle {
-  height: 30px;
+  height: calc(10% + 10px);
   border-radius: 5px 5px 0 0;
   border-bottom: 1px solid $dark-green-0;
   cursor: move;
-}
-
-
-#add-task {
-  float: right;
-  border: 1px solid black;
-  font-size: 14px;
-  padding: 10px;
-  border-radius: 5px;
 }
