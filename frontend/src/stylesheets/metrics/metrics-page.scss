@@ -14,6 +14,17 @@
   }
   .header{
     height: 25%;
+    .this-week{
+      display: flex;
+      align-items: center;
+      height: 40px;
+      border: 1px solid lightgrey;
+      border-radius: 4px;
+    }
+    .habit{
+      display: flex;
+      align-items: center;
+    }
   }
   .bar-graph{
     height: 60%;
