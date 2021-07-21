@@ -9,7 +9,7 @@
   background-color: $green-1;
 }
 
-#nav-bar > a {
+#nav-bar > a, #nav-bar > button {
   width: 100px;
   padding: 10px;
 
@@ -24,7 +24,7 @@
   transition: all 0.2s;
 }
 
-#nav-bar > a:hover {
+#nav-bar > a:hover, #nav-bar > button:hover {
   cursor: pointer;
   background-color: $light-green-3;
 }
