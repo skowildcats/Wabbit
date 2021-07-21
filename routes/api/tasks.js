@@ -21,11 +21,12 @@ router.post('/new',(req,res)=>{
 router.put('/:taskId',(req,res)=>{
   Task.findById(req.params.taskId)
     .then(task=>{
+      if(!task.completed && req.body.completed){
+        task.completedAt = new Date()
+      }else if(task.completed && !req.body.completed){
+        task.completedAt = null
+      }
       for(field in req.body){
-        // if(field === 'completed'){
-        //   task.completed = req.body.completed === 'true' ? true : false
-        //   continue
-        // }
         task[field] = req.body[field]
       }
       task.save()
