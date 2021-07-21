@@ -7,6 +7,10 @@
 @import "app-header.css";
 @import "create-task-menu.css";
 @import "overlay.css";
+@import "home-page.css";
+@import "task.css";
+@import "habit.css";
+
 /* html, body, #app, #root {
   height: 100vh;
 } */

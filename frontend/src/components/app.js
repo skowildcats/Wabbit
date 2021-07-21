@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
 import Upload from './files/upload';
 import Files from './files/files'
+import HomePageContainer from './home/home_page_container'
 
 import Header from './app/header/header';
 import MainPage from './main/main_page';
@@ -18,6 +19,7 @@ const App = () => (
         <Route exact path='/files' component={Files}/>
         <Route path="/header-test" component={Header}/>
         <AuthRoute exact path="/login" component={LoginFormContainer} />
+        <ProtectedRoute exact path="/home" component={HomePageContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <AuthRoute exact path="/" component={MainPage} />
     </Switch>
