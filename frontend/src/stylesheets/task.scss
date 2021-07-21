@@ -1,19 +1,24 @@
-/* #tasks {
-  border: 1px solid black; 
-  height: 100px;
-}  */
+// #tasks {
+//   height: 65vh;
+//   overflow: scroll;
+//   border: 1px solid black;
+// }
 
 #tasks>div {
-  border: 1px solid black;
-  width: 150px;
-  height: 200px;
+  // border: 1px solid black;
+  border-radius: 5px;
+  width: 200px;
+  height: 300px;
   margin: 15px;
   float: left;
+  background-color: $light-green-3;
+  box-shadow: 0 5px 10px $green-2;
 }
 
 .sort-handle {
-  height: 20px;
-  border: 1px solid black;
+  height: 30px;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 1px solid $dark-green-0;
 }
 
 .sort-handle:hover {

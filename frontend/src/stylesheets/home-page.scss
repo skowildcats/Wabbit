@@ -5,6 +5,7 @@
   margin-right: auto;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 #home-page button {
@@ -15,3 +16,4 @@
   padding: 10px;
   border-radius: 5px;
 }
+
