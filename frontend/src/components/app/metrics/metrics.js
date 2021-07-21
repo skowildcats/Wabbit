@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-export default function Metrics(props) {
+export default function Metrics(props){
+  useEffect(() => {
+    props.fetchMetrics(props.userId)
+  }, [])
   return (
-    <div>
+    <div className="metrics-page">
+      Metrics page
     </div>
   )
 }

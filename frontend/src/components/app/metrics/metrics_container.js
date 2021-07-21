@@ -1,7 +1,13 @@
-import { connect } from 'react-redux'
-import Metrics from './metrics'
-const mapStateToProps = (state) => ({
-  
+import { connect } from 'react-redux';
+import { fetchMetrics } from '../../../actions/metrics_actions';
+import Metrics from './metrics';
+
+const mSTP = state => ({
+  userId: state.session.user.id
 })
 
-export default connect(mapStateToProps, null)(Metrics)
+const mDTP = (dispatch, ownProps) => ({
+  fetchMetrics: (userId = ownProps.userId) => dispatch(fetchMetrics(userId))
+})
+
+export default connect(mSTP, mDTP)(Metrics)
