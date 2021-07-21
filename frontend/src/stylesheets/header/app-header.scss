@@ -1,15 +1,15 @@
 /* Alter top positioning to fit top navbar later */
 .app-header {
-  position: relative;
-  top: 67px;
-  background-color: var(--light-green-2);
+  // position: relative;
+  // top: 67px;
+  // background-color: var(--light-green-2);
 }
 
-.app-header>button {
-  width: 30px;
-  height: 30px;
-  margin: 4px;
-  box-sizing: border-box;
-  border: 2px solid #6d6c6c;
-  border-radius: 3px;
+.app-header > button {
+  width: inherit;
+  height: inherit;
+  border-radius: 5px;
+  font-size: 75px;
+  cursor: pointer;
+  color: white;
 }
