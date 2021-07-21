@@ -1,6 +1,6 @@
 import React from 'react';
 import Task from './task'
-
+import HeaderContainer from '../header/header'
 class HomePage extends React.Component {
   constructor(props) {
     super(props)
@@ -22,7 +22,7 @@ class HomePage extends React.Component {
       tolerance: "pointer",
       containment: "parent",
     })
-    window.$( "#sortable" ).disableSelection(); 
+    window.$( "#sortable" ).disableSelection();
   }
 
   componentWillUnmount() {
@@ -36,17 +36,20 @@ class HomePage extends React.Component {
       return null
     } else {
       return (
-        <div id="home-page">
-          <ul id="habits">Habits
-            <button id="add-habit">Add habit</button>
-          </ul>
-          <ul id="tasks" className="sortable">
-            <button id="add-task">Add task</button>
-            {tasks.map(task => {
-              return <Task task={task} key={task._id} />
-            })}
-          </ul>
-        </div>
+        <>
+          <HeaderContainer/>
+          <div id="home-page">
+            <ul id="habits">Habits
+              {/* <button id="add-habit">Add habit</button> */}
+            </ul>
+            <ul id="tasks" className="sortable">
+              {/* <button id="add-task">Add task</button> */}
+              {tasks.map(task => {
+                return <Task task={task} key={task._id} />
+              })}
+            </ul>
+          </div>
+        </>
       );
     }
   }

@@ -35,6 +35,14 @@ const TaskSchema = new Schema({
   completedAt: {
     type: Date
   },
+  color: {
+    type: String,
+    required: true
+  },
+  icon: {
+    type: String, //this will just be the filename that can be used to fetch it from the api
+    required: true
+  },
   subtasks: {
     type: Schema.Types.ObjectId,
     ref: 'tasks'
