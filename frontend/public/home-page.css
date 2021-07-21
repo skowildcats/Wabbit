@@ -1,0 +1,31 @@
+#home-page {
+  margin-top: 100px;
+  width: 80%;
+  margin-left: auto; margin-right: auto;
+}
+
+#tasks {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#tasks > div {
+  border: 1px solid black;
+  width: 150px;
+  height: 200px;
+  margin: 15px;
+  float: left;
+}
+
+.sort-handle {
+  height: 20px;
+  border: 1px solid black;
+}
+
+.sort-handle:hover {
+  cursor: move;
+}
+
+/* #task {
+  border: 1px solid black;
+} */
