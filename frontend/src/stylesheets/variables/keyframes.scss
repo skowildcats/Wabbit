@@ -9,11 +9,11 @@
   }
 }
 
-@keyframes slide-in-from-left {
+@keyframes slide-in-from-bottom {
   0% {
-    left: -100%;
+    top: 50%;
+    opacity: 0;
   }
-  100% {
-    left: 20px;
-  }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
 }
