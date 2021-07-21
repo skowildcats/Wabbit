@@ -1,13 +1,13 @@
 /* Alter top positioning to fit top navbar later */
-@import 'variables/colors.css';
+@import 'variables/colors.scss';
 
-.app-header{
+.app-header {
   position: relative;
   top: 67px;
   background-color: var(--light-green-2);
 }
 
-.app-header > button{
+.app-header>button {
   width: 30px;
   height: 30px;
   margin: 4px;
