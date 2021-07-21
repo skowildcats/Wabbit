@@ -24,10 +24,10 @@ router.put('/:taskId',(req,res)=>{
   Task.findById(req.params.taskId)
     .then(task=>{
       for(field in req.body){
-        if(field === 'completed'){
-          task.completed = req.body.completed === 'true' ? true : false
-          continue
-        }
+        // if(field === 'completed'){
+        //   task.completed = req.body.completed === 'true' ? true : false
+        //   continue
+        // }
         task[field] = req.body[field]
       }
       task.save()
