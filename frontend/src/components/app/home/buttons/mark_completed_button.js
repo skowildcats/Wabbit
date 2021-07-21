@@ -3,15 +3,14 @@ import { connect } from 'react-redux'
 import { updateTask } from '../../../../actions/task_actions'
 export const MarkCompletedButton = (props) => {
   function markCompleted(){
-    if(props.task.completed) return;
     let updatedTask = props.task
-    updatedTask.completed = "true";
+    updatedTask.completed = !props.task.completed;
     props.updateTask(updatedTask).then(task => {
       console.log(task)
     })
   }
   return (
-    <button onClick={markCompleted}>Mark as completed</button>
+    <button onClick={markCompleted}>Toggle Completed</button>
   )
 }
 

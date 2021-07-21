@@ -21,10 +21,6 @@ const TaskSchema = new Schema({
     // d,w,b,m,q,y for daily,weekly,biweekly,monthly,quarterly,yearly
     type: String
   },
-  startDate:{
-    type: Date,
-    default: Date.now
-  },
   daysOfTheWeek:{
     // M_TW_F__ for a mon tues wed fri repeating task
     type: String

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -9,37 +9,37 @@ class NavBar extends React.Component {
   }
 
   logoutUser(e) {
-      e.preventDefault();
-      this.props.logout();
+    e.preventDefault();
+    this.props.logout();
+    this.props.history.push('/');
   }
 
-  // Selectively render links dependent on whether the user is logged in
   getLinks() {
-      if (this.props.loggedIn) {
-        return (
-            <>
-                <Link id="home-btn" to="/"><img src={process.env.PUBLIC_URL + "/logo-image.png"} alt="home-btn" /></Link>
-                {/* <Link to="/settings">Settings</Link> */}
-                <button onClick={this.logoutUser}>Logout</button>
-            </>
-        );
-      } else {
-        return (
-            <>
-                <Link to={'/signup'}>SIGNUP</Link>
-                <Link to={'/login'}>LOGIN</Link>
-            </>
-        );
-      }
+    if (this.props.loggedIn) {
+      return (
+        <>
+          <Link id="home-btn" to="/"><img src={process.env.PUBLIC_URL + "/logo-image.png"} alt="home-btn" /></Link>
+          {/* <Link to="/settings">Settings</Link> */}
+          <button onClick={this.logoutUser}>Logout</button>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Link to={'/signup'}>SIGNUP</Link>
+          <Link to={'/login'}>LOGIN</Link>
+        </>
+      );
+    }
   }
 
   render() {
-      return (
-        <div id="nav-bar">
-            { this.getLinks() }
-        </div>
-      );
+    return (
+      <div id="nav-bar">
+          { this.getLinks() }
+      </div>
+    );
   }
 }
 
-export default NavBar;
+export default withRouter(NavBar);
