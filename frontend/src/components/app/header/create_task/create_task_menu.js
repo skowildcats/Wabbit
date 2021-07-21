@@ -61,11 +61,17 @@ export default function CreateTaskMenu(props) {
 
   const icons = props.images.data.map(img => {
     return (
-      <li key={img.filename}>
-        <img onClick={() => setIcon(img.filename)} src={`/api/files/image/${img.filename}`} alt="task-icon" />
-        {icon === img.filename ? <img id="icon-check" src={process.env.PUBLIC_URL + "/checkmark.png"} alt="checkmark" /> : null}
+      <li key={img.filename} onClick={() => setIcon(img.filename)}>
+        <img src={`/api/files/image/${img.filename}`} alt="task-icon" />
+        {icon === img.filename ? (
+          <img
+            id="icon-check"
+            src={process.env.PUBLIC_URL + "/checkmark.png"}
+            alt="checkmark"
+          />
+        ) : null}
       </li>
-    )
+    );
   });
 
   let date = new Date().toISOString().slice(0, 10); //just for date input
@@ -74,22 +80,22 @@ export default function CreateTaskMenu(props) {
       <div className="overlay" onClick={closeMenu}></div>
       <div className="create-task-menu">
         <div className="header">
-          <span>Task Header</span>
+          <h1>CREATE A TASK</h1>
           <span onClick={closeMenu}>&times;</span>
         </div>
 
         <div className="form-field">
-          <label htmlFor="title">Title:</label>
+          <label htmlFor="title">TITLE</label>
           <input onChange={(e) => setTitle(e.target.value)} value={title} type="text" id="title"/>
         </div>
 
         <div className="form-field">
-          <label htmlFor="description">Description:</label>
+          <label htmlFor="description">DESCRIPTION</label>
           <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" id="description"/>
         </div>
 
         <div className="form-field">
-          <label htmlFor="recurrence">Repeat: </label>
+          <label htmlFor="recurrence">REPEAT </label>
           <select name="recurrence" onChange={(e) => setRecurrence(e.target.value)} id="recurrence" defaultValue="Never">
             <option>Never</option>
             <option>Daily</option>
@@ -100,44 +106,58 @@ export default function CreateTaskMenu(props) {
         
         {recurrence === "Weekly" ? 
         <div className="form-field">
-          <label htmlFor="">Repeat on:</label>
+          <label htmlFor="">REPEAT ON</label>
           <div className="days">
-            <input type="checkbox" readOnly={true} name="mon" id="mon" value="M"/>
-            <label htmlFor="mon">Mondays</label>
+            <div className="day-checkbox">
+              <input type="checkbox" readOnly={true} name="mon" id="mon" value="M"/>
+              <label htmlFor="mon">Monday</label>
+            </div>
 
-            <input type="checkbox" readOnly={true} name="tue" id="tue" value="T"/>
-            <label htmlFor="tue">Tuesdays</label>
+            <div className="day-checkbox">
+              <input type="checkbox" readOnly={true} name="tue" id="tue" value="T"/>
+              <label htmlFor="tue">Tuesday</label>
+            </div>
 
-            <input type="checkbox" readOnly={true} name="wed" id="wed" value="W"/>
-            <label htmlFor="wed">Wednesdays</label>
+            <div className="day-checkbox">
+              <input type="checkbox" readOnly={true} name="wed" id="wed" value="W"/>
+              <label htmlFor="wed">Wednesday</label>
+            </div>
 
-            <input type="checkbox" readOnly={true} name="thu" id="thu" value="R"/>
-            <label htmlFor="thu">Thursdays</label>
+            <div className="day-checkbox">
+              <input type="checkbox" readOnly={true} name="thu" id="thu" value="R"/>
+              <label htmlFor="thu">Thursday</label>
+            </div>
 
-            <input type="checkbox" readOnly={true} name="fri" id="fri" value="F"/>
-            <label htmlFor="fri">Fridays</label>
+            <div className="day-checkbox">
+              <input type="checkbox" readOnly={true} name="fri" id="fri" value="F"/>
+              <label htmlFor="fri">Friday</label>
+            </div>
 
-            <input type="checkbox" readOnly={true} name="sat" id="sat" value="S"/>
-            <label htmlFor="sat">Saturday</label>
+            <div className="day-checkbox">
+              <input type="checkbox" readOnly={true} name="sat" id="sat" value="S"/>
+              <label htmlFor="sat">Saturday</label>
+            </div>
 
-            <input type="checkbox" readOnly={true} name="sun" id="sun" value="N"/>
-            <label htmlFor="sun">Sundays</label>
+            <div className="day-checkbox">
+              <input type="checkbox" readOnly={true} name="sun" id="sun" value="N"/>
+              <label htmlFor="sun">Sunday</label>
+            </div>
           </div>
         </div>
          : null}
         
         <div className="form-field">
-          <label htmlFor="dueDate">Deadline:</label>
+          <label htmlFor="dueDate">DEADLINE:</label>
           <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date} />
         </div>
 
         <div className="form-field">
-          <label id="color-label" htmlFor="color">Color:</label>
+          <label id="color-label" htmlFor="color">COLORS</label>
           <ColorPalette selected={selected} setSelected={setSelected}/>
         </div>
 
         <div id="icons-label" className="form-field"> 
-          <label htmlFor="icons">Icons: </label>
+          <label htmlFor="icons">ICONS</label>
           <ul id="icons">
             {icons}
           </ul>

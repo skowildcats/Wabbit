@@ -24,30 +24,39 @@
   transition: transform 0.3s ease-in-out; // transition the sidebar
   &.active { transform: translateX(0%); }
 
-  > * { padding: 0 16px; }
-
   > .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
+    padding: 30px;
+
+    > * { font-size: 24px; }
+    > h1 { font-family: $primary-font; }
+    > :last-child { transition: filter 0.1s;}
+    > :last-child:hover {
+      cursor: pointer;
+      filter: invert(0.4);
+    }
   }
 
   > .form-field {
-    // display: flex;
-    // justify-content: space-between;
     border-bottom: 1px solid rgb(201, 201, 201);
-    padding: 16px;
+    padding: 16px 30px;
     > label {
-      font-size: 16px;
-      width: 468px;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+      color: $dark-grey-4;
     }
-    > input {
+    > input, select {
       box-sizing: border-box;
       width: 100%;
-      border: 1px solid black;
+      padding: 10px;
+
+      font-size: 14px;
+      border: 1px solid $grey-0;
       border-radius: 3px;
-      padding: 6px;
     }
   }
 }
@@ -56,30 +65,32 @@
   position: relative;
   display: inline-block;
   border-radius: 50%;
-  height: 36px;
-  width: 36px;
-  margin: 8px;
+  height: 50px;
+  width: 50px;
+  margin: 10px 19px;
   cursor: pointer;
 }
 
 #icons {
   display: flex;
   flex-wrap: wrap;
+  padding: 0px 20px;
 }
 
 #icons > li {
   position: relative;
-  padding: 10px;
-  margin: 4px;
+  padding: 18px;
+  margin: 10px 20px;
 
-  height: 16px;
-  width: 16px;
+  height: 24px;
+  width: 24px;
   background-color: whitesmoke;
   border-radius: 50%;
   
   > img:first-child {
     height: 100%;
     width: 100%;
+    filter: brightness(2)
   }
   &:hover { cursor: pointer; }
 }
@@ -89,26 +100,59 @@
   width: 8px;
   padding: 4px;
   position: absolute;
-  bottom: -3px; right: -3px;
+  bottom: 1px; right: 1px;
   background-color: white;
-  border: 1px solid $dark-grey-0;
+  border: 1px solid $grey-2;
   border-radius: 50%;
 }
 
+.color-bubble > img { bottom: -1px; right: -1px; }
+
 .form-submit {
-  margin-top: auto;
+  position: absolute;
+  left: 30px; bottom: 16px;
+  display: flex;
+  align-items: center;
 }
 
 .form-submit > button {
-  padding: 12px;
-  margin-right: 8px;
-  margin-bottom: 12px;
-  border-radius: 4px;
-  font-weight: 600;
+  margin-right: 16px;
   font-size: 16px; // make this one standardized unit larger than base size
+  &:first-child {
+    color: $dark-grey-4;
+    &:hover {
+      cursor: pointer;
+      padding: 2px 0px;
+      border-bottom: 1px solid $dark-grey-4;
+    }
+  }
+  &:last-child {
+    color: white;
+    padding: 12px;
+    background-color: $dark-grey-0;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    &:hover {
+      cursor: pointer;
+      background-color: $dark-grey-1;
+    }
+  }
 }
 
 .days {
   display: flex;
   flex-direction: column;
+  
+  > .day-checkbox {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    > input { height: 16px; width: 16px; }
+    > input:hover { cursor: pointer; }
+    > label {
+      margin-left: 6px;
+      font-size: 12px;
+      // text-transform: uppercase;
+    }
+  }
 }
