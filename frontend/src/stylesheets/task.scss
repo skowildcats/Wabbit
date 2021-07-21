@@ -1,0 +1,30 @@
+/* #tasks {
+  border: 1px solid black; 
+  height: 100px;
+}  */
+
+#tasks>div {
+  border: 1px solid black;
+  width: 150px;
+  height: 200px;
+  margin: 15px;
+  float: left;
+}
+
+.sort-handle {
+  height: 20px;
+  border: 1px solid black;
+}
+
+.sort-handle:hover {
+  cursor: move;
+}
+
+
+#add-task {
+  float: right;
+  border: 1px solid black;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+}

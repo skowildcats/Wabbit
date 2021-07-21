@@ -16,6 +16,8 @@ import { setAuthToken } from './util/session_api_util';
 // We have not created this action yet, but will do so in the next step
 import { logout } from './actions/session_actions';
 
+import * as Actions from './actions/task_actions'
+
 document.addEventListener('DOMContentLoaded', () => {
   let store;
   // If a returning user has a session token stored in localStorage
@@ -46,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore({});
   }
   window.store = store
+  window.actions = Actions
   // Render our root component and pass in the store as a prop
   const root = document.getElementById('root');
 

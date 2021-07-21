@@ -1,0 +1,81 @@
+.user-form-panel {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  right: 45%;
+  background-color: $light-green-3;
+}
+
+.user-form {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  left: 55%;
+  background-color: $light-green-1;
+
+  > h1 {
+    width: 100%;
+    position: absolute;
+    top: calc(50% - 150px);
+    z-index: 1;
+    left: 0;
+    transform: translateY(-50%);
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-size: 40px;
+    color: $dark-grey-3;
+    animation: slide-in-from-bottom 0.3s;
+  }
+
+  > form {
+    display: flex;
+    flex-wrap: wrap;
+
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 300px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: $light-green-0;
+    box-shadow: 0px 0px 15px $dark-green-0;
+    animation: float-in 0.2s;
+
+    > input {
+      box-sizing: border-box;
+      width: 300px;
+      padding: 10px;
+      margin-bottom: 15px;
+
+      font-size: 14px;
+      border-radius: 3px;
+      border: 1px solid $light-green-2;
+
+      transition: border-color 0.1s;
+
+      &:focus { border-color: $dark-green-0; }
+
+      &[type=submit] {
+        margin-bottom: 10px; border: none;
+        color: white;
+        background-color: $green-0;
+        transition: all 0.2s;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $green-1;
+        }
+      }
+    }
+
+    > p, > a {
+      font-size: 12px;
+      color: $dark-grey-1;
+    }
+
+    > a { margin-left: 4px; }
+    > a:hover { border-bottom: 1px solid $dark-grey-1; }
+  }
+}
+
+#signup-form > h1 { top: calc(50% - 231px); }

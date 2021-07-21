@@ -1,0 +1,14 @@
+@import "variables/colors";
+@import "variables/fonts";
+@import "variables/keyframes";
+@import "reset";
+@import "splash";
+@import "nav-bar";
+@import "user-form";
+@import "./header/app-header";
+@import "./header/create-task-menu";
+@import 'home-page';
+@import 'task';
+@import 'overlay';
+html, body, #root, #app { height: 100%; }
+* { font-family: $secondary-font; }

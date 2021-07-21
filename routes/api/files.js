@@ -41,7 +41,6 @@ const upload = multer({ storage });
 
 //get all files
 router.get('/', (req, res) => {
-//   debugger
   gfs.files.find().toArray((err, files) => {
     if(!files || files.length === 0){
       return res.status(404).json({
@@ -74,20 +73,21 @@ router.get('/image/:filename', (req, res) => {
       });
     }
 
-    if(file.contentType === 'image/jpeg' || file.contentType === 'image/png'){
-        const readstream = gfs.createReadStream(file.filename);
-        readstream.pipe(res)
-    } else{
-        res.status(404).json({
-            err: "Not an image"
-        })
+    if(file.contentType.startsWith('image')){
+      const readstream = gfs.createReadStream(file.filename);
+      readstream.pipe(res)
+    } else {
+      res.status(404).json({
+        err: "Not an image"
+      })
     }
   })
 })
 
 //upload file
 router.post('/', upload.single('file'), (req, res) => {
-  res.json({ file: req.file });
+  // res.json({ file: req.file });
+  console.log("Successfully added")
 })
 
 module.exports = router

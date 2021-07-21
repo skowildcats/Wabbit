@@ -10,7 +10,6 @@ const metrics = require('./routes/api/metrics')
 const fileRouter = require('./routes/api/files')
 
 require('./config/passport')(passport)
-const methodOverride = require('method-override')
 
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -22,7 +21,6 @@ app.get("/", (req, res) => res.send("Hello World!!!"));
 //Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(methodOverride('_method'))
 
 app.use(passport.initialize())
 

@@ -6,7 +6,7 @@
   top: 0; left: 0; right: 0;
   padding: 15px;
 
-  background-color: var(--green-1);
+  background-color: $green-1;
 }
 
 #nav-bar > a {
@@ -18,7 +18,7 @@
   letter-spacing: 1px;
   text-align: center;
 
-  background-color: var(--green-0);
+  background-color: $green-0;
   border-radius: 3px;
 
   transition: all 0.2s;
@@ -26,7 +26,7 @@
 
 #nav-bar > a:hover {
   cursor: pointer;
-  background-color: var(--light-green-2);
+  background-color: $light-green-3;
 }
 
 #nav-bar > a:last-child { margin-left: 20px; }
