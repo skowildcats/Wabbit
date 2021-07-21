@@ -42,16 +42,13 @@ class SignupForm extends React.Component {
     this.props.signup(user, this.props.history);
   }
 
-  renderErrors() {
-    return (
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => {
-          debugger
-          <li key={`error-${i}`}>{this.state.errors[error]}</li>
-})}
-      </ul>
-    );
-  }
+  // errors() {
+  //   if (Object.values(this.state.errors.length)) {
+  //     return (
+  //       <span>Login or password is invalid</span>
+  //     );
+  //   }
+  // }
 
   errors(field) {
     for (const error of this.state.errors) {
@@ -64,26 +61,33 @@ class SignupForm extends React.Component {
   }
 
   render() {
+    const errors = (Object.values(this.state.errors).length) ? (
+      <p id="errors">Login or password is invalid</p>
+    ) : (
+      null
+    );
+
     const inputs = ["email", "firstName", "lastName", "password", "confirmPassword"].map(field => (
-      <input
-        key={field.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}
-        type={field.slice(-4)==="word" ? "password" : "text" }
-        value={this.state[field]}
-        onChange={this.update(field)}
-        placeholder={this.toWords(field)}
-      />
+      <>
+        <p id ="errors">{Object.values(this.state.errors).length ? this.state.errors[field] : null}</p>
+        <input
+          key={field.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}
+          type={field.slice(-4)==="word" ? "password" : "text" }
+          value={this.state[field]}
+          onChange={this.update(field)}
+          placeholder={this.toWords(field)}
+        />
+      </>
     ))
 
     return (
       <>
-      {this.renderErrors()}
         <div className="user-form-panel"></div>
         <div id="signup-form" className="user-form">
           <h1>SIGN UP</h1>
           <form onSubmit={this.handleSubmit}>
             {inputs}
             <input type="submit" value="Submit" />
-            {this.renderErrors()}
             <p>Already have an account?</p>
             <Link to="/login">Login</Link>
           </form>

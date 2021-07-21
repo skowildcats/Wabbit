@@ -12,7 +12,6 @@ class LoginForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
   }
 
   // Once the user has been authenticated, redirect to the Tweets page
@@ -41,21 +40,12 @@ class LoginForm extends React.Component {
       password: this.state.password
     };
 
-    this.props.login(user); 
-  }
-
-  // Render the session errors if there are any
-  renderErrors() {
-    return(
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {this.state.errors[error]}
-          </li>
-        ))}
-      </ul>
-    );
-  }
+    this.props.login(user).then(() => {
+      if (Object.values(this.state.errors).length) {
+        window.$("#submit").effect("shake")   
+      }
+    })
+  } 
 
   errors() {
     if (Object.values(this.state.errors.length)) {
@@ -67,7 +57,7 @@ class LoginForm extends React.Component {
 
   render() {
     const errors = (Object.values(this.state.errors).length) ? (
-      <p>Login or password is invalid</p>
+      <p id="errors">Login or password is invalid</p>
     ) : (
       null
     );
@@ -85,7 +75,6 @@ class LoginForm extends React.Component {
               placeholder="Email"
               className={errors ? "has-errors" : ""}
             />
-            {errors}
             <input
               type="password"
               value={this.state.password}
@@ -94,7 +83,7 @@ class LoginForm extends React.Component {
               className={errors ? "has-errors" : ""}
             />
             {errors}
-            <input type="submit" value="Submit" />
+            <input id="submit" type="submit" value="Submit" />
             <p>Don't have an account? </p>
             <Link to="/signup">Register</Link>
           </form>
