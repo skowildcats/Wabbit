@@ -33,11 +33,11 @@ const TaskSchema = new Schema({
   },
   color: {
     type: String,
-    required: true
+    // required: true
   },
   icon: {
     type: String, //this will just be the filename that can be used to fetch it from the api
-    required: true
+    // required: true
   },
   subtasks: {
     type: Schema.Types.ObjectId,

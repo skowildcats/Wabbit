@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { updateTask } from '../../../../actions/task_actions'
 export const MarkCompletedButton = (props) => {
   function markCompleted(){
+    if(props.task.completed) return;
     let updatedTask = props.task
     updatedTask.completed = !props.task.completed;
     props.updateTask(updatedTask).then(task => {

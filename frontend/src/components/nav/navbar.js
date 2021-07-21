@@ -19,7 +19,8 @@ class NavBar extends React.Component {
       return (
           <>
               <Link id="home-btn" to="/"><img src={process.env.PUBLIC_URL + "/logo-image.png"} alt="home-btn" /></Link>
-              {/* <Link to="/settings">Settings</Link> */}
+              <Link to="/metrics">METRICS</Link>
+              <Link to="/settings">SETTINGS</Link>
               <button onClick={this.logoutUser}>LOGOUT</button>
           </>
       );
