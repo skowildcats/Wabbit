@@ -9,7 +9,6 @@ router.post('/new',(req,res)=>{
     user: req.body.user,
     description: req.body.description,
     recurrence: req.body.recurrence,
-    startDate: req.body.startDate,
     daysOfTheWeek: req.body.daysOfTheWeek,
     dueDate: req.body.dueDate
   })
