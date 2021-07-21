@@ -83,7 +83,7 @@ class LoginForm extends React.Component {
               className={errors ? "has-errors" : ""}
             />
             {errors}
-            <input id="submit" type="submit" value="Submit" />
+            <input id="submit" type="submit" value="Log in" />
             <p>Don't have an account? </p>
             <Link to="/signup">Register now</Link>
           </form>

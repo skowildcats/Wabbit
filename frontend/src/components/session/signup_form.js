@@ -41,7 +41,11 @@ class SignupForm extends React.Component {
       confirmPassword: this.state.confirmPassword,
     };
 
-    this.props.signup(user, this.props.history);
+    this.props.signup(user, this.props.history).then(() => {
+      if (Object.values(this.state.errors).length) {
+        window.$("#submit").effect("shake")   
+      }
+    })
   }
 
   toWords(str) {
@@ -70,7 +74,7 @@ class SignupForm extends React.Component {
           <h1>SIGN UP</h1>
           <form onSubmit={this.handleSubmit}>
             {inputs}
-            <input type="submit" value="Submit" />
+            <input id="submit" type="submit" value="Create Account" />
             <p>Already have an account?</p>
             <Link to="/login">Login here</Link>
           </form>
