@@ -1,52 +1,59 @@
+#create-task-menu-modal {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+}
+
 .create-task-menu {
-  position: relative;
-  height: 100vh;
-  width: 35vw;
-  background-color: white;
-  z-index: 101;
-  /* place above overlay. overlay is z-index 100 */
-  transform: translateX(100vw);
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 500px;
+  transform: translateX(150%);
+
   display: flex;
   flex-direction: column;
-  transition: 250ms ease-out
-    /* Transition the sidebar */
-}
 
-.create-task-menu.active {
-  transform: translateX(65vw);
-}
+  -webkit-user-select: none; // Safari
+  -moz-user-select: none; // Firefox
+  -ms-user-select: none; // IE10+/Edge
+  user-select: none; // Standard
 
-.create-task-menu>* {
-  padding: 0 16px;
-}
+  background-color: white;
+  z-index: 101; // place above overlay. overlay is z-index 100
+  transition: transform 0.3s ease-in-out; // transition the sidebar
+  &.active { transform: translateX(0%); }
 
-.create-task-menu>.form-field {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid rgb(201, 201, 201);
-  padding: 16px;
-}
+  > * { padding: 0 16px; }
 
-.create-task-menu label {
-  min-width: 40%;
-}
+  > .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+  }
 
-.create-task-menu>.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  height: 50px;
-}
-
-.create-task-menu input {
-  width: 100%;
-  border: 1px solid black;
-  border-radius: 3px;
-  padding: 0 6px;
+  > .form-field {
+    // display: flex;
+    // justify-content: space-between;
+    border-bottom: 1px solid rgb(201, 201, 201);
+    padding: 16px;
+    > label {
+      font-size: 16px;
+      width: 468px;
+    }
+    > input {
+      box-sizing: border-box;
+      width: 100%;
+      border: 1px solid black;
+      border-radius: 3px;
+      padding: 6px;
+    }
+  }
 }
 
 .color-bubble {
+  position: relative;
   display: inline-block;
   border-radius: 50%;
   height: 36px;
@@ -55,28 +62,50 @@
   cursor: pointer;
 }
 
-.form-field img {
-  display: inline-block;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  margin: 8px;
-  cursor: pointer;
+#icons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#icons > li {
+  position: relative;
+  padding: 10px;
+  margin: 4px;
+
+  height: 16px;
+  width: 16px;
+  background-color: whitesmoke;
+  border-radius: 50%;
+  
+  > img:first-child {
+    height: 100%;
+    width: 100%;
+  }
+  &:hover { cursor: pointer; }
+}
+
+.color-bubble > img, #icons img:not(:first-child) {
+  height: 8px;
+  width: 8px;
+  padding: 4px;
+  position: absolute;
+  bottom: -3px; right: -3px;
+  background-color: white;
+  border: 1px solid $dark-grey-0;
+  border-radius: 50%;
 }
 
 .form-submit {
   margin-top: auto;
 }
 
-.form-submit>button {
+.form-submit > button {
   padding: 12px;
   margin-right: 8px;
   margin-bottom: 12px;
   border-radius: 4px;
   font-weight: 600;
-  font-size: 16px;
-  /* make this one standardized unit larger than base size */
+  font-size: 16px; // make this one standardized unit larger than base size
 }
 
 .days {

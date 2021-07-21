@@ -15,19 +15,18 @@ export default function ColorPalette(props) {
   ];
 
   let colorBubbles = colors.map(color => {
-    let style = {
-      backgroundColor: color
-    }
+    let style = { backgroundColor: color }
     return (
-    <li className="color-bubble" key={color} style={style} 
+      <li className="color-bubble" key={color} style={style} 
         onClick={() => props.setSelected(color)}>
-    </li>)
+        {props.selected === color ? <img src={process.env.PUBLIC_URL + "/checkmark.png"} alt="checkmark" /> : null}
+      </li>
+    )
   })
+
   return (
-    <>
     <ul>
       {colorBubbles}
     </ul>
-    </>
   )
 }

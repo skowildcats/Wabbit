@@ -57,17 +57,20 @@ export default function CreateTaskMenu(props) {
     props.createTask(newTask).then(task => {
       props.closeMenu();
     })
-  }
+  };
 
   const icons = props.images.data.map(img => {
-    return <img key={img.filename} onClick={() => setIcon(img.filename)}
-      src={`/api/files/image/${img.filename}`} 
-      alt="task-icon" />
-  })
+    return (
+      <li key={img.filename}>
+        <img onClick={() => setIcon(img.filename)} src={`/api/files/image/${img.filename}`} alt="task-icon" />
+        {icon === img.filename ? <img id="icon-check" src={process.env.PUBLIC_URL + "/checkmark.png"} alt="checkmark" /> : null}
+      </li>
+    )
+  });
 
   let date = new Date().toISOString().slice(0, 10); //just for date input
   return ReactDOM.createPortal(
-    <>
+    <div id="create-task-menu-modal">
       <div className="overlay" onClick={closeMenu}></div>
       <div className="create-task-menu">
         <div className="header">
@@ -129,13 +132,13 @@ export default function CreateTaskMenu(props) {
         </div>
 
         <div className="form-field">
-          <label htmlFor="color">Color:</label>
+          <label id="color-label" htmlFor="color">Color:</label>
           <ColorPalette selected={selected} setSelected={setSelected}/>
         </div>
 
-        <div className="form-field"> 
+        <div id="icons-label" className="form-field"> 
           <label htmlFor="icons">Icons: </label>
-          <ul>
+          <ul id="icons">
             {icons}
           </ul>
         </div>
@@ -145,6 +148,6 @@ export default function CreateTaskMenu(props) {
           <button onClick={handleSubmit}>Create Task</button>
         </div>
       </div>
-    </>, document.getElementById('portal')
+    </div>, document.getElementById('portal')
   )
 }
