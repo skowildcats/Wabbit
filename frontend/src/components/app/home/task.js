@@ -13,8 +13,8 @@ class Task extends React.Component {
       <div>
         <div className="sort-handle">drag handle</div>
         <div>{task.title}</div>
-        <MarkCompletedButton/>
-        <DeleteTaskButton/>
+        <MarkCompletedButton task={task}/>
+        <DeleteTaskButton taskId={task._id}/>
       </div>
     );
   }

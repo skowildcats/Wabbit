@@ -23,9 +23,8 @@ export default function CreateTaskMenu(props) {
   if(!props.open) return null
 
   function getRecurrenceStr(){
-    let checkboxes = document.querySelector('.days > input');
+    let checkboxes = document.querySelectorAll('.days > input');
     let daysOfTheWeek = ""
-
     checkboxes.forEach(box => {
       if(box.checked){
         daysOfTheWeek += box.value;

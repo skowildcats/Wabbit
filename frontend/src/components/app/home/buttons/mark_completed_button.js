@@ -2,8 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { updateTask } from '../../../../actions/task_actions'
 export const MarkCompletedButton = (props) => {
+  function markCompleted(){
+    let updatedTask = props.task
+    updatedTask.completed = "true";
+    props.updateTask(updatedTask).then(task => {
+      console.log(task)
+    })
+  }
   return (
-    <button>Done</button>
+    <button onClick={markCompleted}>Mark as completed</button>
   )
 }
 
