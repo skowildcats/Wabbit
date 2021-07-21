@@ -12,19 +12,21 @@ class HomePage extends React.Component {
   }
 
   componentDidUpdate() {
-    if (window.$(".sortable").length > 0) {
-      window.$(".sortable").sortable({
-        handle: ".sort-handle",
-        cursor: "move",
-        helper: "clone",
-        opacity: 0.5,
-        revert: 200,
-        delay: 50,
-        tolerance: "pointer",
-        containment: "parent",
-      })
-      window.$( "#sortable" ).disableSelection();
-    } 
+    window.$(".sortable").sortable({
+      handle: ".sort-handle",
+      cursor: "move",
+      helper: "clone",
+      opacity: 0.5,
+      revert: 200,
+      delay: 50,
+      tolerance: "pointer",
+      containment: "parent",
+    })
+    window.$( "#sortable" ).disableSelection(); 
+  }
+
+  componentWillUnmount() {
+    window.$(".sortable").sortable("destroy")
   }
 
   render() {
@@ -35,7 +37,11 @@ class HomePage extends React.Component {
     } else {
       return (
         <div id="home-page">
+          <ul id="habits">Habits
+            <button id="add-habit">Add habit</button>
+          </ul>
           <ul id="tasks" className="sortable">
+            <button id="add-task">Add task</button>
             {tasks.map(task => {
               return <Task task={task} key={task._id} />
             })}
