@@ -5,7 +5,7 @@ export default class Splash extends React.Component {
 
   render() {
     return (
-      <div id="main-page">
+      <div id="splash">
         <img src={process.env.PUBLIC_URL + "/logo.png"} />
         <Link to="/signup">HOP TO IT</Link>
         {/* <footer>

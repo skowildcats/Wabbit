@@ -9,7 +9,7 @@
   user-select: none; // Standard
 }
 
-#main-page {
+#splash {
   display: flex;
   flex-wrap: wrap;
   width: 380px;
@@ -21,7 +21,7 @@
   > img { width: 100%; }
 }
 
-#main-page > a {
+#splash > a {
   margin-top: 30px;
   padding: 10px;
   font-size: 20px;
@@ -33,7 +33,7 @@
   transition: all 0.2s;
 }
 
-#main-page > a:hover {
+#splash > a:hover {
   cursor: pointer;
   color: $green-2;
   background-color: $light-grey-0;

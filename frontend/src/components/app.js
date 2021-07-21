@@ -8,7 +8,6 @@ import HomePageContainer from './app/home/home_page_container';
 
 import Splash from './splash/splash';
 import Header from './app/header/header';
-import MainPage from './main/main_page';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 
