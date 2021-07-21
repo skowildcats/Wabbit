@@ -9,6 +9,8 @@ import Splash from './splash/splash';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 
+import "../stylesheets/application.scss";
+
 const App = () => (
   <div>
     <NavBarContainer />
