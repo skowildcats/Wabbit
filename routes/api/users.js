@@ -9,7 +9,6 @@ const validateRegisterInput = require('../../validation/register')
 const validateLoginInput = require('../../validation/login')
 
 //route for signing up
-
 router.post('/register', (req,res) => {
 
   const{errors,isValid} = validateRegisterInput(req.body)
@@ -91,7 +90,6 @@ router.put('/info', passport.authenticate('jwt', {session: false}), (req,res)=>{
 })
 
 //route for logging in
-
 router.post('/login', (req, res) => {
 
   const{errors, isValid} = validateLoginInput(req.body)
@@ -132,7 +130,6 @@ router.post('/login', (req, res) => {
 })
 
 //route for returning current user
-
 router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
   res.json({
     id: req.user.id,
