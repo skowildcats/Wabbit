@@ -16,7 +16,7 @@ class HomePage extends React.Component {
       handle: ".sort-handle",
       cursor: "move",
       helper: "clone",
-      opacity: 0.5,
+      opacity: 0.7,
       revert: 200,
       delay: 50,
       tolerance: "pointer",
