@@ -5,8 +5,9 @@ export default function(state = {}, action){
   switch(action.type){
     case RECEIVE_USER_TASKS:
       //need to get _id pointing to the task in state
-      action.tasks.forEach(task => newState[task._id] = task);
-      return newState
+      let state = {}
+      action.tasks.forEach(task => state[task._id] = task);
+      return state
     case RECEIVE_TASK:
       newState[action.task._id] = action.task
       return newState;
