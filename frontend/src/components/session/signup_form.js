@@ -44,31 +44,12 @@ class SignupForm extends React.Component {
     this.props.signup(user, this.props.history);
   }
 
-  // errors() {
-  //   if (Object.values(this.state.errors.length)) {
-  //     return (
-  //       <span>Login or password is invalid</span>
-  //     );
-  //   }
-  // }
-
-  errors(field) {
-    for (const error of this.state.errors) {
-    }
-  }
-
   toWords(str) {
     const sent = str.replace(/[A-Z]/g, (letter) => ` ${letter}`);
     return sent.slice(0, 1).toUpperCase() + sent.slice(1);
   }
 
   render() {
-    const errors = (Object.values(this.state.errors).length) ? (
-      <p id="errors">Login or password is invalid</p>
-    ) : (
-      null
-    );
-
     const inputs = ["email", "firstName", "lastName", "password", "confirmPassword"].map(field => (
       <>
         <p id ="errors">{Object.values(this.state.errors).length ? this.state.errors[field] : null}</p>
@@ -91,7 +72,7 @@ class SignupForm extends React.Component {
             {inputs}
             <input type="submit" value="Submit" />
             <p>Already have an account?</p>
-            <Link to="/login">Login</Link>
+            <Link to="/login">Login here</Link>
           </form>
         </div>
       </>
