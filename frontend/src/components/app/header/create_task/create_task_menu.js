@@ -7,7 +7,7 @@ export default function CreateTaskMenu(props) {
   const [recurrence, setRecurrence] = useState("Never")
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [dueDate, setDueDate] = useState(new Date());
+  const [dueDate, setDueDate] = useState('');
 
   useEffect(() => {
     props.fetchImages();
@@ -35,7 +35,7 @@ export default function CreateTaskMenu(props) {
   }
   function handleSubmit(){
     let daysOfTheWeek = '' 
-    if(recurrence != "Never"){
+    if(recurrence !== "Never"){
       daysOfTheWeek = getRecurrenceStr();
     }
 
@@ -52,7 +52,7 @@ export default function CreateTaskMenu(props) {
     
     props.createTask(newTask).then(task => {
       console.log(task);
-      props.onClose()
+      props.closeMenu();
     })
   }
 

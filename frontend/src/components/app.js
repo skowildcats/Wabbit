@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
 import Upload from './files/upload';
 import Files from './files/files'
-import HomePageContainer from './home/home_page_container'
+import HomePageContainer from './app/home/home_page_container';
 
 import Header from './app/header/header';
 import MainPage from './main/main_page';
