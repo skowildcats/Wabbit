@@ -11,23 +11,23 @@ module.exports = function validateRegisterInput(data) {
   data.confirmPassword = validText(data.confirmPassword) ? data.confirmPassword : '';
 
   if (!Validator.isLength(data.firstName, { min: 2, max: 30 })) {
-    errors.firstName = 'First Name must be between 2 and 30 characters';
+    errors.firstName = 'First name must be between 2 and 30 characters';
   }
 
   if (Validator.isEmpty(data.firstName)) {
-    errors.firstName = 'First Name field is required';
+    errors.firstName = 'First name is required';
   }
 
   if (!Validator.isLength(data.lastName, { min: 2, max: 30 })) {
-    errors.lastName = 'Last Name must be between 2 and 30 characters';
+    errors.lastName = 'Last name must be between 2 and 30 characters';
   }
 
   if (Validator.isEmpty(data.lastName)) {
-    errors.lastName = 'Last Name field is required';
+    errors.lastName = 'Last name is required';
   }
 
   if (Validator.isEmpty(data.email)) {
-    errors.email = 'Email field is required';
+    errors.email = 'Email is required';
   }
 
   if (!Validator.isEmail(data.email)) {
@@ -43,7 +43,7 @@ module.exports = function validateRegisterInput(data) {
   }
 
   if (Validator.isEmpty(data.confirmPassword)) {
-    errors.confirmPassword = 'Confirm Password field is required';
+    errors.confirmPassword = 'Please confirm Password';
   }
 
   if (!Validator.equals(data.password, data.confirmPassword)) {

@@ -6,9 +6,10 @@ class SignupForm extends React.Component {
     super(props);
     this.state = {
       email: "",
-      username: "",
+      firstName: "",
+      lastName: "",
       password: "",
-      password2: "",
+      confirmPassword: "",
       errors: {},
     };
 
@@ -34,28 +35,17 @@ class SignupForm extends React.Component {
     e.preventDefault();
     let user = {
       email: this.state.email,
-      username: this.state.username,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
       password: this.state.password,
       confirmPassword: this.state.confirmPassword,
     };
 
-    this.props.signup(user, this.props.history);
-  }
-
-  renderErrors() {
-    return (
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => {
-          debugger
-          <li key={`error-${i}`}>{this.state.errors[error]}</li>
-})}
-      </ul>
-    );
-  }
-
-  errors(field) {
-    for (const error of this.state.errors) {
-    }
+    this.props.signup(user, this.props.history).then(() => {
+      if (Object.values(this.state.errors).length) {
+        window.$("#submit").effect("shake")   
+      }
+    })
   }
 
   toWords(str) {
@@ -65,27 +55,28 @@ class SignupForm extends React.Component {
 
   render() {
     const inputs = ["email", "firstName", "lastName", "password", "confirmPassword"].map(field => (
-      <input
-        key={field.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}
-        type={field.slice(-4)==="word" ? "password" : "text" }
-        value={this.state[field]}
-        onChange={this.update(field)}
-        placeholder={this.toWords(field)}
-      />
+      <>
+        <p id ="errors">{Object.values(this.state.errors).length ? this.state.errors[field] : null}</p>
+        <input
+          key={field.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}
+          type={field.slice(-4)==="word" ? "password" : "text" }
+          value={this.state[field]}
+          onChange={this.update(field)}
+          placeholder={this.toWords(field)}
+        />
+      </>
     ))
 
     return (
       <>
-      {this.renderErrors()}
         <div className="user-form-panel"></div>
         <div id="signup-form" className="user-form">
           <h1>SIGN UP</h1>
           <form onSubmit={this.handleSubmit}>
             {inputs}
-            <input type="submit" value="Submit" />
-            {this.renderErrors()}
+            <input id="submit" type="submit" value="Create Account" />
             <p>Already have an account?</p>
-            <Link to="/login">Login</Link>
+            <Link to="/login">Login here</Link>
           </form>
         </div>
       </>
