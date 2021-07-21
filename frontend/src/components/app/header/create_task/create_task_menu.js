@@ -22,6 +22,13 @@ export default function CreateTaskMenu(props) {
   if(!props.images.data) return null;
   if(!props.open) return null
 
+  function closeMenu(){
+    document.querySelector('.create-task-menu').classList.toggle('active') //toggle active selector
+    setTimeout(() => {
+      props.closeMenu()
+    }, 250) //timeout 250ms to correspond with css animation time
+  }
+
   function getRecurrenceStr(){
     let checkboxes = document.querySelectorAll('.days > input');
     let daysOfTheWeek = ""
@@ -34,7 +41,7 @@ export default function CreateTaskMenu(props) {
   }
   function handleSubmit(){
     let daysOfTheWeek = '' 
-    if(recurrence !== "Never"){
+    if(recurrence === "Weekly"){
       daysOfTheWeek = getRecurrenceStr();
     }
     let newTask = {
@@ -61,11 +68,11 @@ export default function CreateTaskMenu(props) {
   let date = new Date().toISOString().slice(0, 10); //just for date input
   return ReactDOM.createPortal(
     <>
-      <div className="overlay" onClick={props.closeMenu}></div>
+      <div className="overlay" onClick={closeMenu}></div>
       <div className="create-task-menu">
         <div className="header">
           <span>Task Header</span>
-          <span onClick={props.closeMenu}>&times;</span>
+          <span onClick={closeMenu}>&times;</span>
         </div>
 
         <div className="form-field">
@@ -88,7 +95,7 @@ export default function CreateTaskMenu(props) {
           </select>
         </div>
         
-        {recurrence === "Daily" ? 
+        {recurrence === "Weekly" ? 
         <div className="form-field">
           <label htmlFor="">Repeat on:</label>
           <div className="days">
@@ -134,7 +141,7 @@ export default function CreateTaskMenu(props) {
         </div>
 
         <div className="form-submit">
-          <button onClick={props.closeMenu}>Cancel</button>
+          <button onClick={closeMenu}>Cancel</button>
           <button onClick={handleSubmit}>Create Task</button>
         </div>
       </div>
