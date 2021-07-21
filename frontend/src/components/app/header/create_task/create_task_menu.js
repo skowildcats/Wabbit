@@ -48,7 +48,6 @@ export default function CreateTaskMenu(props) {
       color: selected,
       user: props.userId
     }
-    debugger
     props.createTask(newTask).then(task => {
       props.closeMenu();
     })
