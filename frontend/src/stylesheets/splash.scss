@@ -12,7 +12,7 @@
 #splash {
   display: flex;
   flex-wrap: wrap;
-  width: 380px;
+  width: 450px;
   justify-content: center;
   position: absolute;
   top: 50%; left: 50%;
@@ -22,9 +22,8 @@
 }
 
 #splash > a {
-  margin-top: 30px;
   padding: 10px;
-  font-size: 20px;
+  font-size: 18px;
   color: $green-1;
   letter-spacing: 2px;
   background-color: $light-green-0;

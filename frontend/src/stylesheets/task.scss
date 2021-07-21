@@ -1,0 +1,36 @@
+// #tasks {
+//   height: 65vh;
+//   overflow: scroll;
+//   border: 1px solid black;
+// }
+
+#tasks > div {
+  // border: 1px solid black;
+  border-radius: 5px;
+  width: 200px;
+  height: 300px;
+  margin: 15px;
+  float: left;
+  background-color: $light-green-3;
+  box-shadow: 0 4px 10px $light-green-3;
+}
+
+#tasks > div:hover {
+  box-shadow: 0 2px 10px $dark-green-0;
+}
+
+.drag-handle {
+  height: 30px;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 1px solid $dark-green-0;
+  cursor: move;
+}
+
+
+#add-task {
+  float: right;
+  border: 1px solid black;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+}

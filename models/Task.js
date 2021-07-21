@@ -21,10 +21,6 @@ const TaskSchema = new Schema({
     // d,w,b,m,q,y for daily,weekly,biweekly,monthly,quarterly,yearly
     type: String
   },
-  startDate:{
-    type: Date,
-    default: Date.now
-  },
   daysOfTheWeek:{
     // M_TW_F__ for a mon tues wed fri repeating task
     type: String
@@ -37,11 +33,11 @@ const TaskSchema = new Schema({
   },
   color: {
     type: String,
-    required: true
+    // required: true
   },
   icon: {
     type: String, //this will just be the filename that can be used to fetch it from the api
-    required: true
+    // required: true
   },
   subtasks: {
     type: Schema.Types.ObjectId,

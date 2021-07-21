@@ -3,9 +3,8 @@ const router = express.Router()
 const Task = require('../../models/Task')
 
 // new task route
-router.post('/new',(req,res)=>{
-  console.log(req.body)
-  newTask = new Task({
+router.post('/new',async (req,res)=>{
+  const newTask = new Task({
     title: req.body.title,
     user: req.body.user,
     description: req.body.description,
@@ -15,50 +14,60 @@ router.post('/new',(req,res)=>{
     color: req.body.color,
     icon: req.body.icon
   })
-  newTask.save()
+  await newTask.save()
   res.json(newTask)
 })
 
 // update task route
-router.put('/:taskId',(req,res)=>{
-  Task.findById(req.params.taskId)
-    .then(task=>{
-      for(field in req.body){
-        // if(field === 'completed'){
-        //   task.completed = req.body.completed === 'true' ? true : false
-        //   continue
-        // }
-        task[field] = req.body[field]
-      }
-      task.save()
-      res.json(task)
-    })
-    .catch(err=>res.status(404).json({error: err}))
+router.put('/:taskId',async (req,res)=>{
+  try {
+    const task = await Task.findById(req.params.taskId)
+    if(!task.completed && req.body.completed){
+      task.completedAt = new Date()
+    }else if(task.completed && !req.body.completed){
+      task.completedAt = null
+    }
+    for(field in req.body){
+      task[field] = req.body[field]
+    }
+    await task.save()
+    res.json(task)
+  } catch(error){
+    console.log(error)
+  }
   
 })
 
 // get a single task
-router.get('/:taskId',(req,res)=>{
-  Task.findById(req.params.taskId)
-    .then(task=>res.json(task))
-    .catch(err=>res.status(404).json({error: err}))
+router.get('/:taskId',async (req,res)=>{
+  // Task.findById(req.params.taskId)
+  //   .then(task=>res.json(task))
+  //   .catch(err=>res.status(404).json({error: err}))
+  try{
+    task = await Task.findById(req.params.taskId)
+    res.json(task)
+  } catch(error){
+    console.log(error)
+  }
 })
 
 // get all tasks
-router.get('/all/:userId',(req,res)=>{
-  Task.find({user: req.params.userId})
-    .then(tasks => res.json(tasks))
-    .catch(err => res.status(404).json({msg: 'no tasks found'}))
+router.get('/all/:userId',async (req,res)=>{
+  // Task.find({user: req.params.userId})
+  //   .then(tasks => res.json(tasks))
+  //   .catch(err => res.status(404).json({msg: 'no tasks found'}))
+  tasks = await Task.find({user: req.params.userId})
+  res.json(tasks)
 })
 
 // delete a task
-router.delete('/:taskId',(req,res)=>{
-  Task.deleteOne({_id: req.params.taskId},err => {
-    if(err){
-      res.json({error: err})
-    }
-  })
-  res.json({msg: 'deleted successfully'})
+router.delete('/:taskId',async (req,res)=>{
+  try {
+    await Task.deleteOne({_id: req.params.taskId})
+    res.json({msg: 'deleted successfully'})
+  } catch(error){
+    console.log(error)
+  }
 })
 
 module.exports = router
