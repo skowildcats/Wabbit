@@ -1,0 +1,39 @@
+/* Alter top positioning to fit top navbar later */
+.app-header {
+  // position: relative;
+  // top: 67px;
+  // background-color: var(--light-green-2);
+}
+
+.app-header > button {
+  width: inherit;
+  height: inherit;
+  border-radius: 5px;
+  font-size: 100px;
+  cursor: pointer;
+  color: white;
+  animation: out .3s;
+}
+
+.app-header > button:hover{
+  animation: over .3s;
+  font-size: 150px;
+}
+
+@keyframes over {
+  0% {
+    font-size: 100px;
+  }
+  100% {
+    font-size: 150px;
+  }
+}
+
+@keyframes out {
+  0% {
+    font-size: 150px;
+  }
+  100% {
+    font-size: 100px;
+  }
+}
