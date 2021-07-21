@@ -38,7 +38,6 @@ export default function CreateTaskMenu(props) {
     if(recurrence !== "Never"){
       daysOfTheWeek = getRecurrenceStr();
     }
-
     let newTask = {
       title,
       description,
@@ -49,9 +48,8 @@ export default function CreateTaskMenu(props) {
       color: selected,
       user: props.userId
     }
-    
+    debugger
     props.createTask(newTask).then(task => {
-      console.log(task);
       props.closeMenu();
     })
   }
