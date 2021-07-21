@@ -40,7 +40,6 @@ class HomePage extends React.Component {
       todos.map(todo => {
         todo.recurrence !== "Never" ? habits.push(todo) : tasks.push(todo)
       })
-
       return (
         <>
           <HeaderContainer/>
