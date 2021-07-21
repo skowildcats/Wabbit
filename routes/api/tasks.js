@@ -4,14 +4,16 @@ const Task = require('../../models/Task')
 
 // new task route
 router.post('/new',(req,res)=>{
+  console.log(req.body)
   newTask = new Task({
     title: req.body.title,
     user: req.body.user,
     description: req.body.description,
     recurrence: req.body.recurrence,
-    startDate: req.body.startDate,
     daysOfTheWeek: req.body.daysOfTheWeek,
-    dueDate: req.body.dueDate
+    dueDate: req.body.dueDate,
+    color: req.body.color,
+    icon: req.body.icon
   })
   newTask.save()
   res.json(newTask)
@@ -22,10 +24,10 @@ router.put('/:taskId',(req,res)=>{
   Task.findById(req.params.taskId)
     .then(task=>{
       for(field in req.body){
-        if(field === 'completed'){
-          task.completed = req.body.completed === 'true' ? true : false
-          continue
-        }
+        // if(field === 'completed'){
+        //   task.completed = req.body.completed === 'true' ? true : false
+        //   continue
+        // }
         task[field] = req.body[field]
       }
       task.save()
