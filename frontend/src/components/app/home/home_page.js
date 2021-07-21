@@ -30,11 +30,17 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const {tasks} = this.props
 
     if (this.state.loading) {
       return null
     } else {
+      const {todos} = this.props
+      let habits = [], tasks = []
+
+      todos.map(todo => {
+        todo.recurrence !== "Never" ? habits.push(todo) : tasks.push(todo)
+      })
+
       return (
         <>
           <HeaderContainer/>

@@ -4,7 +4,7 @@ import { fetchTasks } from '../../../actions/task_actions';
 import HomePage from './home_page';
 
 const mapStateToProps = (state) => ({
-  tasks: Object.values(state.entities.tasks),
+  todos: Object.values(state.entities.tasks),
   userId: state.session.user.id
 });
 
