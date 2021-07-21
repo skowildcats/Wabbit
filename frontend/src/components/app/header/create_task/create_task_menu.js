@@ -14,13 +14,14 @@ export default function CreateTaskMenu(props) {
   }, [])
 
   useEffect(() => {
-    if(props.open){
-      document.querySelector('.create-task-menu').classList.toggle('active') //toggle active selector
+    if(props.open === true){
+      let menu = document.querySelector('.create-task-menu')
+      if(menu) menu.classList.toggle('active') //toggle active selector
     }
   }, [props.open])
 
-  if(!props.images.data) return null;
-  if(!props.open) return null
+  if(props.open === false) return null;
+  console.log(props.open);
 
   function getRecurrenceStr(){
     let checkboxes = document.querySelectorAll('.days > input');
@@ -52,11 +53,16 @@ export default function CreateTaskMenu(props) {
     })
   }
 
-  const icons = props.images.data.map(img => {
-    return <img key={img.filename} onClick={() => setIcon(img.filename)}
-      src={`/api/files/image/${img.filename}`} 
-      alt="task-icon" />
-  })
+  let icons;
+  if(!props.images.data){
+    icons = null
+  } else{
+    icons = props.images.data.map(img => {
+      return <img key={img.filename} onClick={() => setIcon(img.filename)}
+        src={`/api/files/image/${img.filename}`} 
+        alt="task-icon" />
+    })
+  }
 
   let date = new Date().toISOString().slice(0, 10); //just for date input
   return ReactDOM.createPortal(
