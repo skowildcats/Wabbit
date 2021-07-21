@@ -1,6 +1,8 @@
 import React from 'react';
 import Task from './task'
 import HeaderContainer from '../header/header'
+
+
 class HomePage extends React.Component {
   constructor(props) {
     super(props)
@@ -13,7 +15,7 @@ class HomePage extends React.Component {
 
   componentDidUpdate() {
     window.$(".sortable").sortable({
-      handle: ".sort-handle",
+      handle: ".drag-handle",
       cursor: "move",
       helper: "clone",
       opacity: 0.7,
@@ -42,13 +44,13 @@ class HomePage extends React.Component {
       })
       return (
         <>
-          <HeaderContainer/>
+          
           <div id="home-page">
             <ul id="habits">Habits
               {/* <button id="add-habit">Add habit</button> */}
             </ul>
             <ul id="tasks" className="sortable">
-              {/* <button id="add-task">Add task</button> */}
+              <HeaderContainer/> 
               {tasks.map(task => {
                 return <Task task={task} key={task._id} />
               })}
