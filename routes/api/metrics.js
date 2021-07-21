@@ -9,7 +9,7 @@ router.get('/:userId',(req,res)=>{
       res.json({
         percentComplete: metricsUtil.percentComplete(tasks),
         percentOnTime: metricsUtil.percentOnTime(tasks),
-        // completedByWeekday: metricsUtil.completedByWeekday(tasks)
+        completedByWeekday: metricsUtil.completedByWeekday(tasks)
       })
     })
     .catch(console.log)
