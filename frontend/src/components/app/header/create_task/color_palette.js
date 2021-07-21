@@ -1,8 +1,18 @@
 import React from 'react'
 
 export default function ColorPalette(props) {
-  let colors = ["#98e33d", "#9009e9", "#c9c159", "#1381f2", "#8ab3dc", "#fbff75", "#49e1c6", "#1d3a05"
-, "#ea5620"]
+  let colors = [
+    "#9c3838", // red
+    "#c28846", // dandelion
+    "#ebdf8a", // mustard yellow
+    "#91b58d", // pale green
+    "#62805e", // forest green
+    "#6883b3", // light blue
+    "#59667d", // dark blue
+    "#8b6f96", // lilac
+    "#b5b6bd", // blue-grey
+    "#525254"  // dark-blue-grey
+  ];
 
   let colorBubbles = colors.map(color => {
     let style = {
