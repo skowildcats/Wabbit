@@ -30,7 +30,7 @@ export default function CreateTaskMenu(props) {
         daysOfTheWeek += box.value;
       }
     })
-    return daysOfTheWeek
+    return daysOfTheWeek;
   }
   function handleSubmit(){
     let daysOfTheWeek = '' 
