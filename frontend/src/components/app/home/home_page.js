@@ -1,6 +1,7 @@
 import React from 'react';
 import Task from './task'
 import HeaderContainer from '../header/header'
+import Habit from './habit';
 
 
 class HomePage extends React.Component {
@@ -44,10 +45,12 @@ class HomePage extends React.Component {
       })
       return (
         <>
-          
           <div id="home-page">
-            <ul id="habits">Habits
-              {/* <button id="add-habit">Add habit</button> */}
+            <ul id="habits">
+              <HeaderContainer/> 
+              {habits.map(habit => {
+                return <Habit habit={habit} key={habit._id} />
+              })}
             </ul>
             <ul id="tasks" className="sortable">
               <HeaderContainer/> 
