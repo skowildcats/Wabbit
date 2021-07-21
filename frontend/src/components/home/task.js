@@ -10,7 +10,7 @@ class Task extends React.Component {
 
     return (
       <div>
-        <div className="sort-handle">sort handle</div>
+        <div className="sort-handle">drag handle</div>
         <div>{task.title}</div>
       </div>
     );
