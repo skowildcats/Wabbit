@@ -14,13 +14,14 @@ export default function CreateTaskMenu(props) {
   }, [])
 
   useEffect(() => {
-    if(props.open){
-      document.querySelector('.create-task-menu').classList.toggle('active') //toggle active selector
+    if(props.open === true){
+      let menu = document.querySelector('.create-task-menu')
+      if(menu) menu.classList.toggle('active') //toggle active selector
     }
   }, [props.open])
 
-  if(!props.images.data) return null;
-  if(!props.open) return null
+  if(props.open === false) return null;
+  console.log(props.open);
 
   function closeMenu(){
     document.querySelector('.create-task-menu').classList.toggle('active') //toggle active selector
