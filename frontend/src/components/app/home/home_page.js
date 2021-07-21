@@ -18,7 +18,6 @@ class HomePage extends React.Component {
     window.$(".sortable").sortable({
       items: "> div:not(.app-header)",
       handle: ".drag-handle",
-      cursor: "move",
       helper: "clone",
       opacity: 0.7,
       revert: 200,
