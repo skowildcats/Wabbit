@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { usersSettingOpen: false }
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
   }
@@ -20,7 +21,7 @@ class NavBar extends React.Component {
           <>
               <Link id="home-btn" to="/"><img src={process.env.PUBLIC_URL + "/logo-image.png"} alt="home-btn" /></Link>
               <Link to="/metrics">METRICS</Link>
-              <Link to="/settings">SETTINGS</Link>
+              <button onClick={() => this.setState({ usersSettingOpen: true })}>SETTINGS</button>
               <button onClick={this.logoutUser}>LOGOUT</button>
           </>
       );
@@ -37,9 +38,16 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <div id="nav-bar">
-        { this.getLinks() }
-      </div>
+      <>
+        <div id="nav-bar">
+          { this.getLinks() }
+        </div>
+        {this.state.usersSettingOpen ? (
+          <form id="users-setting">
+            
+          </form>
+        ) : null}
+      </>
     );
   }
 }
