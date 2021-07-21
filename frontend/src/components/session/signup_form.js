@@ -6,9 +6,10 @@ class SignupForm extends React.Component {
     super(props);
     this.state = {
       email: "",
-      username: "",
+      firstName: "",
+      lastName: "",
       password: "",
-      password2: "",
+      confirmPassword: "",
       errors: {},
     };
 
@@ -34,7 +35,8 @@ class SignupForm extends React.Component {
     e.preventDefault();
     let user = {
       email: this.state.email,
-      username: this.state.username,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
       password: this.state.password,
       confirmPassword: this.state.confirmPassword,
     };
