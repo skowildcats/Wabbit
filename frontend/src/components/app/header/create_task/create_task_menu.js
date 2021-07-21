@@ -41,7 +41,7 @@ export default function CreateTaskMenu(props) {
   }
   function handleSubmit(){
     let daysOfTheWeek = '' 
-    if(recurrence !== "Never"){
+    if(recurrence === "Weekly"){
       daysOfTheWeek = getRecurrenceStr();
     }
     let newTask = {
@@ -95,7 +95,7 @@ export default function CreateTaskMenu(props) {
           </select>
         </div>
         
-        {recurrence === "Daily" ? 
+        {recurrence === "Weekly" ? 
         <div className="form-field">
           <label htmlFor="">Repeat on:</label>
           <div className="days">
