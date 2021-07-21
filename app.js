@@ -8,6 +8,11 @@ const users = require('./routes/api/users')
 const tasks = require('./routes/api/tasks')
 const metrics = require('./routes/api/metrics')
 const fileRouter = require('./routes/api/files')
+const habits = require('./routes/api/habits')
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 require('./config/passport')(passport)
 
@@ -27,6 +32,7 @@ app.use('/api/users', users)
 app.use('/api/tasks',tasks)
 app.use('/api/files', fileRouter)
 app.use('/api/metrics',metrics)
+app.use('/api/habits',habits)
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));

@@ -1,76 +1,67 @@
-const express = require('express')
-const router = express.Router()
-const Task = require('../../models/Task')
+const express = require("express");
+const router = express.Router();
+const Task = require("../../models/Task");
 
 // new task route
-router.post('/new',async (req,res)=>{
+router.post("/new", async (req, res) => {
   const newTask = new Task({
     title: req.body.title,
     user: req.body.user,
     description: req.body.description,
-    recurrence: req.body.recurrence,
-    daysOfTheWeek: req.body.daysOfTheWeek,
     dueDate: req.body.dueDate,
     color: req.body.color,
-    icon: req.body.icon
-  })
-  await newTask.save()
-  res.json(newTask)
-})
+    icon: req.body.icon,
+  });
+  await newTask.save();
+  res.json(newTask);
+});
 
 // update task route
-router.put('/:taskId',async (req,res)=>{
+router.put("/:taskId", async (req, res) => {
   try {
-    const task = await Task.findById(req.params.taskId)
-    if(!task.completed && req.body.completed){
-      task.completedAt = new Date()
-    }else if(task.completed && !req.body.completed){
-      task.completedAt = null
+    const task = await Task.findById(req.params.taskId);
+    if (!task.completed && req.body.completed) {
+      task.completedAt = new Date();
+    } else if (task.completed && !req.body.completed) {
+      task.completedAt = null;
     }
-    for(field in req.body){
-      task[field] = req.body[field]
+    for (field in req.body) {
+      task[field] = req.body[field];
     }
-    await task.save()
-    res.json(task)
-  } catch(error){
-    console.log(error)
+    await task.save();
+    res.json(task);
+  } catch (error) {
+    console.log(error);
   }
-  
-})
+});
 
 // get a single task
-router.get('/:taskId',async (req,res)=>{
-  // Task.findById(req.params.taskId)
-  //   .then(task=>res.json(task))
-  //   .catch(err=>res.status(404).json({error: err}))
-  try{
-    task = await Task.findById(req.params.taskId)
-    res.json(task)
-  } catch(error){
-    console.log(error)
+router.get("/:taskId", async (req, res) => {
+  try {
+    task = await Task.findById(req.params.taskId);
+    res.json(task);
+  } catch (error) {
+    console.log(error);
   }
-})
+});
 
 // get all tasks
-router.get('/all/:userId',async (req,res)=>{
-  // Task.find({user: req.params.userId})
-  //   .then(tasks => res.json(tasks))
-  //   .catch(err => res.status(404).json({msg: 'no tasks found'}))
-  tasks = await Task.find({user: req.params.userId})
-  res.json(tasks)
-})
+router.get("/all/:userId", async (req, res) => {
+  tasks = await Task.find({ user: req.params.userId });
+  res.json(tasks);
+});
 
 // delete a task
-router.delete('/:taskId',async (req,res)=>{
+router.delete("/:taskId", async (req, res) => {
   try {
-    await Task.deleteOne({_id: req.params.taskId})
-    res.json({msg: 'deleted successfully'})
-  } catch(error){
-    console.log(error)
+    await Task.deleteOne({ _id: req.params.taskId });
+    res.json({ msg: "deleted successfully" });
+  } catch (error) {
+    console.log(error);
   }
-})
+});
 
-module.exports = router
+module.exports = router;
 
 // user: 60f588bb3ee3cb100f85728c
 // task1: 60f5aa5dbebcb620da43d32f
