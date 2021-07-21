@@ -6,8 +6,6 @@ import Upload from './files/upload';
 import Files from './files/files'
 import HomePageContainer from './app/home/home_page_container';
 
-import Header from './app/header/header';
-import MainPage from './main/main_page';
 import Splash from './splash/splash';
 import Header from './app/header/header';
 import LoginFormContainer from './session/login_form_container';
