@@ -18,9 +18,8 @@ class NavBar extends React.Component {
       if (this.props.loggedIn) {
         return (
             <>
-                <Link to={'/tweets'}>All Tweets</Link>
-                <Link to={'/profile'}>Profile</Link>
-                <Link to={'/new_tweet'}>Write a Tweet</Link>
+                <Link id="home-btn" to="/"><img src={process.env.PUBLIC_URL + "/logo-image.png"} alt="home-btn" /></Link>
+                {/* <Link to="/settings">Settings</Link> */}
                 <button onClick={this.logoutUser}>Logout</button>
             </>
         );
