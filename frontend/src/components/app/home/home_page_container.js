@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchTasks } from '../../actions/task_actions';
+import { fetchTasks } from '../../../actions/task_actions';
 
 import HomePage from './home_page';
 
