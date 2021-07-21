@@ -6,10 +6,11 @@ const metricsUtil = require('../util/metrics_util')
 router.get('/:userId',(req,res)=>{
   Task.find({user: req.params.userId})
     .then(tasks=>{
+      const range = req.body.range||999
       res.json({
-        percentComplete: metricsUtil.percentComplete(tasks),
-        percentOnTime: metricsUtil.percentOnTime(tasks),
-        completedByWeekday: metricsUtil.completedByWeekday(tasks)
+        percentComplete: metricsUtil.percentComplete(tasks,range),
+        percentOnTime: metricsUtil.percentOnTime(tasks,range),
+        completedByWeekday: metricsUtil.completedByWeekday(tasks,range)
       })
     })
     .catch(console.log)
