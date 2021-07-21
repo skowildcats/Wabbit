@@ -16,8 +16,8 @@ class HomePage extends React.Component {
 
   componentDidUpdate() {
     window.$(".sortable").sortable({
+      items: "> div:not(.app-header)",
       handle: ".drag-handle",
-      cursor: "move",
       helper: "clone",
       opacity: 0.7,
       revert: 200,
@@ -46,7 +46,7 @@ class HomePage extends React.Component {
       return (
         <>
           <div id="home-page">
-            <ul id="habits">
+            <ul id="habits" className="sortable">
               <HeaderContainer/> 
               {habits.map(habit => {
                 return <Habit habit={habit} key={habit._id} />
