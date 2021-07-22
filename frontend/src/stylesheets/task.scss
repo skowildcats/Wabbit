@@ -25,10 +25,15 @@
   border-radius: 5px 5px 0 0;
   border-bottom: 1px solid $dark-green-0;
   cursor: grab;
+  > div {
+    border: 1px solid black;
+    text-align: center;
+    margin-top: 5px;
+  }
 }
 
 #tasks button {
-  height: 40px; width: 40px;
+  height: 30px; width: 30px;
   border: 1px solid black;
   position: absolute;
   bottom: 0px;
