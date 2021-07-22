@@ -84,6 +84,7 @@ export default function CreateTaskMenu(props) {
           <h1>CREATE A TASK</h1>
           <span onClick={closeMenu}>&times;</span>
         </div>
+        <ColorPalette selected={selected} setSelected={setSelected}/>
 
         <div className="form-field">
           <label htmlFor="title">TITLE</label>
@@ -152,10 +153,10 @@ export default function CreateTaskMenu(props) {
           <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date} />
         </div>
 
-        <div className="form-field">
+        {/* <div className="form-field">
           <label id="color-label" htmlFor="color">COLORS</label>
           <ColorPalette selected={selected} setSelected={setSelected}/>
-        </div>
+        </div> */}
 
         <div id="icons-label" className="form-field"> 
           <label htmlFor="icons">ICONS</label>
