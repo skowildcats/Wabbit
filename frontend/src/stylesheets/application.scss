@@ -12,5 +12,6 @@
 @import "menu/app-header";
 @import "menu/create-task-menu";
 @import "menu/user-settings";
+@import 'metrics/metrics-page.scss';
 
 * { font-family: $secondary-font; }

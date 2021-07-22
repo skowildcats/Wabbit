@@ -93,4 +93,7 @@
   }
 }
 
-#signup-form > h1 { top: calc(50% - 243.5px); }
+#login-form > form {height: 200px;}
+#signup-form > form {height: 375px;}
+
+#signup-form > h1 { top: calc(50% - 243.5px);}
