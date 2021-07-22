@@ -6,8 +6,8 @@ export function setupBarGraphData(completedArr, incompletedArr){
   for(let i = 6; i >= 0; i--){
     let obj = {}
     obj["date"] = moment().subtract(i, 'days').format('MMM DD')
-    obj["completed"] = completedArr[i]
-    obj["incomplete"] = incompletedArr[i]
+    obj["Completed"] = completedArr[i]
+    obj["Incomplete"] = incompletedArr[i]
     data.push(obj)
   }
   return data;
@@ -19,14 +19,14 @@ export const setupLineGraphData = (tasksByWeek) => {
   for(let i = 0; i <= 9; i++){
     let obj = {}
     obj["date"] = moment().subtract(9 - i, 'weeks').format('MMM DD')
-    obj["numCompleted"] = tasksByWeek[i];
+    obj["Tasks Completed"] = tasksByWeek[i];
     data.push(obj);
   }
   return data;
 }
 
 export const setupPieCount = (count, percentOnTime) => {
-  if(!count) return undefined;
+  if(!count || !percentOnTime) return undefined;
   return [{ inTime: "Tasks On Time", value: Math.trunc(count * percentOnTime)},
    {inTime: "Late Tasks", value: Math.trunc(count * Math.abs(1 - percentOnTime))}]
 }

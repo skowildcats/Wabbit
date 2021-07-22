@@ -21,7 +21,7 @@ export default class LineGraph extends Component {
           <YAxis allowDecimals={false}/>
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="numCompleted" stroke="#8884d8" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="Tasks Completed" stroke="#8884d8" activeDot={{ r: 8 }} />
           {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
         </LineChart>
       </ResponsiveContainer>

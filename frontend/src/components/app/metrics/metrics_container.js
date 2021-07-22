@@ -4,11 +4,12 @@ import Metrics from './metrics';
 
 const mSTP = state => ({
   userId: state.session.user.id,
-  metrics: state.metrics
+  metrics: state.metrics,
+  tasks: state.entities.tasks
 })
 
 const mDTP = (dispatch, ownProps) => ({
-  fetchMetrics: (userId = ownProps.userId) => dispatch(fetchMetrics(userId))
+  fetchMetrics: (userId = ownProps.userId) => dispatch(fetchMetrics(userId)),
 })
 
 export default connect(mSTP, mDTP)(Metrics)

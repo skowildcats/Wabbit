@@ -22,8 +22,8 @@ export default class BarGraph extends Component{
           <YAxis allowDecimals={false}/>
           <Tooltip />
           <Legend />
-          <Bar dataKey="completed" stackId="a" fill="#8884d8" />
-          <Bar dataKey="incomplete" stackId="a" fill="#82ca9d" />
+          <Bar dataKey="Completed" stackId="a" fill="#8884d8" />
+          <Bar dataKey="Incomplete" stackId="a" fill="#82ca9d" />
         </BarChart>
       </ResponsiveContainer>
     );
