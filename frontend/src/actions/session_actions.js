@@ -28,7 +28,6 @@ const processData = data => {
   APIUtil.setAuthToken(token);
   const decoded = jwt_decode(token);
   const { email, firstName, lastName } = data;
-  debugger
   return { email, firstName, lastName, ...decoded };
 }
 

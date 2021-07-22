@@ -53,6 +53,7 @@ router.get("/:taskId", async (req, res) => {
 
 // get all tasks
 router.get("/all/:userId", async (req, res) => {
+  //check if any habits need to build tasks for today
   const today = new Date()
   const lastChecked = new Date(process.env.LAST_CHECK)
   if(today.toDateString() !== lastChecked.toDateString()){
