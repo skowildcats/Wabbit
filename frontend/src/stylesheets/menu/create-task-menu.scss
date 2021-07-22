@@ -28,7 +28,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px;
+    padding: 20px;
 
     > * { font-size: 24px; }
     > h1 { font-family: $primary-font; }
@@ -41,10 +41,10 @@
 
   > .form-field {
     border-bottom: 1px solid rgb(201, 201, 201);
-    padding: 16px 30px;
+    padding: 15px 30px;
     > label {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       font-size: 14px;
       letter-spacing: 0.2px;
       color: $dark-grey-4;
@@ -60,14 +60,17 @@
     }
   }
 }
+.color-selection {
+  margin-left: auto; margin-right: auto;
+}
 
 .color-bubble {
   position: relative;
   display: inline-block;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  margin: 10px 19px;
+  height: 20px;
+  width: 20px;
+  margin: 10px;
   cursor: pointer;
 }
 
@@ -106,7 +109,7 @@
   border-radius: 50%;
 }
 
-.color-bubble > img { bottom: -1px; right: -1px; }
+.color-bubble > img { bottom: -1px; right: -1px; width: 5px; height: 5px;}
 
 .form-submit {
   position: absolute;
@@ -141,10 +144,13 @@
 
 .days {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+  // flex-direction: column;
   
   > .day-checkbox {
     margin-bottom: 10px;
+    margin-right: 10px;
     display: flex;
     align-items: center;
     > input { height: 16px; width: 16px; }
@@ -155,4 +161,8 @@
       // text-transform: uppercase;
     }
   }
+}
+
+#icons-label {  
+  border: none;
 }
