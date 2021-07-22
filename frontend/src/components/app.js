@@ -15,7 +15,7 @@ import SignupFormContainer from './session/signup_form_container';
 import "../stylesheets/application.scss";
 
 const App = () => (
-  <div>
+  <div id="app">
     <NavBarContainer />
     <Switch>
         <Route path="/upload" component={Upload} />

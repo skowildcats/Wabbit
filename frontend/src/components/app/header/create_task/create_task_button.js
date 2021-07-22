@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function CreateTaskButton(props) {
   return (
-    <button onClick={props.openMenu}>+</button>
+    <button className="open-menu" onClick={props.openMenu}>+</button>
   )
 }

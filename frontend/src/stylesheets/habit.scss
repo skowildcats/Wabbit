@@ -1,18 +1,34 @@
 #habits {
-  height: 15vh;
+  height: 25vh;
+  overflow: auto;
   border: 1px solid black;
 }
 
 #habits > div {
+  border: 1px solid black;
   border-radius: 5px;
   width: 200px;
-  height: 75%;
+  height: 100px;
   margin: 15px;
   float: left;
   background-color: $light-green-3;
   box-shadow: 0 4px 10px $light-green-3;
+  position: relative;
 }
 
 #habits > div:hover {
   box-shadow: 0 2px 10px $dark-green-0;
+}
+
+
+#habits button:not(.open-menu){
+  height: 30px; width: 30px;
+  border: 1px solid black;
+  position: absolute;
+  bottom: 0px;
+  border-radius: 50%;
+}
+
+#habits button:last-child {
+  right: 0px;
 }

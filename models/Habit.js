@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const TaskSchema = new Schema({
+const HabitSchema = new Schema({
   title: {
     type: String,
     required: true
@@ -10,19 +10,16 @@ const TaskSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
-  completed: {
-    type: Boolean,
-    default: false
-  },
   description: {
     type: String
   },
- 
-  dueDate: {
-    type: Date
+  recurrence: {
+    // d,w,m for daily,weekly,biweekly,monthly,quarterly,yearly
+    type: String
   },
-  completedAt: {
-    type: Date
+  daysOfTheWeek:{
+    // M_TW_F__ for a mon tues wed fri repeating task
+    type: String
   },
   color: {
     type: String,
@@ -31,13 +28,9 @@ const TaskSchema = new Schema({
   icon: {
     type: String, //this will just be the filename that can be used to fetch it from the api
     // required: true
-  },
-  habit: {
-    type: Schema.Types.ObjectId,
-    ref: 'habits'
   }
 },{
   timestamps: true
 })
 
-module.exports = Task = mongoose.model('Task', TaskSchema)
+module.exports = Habit = mongoose.model('Habit',HabitSchema)

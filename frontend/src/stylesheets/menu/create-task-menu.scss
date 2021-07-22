@@ -1,0 +1,158 @@
+#create-task-menu-modal {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+}
+
+.create-task-menu {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 500px;
+  transform: translateX(150%);
+
+  display: flex;
+  flex-direction: column;
+
+  -webkit-user-select: none; // Safari
+  -moz-user-select: none; // Firefox
+  -ms-user-select: none; // IE10+/Edge
+  user-select: none; // Standard
+
+  background-color: white;
+  z-index: 101; // place above overlay. overlay is z-index 100
+  transition: transform 0.3s ease-in-out; // transition the sidebar
+  &.active { transform: translateX(0%); }
+
+  > .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+
+    > * { font-size: 24px; }
+    > h1 { font-family: $primary-font; }
+    > :last-child { transition: filter 0.1s;}
+    > :last-child:hover {
+      cursor: pointer;
+      filter: invert(0.4);
+    }
+  }
+
+  > .form-field {
+    border-bottom: 1px solid rgb(201, 201, 201);
+    padding: 16px 30px;
+    > label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+      color: $dark-grey-4;
+    }
+    > input, select {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 10px;
+
+      font-size: 14px;
+      border: 1px solid $grey-0;
+      border-radius: 3px;
+    }
+  }
+}
+
+.color-bubble {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  margin: 10px 19px;
+  cursor: pointer;
+}
+
+#icons {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px 20px;
+}
+
+#icons > li {
+  position: relative;
+  padding: 18px;
+  margin: 10px 20px;
+
+  height: 24px;
+  width: 24px;
+  background-color: whitesmoke;
+  border-radius: 50%;
+  
+  > img:first-child {
+    height: 100%;
+    width: 100%;
+    filter: brightness(2)
+  }
+  &:hover { cursor: pointer; }
+}
+
+.color-bubble > img, #icons img:not(:first-child) {
+  height: 8px;
+  width: 8px;
+  padding: 4px;
+  position: absolute;
+  bottom: 1px; right: 1px;
+  background-color: white;
+  border: 1px solid $grey-2;
+  border-radius: 50%;
+}
+
+.color-bubble > img { bottom: -1px; right: -1px; }
+
+.form-submit {
+  position: absolute;
+  left: 30px; bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.form-submit > button {
+  margin-right: 16px;
+  font-size: 16px; // make this one standardized unit larger than base size
+  &:first-child {
+    color: $dark-grey-4;
+    &:hover {
+      cursor: pointer;
+      padding: 2px 0px;
+      border-bottom: 1px solid $dark-grey-4;
+    }
+  }
+  &:last-child {
+    color: white;
+    padding: 12px;
+    background-color: $dark-grey-0;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    &:hover {
+      cursor: pointer;
+      background-color: $dark-grey-1;
+    }
+  }
+}
+
+.days {
+  display: flex;
+  flex-direction: column;
+  
+  > .day-checkbox {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    > input { height: 16px; width: 16px; }
+    > input:hover { cursor: pointer; }
+    > label {
+      margin-left: 6px;
+      font-size: 12px;
+      // text-transform: uppercase;
+    }
+  }
+}
