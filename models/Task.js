@@ -35,6 +35,18 @@ const TaskSchema = new Schema({
   habit: {
     type: Schema.Types.ObjectId,
     ref: 'habits'
+  },
+  counter: {
+    type: Number
+  },
+  countdown: {
+    type: Number
+  },
+  maxProgress: {
+    type: Number
+  },
+  currentProgress: {
+    type: Number
   }
 },{
   timestamps: true

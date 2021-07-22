@@ -88,7 +88,12 @@ router.put('/info', passport.authenticate('jwt', {session: false}), async (req,r
   user.lastName = lastName
 
   await user.save()
-  res.json(user)
+  res.json({
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    id: user._id
+  })
 })
 
 //route for logging in
@@ -125,7 +130,12 @@ router.post('/login', async (req, res) => {
 //route for getting current user information
 router.get('/:userId',async(req,res)=>{
   const user = await User.findById(req.params.userId)
-  res.json(user)
+  res.json({
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    id: user._id
+  })
 })
 
 
