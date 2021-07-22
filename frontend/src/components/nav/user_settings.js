@@ -6,14 +6,17 @@ export default class UserSettings extends React.Component {
     this.state = {
       ...props.currentUser,
       userUpdateFormOpen: true,
-      logOutConfirmation: false
+      colorThemeFormOpen: false,
+      logOutConfirmation: false,
     };
 
     this.logout = this.logout.bind(this);
   }
 
   openSetting(setting) {
-    this.setState({ [setting]: true })
+    setting === "userUpdateFormOpen"
+      ? this.setState({ userUpdateFormOpen: true, colorThemeFormOpen: false })
+      : this.setState({ userUpdateFormOpen: false, colorThemeFormOpen: true })
   }
 
   handleSubmit(e) {
@@ -32,7 +35,8 @@ export default class UserSettings extends React.Component {
       <div id="user-settings">
         <div id="users-settings-background" onClick={this.props.closeSettings}></div>
         <ul id="user-settings-nav">
-          <li onClick={() => this.openSetting("userUpdateFormOpen")}>MY ACCOUNT</li>
+          <li onClick={() => this.openSetting("userUpdateFormOpen")} className={this.state.userUpdateFormOpen ? "selected" : ""}>MY ACCOUNT</li>
+          <li onClick={() => this.openSetting("colorThemeFormOpen")} className={this.state.colorThemeFormOpen ? "selected" : ""}>COLOR THEME</li>
           <li onClick={() => this.setState({logOutConfirmation: true})}>LOGOUT</li>
         </ul>
         <div id="user-settings-content">
@@ -47,6 +51,16 @@ export default class UserSettings extends React.Component {
               <input type="text" id="update-email" value={this.state.email} />
               <label htmlFor="update-password">CURRENT PASSWORD</label>
               <input type="password" id="update-password" />
+              <div className="form-nav">
+                <button>Save</button>
+                <p>Change Password</p>
+              </div>
+            </form>
+          ) : null }
+          {this.state.colorThemeFormOpen ? (
+            <form id="color-theme-form" className="user-settings-form">
+              <label htmlFor="update-first-name">FIRST NAME</label>
+              <input type="text" id="update-first-name" value={this.state.firstName} />
               <div className="form-nav">
                 <button>Save</button>
                 <p>Change Password</p>
