@@ -1,4 +1,4 @@
-exports.percentComplete = function (tasks, range) {
+exports.percentComplete = function (tasks) {
   const total = tasks.length;
   let completed = 0;
   for (const task of tasks) {
@@ -13,7 +13,7 @@ exports.percentComplete = function (tasks, range) {
 };
 
 
-exports.percentOnTime = function (tasks, range) {
+exports.percentOnTime = function (tasks) {
   let total = 0;
   let completed = 0;
   for (const task of tasks) {
@@ -31,27 +31,41 @@ exports.percentOnTime = function (tasks, range) {
   return;
 };
 
-exports.completedByWeekday = function (tasks, range) {
+exports.tasksDonePerWeek=(tasks)=>{
+  const weeksChrono = [0,0,0,0,0,0,0,0,0,0]
+  const now = new Date()
+  const week = 7 * 24 * 60 *60*1000
+  for(const task of tasks){
+    if(!task.completed) continue
+    const completedDate = new Date(task.completedAt)
+    const weeksElapsed = (now.getTime()-completedDate.getTime())/week
+    weeksChrono[9-Math.floor(weeksElapsed)]++
+  }
+  return weeksChrono
+}
 
-  const week = {
-    Monday: 0,
-    Tuesday: 0,
-    Wednesday: 0,
-    Thursday: 0,
-    Friday: 0,
-    Saturday: 0,
-    Sunday: 0,
-  };
-
+exports.onTimeByWeekday = function (tasks) {
+  const monToSun = [0,0,0,0,0,0,0]
 
   for (const task of tasks) {
-    if (task.completed) {
-      const dayCompleted = convertToDayString(task.completedAt);
-      week[dayCompleted]++;
+    if(!task.completed) continue
+    if ((task.dueDate && task.completedAt<task.dueDate)||task.completed){
+      monToSun[convertToMonSun(task.completedAt)]++
     }
   }
-  return week;
+  return monToSun;
 };
+
+exports.lateByWeekday = function(tasks){
+  const monToSun = [0,0,0,0,0,0,0]
+
+  for(const task of tasks){
+    if (task.dueDate && task.completed && task.dueDate<task.completedAt){
+      monToSun[convertToMonSun(task.completedAt)]++
+    }
+  }
+  return monToSun;
+}
 
 
 exports.filterByStartDate = function (tasks, days) {
@@ -67,6 +81,10 @@ exports.filterByStartDate = function (tasks, days) {
   return filteredResult;
 };
 
+function convertToMonSun(date){
+  return (date.getDay()+6)%7
+}
+
 function convertToDayString(date) {
   const newDate = new Date(date);
   const options = { weekday: "long" };
@@ -74,6 +92,3 @@ function convertToDayString(date) {
   return res;
 }
 
-// exports.percentComplete = function(tasks){
-
-// }

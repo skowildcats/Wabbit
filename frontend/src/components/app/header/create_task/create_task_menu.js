@@ -21,8 +21,8 @@ export default function CreateTaskMenu(props) {
     }
   }, [props.open])
 
+  //don't render if not set to open
   if(props.open === false) return null;
-  console.log(props.open);
 
   function closeMenu(){
     document.querySelector('.create-task-menu').classList.toggle('active') //toggle active selector
@@ -41,12 +41,13 @@ export default function CreateTaskMenu(props) {
     })
     return daysOfTheWeek;
   }
+
   function handleSubmit(){
     let daysOfTheWeek = '' 
     if(recurrence === "Weekly"){
       daysOfTheWeek = getRecurrenceStr();
     }
-    let newTask = {
+    let newTodo = {
       title,
       description,
       recurrence,
@@ -56,9 +57,15 @@ export default function CreateTaskMenu(props) {
       color: selected,
       user: props.userId
     }
-    props.createTask(newTask).then(task => {
-      props.closeMenu();
-    })
+    if(props.actionType === "TASK"){
+      props.createTask(newTodo).then(task => {
+        props.closeMenu();
+      })
+    } else if(props.actionType === "HABIT"){
+      props.createHabit(newTodo).then(habit => {
+        props.closeMenu();
+      })
+    }
   };
 
   const icons = props.images.data.map(img => {
@@ -82,7 +89,7 @@ export default function CreateTaskMenu(props) {
       <div className="overlay" onClick={closeMenu}></div>
       <div className="create-task-menu">
         <div className="header">
-          <h1>CREATE A TASK</h1>
+          <h1>CREATE A {props.actionType}</h1>
           <span onClick={closeMenu}>&times;</span>
         </div>
         <ColorPalette selected={selected} setSelected={setSelected}/>
@@ -150,10 +157,12 @@ export default function CreateTaskMenu(props) {
         
         
         
-        <div className="form-field">
+        {props.actionType === "TASK" ? 
+        (<div className="form-field">
           <label htmlFor="dueDate">DEADLINE:</label>
           <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date} />
-        </div>
+        </div>)
+        : null}
 
         {/* <div className="form-field">
           <label id="color-label" htmlFor="color">COLORS</label>
