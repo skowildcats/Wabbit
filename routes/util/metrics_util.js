@@ -1,4 +1,4 @@
-exports.percentComplete = function (tasks, range) {
+exports.percentComplete = function (tasks) {
   const total = tasks.length;
   let completed = 0;
   for (const task of tasks) {
@@ -13,7 +13,7 @@ exports.percentComplete = function (tasks, range) {
 };
 
 
-exports.percentOnTime = function (tasks, range) {
+exports.percentOnTime = function (tasks) {
   let total = 0;
   let completed = 0;
   for (const task of tasks) {
@@ -31,26 +31,17 @@ exports.percentOnTime = function (tasks, range) {
   return;
 };
 
-exports.completedByWeekday = function (tasks, range) {
+exports.onTimeByWeekday = function (tasks) {
 
-  const week = {
-    Monday: 0,
-    Tuesday: 0,
-    Wednesday: 0,
-    Thursday: 0,
-    Friday: 0,
-    Saturday: 0,
-    Sunday: 0,
-  };
+  const monToSun = [0,0,0,0,0,0,0]
 
 
   for (const task of tasks) {
-    if (task.completed) {
-      const dayCompleted = convertToDayString(task.completedAt);
-      week[dayCompleted]++;
+    if (task.dueDate && task.completed<task.dueDate){
+      
     }
   }
-  return week;
+  return monToSun;
 };
 
 
@@ -74,6 +65,3 @@ function convertToDayString(date) {
   return res;
 }
 
-// exports.percentComplete = function(tasks){
-
-// }

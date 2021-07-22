@@ -14,7 +14,7 @@ router.get('/:userId',async (req,res)=>{
     res.json({
       percentComplete: metricsUtil.percentComplete(tasks),
       percentOnTime: metricsUtil.percentOnTime(tasks),
-      completedByWeekday: metricsUtil.completedByWeekday(tasks)
+      // onTimeByWeekday: metricsUtil.onTimeByWeekday(tasks)
     })
   } catch(error){
     console.log(error)

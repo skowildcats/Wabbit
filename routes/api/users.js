@@ -31,7 +31,12 @@ router.post('/register',async (req,res) => {
       if (err) throw err;
       newUser.password = hash;
       const user = await newUser.save()
-      res.json(user)
+      res.json({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        id: user._id
+      })
     })
   })
 })
@@ -97,7 +102,11 @@ router.post('/login', async (req, res) => {
     (err,token) => {
       res.json({
         success: true,
-        token: 'Bearer ' + token
+        token: 'Bearer ' + token,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        id: user._id
       })
     })
 })
