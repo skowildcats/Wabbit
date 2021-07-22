@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import taskReducer from "./tasks_reducer";
+import tasksReducer from "./tasks_reducer";
+import habitsReducer from "./habits_reducer";
 
 const entitiesReducer = combineReducers({
-  tasks: taskReducer,
+  tasks: tasksReducer,
+  habits: habitsReducer,
 });
 
 export default entitiesReducer

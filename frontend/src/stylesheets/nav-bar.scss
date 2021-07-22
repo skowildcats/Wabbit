@@ -9,7 +9,7 @@
   background-color: $green-1;
 
    > a, button{
-    width: 100px;
+    width: 110px;
     padding: 10px;
 
     color: white;
@@ -41,25 +41,3 @@
     }
   }
 }
-
-#nav-bar > a, #nav-bar > button {
-  width: 100px;
-  padding: 10px;
-
-  color: white;
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-align: center;
-
-  background-color: $green-0;
-  border-radius: 3px;
-
-  transition: all 0.2s;
-}
-
-#nav-bar > a:hover, #nav-bar > button:hover {
-  cursor: pointer;
-  background-color: $light-green-3;
-}
-
-#nav-bar > a:last-child { margin-left: 20px; }

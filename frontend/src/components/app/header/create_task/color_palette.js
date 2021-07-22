@@ -25,7 +25,7 @@ export default function ColorPalette(props) {
   })
 
   return (
-    <ul>
+    <ul className="color-selection">
       {colorBubbles}
     </ul>
   )
