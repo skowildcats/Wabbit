@@ -2,21 +2,23 @@ import React from 'react';
 import Task from './task'
 import Habit from './habit';
 import CreateTaskMenuContainer from '../header/create_task/create_task_menu_container';
-import CreateTaskButton from '../header/create_task/create_task_button';
-
+import OpenMenuButton from './buttons/create_task_button';
 class HomePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       loading: true,
-      menuOpen: false
+      menuOpen: false,
+      actionType: null
     }
     this.setMenuOpen.bind(this);
   }
 
-  setMenuOpen(val){
+  //sets menu open with actionType corresponding to whether its making a task or a habit
+  setMenuOpen(val, type){
     this.setState({
-      menuOpen: val
+      menuOpen: val,
+      actionType: type
     })
   }
 
@@ -64,20 +66,22 @@ class HomePage extends React.Component {
           <div id="home-page">
             <ul id="habits" className="sortable">
               <div className="menu-btn-container">
-                <CreateTaskButton openMenu={() => this.setMenuOpen(true)}/>
+                <OpenMenuButton openMenu={() => this.setMenuOpen(true, "HABIT")}/>
               </div>
               {habits.map(habit => {
                 return <Habit habit={habit} key={habit._id} />
               })}
             </ul>
             <ul id="tasks" className="sortable">
-              {/* <HeaderContainer/>  */}
+              <div className="menu-btn-container">
+                <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")}/>
+              </div>
               {tasks.map(task => {
                 return <Task task={task} key={task._id} />
               })}
             </ul>
           </div>
-          <CreateTaskMenuContainer open={this.state.menuOpen} closeMenu={() => this.setMenuOpen(false)}/>
+          <CreateTaskMenuContainer actionType={this.state.actionType} open={this.state.menuOpen} closeMenu={() => this.setMenuOpen(false)}/>
         </>
       );
     }
