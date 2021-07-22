@@ -57,3 +57,13 @@ export const logout = () => dispatch => {
     APIUtil.setAuthToken(false)
     dispatch(logoutUser())
 };
+
+export const getCurrentUser = currentUserId => dispatch => {
+  APIUtil.getCurrentUser(currentUserId)
+    .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
+};
+
+export const patchUser = userData => dispatch => {
+  APIUtil.patchUser(userData)
+    .then(updatedUser => dispatch(receiveCurrentUser(updatedUser)))
+};
