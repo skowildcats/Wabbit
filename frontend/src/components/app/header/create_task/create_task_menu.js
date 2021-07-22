@@ -111,37 +111,37 @@ export default function CreateTaskMenu(props) {
           <div className="days">
             <div className="day-checkbox">
               <input type="checkbox" readOnly={true} name="mon" id="mon" value="M"/>
-              <label htmlFor="mon">Monday</label>
+              <label htmlFor="mon">Mon</label>
             </div>
 
             <div className="day-checkbox">
               <input type="checkbox" readOnly={true} name="tue" id="tue" value="T"/>
-              <label htmlFor="tue">Tuesday</label>
+              <label htmlFor="tue">Tues</label>
             </div>
 
             <div className="day-checkbox">
               <input type="checkbox" readOnly={true} name="wed" id="wed" value="W"/>
-              <label htmlFor="wed">Wednesday</label>
+              <label htmlFor="wed">Wed</label>
             </div>
 
             <div className="day-checkbox">
               <input type="checkbox" readOnly={true} name="thu" id="thu" value="R"/>
-              <label htmlFor="thu">Thursday</label>
+              <label htmlFor="thu">Thurs</label>
             </div>
 
             <div className="day-checkbox">
               <input type="checkbox" readOnly={true} name="fri" id="fri" value="F"/>
-              <label htmlFor="fri">Friday</label>
+              <label htmlFor="fri">Fri</label>
             </div>
 
             <div className="day-checkbox">
               <input type="checkbox" readOnly={true} name="sat" id="sat" value="S"/>
-              <label htmlFor="sat">Saturday</label>
+              <label htmlFor="sat">Sat</label>
             </div>
 
             <div className="day-checkbox">
               <input type="checkbox" readOnly={true} name="sun" id="sun" value="N"/>
-              <label htmlFor="sun">Sunday</label>
+              <label htmlFor="sun">Sun</label>
             </div>
           </div>
         </div>

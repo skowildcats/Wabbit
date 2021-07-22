@@ -141,10 +141,11 @@
 
 .days {
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   
   > .day-checkbox {
     margin-bottom: 10px;
+    margin-right: 10px;
     display: flex;
     align-items: center;
     > input { height: 16px; width: 16px; }
