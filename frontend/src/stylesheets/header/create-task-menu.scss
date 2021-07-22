@@ -1,7 +1,7 @@
 #create-task-menu-modal {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .create-task-menu {
@@ -41,10 +41,10 @@
 
   > .form-field {
     border-bottom: 1px solid rgb(201, 201, 201);
-    padding: 16px 30px;
+    padding: 15px 30px;
     > label {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       font-size: 14px;
       letter-spacing: 0.2px;
       color: $dark-grey-4;
@@ -145,6 +145,7 @@
 .days {
   display: flex;
   justify-content: center;
+  margin-top: 10px;
   // flex-direction: column;
   
   > .day-checkbox {
@@ -160,4 +161,8 @@
       // text-transform: uppercase;
     }
   }
+}
+
+#icons-label {  
+  border: none;
 }

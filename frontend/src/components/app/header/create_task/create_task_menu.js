@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import ReactDOM  from 'react-dom'
 import ColorPalette from './color_palette'
+
 export default function CreateTaskMenu(props) {
   const [selected, setSelected] = useState('');
   const [icon, setIcon] = useState('');
@@ -104,49 +105,50 @@ export default function CreateTaskMenu(props) {
             <option>Weekly</option>
             <option>Monthly</option>
           </select>
-        </div>
-        
-        {recurrence === "Weekly" ? 
-        <div className="form-field">
-          <label htmlFor="">REPEAT ON</label>
-          <div className="days">
-            <div className="day-checkbox">
-              <input type="checkbox" readOnly={true} name="mon" id="mon" value="M"/>
-              <label htmlFor="mon">Mon</label>
-            </div>
+          {recurrence === "Weekly" ? 
+          <div className="form-field">
+            {/* <label htmlFor="">REPEAT ON</label> */}
+            <div className="days">
+              <div className="day-checkbox">
+                <input type="checkbox" readOnly={true} name="mon" id="mon" value="M"/>
+                <label htmlFor="mon">Mon</label>
+              </div>
 
-            <div className="day-checkbox">
-              <input type="checkbox" readOnly={true} name="tue" id="tue" value="T"/>
-              <label htmlFor="tue">Tues</label>
-            </div>
+              <div className="day-checkbox">
+                <input type="checkbox" readOnly={true} name="tue" id="tue" value="T"/>
+                <label htmlFor="tue">Tues</label>
+              </div>
 
-            <div className="day-checkbox">
-              <input type="checkbox" readOnly={true} name="wed" id="wed" value="W"/>
-              <label htmlFor="wed">Wed</label>
-            </div>
+              <div className="day-checkbox">
+                <input type="checkbox" readOnly={true} name="wed" id="wed" value="W"/>
+                <label htmlFor="wed">Wed</label>
+              </div>
 
-            <div className="day-checkbox">
-              <input type="checkbox" readOnly={true} name="thu" id="thu" value="R"/>
-              <label htmlFor="thu">Thurs</label>
-            </div>
+              <div className="day-checkbox">
+                <input type="checkbox" readOnly={true} name="thu" id="thu" value="R"/>
+                <label htmlFor="thu">Thurs</label>
+              </div>
 
-            <div className="day-checkbox">
-              <input type="checkbox" readOnly={true} name="fri" id="fri" value="F"/>
-              <label htmlFor="fri">Fri</label>
-            </div>
+              <div className="day-checkbox">
+                <input type="checkbox" readOnly={true} name="fri" id="fri" value="F"/>
+                <label htmlFor="fri">Fri</label>
+              </div>
 
-            <div className="day-checkbox">
-              <input type="checkbox" readOnly={true} name="sat" id="sat" value="S"/>
-              <label htmlFor="sat">Sat</label>
-            </div>
+              <div className="day-checkbox">
+                <input type="checkbox" readOnly={true} name="sat" id="sat" value="S"/>
+                <label htmlFor="sat">Sat</label>
+              </div>
 
-            <div className="day-checkbox">
-              <input type="checkbox" readOnly={true} name="sun" id="sun" value="N"/>
-              <label htmlFor="sun">Sun</label>
+              <div className="day-checkbox">
+                <input type="checkbox" readOnly={true} name="sun" id="sun" value="N"/>
+                <label htmlFor="sun">Sun</label>
+              </div>
             </div>
           </div>
+          : null}
         </div>
-         : null}
+        
+        
         
         <div className="form-field">
           <label htmlFor="dueDate">DEADLINE:</label>
@@ -159,7 +161,6 @@ export default function CreateTaskMenu(props) {
         </div> */}
 
         <div id="icons-label" className="form-field"> 
-          <label htmlFor="icons">ICONS</label>
           <ul id="icons">
             {icons}
           </ul>
