@@ -64,18 +64,18 @@ class HomePage extends React.Component {
       return (
         <>
           <div id="home-page">
+            <ul id="button-list">
+              <OpenMenuButton openMenu={() => this.setMenuOpen(true, "HABIT")} text={"NEW HABIT"}/>
+              <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")} text={"NEW TASK"}/>
+              <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")} text={"PLACEHOLDER"}/>
+              <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")} text={"PLACEHOLDER"}/>
+            </ul>
             <ul id="habits" className="sortable">
-              <div className="menu-btn-container">
-                <OpenMenuButton openMenu={() => this.setMenuOpen(true, "HABIT")}/>
-              </div>
               {habits.map(habit => {
                 return <Habit habit={habit} key={habit._id} />
               })}
             </ul>
             <ul id="tasks" className="sortable">
-              <div className="menu-btn-container">
-                <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")}/>
-              </div>
               {tasks.map(task => {
                 return <Task task={task} key={task._id} />
               })}
