@@ -9,6 +9,8 @@
 @import "./header/create-task-menu";
 @import 'home-page';
 @import 'task';
+@import 'habit';
 @import 'overlay';
+
 html, body, #root, #app { height: 100%; }
 * { font-family: $secondary-font; }

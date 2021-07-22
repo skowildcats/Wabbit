@@ -11,7 +11,7 @@ class Task extends React.Component {
 
     return (
       <div>
-        <div className="sort-handle">drag handle</div>
+        <div className="drag-handle">drag handle</div>
         <div>{task.title}</div>
         <MarkCompletedButton task={task}/>
         <DeleteTaskButton taskId={task._id}/>
