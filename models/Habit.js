@@ -14,15 +14,12 @@ const HabitSchema = new Schema({
     type: String
   },
   recurrence: {
-    // d,w,b,m,q,y for daily,weekly,biweekly,monthly,quarterly,yearly
+    // d,w,m for daily,weekly,biweekly,monthly,quarterly,yearly
     type: String
   },
   daysOfTheWeek:{
     // M_TW_F__ for a mon tues wed fri repeating task
     type: String
-  },
-  nextOccurrence:{
-    type: Date
   },
   color: {
     type: String,
