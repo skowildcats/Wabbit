@@ -1,0 +1,14 @@
+/* Alter top positioning to fit top navbar later */
+.menu-btn-container > button {
+  width: inherit; 
+  height: 100%;
+  float: right;
+  font-size: 50px;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+.menu-btn-container > button:hover{
+  color: $dark-green-0;
+}

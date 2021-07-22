@@ -1,6 +1,6 @@
 import React from 'react';
-// import MarkCompletedButton from './buttons/mark_completed_button'
-// import DeleteTaskButton from './buttons/delete_task_button'
+import MarkCompletedButton from './buttons/mark_completed_button'
+import DeleteTaskButton from './buttons/delete_task_button'
 
 class Habit extends React.Component {
   constructor(props) {
@@ -12,10 +12,14 @@ class Habit extends React.Component {
 
     return (
       <div>
-        <div className="drag-handle">drag handle</div>
+        <div className="drag-handle">
+          <div>
+            Three dots here
+          </div>
+        </div>
         <div>{habit.title}</div>
-        {/* <MarkCompletedButton habit={habit}/>
-        <DeletehabitButton habitId={habit._id}/> */}
+        <MarkCompletedButton task={habit}/>
+        <DeleteTaskButton taskId={habit._id}/>
       </div>
     );
   }

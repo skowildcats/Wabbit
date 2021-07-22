@@ -1,13 +1,18 @@
 import { connect } from 'react-redux';
-import { logout } from '../../actions/session_actions';
+import { logout, getCurrentUser } from '../../actions/session_actions';
 
 import NavBar from './navbar';
 
-const mapStateToProps = state => ({
+const mSTP = state => ({
+  currentUser: state.session.user,
   loggedIn: state.session.isAuthenticated
 });
 
-export default connect(
-  mapStateToProps,
-  { logout }
-)(NavBar);
+
+const mDTP = dispatch => ({
+  getCurrentUser: currentUserId => dispatch(getCurrentUser(currentUserId)),
+  logout: () => dispatch(logout())
+});
+
+const NavBarContainer = connect(mSTP, mDTP)(NavBar);
+export default NavBarContainer;

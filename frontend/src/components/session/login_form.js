@@ -57,7 +57,7 @@ class LoginForm extends React.Component {
 
   render() {
     const errors = (Object.values(this.state.errors).length) ? (
-      <p id="errors">Login or password is invalid</p>
+      <p className="errors">Login or password is invalid</p>
     ) : (
       null
     );
@@ -68,6 +68,7 @@ class LoginForm extends React.Component {
         <div id="login-form" className="user-form">
           <h1>LOG IN</h1>
           <form onSubmit={this.handleSubmit}>
+            {errors}
             <input
               type="text"
               value={this.state.email}
@@ -75,6 +76,7 @@ class LoginForm extends React.Component {
               placeholder="Email"
               className={errors ? "has-errors" : ""}
             />
+            {errors}
             <input
               type="password"
               value={this.state.password}
@@ -82,7 +84,6 @@ class LoginForm extends React.Component {
               placeholder="Password"
               className={errors ? "has-errors" : ""}
             />
-            {errors}
             <input id="submit" type="submit" value="Log in" />
             <p>Don't have an account? </p>
             <Link to="/signup">Register now</Link>

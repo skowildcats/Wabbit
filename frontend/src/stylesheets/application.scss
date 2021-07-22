@@ -5,12 +5,13 @@
 @import "splash";
 @import "nav-bar";
 @import "user-form";
-@import "./header/app-header";
-@import "./header/create-task-menu";
 @import 'home-page';
+@import "./menu/app-header";
+@import "./menu/create-task-menu";
 @import 'task';
 @import 'habit';
 @import 'overlay';
 
-html, body, #root, #app { height: 100%; }
+// html, body, #root, #app { height: 100%; overflow: hidden; }
+// html, body, #root, #app { height: 100%; }
 * { font-family: $secondary-font; }
