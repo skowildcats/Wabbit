@@ -1,13 +1,23 @@
 import React from 'react';
 import Task from './task'
-import Header from '../header/header'
 import Habit from './habit';
-
+import CreateTaskMenuContainer from '../header/create_task/create_task_menu_container';
+import CreateTaskButton from '../header/create_task/create_task_button';
 
 class HomePage extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {loading: true}
+    this.state = {
+      loading: true,
+      menuOpen: false
+    }
+    this.setMenuOpen.bind(this);
+  }
+
+  setMenuOpen(val){
+    this.setState({
+      menuOpen: val
+    })
   }
 
   componentDidMount() {
@@ -23,7 +33,7 @@ class HomePage extends React.Component {
 
   componentDidUpdate() {
     window.$(".sortable").sortable({
-      items: "> div:not(.app-header)",
+      items: "> div:not(.menu-btn-container)",
       handle: ".drag-handle",
       helper: "clone",
       opacity: 0.7,
@@ -40,7 +50,6 @@ class HomePage extends React.Component {
   }
 
   render() {
-
     if (this.state.loading) {
       return null
     } else {
@@ -54,7 +63,9 @@ class HomePage extends React.Component {
         <>
           <div id="home-page">
             <ul id="habits" className="sortable">
-              <Header/> 
+              <div className="menu-btn-container">
+                <CreateTaskButton openMenu={() => this.setMenuOpen(true)}/>
+              </div>
               {habits.map(habit => {
                 return <Habit habit={habit} key={habit._id} />
               })}
@@ -66,6 +77,7 @@ class HomePage extends React.Component {
               })}
             </ul>
           </div>
+          <CreateTaskMenuContainer open={this.state.menuOpen} closeMenu={() => this.setMenuOpen(false)}/>
         </>
       );
     }
