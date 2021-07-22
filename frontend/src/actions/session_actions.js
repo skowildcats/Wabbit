@@ -59,11 +59,13 @@ export const logout = () => dispatch => {
 };
 
 export const getCurrentUser = currentUserId => dispatch => {
-  APIUtil.getCurrentUser(currentUserId)
-    .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
+  debugger
+  return APIUtil.getCurrentUser(currentUserId)
+    .then(currentUser => {debugger
+      dispatch(receiveCurrentUser(currentUser))})
 };
 
-export const patchUser = userData => dispatch => {
+export const patchUser = userData => dispatch => (
   APIUtil.patchUser(userData)
     .then(updatedUser => dispatch(receiveCurrentUser(updatedUser)))
-};
+);

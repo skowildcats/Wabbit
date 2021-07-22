@@ -18,6 +18,7 @@ export const login = (userData) => {
 };
 
 export const getCurrentUser = currentUserId => {
+  debugger
   return axios.get(`/api/users/${currentUserId}`);
 };
 
