@@ -12,13 +12,15 @@ router.get('/:userId',async (req,res)=>{
     )
     const past10Weeks = metricsUtil.filterByStartDate(
       await Task.find({user: req.params.userId}),70)
-
+    
+    let count = await Task.countDocuments({user: req.params.userId})
     res.json({
       taskDonePerWeek: metricsUtil.tasksDonePerWeek(past10Weeks),
       lateByWeekday: metricsUtil.lateByWeekday(tasks),
       onTimeByWeekday: metricsUtil.onTimeByWeekday(tasks),
       percentComplete: metricsUtil.percentComplete(tasks),
-      percentOnTime: metricsUtil.percentOnTime(tasks)
+      percentOnTime: metricsUtil.percentOnTime(tasks),
+      count: count
     })
   } catch(error){
     console.log(error)

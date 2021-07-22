@@ -3,7 +3,8 @@ import { fetchMetrics } from '../../../actions/metrics_actions';
 import Metrics from './metrics';
 
 const mSTP = state => ({
-  userId: state.session.user.id
+  userId: state.session.user.id,
+  metrics: state.metrics
 })
 
 const mDTP = (dispatch, ownProps) => ({

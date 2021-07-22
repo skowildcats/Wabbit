@@ -1,16 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 import BarGraph from './bar_graph'
 import LineGraph from './line_graph'
+import PieChart from './pie_chart'
+import { setupBarGraphData, setupLineGraphData, setupPieCount, setupPieComplete } from './metrics_util';
 
 export default function Metrics(props){
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     props.fetchMetrics(props.userId)
-  }, [])
-  
+    setLoading(false)
+  }, []);
   let habitStyle = { //later we wll dynamically style the habits
 
   }
+  if(loading) return null;
   let startOfWeek = moment().startOf('isoweek').format('MMM Do YYYY')
   let endOfWeek = moment().endOf('isoweek').format('MMM Do YYYY')
   return (
@@ -42,17 +46,18 @@ export default function Metrics(props){
         </div>
       </div>
       <div className="bar-graph">
-        <div className="header">
-          Task Completion for this Week
-        </div>
-        <BarGraph/>
+        <p className="header">Task Completion for this Week</p>
+        <BarGraph data={setupBarGraphData(props.metrics.onTimeByWeekday, props.metrics.lateByWeekday)}/>
+      </div>
+
+      <div className="pie-chart">
+        <p className="header">Percentage of Tasks Completed</p>
+        <PieChart data1={setupPieCount(props.metrics.count, props.metrics.percentOnTime)} data2={setupPieComplete(props.metrics.percentComplete)}/>
       </div>
 
       <div className="line-graph">
-        <div className="header">
-          Lifetime Task Completions
-        </div>
-        <LineGraph/>
+        <p className="header">Lifetime Task Completions</p>
+        <LineGraph data={setupLineGraphData(props.metrics.taskDonePerWeek)}/>
       </div>
     </div>
   )

@@ -16,7 +16,7 @@ $color: #fff;
   }
   
   .header{
-    height: 25%;
+    text-align: center;
     .this-week{
       display: flex;
       align-items: center;
@@ -32,7 +32,10 @@ $color: #fff;
   .line-graph{
     height: 35vh;
   }
-
+  .pie-chart{
+   margin: 40px 0;
+   height: 30vh;
+  }
   .habit{
     display: flex;
     align-items: center;
