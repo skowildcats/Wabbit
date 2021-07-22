@@ -17,7 +17,7 @@ class Habit extends React.Component {
             Three dots here
           </div>
         </div>
-        <div>{habit.title}</div>
+        <div id="todo-title">{habit.title}</div>
         <MarkCompletedButton task={habit}/>
         <DeleteTaskButton taskId={habit._id}/>
       </div>

@@ -1,0 +1,177 @@
+$color: #fff;
+
+.metrics-page{
+  height: fit-content;
+  width: 100%;
+  background-color: #dce3dd;
+  padding-top: 67px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+   > div{
+    &:first-child{ margin-top: 20px; }
+    box-sizing: border-box;
+    width: 80%;
+    margin-bottom: 20px;
+  }
+  
+  .header{
+    text-align: center;
+    .this-week{
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid lightgrey;
+      border-radius: 4px;
+    }
+  }
+
+  .bar-graph{
+    height: 35vh;
+  }
+  .line-graph{
+    height: 35vh;
+  }
+  .pie-chart{
+   margin: 40px 0;
+   height: 30vh;
+  }
+  .habit{
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border: 3px solid $green-1; //this should be changed to fit the icon/habit
+    border-radius: 6px;
+    .icon{
+      height: 30px;
+      width: 30px;
+    }
+    p{
+      font-weight: 500; //update accordingly
+      font-size: 15px;
+      min-width: 100px;
+      padding: 0 20px;
+    }
+    * {
+      box-sizing: inherit;
+      &:before,
+      &:after {
+        box-sizing: inherit;
+      }
+    }
+    //The span is what actually labels each icon. Label just forms the icon itself
+    span{
+      display: block;
+      position: relative;
+      bottom: 5px;
+    }
+    .checkboxes{
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .toggle-button {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      transform-origin: 50% 50%;
+      transform-style: preserve-3d;
+      transition: transform .14s ease;
+
+      &:active {
+        transform: rotateX(30deg);
+      }
+
+      input {
+        display: none;
+
+        &+div {
+          border: 3px solid rgba($color, .2);
+          border-radius: 50%;
+          position: relative;
+          width: 29px;
+          height: 29px;
+
+          svg {
+            fill: none;
+            stroke-width: 3.6;
+            stroke: $color;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            width: 35px;
+            height: 35px;
+            display: block;
+            position: absolute;
+            left: -3px;
+            top: -3px;
+            right: -3px;
+            bottom: -3px;
+            z-index: 1;
+            stroke-dashoffset: 162.6 - 38;
+            stroke-dasharray: 0 162.6 133 (162.6 - 133);
+            transition: all .4s ease 0s;
+          }
+
+          &:before,
+          &:after {
+            content: '';
+            width: 3px;
+            height: 16px;
+            background: $color;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border-radius: 5px;
+          }
+
+          &:before {
+            opacity: 0;
+            transform: scale(.3) translate(-50%, -50%) rotate(45deg);
+            animation: bounceInBefore .3s linear forwards .3s;
+          }
+
+          &:after {
+            opacity: 0;
+            transform: scale(.3) translate(-50%, -50%) rotate(-45deg);
+            animation: bounceInAfter .3s linear forwards .3s;
+          }
+        }
+
+        &:checked+div {
+          svg {
+            stroke-dashoffset: 162.6;
+            stroke-dasharray: 0 162.6 28 (162.6 - 28);
+            transition: all .4s ease .2s;
+          }
+
+          &:before {
+            opacity: 0;
+            transform: scale(.3) translate(-50%, -50%) rotate(45deg);
+            animation: bounceInBeforeDont .3s linear forwards 0s;
+          }
+
+          &:after {
+            opacity: 0;
+            transform: scale(.3) translate(-50%, -50%) rotate(-45deg);
+            animation: bounceInAfterDont .3s linear forwards 0s;
+          }
+        }
+      }
+    }
+  }
+}
+
+.bar-graph{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.line-graph{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

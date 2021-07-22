@@ -16,7 +16,7 @@ class Task extends React.Component {
             Three dots here
           </div>
         </div>
-        <div>{task.title}</div>
+        <div id="todo-title">{task.title}</div>
         <div>{task.description}</div>
         <div>
           <MarkCompletedButton task={task}/>
