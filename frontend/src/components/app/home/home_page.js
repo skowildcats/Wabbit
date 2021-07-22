@@ -67,6 +67,8 @@ class HomePage extends React.Component {
             <ul id="button-list">
               <OpenMenuButton openMenu={() => this.setMenuOpen(true, "HABIT")} text={"NEW HABIT"}/>
               <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")} text={"NEW TASK"}/>
+              <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")} text={"PLACEHOLDER"}/>
+              <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")} text={"PLACEHOLDER"}/>
             </ul>
             <ul id="habits" className="sortable">
               {habits.map(habit => {
