@@ -1,9 +1,15 @@
+
+
+.app-header > button:hover{
+  color: $dark-green-0;
+}
+
 #home-page {
   margin: 100px 60px;
   display: flex;
   flex-direction: column;
-  button {
-    width: 100px;
+  button:not(.open-menu) {
+    width: 100px; 
     float: right;
     border: 1px solid black;
     font-size: 14px;
@@ -11,3 +17,4 @@
     border-radius: 5px;
   }
 }
+

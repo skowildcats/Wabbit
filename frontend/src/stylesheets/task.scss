@@ -9,6 +9,12 @@
   box-shadow: 0 4px 10px $light-green-3;
 }
 
+#tasks {
+  height: 60vh;
+  overflow: auto;
+  border: 1px solid black;
+}
+
 #tasks > div:hover {
   box-shadow: 0 2px 10px $dark-green-0;
 }
