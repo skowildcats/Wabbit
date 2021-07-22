@@ -59,6 +59,7 @@ router.put('/password',passport.authenticate('jwt', {session: false}),async (req
       res.json(user)
     })
   })
+
 })
 
 // route for updating name
@@ -106,6 +107,7 @@ router.get('/:userId',async(req,res)=>{
   const user = await User.findById(req.params.userId)
   res.json(user)
 })
+
 
 
 module.exports = router
