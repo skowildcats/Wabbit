@@ -5,7 +5,7 @@ import UserSettingsContainer from './user_settings_container';
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { usersSettingOpen: true };
+    this.state = { usersSettingOpen: false };
   }
 
   componentDidMount() {

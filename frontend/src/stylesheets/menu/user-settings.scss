@@ -1,4 +1,25 @@
-#app{ overflow: hidden; }
+.exit {
+  position: absolute;
+  top: 5px;
+  right: -50px;
+  padding: 5px;
+  width: 20px;
+  height: 20px;
+  font-size: 15px;
+  color: $grey-2;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid $grey-0;
+  border-radius: 50%;
+  transition: all 0.1s;
+
+  &:hover {
+    cursor: pointer;
+    color: $dark-grey-1;
+    border-color: $grey-2;
+    box-shadow: 0px 0px 3px $light-grey-1;
+  }
+}
 
 #user-settings {
   box-sizing: border-box;
@@ -6,7 +27,7 @@
   top: 0; left: 0; right: 0;
   height: 100vh;
   z-index: 50;
-  animation: float-in 0.2s;
+  animation: float-out 0.2s;
   
   #users-settings-background { 
     position: absolute;
@@ -52,7 +73,7 @@
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
     box-shadow: 0px 0px 10px $light-green-1;
-    clip-path: inset(-10px -10px -10px 3px);
+    clip-path: inset(-100% -100% -100% 3px);
 
     &::before {
       content: "";
@@ -130,6 +151,7 @@
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
+  color: $dark-grey-1;
   box-shadow: none;
   z-index: 101;
 
@@ -137,11 +159,10 @@
     margin: 15px 0px 15px;
     font-family: $primary-font;
     font-size: 18px;
-    color: $dark-grey-1;
   }
   > p:first-of-type {
     font-size: 10px;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.7px;
     color: $dark-grey-2;
   }
 

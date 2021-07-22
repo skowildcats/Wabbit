@@ -36,6 +36,7 @@ export default class UserSettings extends React.Component {
           <li onClick={() => this.setState({logOutConfirmation: true})}>LOGOUT</li>
         </ul>
         <div id="user-settings-content">
+          <p className="exit" onClick={this.props.closeSettings}>&times;</p>
           {this.state.userUpdateFormOpen ? (
             <form id="user-update-form" className="user-settings-form">
               <label htmlFor="update-first-name">FIRST NAME</label>
