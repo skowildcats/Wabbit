@@ -6,10 +6,6 @@ export default class UsersSettings extends React.Component {
     this.state = props.currentUser;
   }
 
-  componentDidMount() {
-    this.props.getCurrentUser();
-  }
-
   handleClick(e) {
     e.preventDefault();
     this.patchUser(this.state);

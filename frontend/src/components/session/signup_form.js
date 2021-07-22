@@ -56,7 +56,7 @@ class SignupForm extends React.Component {
   render() {
     const inputs = ["email", "firstName", "lastName", "password", "confirmPassword"].map(field => (
       <>
-        <p id ="errors">{Object.values(this.state.errors).length ? this.state.errors[field] : null}</p>
+        <p className="errors">{Object.values(this.state.errors).length ? this.state.errors[field] : null}</p>
         <input
           key={field.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}
           type={field.slice(-4)==="word" ? "password" : "text" }

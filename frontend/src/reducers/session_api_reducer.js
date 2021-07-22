@@ -8,6 +8,8 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
+  Object.freeze(state);
+  
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       return {
@@ -22,7 +24,7 @@ export default function(state = initialState, action) {
       };
     case RECEIVE_USER_SIGN_IN:
       return {
-        ...state,
+        user: action.currentUser,
         isSignedIn: true
       }
     default:

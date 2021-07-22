@@ -1,15 +1,10 @@
 import { connect } from "react-redux";
 import UsersSettings from "./users_settings";
-import { patchUser, getCurrentUser } from "../../actions/session_actions";
-
-const mSTP = state => ({
-  currentUser: state.session.user
-});
+import { patchUser } from "../../actions/session_actions";
 
 const mDTP = dispatch => ({
-  getCurrentUser: currentUserId => getCurrentUser(currentUserId),
-  patchUser: userData => patchUser(userData)
+  patchUser: userData => dispatch(patchUser(userData))
 });
 
-const UsersSettingsContainer = connect(mSTP, mDTP)(UsersSettings);
+const UsersSettingsContainer = connect(null, mDTP)(UsersSettings);
 export default UsersSettingsContainer;
