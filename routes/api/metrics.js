@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Task = require('../../models/Task')
 const metricsUtil = require('../util/metrics_util')
+const Habit = require('../../models/Habit')
 
 router.get('/:userId',async (req,res)=>{
   try {
@@ -12,13 +13,22 @@ router.get('/:userId',async (req,res)=>{
     )
     const past10Weeks = metricsUtil.filterByStartDate(
       await Task.find({user: req.params.userId}),70)
-
+    
+    let count = await Task.countDocuments({user: req.params.userId})
+    let habit = await Habit.findOne({user: req.params.userId, recurrence: "Daily"});
+    let habitTasks = metricsUtil.filterByStartDate(
+      await Task.find({habit: habit._id}),
+      7
+    );
     res.json({
       taskDonePerWeek: metricsUtil.tasksDonePerWeek(past10Weeks),
       lateByWeekday: metricsUtil.lateByWeekday(tasks),
       onTimeByWeekday: metricsUtil.onTimeByWeekday(tasks),
       percentComplete: metricsUtil.percentComplete(tasks),
-      percentOnTime: metricsUtil.percentOnTime(tasks)
+      percentOnTime: metricsUtil.percentOnTime(tasks),
+      count: count,
+      habit,
+      habitTasks
     })
   } catch(error){
     console.log(error)
