@@ -1,12 +1,14 @@
 #habits {
-  height: 15vh;
+  height: 25vh;
+  overflow: auto;
   border: 1px solid black;
 }
 
 #habits > div {
+  border: 1px solid black;
   border-radius: 5px;
   width: 200px;
-  height: 75%;
+  height: 100px;
   margin: 15px;
   float: left;
   background-color: $light-green-3;

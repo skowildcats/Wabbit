@@ -53,7 +53,7 @@ class HomePage extends React.Component {
               })}
             </ul>
             <ul id="tasks" className="sortable">
-              <HeaderContainer/> 
+              {/* <HeaderContainer/>  */}
               {tasks.map(task => {
                 return <Task task={task} key={task._id} />
               })}
