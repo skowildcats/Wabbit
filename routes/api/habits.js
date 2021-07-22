@@ -21,5 +21,19 @@ router.get('/all/:userId', async (req,res)=>{
   res.json(habits)
 })
 
+router.put('/:habitId',async (req,res)=>{
+  const habit = await Habit.findById(req.params.habitId)
+  for(field in req.body){
+    habit[field] = req.body[field]
+  }
+  await habit.save()
+  res.json(habit)
+})
+
+router.delete('/:habitId', async (req,res)=>{
+  await Habit.deleteOne({_id: req.params.habitId})
+  res.json({msg: 'success'})
+})
+
 
 module.exports = router
