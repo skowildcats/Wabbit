@@ -14,7 +14,7 @@
   > h1 {
     width: 100%;
     position: absolute;
-    top: calc(50% - 150px);
+    top: calc(50% - 155px);
     z-index: 1;
     left: 0;
     transform: translateY(-50%);
@@ -35,7 +35,7 @@
     transform: translate(-50%, -50%);
 
     width: 300px;
-    padding: 20px;
+    padding: 0px 20px 20px;
     border-radius: 5px;
     background-color: $light-green-0;
     box-shadow: 0px 0px 15px $dark-green-0;
@@ -45,7 +45,8 @@
       box-sizing: border-box;
       width: 300px;
       padding: 10px;
-      margin-bottom: 15px;
+      margin-top: 20px;
+      &:first-of-type { margin-top: 27px; }
 
       font-size: 14px;
       border-radius: 3px;
@@ -76,10 +77,20 @@
     > a { margin-left: 4px; }
     > a:hover { border-bottom: 1px solid $dark-grey-1; }
 
-    > #errors {
+    > .errors {
       color: $green-2;
+      line-height: 14px;
+      margin-top: 5px;
+      animation: fade-in 0.05s;
+
+      + input {
+        border-color: $dark-green-1;
+        margin-top: 1px;
+      }
+
+      &:first-child { margin-top: 12px; }
     }
   }
 }
 
-#signup-form > h1 { top: calc(50% - 231px); }
+#signup-form > h1 { top: calc(50% - 243.5px); }
