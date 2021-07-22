@@ -2,14 +2,14 @@
   position: absolute;
   top: 0; left: 0; bottom: 0;
   right: 45%;
-  background-color: $light-green-3;
+  background-color: $light-green-4;
 }
 
 .user-form {
   position: absolute;
   top: 0; right: 0; bottom: 0;
   left: 55%;
-  background-color: $light-green-1;
+  background-color: $light-green-2;
 
   > h1 {
     width: 100%;
@@ -39,7 +39,7 @@
     border-radius: 5px;
     background-color: $light-green-0;
     box-shadow: 0px 0px 15px $dark-green-0;
-    animation: float-in 0.2s;
+    animation: float-in-center 0.2s;
 
     > input {
       box-sizing: border-box;
@@ -50,7 +50,7 @@
 
       font-size: 14px;
       border-radius: 3px;
-      border: 1px solid $light-green-2;
+      border: 1px solid $light-green-3;
 
       transition: border-color 0.1s;
 

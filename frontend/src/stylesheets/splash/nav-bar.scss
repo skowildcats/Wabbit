@@ -24,10 +24,11 @@
 
     &:hover {
       cursor: pointer;
-      background-color: $light-green-3;
+      background-color: $light-green-4;
     }
-    &:not(:first-child) { margin-left: 20px; }
   }
+  > a:not(:first-child), > button:not(:first-child)  { margin-left: 20px; }
+
   > #home-btn {
     position: absolute;
     left: 10px;
