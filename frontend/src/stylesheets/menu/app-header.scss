@@ -1,5 +1,5 @@
 /* Alter top positioning to fit top navbar later */
-.app-header > button {
+.menu-btn-container > button {
   width: inherit; 
   height: 100%;
   float: right;
@@ -9,6 +9,6 @@
   color: white;
 }
 
-.app-header > button:hover{
+.menu-btn-container > button:hover{
   color: $dark-green-0;
 }

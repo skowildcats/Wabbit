@@ -26,7 +26,7 @@ class HomePage extends React.Component {
 
   componentDidUpdate() {
     window.$(".sortable").sortable({
-      items: "> div:not(.app-header)",
+      items: "> div:not(.menu-btn-container)",
       handle: ".drag-handle",
       helper: "clone",
       opacity: 0.7,
@@ -56,7 +56,9 @@ class HomePage extends React.Component {
         <>
           <div id="home-page">
             <ul id="habits" className="sortable">
-              <CreateTaskButton/>
+              <div className="menu-btn-container">
+                <CreateTaskButton openMenu={() => this.setMenuOpen(true)}/>
+              </div>
               {habits.map(habit => {
                 return <Habit habit={habit} key={habit._id} />
               })}
@@ -68,7 +70,7 @@ class HomePage extends React.Component {
               })}
             </ul>
           </div>
-          <CreateTaskMenuContainer/>
+          <CreateTaskMenuContainer open={this.state.menuOpen} closeMenu={() => this.setMenuOpen(false)}/>
         </>
       );
     }
