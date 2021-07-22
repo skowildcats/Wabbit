@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Task = require("../../models/Task");
+const taskUtil = require('../util/tasks_util')
+const Habit = require('../../models/Habit')
 
 // new task route
 router.post("/new", async (req, res) => {
@@ -47,6 +49,12 @@ router.get("/:taskId", async (req, res) => {
 
 // get all tasks
 router.get("/all/:userId", async (req, res) => {
+  const today = new Date()
+  const lastChecked = new Date(process.env.LAST_CHECK)
+  if(today.toDateString() !== lastChecked.toDateString()){
+    process.env.LAST_CHECK = today
+    refreshHabits(req.params.userId)
+  }
   tasks = await Task.find({ user: req.params.userId });
   res.json(tasks);
 });
@@ -60,6 +68,14 @@ router.delete("/:taskId", async (req, res) => {
     console.log(error);
   }
 });
+
+async function refreshHabits(userId){
+  const habits = await Habit.find({user: userId})
+  for(habit of habits){
+    if(taskUtil.appliesToday(habit)) taskUtil.createTaskFromHabit(habit)
+  }
+}
+
 
 
 module.exports = router;
