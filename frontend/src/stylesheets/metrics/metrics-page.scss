@@ -14,6 +14,7 @@ $color: #fff;
     width: 80%;
     margin-bottom: 20px;
   }
+  
   .header{
     height: 25%;
     .this-week{
@@ -24,11 +25,12 @@ $color: #fff;
       border-radius: 4px;
     }
   }
+
   .bar-graph{
-    height: 60%;
+    height: 35vh;
   }
   .line-graph{
-    height: 60%;
+    height: 35vh;
   }
 
   .habit{
