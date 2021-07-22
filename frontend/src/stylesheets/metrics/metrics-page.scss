@@ -1,7 +1,7 @@
 $color: #fff;
 
 .metrics-page{
-  height: 100vh;
+  height: fit-content;
   width: 100%;
   background-color: #dce3dd;
   padding-top: 67px;
@@ -10,7 +10,7 @@ $color: #fff;
   align-items: center;
    > div{
     &:first-child{ margin-top: 20px; }
-    border: 1px solid red;
+    box-sizing: border-box;
     width: 80%;
     margin-bottom: 20px;
   }
@@ -138,4 +138,16 @@ $color: #fff;
       }
     }
   }
+}
+
+.bar-graph{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.line-graph{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

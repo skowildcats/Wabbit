@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 exports.percentComplete = function(tasks,range){
   if(range){
     tasks = filterByStartDate(tasks,range)
@@ -35,24 +37,31 @@ exports.percentOnTime = function(tasks,range){
   return
 }
 
-exports.completedByWeekday = function(tasks,range){
+exports.completedByWeekday = function(tasks,range = 7){
   if(range){
     tasks = filterByStartDate(tasks,range)
   }
+
   const week = {
-    Monday: 0,
-    Tuesday: 0,
-    Wednesday: 0,
-    Thursday: 0,
-    Friday: 0,
-    Saturday: 0,
-    Sunday: 0,
+    Monday: { completed: 0, unComplete: 0 },
+    Tuesday: { completed: 0, unComplete: 0 },
+    Wednesday: { completed: 0, unComplete: 0 },
+    Thursday: { completed: 0, unComplete: 0 },
+    Friday: { completed: 0, unComplete: 0 },
+    Saturday: { completed: 0, unComplete: 0 },
+    Sunday: { completed: 0, unComplete: 0 },
   }
 
   for(const task of tasks){
     if(task.completed){
       const dayCompleted = convertToDayString(task.completedAt)
-      week[dayCompleted]++
+      week[dayCompleted].completed++
+    } else{
+      let date = new Date();
+      if(date > task.dueDate){ //due date has been passed
+        const dayUncomplete = convertToDayString(task.dueDate)
+        week[dayUncomplete].unComplete++
+      }
     }
   }
   return week

@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import moment from 'moment'
+import BarGraph from './bar_graph'
+import LineGraph from './line_graph'
 
 export default function Metrics(props){
   useEffect(() => {
@@ -40,11 +42,17 @@ export default function Metrics(props){
         </div>
       </div>
       <div className="bar-graph">
-        This will have all data for the bar graph for all habits/tasks over the past 7 days
+        <div className="header">
+          Task Completion for this Week
+        </div>
+        <BarGraph/>
       </div>
 
       <div className="line-graph">
-        This will track much longer term task data
+        <div className="header">
+          Lifetime Task Completions
+        </div>
+        <LineGraph/>
       </div>
     </div>
   )
