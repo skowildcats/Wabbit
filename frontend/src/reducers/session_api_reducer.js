@@ -13,7 +13,7 @@ export default function(state = initialState, action) {
     case RECEIVE_CURRENT_USER:
       return {
         isAuthenticated: !!action.currentUser,
-        user: action.currentUser
+        user: Object.assign({}, state.user, action.currentUser)
       };
     case RECEIVE_USER_LOGOUT:
       return {

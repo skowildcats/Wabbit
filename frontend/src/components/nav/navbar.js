@@ -9,6 +9,10 @@ class NavBar extends React.Component {
     this.getLinks = this.getLinks.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getCurrentUser(this.props.currentUser.id);
+  }
+
   logoutUser(e) {
     e.preventDefault();
     this.props.logout();
@@ -24,7 +28,7 @@ class NavBar extends React.Component {
           </Link>
           <Link to="/metrics">METRICS</Link>
           <button onClick={() => this.setState({ usersSettingOpen: !this.state.usersSettingOpen })}>
-            {this.props.firstName}
+            {this.props.currentUser.firstName ? this.props.currentUser.firstName.toUpperCase() : null}
           </button>
           <button onClick={this.logoutUser}>LOGOUT</button>
         </>

@@ -55,9 +55,11 @@ class SignupForm extends React.Component {
   }
 
   render() {
-    const inputs = ["email", "firstName", "lastName", "password", "confirmPassword"].map(field => (
+    const inputs = ["email", "firstName", "lastName", "password", "confirmPassword"].map(field => {
+      debugger
+      return (
       <>
-        <p className="errors">{Object.values(this.state.errors).length ? this.state.errors[field] : null}</p>
+        {this.state.errors[field] ? <p className="errors">{this.state.errors[field]}</p> : null}
         <input
           key={field.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}
           type={field.slice(-4)==="word" ? "password" : "text" }
@@ -66,7 +68,7 @@ class SignupForm extends React.Component {
           placeholder={this.toWords(field)}
         />
       </>
-    ))
+    )})
 
     return (
       <>

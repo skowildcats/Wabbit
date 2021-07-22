@@ -22,31 +22,28 @@ export const logoutUser = () => ({
     type: RECEIVE_USER_LOGOUT
 });
 
+const processData = data => {
+  const { token } = data;
+  localStorage.setItem("jwtToken", token);
+  APIUtil.setAuthToken(token);
+  const decoded = jwt_decode(token);
+  const { email, firstName, lastName } = data;
+  debugger
+  return { email, firstName, lastName, ...decoded };
+}
+
 // Upon signup, dispatch the approporiate action depending on which type of response we receieve from the backend
 export const signup = (user) => (dispatch) => (
   APIUtil.signup(user)
-    .then(({ data }) => {
-      debugger
-      const { token } = data;
-      localStorage.setItem("jwtToken", token);
-      APIUtil.setAuthToken(token);
-      const decoded = jwt_decode(token);
-      return dispatch(receiveCurrentUser(Object.assign({}, decoded, data)));
-    })
+    .then(({ data }) => dispatch(receiveCurrentUser(processData(data))))
     .catch((err) => dispatch(receiveErrors(err.response.data)))
 );
 
 // Upon login, set the session token and dispatch the current user. Dispatch errors on failure.
-export const login = user => dispatch => (
-    APIUtil.login(user).then(res => {
-      debugger
-      const { token } = res.data;
-      localStorage.setItem('jwtToken', token);
-      APIUtil.setAuthToken(token);
-      const decoded = jwt_decode(token);
-      return dispatch(receiveCurrentUser(Object.assign({}, decoded, res.data)));
-    })
-    .catch(err => dispatch(receiveErrors(err.response.data)))
+export const login = (user) => (dispatch) => (
+  APIUtil.login(user)
+    .then(({ data }) => dispatch(receiveCurrentUser(processData(data))))
+    .catch((err) => dispatch(receiveErrors(err.response.data)))
 );
 
 // We wrote this one earlier
@@ -58,9 +55,7 @@ export const logout = () => dispatch => {
 
 export const getCurrentUser = currentUserId => dispatch => (
   APIUtil.getCurrentUser(currentUserId)
-    .then((currentUser) => {
-      debugger
-      return dispatch(receiveCurrentUser(currentUser.data))})
+    .then((currentUser) => dispatch(receiveCurrentUser(currentUser.data)))
 );
 
 export const patchUser = userData => dispatch => (
