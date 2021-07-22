@@ -32,7 +32,16 @@ exports.percentOnTime = function (tasks) {
 };
 
 exports.tasksDonePerWeek=(tasks)=>{
-  
+  const weeksChrono = [0,0,0,0,0,0,0,0,0,0]
+  const now = new Date()
+  const week = 7 * 24 * 60 *60*1000
+  for(const task of tasks){
+    if(!task.completed) continue
+    const completedDate = new Date(task.completedAt)
+    const weeksElapsed = (now.getTime()-completedDate.getTime())/week
+    weeksChrono[9-Math.floor(weeksElapsed)]++
+  }
+  return weeksChrono
 }
 
 exports.onTimeByWeekday = function (tasks) {
