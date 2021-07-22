@@ -27,13 +27,10 @@ class NavBar extends React.Component {
       return (
         <>
           <Link id="home-btn" to="/">
-            <img
-              src={process.env.PUBLIC_URL + "/logo-image.png"}
-              alt="home-btn"
-            />
+            <img src={process.env.PUBLIC_URL + "/logo-image.png"} alt="home-btn" />
           </Link>
           <Link to="/metrics">METRICS</Link>
-          <button onClick={() => this.setState({ usersSettingOpen: true })}>
+          <button onClick={() => this.setState({ usersSettingOpen: !this.state.usersSettingOpen })}>
             {this.props.firstName}
           </button>
           <button onClick={this.logoutUser}>LOGOUT</button>
