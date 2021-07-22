@@ -41,7 +41,8 @@ class SignupForm extends React.Component {
       confirmPassword: this.state.confirmPassword,
     };
 
-    this.props.signup(user, this.props.history).then(() => {
+    this.props.signup(user)
+    .then(() => {
       if (Object.values(this.state.errors).length) {
         window.$("#submit").effect("shake")   
       }
