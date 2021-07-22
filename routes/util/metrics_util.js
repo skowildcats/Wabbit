@@ -31,18 +31,41 @@ exports.percentOnTime = function (tasks) {
   return;
 };
 
-exports.onTimeByWeekday = function (tasks) {
+exports.tasksDonePerWeek=(tasks)=>{
+  const weeksChrono = [0,0,0,0,0,0,0,0,0,0]
+  const now = new Date()
+  const week = 7 * 24 * 60 *60*1000
+  for(const task of tasks){
+    if(!task.completed) continue
+    const completedDate = new Date(task.completedAt)
+    const weeksElapsed = (now.getTime()-completedDate.getTime())/week
+    weeksChrono[9-Math.floor(weeksElapsed)]++
+  }
+  return weeksChrono
+}
 
+exports.onTimeByWeekday = function (tasks) {
   const monToSun = [0,0,0,0,0,0,0]
 
-
   for (const task of tasks) {
-    if (task.dueDate && task.completed<task.dueDate){
-      
+    if(!task.completed) continue
+    if ((task.dueDate && task.completedAt<task.dueDate)||task.completed){
+      monToSun[convertToMonSun(task.completedAt)]++
     }
   }
   return monToSun;
 };
+
+exports.lateByWeekday = function(tasks){
+  const monToSun = [0,0,0,0,0,0,0]
+
+  for(const task of tasks){
+    if (task.dueDate && task.completed && task.dueDate<task.completedAt){
+      monToSun[convertToMonSun(task.completedAt)]++
+    }
+  }
+  return monToSun;
+}
 
 
 exports.filterByStartDate = function (tasks, days) {
@@ -57,6 +80,10 @@ exports.filterByStartDate = function (tasks, days) {
   }
   return filteredResult;
 };
+
+function convertToMonSun(date){
+  return (date.getDay()+6)%7
+}
 
 function convertToDayString(date) {
   const newDate = new Date(date);

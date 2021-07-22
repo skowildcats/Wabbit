@@ -31,12 +31,23 @@ router.post('/register',async (req,res) => {
       if (err) throw err;
       newUser.password = hash;
       const user = await newUser.save()
-      res.json({
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        id: user._id
-      })
+
+
+      // sign in user after signup
+      const payload = {id: user._id, username: user.username}
+      jwt.sign(payload, 
+        keys.secretOrKey,
+        {expiresIn: 3600},
+        (err,token) => {
+          res.json({
+            success: true,
+            token: 'Bearer ' + token,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            id: user._id
+          })
+        })
     })
   })
 })
