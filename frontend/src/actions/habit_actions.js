@@ -22,3 +22,7 @@ export const removeHabit = (habitId) => ({
 export const createHabit = habit => dispatch => (
   HabitUtil.createHabit(habit).then(habit => dispatch(receiveHabit(habit.data)))
 )
+
+export const fetchHabits = (userId) => dispatch => (
+  HabitUtil.fetchHabits(userId).then(habits => dispatch(receiveHabits(habits.data)))
+)

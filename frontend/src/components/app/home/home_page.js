@@ -1,6 +1,6 @@
 import React from 'react';
 import Task from './task'
-import HeaderContainer from '../header/header'
+import Header from '../header/header'
 import Habit from './habit';
 
 
@@ -11,7 +11,14 @@ class HomePage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchTasks(this.props.userId).then(() => this.setState({loading: false}))
+    //wait until all fetching is complete before setting loading to false
+    Promise.allSettled([this.props.fetchTasks(this.props.userId), this.props.fetchHabits(this.props.userId)])
+    .then(data => {
+      //hold data in this object for debugging purposes
+      this.setState({
+        loading: false
+      })
+    })
   }
 
   componentDidUpdate() {
@@ -47,13 +54,13 @@ class HomePage extends React.Component {
         <>
           <div id="home-page">
             <ul id="habits" className="sortable">
-              <HeaderContainer/> 
+              <Header/> 
               {habits.map(habit => {
                 return <Habit habit={habit} key={habit._id} />
               })}
             </ul>
             <ul id="tasks" className="sortable">
-              <HeaderContainer/> 
+              <Header/> 
               {tasks.map(task => {
                 return <Task task={task} key={task._id} />
               })}
