@@ -9,10 +9,18 @@ export const setAuthToken = token => {
   }
 };
 
-export const signup = (userData) => {
-  return axios.post('/api/users/register', userData);
-};
+export const signup = (userData) => (
+  axios.post('/api/users/register', userData)
+);
 
-export const login = (userData) => {
-  return axios.post('/api/users/login', userData);
-};
+export const login = (userData) => (
+  axios.post('/api/users/login', userData)
+);
+
+export const getCurrentUser = currentUserId => (
+  axios.get(`/api/users/${currentUserId}`)
+);
+
+export const patchUser = userData => (
+  axios.patch(`/api/users/${userData.id}`, userData)
+);

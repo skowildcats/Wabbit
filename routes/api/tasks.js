@@ -13,6 +13,10 @@ router.post("/new", async (req, res) => {
     dueDate: req.body.dueDate,
     color: req.body.color,
     icon: req.body.icon,
+    counter: req.body.counter,
+    countdown: req.body.countdown,
+    maxProgress: req.body.maxProgress,
+    currentProgress: req.body.currentProgress,
   });
   await newTask.save();
   res.json(newTask);
