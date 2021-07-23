@@ -16,8 +16,10 @@ export default function Progression(props){
 
       <div className="progress">
         <span className="counter">{task.currentProgress}/{task.maxProgress}</span>
-        <IncrementButton type="increment" task={task} />
-        <IncrementButton type="decrement" task={task} />
+        <div className="counter-buttons">
+          <IncrementButton type="increment" task={task} />
+          <IncrementButton type="decrement" task={task} />
+        </div>
       </div>
 
       <DeleteTaskButton taskId={task._id}/>

@@ -17,7 +17,7 @@ export const IncrementButton = (props) => {
     props.updateTask(updated)
   }
   return (
-    <button onClick={update}>{props.type === "increment" ? "+" : "-" }</button>
+    <button onClick={update}>{props.type === "increment" ? "+" : "–" }</button>
   )
 }
 
