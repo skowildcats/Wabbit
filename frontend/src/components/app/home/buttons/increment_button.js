@@ -6,9 +6,11 @@ export const IncrementButton = (props) => {
   //pass in task as a prop
   //pass in type to tell it whether to increment or decrement
   function update(increment = 1){
-    increment = (props.type === 'increment' ? 1 : -1)
+    increment = (props.type === 'increment' ? props.task.increment : -props.task.increment)
     let updated = props.task
-    if(updated.currentProgress + increment > 0){
+    if(updated.currentProgress + increment <= 0){
+      updated.currentProgress = 0;
+    } else{
       updated.currentProgress += increment;
     }
     if(updated.currentProgress >= updated.maxProgress){
