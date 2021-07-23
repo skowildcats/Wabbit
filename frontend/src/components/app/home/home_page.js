@@ -3,6 +3,8 @@ import Task from './task'
 import Habit from './habit';
 import CreateTaskMenuContainer from '../header/create_task/create_task_menu_container';
 import OpenMenuButton from './buttons/create_task_button';
+
+
 class HomePage extends React.Component {
   constructor(props) {
     super(props)
