@@ -56,7 +56,6 @@ class SignupForm extends React.Component {
 
   render() {
     const inputs = ["email", "firstName", "lastName", "password", "confirmPassword"].map(field => {
-      debugger
       return (
       <>
         {this.state.errors[field] ? <p className="errors">{this.state.errors[field]}</p> : null}
