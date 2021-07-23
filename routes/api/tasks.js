@@ -3,6 +3,7 @@ const router = express.Router();
 const Task = require("../../models/Task");
 const taskUtil = require('../util/tasks_util')
 const Habit = require('../../models/Habit')
+const seed = require('../../models/seed')
 
 // new task route
 router.post("/new", async (req, res) => {
@@ -53,6 +54,7 @@ router.get("/:taskId", async (req, res) => {
 
 // get all tasks
 router.get("/all/:userId", async (req, res) => {
+  //check if any habits need to build tasks for today
   const today = new Date()
   const lastChecked = new Date(process.env.LAST_CHECK)
   if(today.toDateString() !== lastChecked.toDateString()){
@@ -72,6 +74,7 @@ router.delete("/:taskId", async (req, res) => {
     console.log(error);
   }
 });
+
 
 async function refreshHabits(userId){
   const habits = await Habit.find({user: userId})
