@@ -1,6 +1,7 @@
 #tasks {
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   height: calc(100vh - 395px);
   overflow-y: scroll;
   border-radius: 5px;
@@ -11,31 +12,56 @@
     background-color: $grey-0;
     border-radius: 7px;
   }
-}
 
-#tasks > .task {
-  border-radius: 5px;
-  width: calc(25% - 30px);
-  height: 300px;
-  margin: 15px;
-  background-color: var(--theme-4);
-  box-shadow: 0 4px 10px $light-green-4;
-  position: relative;
-}
+  > .task {
+    border-radius: 5px;
+    width: calc(25% - 30px);
+    height: 200px;
+    margin: 15px;
+    background-color: var(--theme-4);
+    box-shadow: 0 4px 10px $light-green-4;
+    position: relative;
 
-#tasks > .task:hover {
-  box-shadow: 0 2px 10px $dark-green-0;
+    > .drag-handle {
+      color: white;
+      background-color: var(--theme-7);
+    }
+    
+    .todo-title {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: white;
+      line-height: 40px; width: 160px; height: 40px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
 }
 
 .drag-handle {
+  position: relative;
   height: 30px;
   border-radius: 5px 5px 0 0;
   padding-top: 10px;
-  cursor: grab;
-  > div {
-    text-align: center;
+  > i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 15px;
+    &:hover { cursor: grab; }
   }
-  
+}
+
+.todo-title {
+  text-align: center;
+  font-size: 16px;
+}
+
+.todo-description {
+  text-align: center;
 }
 
 #complete-delete {
@@ -46,5 +72,59 @@
     left: 10px;
 
     &:hover { cursor: pointer; }
+  }
+}
+
+.delete-task, .delete-habit {
+  position: absolute;
+  top: 7px; right: 7px;
+  color: white;
+  font-size: 18px;
+  height: 25px; width: 25px;
+  line-height: 25px;
+
+  &:hover {
+    cursor: pointer;
+    color: $dark-grey-4;
+  }
+}
+
+.progress {
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+  margin: 20px auto;
+  font-size: 16px;
+  > .counter-buttons > button {
+    font-size: 16px;
+    height: 22px; width: 22px;
+    line-height: 20px;
+    border: 1px solid black;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(255,255,255,0.07);
+    }
+  }
+}
+
+.time-left {
+  margin-top: 20px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.timer {
+  margin-top: 20px;
+  text-align: center;
+  > div { font-size: 14px; }
+
+  .timer-control {
+    margin: 0 auto;
+    img {
+      width: 20px;
+      height: 20px;
+    }
   }
 }
