@@ -32,7 +32,7 @@
   }
 }
 
-#tasks button {
+#complete-delete button{
   height: 30px; width: 30px;
   border: 1px solid black;
   position: absolute;
@@ -40,6 +40,6 @@
   border-radius: 50%;
 }
 
-#tasks button:last-child {
+#complete-delete button:last-child {
   right: 0px;
 }

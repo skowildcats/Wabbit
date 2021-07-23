@@ -20,16 +20,3 @@
 #habits > div:hover {
   box-shadow: 0 2px 10px $dark-green-0;
 }
-
-
-#habits button:not(.open-menu){
-  height: 30px; width: 30px;
-  border: 1px solid black;
-  position: absolute;
-  bottom: 0px;
-  border-radius: 50%;
-}
-
-#habits button:last-child {
-  right: 0px;
-}
