@@ -2,6 +2,8 @@ import React from 'react';
 import MarkCompletedButton from './buttons/mark_completed_button'
 import DeleteTaskButton from './buttons/delete_task_button'
 import UpdateHabitMenu from '../menus/update_habit_menu';
+import MyStopwatch from './stop_watch';
+
 class Task extends React.Component {
   constructor(props) {
     super(props)
@@ -19,14 +21,14 @@ class Task extends React.Component {
         </div>
 
         <div className="body-wrapper">
-          <p>{task.title}</p>
+          <p id="todo-title">{task.title}</p>
           <p>{task.description}</p>
         </div>
-
-          <div>
-            <MarkCompletedButton task={task}/>
-            <DeleteTaskButton taskId={task._id}/>
-          </div>
+        <MyStopwatch />
+        <div id="complete-delete">
+          <MarkCompletedButton task={task}/>
+          <DeleteTaskButton taskId={task._id}/>
+        </div>
       </div>
     );
   }
