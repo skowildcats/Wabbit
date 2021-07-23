@@ -22,5 +22,5 @@ export const getCurrentUser = currentUserId => (
 );
 
 export const patchUser = userData => (
-  axios.patch(`/api/users/${userData.id}`, userData)
+  axios.put(`/api/users/info`, userData)
 );

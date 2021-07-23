@@ -3,8 +3,8 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Switch, Route } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
 import MetricsContainer from './app/metrics/metrics_container';
-import Upload from './files/upload';
-import Files from './files/files'
+// import Upload from './files/upload';
+// import Files from './files/files'
 import HomePageContainer from './app/home/home_page_container';
 
 import Header from './app/header/header';
@@ -18,8 +18,8 @@ const App = () => (
   <div id="app">
     <NavBarContainer />
     <Switch>
-        <Route path="/upload" component={Upload} />
-        <Route path='/files' component={Files}/>
+        {/* <Route path="/upload" component={Upload} /> */}
+        {/* <Route path='/files' component={Files}/> */}
         <Route path="/header-test" component={Header}/>
         <ProtectedRoute path='/metrics' component={MetricsContainer} />
         <ProtectedRoute path="/home" component={HomePageContainer} />
