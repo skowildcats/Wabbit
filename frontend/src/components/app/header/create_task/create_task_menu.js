@@ -4,18 +4,17 @@ import ColorPalette from './color_palette'
 import moment from 'moment'
 
 export default function CreateTaskMenu(props) {
-  window.moment = moment
   const [selected, setSelected] = useState('');
   const [icon, setIcon] = useState('');
-  const [recurrence, setRecurrence] = useState("Never")
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [dueDate, setDueDate] = useState();
-  const [type, setType] = useState('');
+  const [recurrence, setRecurrence] = useState("Never")
   const [increment, setIncrement] = useState(undefined);
   const [goal, setGoal] = useState(undefined); //maxProgress
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
+  const type = props.actionType;
 
   useEffect(() => {
     props.fetchImages();
@@ -74,16 +73,16 @@ export default function CreateTaskMenu(props) {
       increment,
       goal
     }
-    if(props.actionType === "TASK"){
-      props.createTask(newTodo).then(task => {
-        props.closeMenu();
+    if(recurrence === 'Never'){
+      props.createTask(newTodo).then(data => {
+        closeMenu();
       })
-    } else if(props.actionType === "HABIT"){
-      props.createHabit(newTodo).then(habit => {
-        props.closeMenu();
+    } else {
+      props.createHabit(newTodo).then(data => {
+        closeMenu();
       })
     }
-  };
+  }
 
   const icons = props.images.data.map(img => {
     return (
@@ -102,7 +101,7 @@ export default function CreateTaskMenu(props) {
       <div className="overlay" onClick={closeMenu}></div>
       <div className="create-task-menu">
         <div className="header">
-          <h1>CREATE A {props.actionType}</h1>
+          <h1>CREATE A {props.menuText ? props.menuText : ""}</h1>
           <span onClick={closeMenu}>&times;</span>
         </div>
 
@@ -118,7 +117,6 @@ export default function CreateTaskMenu(props) {
           <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" id="description"/>
         </div>
 
-        {props.actionType === "HABIT" ? 
         <div className="form-field">
           <label htmlFor="recurrence">REPEAT </label>
           <select name="recurrence" onChange={(e) => setRecurrence(e.target.value)} id="recurrence" defaultValue="Never">
@@ -169,17 +167,6 @@ export default function CreateTaskMenu(props) {
           </div>
           : null}
         </div>
-        : null }
-        
-        <div className="form-field">
-          <label htmlFor="type">TYPE</label>
-          <select name="type" id="type" onChange={(e) => setType(e.target.value)} defaultValue="task">
-            <option value="progress">Progress</option>
-            <option value="countdown">Countdown</option>
-            <option value="timedGoal">Time Goals</option>
-            <option value="task">Task</option>
-          </select>
-        </div>
         
         {type === 'progress' ? 
         <div className="form-field">
@@ -200,7 +187,8 @@ export default function CreateTaskMenu(props) {
             <input type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} />
           </div>
         : null}
-        {props.actionType === "TASK" && type !== "timedGoal" ? 
+
+        {type !== "timedGoal" && recurrence === "Never" ? 
         (<div className="form-field">
           <label htmlFor="dueDate">{type==='countdown' ? "DATE COMPLETED" : "DEADLINE"}</label>
           <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date} />
