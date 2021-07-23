@@ -8,7 +8,8 @@ const mSTP = state => ({
   userId: state.session.user.id,
   metrics: state.metrics,
   tasks: state.entities.tasks,
-  habits: Object.values(state.entities.habits)
+  habits: Object.values(state.entities.habits),
+  colors: state.session.user.theme
 })
 
 const mDTP = (dispatch, ownProps) => ({
