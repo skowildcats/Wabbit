@@ -1,49 +1,50 @@
 #tasks {
-  height: 55vh;
-  overflow: auto;
-  border: 1px solid $dark-green-0;
+  display: flex;
+  flex-wrap: wrap;
+  height: calc(100vh - 395px);
+  overflow-y: scroll;
+  border-radius: 5px;
+  background-color: var(--theme-2);
+
+  &::-webkit-scrollbar { width: 7px; }
+  &::-webkit-scrollbar-thumb {
+    background-color: $grey-0;
+    border-radius: 7px;
+  }
 }
 
-#tasks > div {
+#tasks > .task {
   border-radius: 5px;
-  width: 225px;
+  width: calc(25% - 30px);
   height: 300px;
   margin: 15px;
-  float: left;
-  background-color: $light-green-4;
+  background-color: var(--theme-4);
   box-shadow: 0 4px 10px $light-green-4;
   position: relative;
 }
 
-#tasks > div:hover {
+#tasks > .task:hover {
   box-shadow: 0 2px 10px $dark-green-0;
 }
 
 .drag-handle {
   height: 30px;
   border-radius: 5px 5px 0 0;
-  border-bottom: 1px solid $dark-green-0;
-  cursor: grab; 
-  display: flex;
-  flex-direction: column;
-  > i {
-    font-size: 20px;
-    color: $green-2;
-    width: 20px;
-    margin-left: auto; margin-right: auto;
-    margin-top: 5px;
+  padding-top: 10px;
+  cursor: grab;
+  > div {
+    text-align: center;
   }
   
 }
 
-#complete-delete button{
-  height: 30px; width: 30px;
-  border: 1px solid black;
-  position: absolute;
-  bottom: 0px;
-  border-radius: 50%;
-}
+#complete-delete {
+  > #toggle-completed > img {
+    height: 30px; width: 30px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 
-#complete-delete button:last-child {
-  right: 0px;
+    &:hover { cursor: pointer; }
+  }
 }
