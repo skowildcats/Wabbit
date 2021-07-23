@@ -56,8 +56,8 @@
 
 //       let taskTitle = ['Do Homework', 'Wash Dishes', 'Plan Trip', 'Attend a Japanese Tea Ceremony','Go to Sea World','Go to a Swingers Club','Buy a Watch','Jump Out of a Cake','Cook Christmas Dinner','Learn to Play Guitar','Sail Down the Yangtze River','Handwrite Letters','Jump Out a Plane Without a Parachute','Pour Water','Jump with Jack','Learn with Larry','Art with Abe','Jiggle Joseph','Put Out the BFBF','Run with Ryan','Tell Jom I Love Him','Reject Suzy Bae']
 //       const today = new Date()
-//       let endDate = moment().add(7, 'days').toDate()
-//       for(let i = 0;i < 150; i++){
+//       let endDate = moment().add(4, 'days').toDate()
+//       for(let i = 0;i < 120; i++){
 //         const newTask = new Task({
 //           title: taskTitle[_getRandomInt(taskTitle.length)],
 //           user: userId,

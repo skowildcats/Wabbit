@@ -3,9 +3,9 @@ export default function(state = {}, action){
   const mergedState = Object.assign({}, state)
   switch(action.type){
     case RECEIVE_USER_TASKS:
-      let newState = {progress: [], countdown: [], timedGoal: [], task: []}
+      let newState = {}
       //need to get _id pointing to the task in state
-      action.tasks.forEach(task => newState[task.type].push(task));
+      action.tasks.forEach(task => newState[task._id] = task);
       return newState
     case RECEIVE_TASK:
       mergedState[action.task._id] = action.task
