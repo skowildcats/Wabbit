@@ -23,11 +23,7 @@ export default class UserSettings extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    debugger
-    this.props.patchUser(this.state).then(data => {
-      debugger
-      console.log(data)
-    })
+    this.props.patchUser(this.state);
   }
 
   updateField(e, field){
