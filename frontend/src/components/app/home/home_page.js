@@ -94,16 +94,16 @@ class HomePage extends React.Component {
             })}
           </ul>
           <ul id="tasks" className="sortable">
-            {tasks}
+            {tasks.concat(countDowns, progressions)}
           </ul>
-
+{/* 
           <ul id="tasks" className="sortable">
             {countDowns}
           </ul>
 
           <ul id="tasks" className="sortable">
             {progressions}
-          </ul>
+          </ul> */}
         </div>
         <CreateTaskMenuContainer actionType={this.state.actionType} open={this.state.menuOpen} closeMenu={() => this.setMenuOpen(false)}/>
       </>

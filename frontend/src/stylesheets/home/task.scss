@@ -16,7 +16,7 @@
 #tasks > .task {
   border-radius: 5px;
   width: calc(25% - 30px);
-  height: 300px;
+  height: 200px;
   margin: 15px;
   background-color: var(--theme-4);
   box-shadow: 0 4px 10px $light-green-4;
@@ -32,10 +32,7 @@
   border-radius: 5px 5px 0 0;
   padding-top: 10px;
   cursor: grab;
-  > i {
-    margin-left: 10px;
-  }
-  
+  > i { margin-left: 10px; }
 }
 
 #complete-delete {

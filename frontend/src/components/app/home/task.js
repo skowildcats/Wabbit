@@ -24,7 +24,7 @@ class Task extends React.Component {
         <MyStopwatch />
         <div id="complete-delete">
           <ToggleCompletedButton task={task} />
-          {/* <DeleteTaskButton taskId={task._id} /> */}
+          <DeleteTaskButton taskId={task._id} />
         </div>
       </div>
     );

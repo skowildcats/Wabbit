@@ -1,7 +1,6 @@
 #root {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-color: $light-green-2;
   
   -webkit-user-select: none; // Safari
   -moz-user-select: none; // Firefox
@@ -10,30 +9,32 @@
 }
 
 #splash {
-  display: flex;
-  flex-wrap: wrap;
-  width: 450px;
-  justify-content: center;
   position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  > img { width: 100%; }
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: $light-green-2;
+  > img {
+    position: absolute;
+    top: calc(50% - 40px); left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+  }
 }
 
 #splash > a {
-  padding: 10px;
+  position: absolute;
+  top: calc(50% + 40px); left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 15px;
   font-size: 18px;
-  color: $green-1;
+  color: white;
   letter-spacing: 2px;
-  background-color: $light-green-0;
+  background-color: $green-1;
   border-radius: 5px;
-  box-shadow: 3px 7px 10px $dark-green-0;
+  box-shadow: 3px 7px 10px $light-green-4;
   transition: all 0.2s;
 }
 
 #splash > a:hover {
   cursor: pointer;
-  color: $green-2;
-  // background-color: $light-green-1;
+  background-color: $green-2;
 }
