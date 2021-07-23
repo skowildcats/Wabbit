@@ -124,7 +124,8 @@ router.post('/login', async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        id: user._id
+        id: user._id,
+        theme: user.theme
       })
     })
 })
@@ -136,7 +137,8 @@ router.get('/:userId',async(req,res)=>{
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
-    id: user._id
+    id: user._id,
+    theme: user.theme
   })
 })
 
