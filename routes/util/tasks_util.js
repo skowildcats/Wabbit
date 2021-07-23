@@ -8,6 +8,7 @@ exports.createTaskFromHabit = async function(habit){
     dueDate: habit.dueDate,
     color: habit.color,
     icon: habit.icon,
+    type: habit.type
   });
   await newTask.save();
   return newTask
@@ -33,6 +34,6 @@ exports.appliesToday = function(habit){
 function lastDayOfMonth(date){
   const newDate = new Date(date)
   newDate.setDate(newDate.getDate()+1)
-  if(date.getMonth() = newDate.getMonth()) return false
+  if(date.getMonth() === newDate.getMonth()) return false
   return true
 }

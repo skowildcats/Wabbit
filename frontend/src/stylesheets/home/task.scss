@@ -1,0 +1,50 @@
+#tasks {
+  display: flex;
+  flex-wrap: wrap;
+  height: calc(100vh - 395px);
+  overflow-y: scroll;
+  border-radius: 5px;
+  background-color: var(--theme-2);
+
+  &::-webkit-scrollbar { width: 7px; }
+  &::-webkit-scrollbar-thumb {
+    background-color: $grey-0;
+    border-radius: 7px;
+  }
+}
+
+#tasks > .task {
+  border-radius: 5px;
+  width: calc(25% - 30px);
+  height: 300px;
+  margin: 15px;
+  background-color: var(--theme-4);
+  box-shadow: 0 4px 10px $light-green-4;
+  position: relative;
+}
+
+#tasks > .task:hover {
+  box-shadow: 0 2px 10px $dark-green-0;
+}
+
+.drag-handle {
+  height: 30px;
+  border-radius: 5px 5px 0 0;
+  padding-top: 10px;
+  cursor: grab;
+  > div {
+    text-align: center;
+  }
+  
+}
+
+#complete-delete {
+  > #toggle-completed > img {
+    height: 30px; width: 30px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+
+    &:hover { cursor: pointer; }
+  }
+}

@@ -1,10 +1,11 @@
-#nav-bar {
+.nav-bar {
   display: flex;
   justify-content: flex-end;
 
   position: absolute;
   top: 0; left: 0; right: 0;
   padding: 15px;
+  z-index: 1;
 
   background-color: $green-1;
 
@@ -22,12 +23,11 @@
 
     transition: all 0.2s;
 
-    &:hover {
-      cursor: pointer;
-      background-color: $light-green-3;
-    }
-    &:not(:first-child) { margin-left: 20px; }
+    &:hover { cursor: pointer; }
+    &:hover { background-color: $light-green-4; }
   }
+  > a:not(:first-child), > button:not(:first-child)  { margin-left: 20px; }
+
   > #home-btn {
     position: absolute;
     left: 10px;

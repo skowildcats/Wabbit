@@ -21,6 +21,9 @@ const HabitSchema = new Schema({
     // M_TW_F__ for a mon tues wed fri repeating task
     type: String
   },
+  type: {
+    type: String
+  },
   color: {
     type: String,
     // required: true

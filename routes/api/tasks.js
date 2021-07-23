@@ -4,6 +4,7 @@ const Task = require("../../models/Task");
 const taskUtil = require('../util/tasks_util')
 const Habit = require('../../models/Habit')
 const seed = require('../../models/seed')
+const moment = require('moment')
 
 // new task route
 router.post("/new", async (req, res) => {
@@ -14,9 +15,12 @@ router.post("/new", async (req, res) => {
     dueDate: req.body.dueDate,
     color: req.body.color,
     icon: req.body.icon,
+    goalTime: req.body.goalTime,
+    increment: req.body.increment,
     counter: req.body.counter,
     countdown: req.body.countdown,
     maxProgress: req.body.maxProgress,
+    type: req.body.type,
     currentProgress: req.body.currentProgress,
   });
   await newTask.save();
@@ -61,7 +65,8 @@ router.get("/all/:userId", async (req, res) => {
     process.env.LAST_CHECK = today
     refreshHabits(req.params.userId)
   }
-  tasks = await Task.find({ user: req.params.userId });
+  let filter = moment().subtract(1, 'days').toDate()
+  tasks = await Task.find({ user: req.params.userId, dueDate: {$gt: filter}});
   res.json(tasks);
 });
 

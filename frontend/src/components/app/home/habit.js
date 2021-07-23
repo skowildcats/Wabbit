@@ -1,6 +1,8 @@
 import React from 'react';
-import MarkCompletedButton from './buttons/mark_completed_button'
+import DeleteHabitButton from './buttons/delete_habit_button';
+import ToggleCompletedButton from './buttons/toggle_completed_button'
 import DeleteTaskButton from './buttons/delete_task_button'
+import MyStopwatch from './stop_watch';
 
 class Habit extends React.Component {
   constructor(props) {
@@ -13,13 +15,14 @@ class Habit extends React.Component {
     return (
       <div>
         <div className="drag-handle">
-          <div>
-            Three dots here
-          </div>
+          <i className="fas fa-ellipsis-h"></i>
         </div>
         <div id="todo-title">{habit.title}</div>
-        <MarkCompletedButton task={habit}/>
-        <DeleteTaskButton taskId={habit._id}/>
+        <div id="complete-delete">
+          {/* <ToggleCompletedButton task={habit}/> */}
+          {/* <DeleteTaskButton taskId={habit._id}/> */}
+          <DeleteHabitButton habitId={habit._id}/>
+        </div>
       </div>
     );
   }

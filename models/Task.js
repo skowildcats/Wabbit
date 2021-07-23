@@ -36,7 +36,17 @@ const TaskSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'habits'
   },
+  type: {
+    type: String  //this 
+    //Options - progress - countdown - timedGoal - task
+  },
+  goalTime: {
+    type: Date
+  },
   counter: {
+    type: Number
+  },
+  increment: {
     type: Number
   },
   countdown: {
@@ -46,7 +56,8 @@ const TaskSchema = new Schema({
     type: Number
   },
   currentProgress: {
-    type: Number
+    type: Number,
+    default: 0
   }
 },{
   timestamps: true

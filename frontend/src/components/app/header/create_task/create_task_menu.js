@@ -1,14 +1,20 @@
 import React, {useState, useEffect} from 'react'
 import ReactDOM  from 'react-dom'
 import ColorPalette from './color_palette'
+import moment from 'moment'
 
 export default function CreateTaskMenu(props) {
   const [selected, setSelected] = useState('');
   const [icon, setIcon] = useState('');
-  const [recurrence, setRecurrence] = useState("Never")
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [dueDate, setDueDate] = useState('');
+  const [recurrence, setRecurrence] = useState("Never")
+  const [increment, setIncrement] = useState(undefined);
+  const [goal, setGoal] = useState(undefined); //maxProgress
+  const [minutes, setMinutes] = useState(0);
+  const [hours, setHours] = useState(0);
+  const type = props.actionType;
 
   useEffect(() => {
     props.fetchImages();
@@ -25,6 +31,13 @@ export default function CreateTaskMenu(props) {
   if(props.open === false) return null;
 
   function closeMenu(){
+    let initial = ['', '', '', '', '', 'Never', undefined, undefined, 0, 0];
+    [setSelected, setIcon, setTitle, setDescription, setDueDate,
+       setRecurrence, setIncrement, setGoal, setMinutes, setHours
+    ].forEach((f, idx) => {
+      f(initial[idx]) //reset all state variables to clean up
+    })
+
     document.querySelector('.create-task-menu').classList.toggle('active') //toggle active selector
     setTimeout(() => {
       props.closeMenu()
@@ -43,41 +56,47 @@ export default function CreateTaskMenu(props) {
   }
 
   function handleSubmit(){
-    let daysOfTheWeek = '' 
+    let daysOfTheWeek = '';
+    let goalTime = undefined;
     if(recurrence === "Weekly"){
       daysOfTheWeek = getRecurrenceStr();
     }
+
+    if(type === 'timedGoal'){
+      goalTime = moment().add(hours, 'hours').add(minutes, 'minutes').toDate();
+    }
+
     let newTodo = {
       title,
       description,
       recurrence,
       dueDate,
       daysOfTheWeek,
-      icon,
+      user: props.userId,
       color: selected,
-      user: props.userId
+      goalTime,
+      icon,
+      type,
+      increment,
+      goal
     }
-    if(props.actionType === "TASK"){
-      props.createTask(newTodo).then(task => {
-        props.closeMenu();
+    if(recurrence === 'Never'){
+      props.createTask(newTodo).then(data => {
+        closeMenu();
       })
-    } else if(props.actionType === "HABIT"){
-      props.createHabit(newTodo).then(habit => {
-        props.closeMenu();
+    } else {
+      props.createHabit(newTodo).then(data => {
+        closeMenu();
       })
     }
-  };
+  }
 
   const icons = props.images.data.map(img => {
     return (
       <li key={img.filename} onClick={() => setIcon(img.filename)}>
         <img src={`/api/files/image/${img.filename}`} alt="task-icon" />
         {icon === img.filename ? (
-          <img
-            id="icon-check"
-            src={process.env.PUBLIC_URL + "/checkmark.png"}
-            alt="checkmark"
-          />
+          <img id="icon-check" src={process.env.PUBLIC_URL + "/checkmark.png"} alt="checkmark" />
         ) : null}
       </li>
     );
@@ -89,9 +108,10 @@ export default function CreateTaskMenu(props) {
       <div className="overlay" onClick={closeMenu}></div>
       <div className="create-task-menu">
         <div className="header">
-          <h1>CREATE A {props.actionType}</h1>
+          <h1>CREATE A {props.menuText ? props.menuText : ""}</h1>
           <span onClick={closeMenu}>&times;</span>
         </div>
+
         <ColorPalette selected={selected} setSelected={setSelected}/>
 
         <div className="form-field">
@@ -155,11 +175,29 @@ export default function CreateTaskMenu(props) {
           : null}
         </div>
         
-        
-        
-        {props.actionType === "TASK" ? 
+        {type === 'progress' ? 
+        <div className="form-field">
+          <label htmlFor="increment">INCREMENT BY</label>
+          <input type="number" value={increment} onChange={(e) => setIncrement(e.target.value)}/>
+
+          <label htmlFor="goal">GOAL</label>
+          <input type="number" value={goal} onChange={(e) => setGoal(e.target.value)}/>
+        </div>
+        : null}
+
+        {type === 'timedGoal' ?
+          <div className="form-field">
+            <label htmlFor="time">HOURS</label>
+            <input type="number" value={hours} onChange={(e) => setHours(e.target.value)} />
+
+            <label htmlFor="time">MINUTES</label>
+            <input type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} />
+          </div>
+        : null}
+
+        {type !== "timedGoal" && recurrence === "Never" ? 
         (<div className="form-field">
-          <label htmlFor="dueDate">DEADLINE:</label>
+          <label htmlFor="dueDate">{type==='countdown' ? "DATE COMPLETED" : "DEADLINE"}</label>
           <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date} />
         </div>)
         : null}

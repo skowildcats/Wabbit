@@ -1,18 +1,20 @@
+@import "reset";
+@import 'overlay';
 @import "variables/colors";
 @import "variables/fonts";
 @import "variables/keyframes";
-@import "reset";
-@import "splash";
-@import "nav-bar";
-@import "user-form";
-@import 'home-page';
-@import "./menu/app-header";
-@import "./menu/create-task-menu";
-@import 'task';
-@import 'habit';
-@import 'overlay';
-@import './metrics/metrics-page.scss';
+@import "splash/splash";
+@import "splash/nav-bar";
+@import "splash/user-form";
+@import 'home/home';
+@import 'home/task';
+@import 'home/habit';
+@import 'home/stop-watch';
+@import 'home/loading';
+@import "menu/app-header";
+@import "menu/create-task-menu";
+@import "menu/user-settings";
+@import 'metrics/metrics-page.scss';
+@import 'menu/update-habit.scss';
 
-// html, body, #root, #app { height: 100%; overflow: hidden; }
-// html, body, #root, #app { height: 100%; }
 * { font-family: $secondary-font; }

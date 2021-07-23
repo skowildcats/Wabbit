@@ -1,28 +1,21 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import UserSettingsContainer from './user_settings_container';
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = { usersSettingOpen: false };
-    this.logoutUser = this.logoutUser.bind(this);
-    this.getLinks = this.getLinks.bind(this);
   }
 
   componentDidMount() {
     if (this.props.loggedIn) {this.props.getCurrentUser(this.props.currentUser.id)};
   }
 
-  logoutUser(e) {
-    e.preventDefault();
-    this.props.logout();
-    this.props.history.push("/");
-  }
-
   getLinks() {
     if (this.props.loggedIn) {
       return (
-        <>
+        <div id="home-nav" className="nav-bar">
           <Link id="home-btn" to="/">
             <img src={process.env.PUBLIC_URL + "/logo-image.png"} alt="home-btn" />
           </Link>
@@ -30,21 +23,18 @@ class NavBar extends React.Component {
           <button onClick={() => this.setState({ usersSettingOpen: !this.state.usersSettingOpen })}>
             {this.props.currentUser.firstName ? this.props.currentUser.firstName.toUpperCase() : null}
           </button>
-          <button onClick={this.logoutUser}>LOGOUT</button>
-        </>
+          {this.state.usersSettingOpen ? <UserSettingsContainer closeSettings={() => this.setState({ usersSettingOpen: false })}/> : null}
+        </div>
       );
     } else {
       return (
-        <>
+        <div id="splash-nav" className="nav-bar">
           <Link id="home-btn" to="/">
-            <img
-              src={process.env.PUBLIC_URL + "/logo-image.png"}
-              alt="home-btn"
-            />
+            <img src={process.env.PUBLIC_URL + "/logo-image.png"} alt="home-btn" />
           </Link>
           <Link to={"/signup"}>SIGNUP</Link>
           <Link to={"/login"}>LOGIN</Link>
-        </>
+        </div>
       );
     }
   }
@@ -52,7 +42,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <>
-        <div id="nav-bar">{this.getLinks()}</div>
+        {this.getLinks()}
         {this.state.usersSettingOpen ? <form id="users-setting"></form> : null}
       </>
     );
