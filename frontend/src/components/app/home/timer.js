@@ -27,8 +27,8 @@ export default function Timer({ expiryTimestamp,toggle}) {
             <img src={process.env.PUBLIC_URL + "/pause.svg"} alt="pause" />
           </button>
         ) : (
-          <button onClick={start} onMouseDown={toggle}>
-            <img src={process.env.PUBLIC_URL + "/play.svg"} alt="play" />
+          <button onClick={start}>
+            <img className="play-btn" src={process.env.PUBLIC_URL + "/play.svg"} alt="play" />
           </button>
         )}
         {/* <button onClick={resume}>
