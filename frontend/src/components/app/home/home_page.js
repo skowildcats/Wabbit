@@ -55,12 +55,13 @@ class HomePage extends React.Component {
     if (this.state.loading) {
       return null
     } else {
-      const {todos} = this.props
-      let habits = [], tasks = []
+      //unecessary
+      // const {todos} = this.props 
+      // let habits = [], tasks = []
 
-      todos.map(todo => {
-        todo.recurrence !== "Never" ? habits.push(todo) : tasks.push(todo)
-      })
+      // todos.map(todo => {
+      //   todo.recurrence !== "Never" ? habits.push(todo) : tasks.push(todo)
+      // })
       return (
         <>
           <div id="home-page">
@@ -68,7 +69,7 @@ class HomePage extends React.Component {
               <div className="menu-btn-container">
                 <OpenMenuButton openMenu={() => this.setMenuOpen(true, "HABIT")}/>
               </div>
-              {habits.map(habit => {
+              {this.props.habits.map(habit => {
                 return <Habit habit={habit} key={habit._id} />
               })}
             </ul>
@@ -76,7 +77,7 @@ class HomePage extends React.Component {
               <div className="menu-btn-container">
                 <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")}/>
               </div>
-              {tasks.map(task => {
+              {this.props.tasks.map(task => {
                 return <Task task={task} key={task._id} />
               })}
             </ul>
