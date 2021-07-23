@@ -22,8 +22,8 @@ export default function Metrics(props){
   if (loading) return <div id="loading"><Loader /></div>;
 
   //grab start and end dates for this week for the habit bar
-  let startOfWeek = moment().startOf('isoweek').format('MMM Do YYYY')
-  let endOfWeek = moment().endOf('isoweek').format('MMM Do YYYY')
+  let startOfWeek = moment().subtract(6, "days").format('MM/DD/YYYY')
+  let endOfWeek = moment().format('MM/DD/YYYY')
 
   let progressTracker;
   //the idea is to take a single habit, will need to alter this later
@@ -40,14 +40,14 @@ export default function Metrics(props){
   return (
     <div className="metrics-page">
       <div className="header">
-        <div className="this-week">Week of {startOfWeek} - {endOfWeek}</div>
-        <div className="habit">
+        <div className="this-week">{startOfWeek} – {endOfWeek}</div>
+        {/* <div className="habit">
           <img src={`/api/files/image/${props.metrics.habit.icon}`} alt="Icon-placeholder" className="icon" />
           <p>{props.metrics ? props.metrics.habit.title : "Habit"}</p>
             <div className="checkboxes">
               {progressTracker}
             </div>
-        </div>
+        </div> */}
       </div>
       <div className="bar-graph">
         <p className="graph-title">Task Completion for this Week</p>
