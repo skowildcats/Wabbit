@@ -9,10 +9,12 @@
 @import 'home/home';
 @import 'home/task';
 @import 'home/habit';
+@import 'home/stop-watch';
+@import 'home/loading';
 @import "menu/app-header";
 @import "menu/create-task-menu";
 @import "menu/user-settings";
 @import 'metrics/metrics-page.scss';
-@import 'stop-watch';
+@import 'menu/update-habit.scss';
 
 * { font-family: $secondary-font; }

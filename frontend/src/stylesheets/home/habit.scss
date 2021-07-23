@@ -1,20 +1,30 @@
 #habits {
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 10px;
-  height: 20vh;
-  overflow: auto;
-  border: 1px solid black;
+  height: 132px;
+  overflow-y: scroll;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background-color: var(--theme-2);
+  scroll-snap-type: y mandatory;
+
+  &::-webkit-scrollbar { width: 7px; }
+  &::-webkit-scrollbar-thumb {
+    background-color: $grey-0;
+    border-radius: 7px;
+  }
 }
 
 #habits > div {
-  border: 1px solid black;
   border-radius: 5px;
-  width: 200px;
+  width: calc(25% - 30px);
   height: 100px;
   margin: 15px;
-  float: left;
-  background-color: $light-green-4;
-  box-shadow: 0 4px 10px $light-green-4;
+  color: white;
+  background-color: var(--theme-6);
   position: relative;
+  scroll-snap-align: center;
 }
 
 #habits > div:hover {

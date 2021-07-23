@@ -20,7 +20,7 @@ exports.appliesToday = function(habit){
     case 'Daily':
       return true
     case 'Weekly':
-      if(daysOfTheWeek[(now.getDay()+6)%7]==='_') return false
+      if(habit.daysOfTheWeek[(now.getDay()+6)%7]==='_') return false
       return true
     case 'Monthly':
       if(lastDayOfMonth(now) && 
@@ -34,6 +34,6 @@ exports.appliesToday = function(habit){
 function lastDayOfMonth(date){
   const newDate = new Date(date)
   newDate.setDate(newDate.getDate()+1)
-  if(date.getMonth() = newDate.getMonth()) return false
+  if(date.getMonth() === newDate.getMonth()) return false
   return true
 }
