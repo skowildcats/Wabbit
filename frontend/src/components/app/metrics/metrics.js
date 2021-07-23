@@ -22,8 +22,8 @@ export default function Metrics(props){
   if (loading) return <div id="loading"><Loader /></div>;
 
   //grab start and end dates for this week for the habit bar
-  let startOfWeek = moment().startOf('isoweek').format('MMM Do YYYY')
-  let endOfWeek = moment().endOf('isoweek').format('MMM Do YYYY')
+  let startOfWeek = moment().subtract(6, "days").format('MM/DD/YYYY')
+  let endOfWeek = moment().format('MM/DD/YYYY')
 
   let progressTracker;
   //the idea is to take a single habit, will need to alter this later
@@ -37,31 +37,37 @@ export default function Metrics(props){
     })
   }
   
+  let color1;
+  let color2;
+  if(props.colors){
+    color1 = props.colors[5]
+    color2 = props.colors[3]
+  }
   return (
     <div className="metrics-page">
       <div className="header">
-        <div className="this-week">Week of {startOfWeek} - {endOfWeek}</div>
-        <div className="habit">
+        <div className="this-week">{startOfWeek} – {endOfWeek}</div>
+        {/* <div className="habit">
           <img src={`/api/files/image/${props.metrics.habit.icon}`} alt="Icon-placeholder" className="icon" />
           <p>{props.metrics ? props.metrics.habit.title : "Habit"}</p>
             <div className="checkboxes">
               {progressTracker}
             </div>
-        </div>
+        </div> */}
       </div>
       <div className="bar-graph">
         <p className="graph-title">Task Completion for this Week</p>
-        <BarGraph data={setupBarGraphData(props.metrics.onTimeByWeekday, props.metrics.lateByWeekday)}/>
+        <BarGraph color1={color1} color2={color2} data={setupBarGraphData(props.metrics.onTimeByWeekday, props.metrics.lateByWeekday)}/>
       </div>
 
       <div className="pie-chart">
         <p className="graph-title">Percentage of Tasks Completed</p>
-        <PieChart data1={setupPieCount(props.metrics.count, props.metrics.percentOnTime)} data2={setupPieComplete(props.metrics.percentComplete)}/>
+        <PieChart color1={color1} color2={color2} data1={setupPieCount(props.metrics.count, props.metrics.percentOnTime)} data2={setupPieComplete(props.metrics.percentComplete)}/>
       </div>
 
       <div className="line-graph">
         <p className="graph-title">Lifetime Task Completions</p>
-        <LineGraph data={setupLineGraphData(props.metrics.taskDonePerWeek)}/>
+        <LineGraph color1={color1} color2={color2} data={setupLineGraphData(props.metrics.taskDonePerWeek)}/>
       </div>
     </div>
   )

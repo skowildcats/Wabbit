@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
-
-//update these to change the pie colors
-const COLORS = ['#0088FE', "#82ca9d"]
 export default class Completed extends Component {
   render() {
     if(!this.props.data1 || !this.props.data2) return null;
+    //update these to change the pie colors
+    const COLORS = [this.props.color2 ? this.props.color2 : '#0088FE',
+    this.props.color1 ? this.props.color1 : "#82ca9d"]
     return (
       <ResponsiveContainer>
         <PieChart>

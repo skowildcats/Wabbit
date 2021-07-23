@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 export default class BarGraph extends Component{
-
   render(){
     return (
       <ResponsiveContainer width="100%" height="100%">
@@ -22,8 +21,8 @@ export default class BarGraph extends Component{
           <YAxis allowDecimals={false}/>
           <Tooltip />
           <Legend />
-          <Bar dataKey="Completed" stackId="a" fill="#8884d8" />
-          <Bar dataKey="Incomplete" stackId="a" fill="#82ca9d" />
+          <Bar dataKey="Completed" stackId="a" fill={this.props.color1 ? this.props.color1 : "#8884d8"} />
+          <Bar dataKey="Incomplete" stackId="a" fill={this.props.color2 ? this.props.color2 : "#82ca9d"} />
         </BarChart>
       </ResponsiveContainer>
     );
