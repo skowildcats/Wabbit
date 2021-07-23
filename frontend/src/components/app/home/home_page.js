@@ -59,12 +59,7 @@ class HomePage extends React.Component {
     if (this.state.loading) {
       return (
         <div id="loading">
-          <div id="loading-top">
-          </div>
-          <div id="loading-middle">
-            <MyLoader />
-          </div>
-          <div id="loading-bottom">
+          <div>
             <MyLoader />
           </div>
         </div>

@@ -19,7 +19,7 @@ class MyLoader extends React.Component {
   render() {
     return (
       <div className="sweet-loading">
-        <PulseLoader css={override} size={30} color={"#95ab99"} loading={this.state.loading} />
+        <PulseLoader css={override} size={50} color={"#95ab99"} loading={this.state.loading} />
       </div>
     );
   }
