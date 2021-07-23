@@ -11,6 +11,8 @@ export default class UserSettings extends React.Component {
     };
 
     this.logout = this.logout.bind(this);
+    this.updateField = this.updateField.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   openSetting(setting) {
@@ -21,7 +23,13 @@ export default class UserSettings extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.patchUser(this.state);
+    this.props.patchUser(this.state);
+  }
+
+  updateField(e, field){
+    this.setState({
+      [field]: e.target.value
+    })
   }
 
   logout(e) {
@@ -32,6 +40,7 @@ export default class UserSettings extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div id="user-settings">
         <div id="users-settings-background" onClick={this.props.closeSettings}></div>
@@ -45,15 +54,15 @@ export default class UserSettings extends React.Component {
           {this.state.userUpdateFormOpen ? (
             <form id="user-update-form" className="user-settings-form">
               <label htmlFor="update-first-name">FIRST NAME</label>
-              <input type="text" id="update-first-name" value={this.state.firstName} />
+              <input type="text" id="update-first-name" onChange={(e) => this.updateField(e, "firstName")} value={this.state.firstName} />
               <label htmlFor="update-last-name">LAST NAME</label>
-              <input type="text" id="update-last-name" value={this.state.lastName} />
+              <input type="text" id="update-last-name" onChange={(e) => this.updateField(e, "lastName")} value={this.state.lastName} />
               <label htmlFor="update-email">EMAIL</label>
-              <input type="text" id="update-email" value={this.state.email} />
+              <input type="text" id="update-email" onChange={(e) => this.updateField(e, "email")} value={this.state.email} />
               <label htmlFor="update-password">CURRENT PASSWORD</label>
               <input type="password" id="update-password" />
               <div className="form-nav">
-                <button>Save</button>
+                <button onClick={this.handleSubmit}>Save</button>
                 <p>Change Password</p>
               </div>
             </form>
