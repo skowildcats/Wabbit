@@ -8,7 +8,7 @@ export default function CreateTaskMenu(props) {
   const [icon, setIcon] = useState('');
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [dueDate, setDueDate] = useState();
+  const [dueDate, setDueDate] = useState('');
   const [recurrence, setRecurrence] = useState("Never")
   const [increment, setIncrement] = useState(undefined);
   const [goal, setGoal] = useState(undefined); //maxProgress
@@ -31,6 +31,13 @@ export default function CreateTaskMenu(props) {
   if(props.open === false) return null;
 
   function closeMenu(){
+    let initial = ['', '', '', '', '', 'Never', undefined, undefined, 0, 0]
+    [setSelected, setIcon, setTitle, setDescription, setDueDate,
+       setRecurrence, setIncrement, setGoal, setMinutes, setHours
+    ].forEach((f, idx) => {
+      f(initial[idx]) //reset all state variables to clean up
+    })
+    
     document.querySelector('.create-task-menu').classList.toggle('active') //toggle active selector
     setTimeout(() => {
       props.closeMenu()
