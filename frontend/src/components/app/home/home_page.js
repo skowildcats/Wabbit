@@ -1,11 +1,12 @@
 import React from 'react';
 import Task from './task'
 import Habit from './habit';
+import Countdown from './countdown';
+import Progression from './progression'
 import CreateTaskMenuContainer from '../header/create_task/create_task_menu_container';
 import OpenMenuButton from './buttons/create_task_button';
 import MyLoader from './loader';
-
-
+import moment from 'moment'
 class HomePage extends React.Component {
   constructor(props) {
     super(props)
@@ -72,6 +73,18 @@ class HomePage extends React.Component {
       // todos.map(todo => {
       //   todo.recurrence !== "Never" ? habits.push(todo) : tasks.push(todo)
       // })
+      //identifier after this.props.tasks refers to type of task. 'task' refers to a regular complete/incomplete task
+
+      const tasks = this.props.tasks.task.map(task => {
+        return <Task task={task} key={task._id} />
+      })
+      const countDowns = this.props.tasks.countdown.map(task => {
+        if(moment(task.dueDate) < moment()) return null;
+        return <Countdown task={task} key={task._id} />
+      })
+      const progressions = this.props.tasks.progress.map(task => {
+        return <Progression task={task} key={task._id} />
+      })
       return (
         <>
           <div id="home-page">
@@ -87,9 +100,15 @@ class HomePage extends React.Component {
               })}
             </ul>
             <ul id="tasks" className="sortable">
-              {this.props.tasks.map(task => {
-                return <Task task={task} key={task._id} />
-              })}
+              {tasks}
+            </ul>
+
+            <ul id="tasks" className="sortable">
+              {countDowns}
+            </ul>
+
+            <ul id="tasks" className="sortable">
+              {progressions}
             </ul>
           </div>
           <CreateTaskMenuContainer actionType={this.state.actionType} open={this.state.menuOpen} closeMenu={() => this.setMenuOpen(false)}/>

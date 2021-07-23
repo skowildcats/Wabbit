@@ -4,7 +4,7 @@ import { fetchHabits } from '../../../actions/habit_actions';
 import HomePage from './home_page';
 
 const mapStateToProps = (state) => ({
-  tasks: Object.values(state.entities.tasks),
+  tasks: state.entities.tasks,
   habits: Object.values(state.entities.habits),
   userId: state.session.user.id
 });
