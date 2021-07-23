@@ -5,7 +5,7 @@ export default function(state = {}, action){
     case RECEIVE_USER_TASKS:
       let newState = {progress: [], countdown: [], timedGoal: [], task: []}
       //need to get _id pointing to the task in state
-      action.tasks.forEach(task => newState[task.type][task._id] = task);
+      action.tasks.forEach(task => newState[task.type].push(task));
       return newState
     case RECEIVE_TASK:
       mergedState[action.task._id] = action.task
