@@ -73,11 +73,7 @@ export default function CreateTaskMenu(props) {
       <li key={img.filename} onClick={() => setIcon(img.filename)}>
         <img src={`/api/files/image/${img.filename}`} alt="task-icon" />
         {icon === img.filename ? (
-          <img
-            id="icon-check"
-            src={process.env.PUBLIC_URL + "/checkmark.png"}
-            alt="checkmark"
-          />
+          <img id="icon-check" src={process.env.PUBLIC_URL + "/checkmark.png"} alt="checkmark" />
         ) : null}
       </li>
     );

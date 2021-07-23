@@ -30,10 +30,7 @@ class NavBar extends React.Component {
       return (
         <div id="splash-nav" className="nav-bar">
           <Link id="home-btn" to="/">
-            <img
-              src={process.env.PUBLIC_URL + "/logo-image.png"}
-              alt="home-btn"
-            />
+            <img src={process.env.PUBLIC_URL + "/logo-image.png"} alt="home-btn" />
           </Link>
           <Link to={"/signup"}>SIGNUP</Link>
           <Link to={"/login"}>LOGIN</Link>
