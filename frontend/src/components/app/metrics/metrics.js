@@ -5,6 +5,7 @@ import LineGraph from './line_graph'
 import PieChart from './pie_chart'
 import Checkbox from './checkbox'
 import { setupBarGraphData, setupLineGraphData, setupPieCount, setupPieComplete } from './metrics_util';
+import Loader from '../home/loader'
 
 export default function Metrics(props){
   const [loading, setLoading] = useState(true)
@@ -18,7 +19,7 @@ export default function Metrics(props){
   }
 
   //this page probably will need a loading page later
-  if(loading) return null;
+  if (loading) return <div id="loading"><Loader /></div>;
 
   //grab start and end dates for this week for the habit bar
   let startOfWeek = moment().startOf('isoweek').format('MMM Do YYYY')
@@ -49,17 +50,17 @@ export default function Metrics(props){
         </div>
       </div>
       <div className="bar-graph">
-        <p className="header">Task Completion for this Week</p>
+        <p className="graph-title">Task Completion for this Week</p>
         <BarGraph data={setupBarGraphData(props.metrics.onTimeByWeekday, props.metrics.lateByWeekday)}/>
       </div>
 
       <div className="pie-chart">
-        <p className="header">Percentage of Tasks Completed</p>
+        <p className="graph-title">Percentage of Tasks Completed</p>
         <PieChart data1={setupPieCount(props.metrics.count, props.metrics.percentOnTime)} data2={setupPieComplete(props.metrics.percentComplete)}/>
       </div>
 
       <div className="line-graph">
-        <p className="header">Lifetime Task Completions</p>
+        <p className="graph-title">Lifetime Task Completions</p>
         <LineGraph data={setupLineGraphData(props.metrics.taskDonePerWeek)}/>
       </div>
     </div>

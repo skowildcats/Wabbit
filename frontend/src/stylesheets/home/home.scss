@@ -1,19 +1,18 @@
-// .app-header > button:hover{
-//   color: $dark-green-0;
-// }
-
 #home-nav {
   background-color: var(--theme-6);
 
   #home-btn > img { filter: brightness(0) invert(1); }
-  #home-btn:hover > img { filter: brightness(0) invert(0.94); }
+  #home-btn:hover:not(.visiting) > img { filter: brightness(0) invert(0.94); }
 
   > a:not(#home-btn), > button {
     color: var(--theme-7);
     background-color: white;
     transition: all 0.2s;
-    &:hover { color: var(--theme-8); background-color: var(--theme-1); }
+    &:hover:not(.visiting) { color: var(--theme-8); background-color: var(--theme-1); }
   }
+  .visiting:hover { cursor: default; }
+  a.visiting:not(#home-btn) { background-color: var(--theme-2); }
+  #home-btn.visiting { filter: brightness(0) invert(0.9); }
 }
 
 #home-page {

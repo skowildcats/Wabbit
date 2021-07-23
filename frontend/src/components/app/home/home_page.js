@@ -3,7 +3,7 @@ import Task from './task'
 import Habit from './habit';
 import CreateTaskMenuContainer from '../header/create_task/create_task_menu_container';
 import OpenMenuButton from './buttons/create_task_button';
-import MyLoader from './loader';
+import Loader from './loader';
 
 
 class HomePage extends React.Component {
@@ -56,15 +56,8 @@ class HomePage extends React.Component {
   }
 
   render() {
-    if (this.state.loading) {
-      return (
-        <div id="loading">
-          <div>
-            <MyLoader />
-          </div>
-        </div>
-      )
-    } else {
+    if (this.state.loading) return <div id="loading"><Loader /></div>;
+
       //unecessary
       // const {todos} = this.props 
       // let habits = [], tasks = []
@@ -72,30 +65,29 @@ class HomePage extends React.Component {
       // todos.map(todo => {
       //   todo.recurrence !== "Never" ? habits.push(todo) : tasks.push(todo)
       // })
-      return (
-        <>
-          <div id="home-page">
-            <ul id="button-list">
-              <OpenMenuButton openMenu={() => this.setMenuOpen(true, "HABIT")} text={"NEW HABIT"}/>
-              <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")} text={"NEW TASK"}/>
-              <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")} text={"PLACEHOLDER"}/>
-              <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")} text={"PLACEHOLDER"}/>
-            </ul>
-            <ul id="habits" className="sortable">
-              {this.props.habits.map(habit => {
-                return <Habit habit={habit} key={habit._id} />
-              })}
-            </ul>
-            <ul id="tasks" className="sortable">
-              {this.props.tasks.map(task => {
-                return <Task task={task} key={task._id} />
-              })}
-            </ul>
-          </div>
-          <CreateTaskMenuContainer actionType={this.state.actionType} open={this.state.menuOpen} closeMenu={() => this.setMenuOpen(false)}/>
-        </>
-      );
-    }
+    return (
+      <>
+        <div id="home-page">
+          <ul id="button-list">
+            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "HABIT")} text={"NEW HABIT"}/>
+            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")} text={"NEW TASK"}/>
+            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")} text={"PLACEHOLDER"}/>
+            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "TASK")} text={"PLACEHOLDER"}/>
+          </ul>
+          <ul id="habits" className="sortable">
+            {this.props.habits.map(habit => {
+              return <Habit habit={habit} key={habit._id} />
+            })}
+          </ul>
+          <ul id="tasks" className="sortable">
+            {this.props.tasks.map(task => {
+              return <Task task={task} key={task._id} />
+            })}
+          </ul>
+        </div>
+        <CreateTaskMenuContainer actionType={this.state.actionType} open={this.state.menuOpen} closeMenu={() => this.setMenuOpen(false)}/>
+      </>
+    );
   }
 }
 

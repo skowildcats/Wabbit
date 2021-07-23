@@ -21,7 +21,12 @@ export default function MyStopwatch() {
       </div>
       <div id="timer-control">
         {isRunning ? 
-        <button onClick={pause}>Pause</button> : <button onClick={start}>Start</button> }
+        <button onClick={pause}>
+          <img src={process.env.PUBLIC_URL + "/pause.svg"} alt="pause" />
+        </button> :
+        <button onClick={start}>
+          <img src={process.env.PUBLIC_URL + "/play.svg"} alt="play" />
+        </button> }
       </div>
     </div>
   );

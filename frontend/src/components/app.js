@@ -21,9 +21,9 @@ const App = () => (
         <Route path="/upload" component={Upload} />
         <Route path='/files' component={Files}/>
         <Route path="/header-test" component={Header}/>
-        <AuthRoute path="/login" component={LoginFormContainer} />
         <ProtectedRoute path='/metrics' component={MetricsContainer} />
         <ProtectedRoute path="/home" component={HomePageContainer} />
+        <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
         <Route path="/" component={Splash} />
     </Switch>

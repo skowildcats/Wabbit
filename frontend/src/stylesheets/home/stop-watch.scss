@@ -6,10 +6,8 @@
 }
 #timer-control {
   margin-left: auto; margin-right: auto;
-  width: 100px;
-  height: 100px;
-  > button {
-    border: 1px solid black;
-    padding: 10px;
+  img {
+    width: 20px;
+    height: 20px;
   }
 }
