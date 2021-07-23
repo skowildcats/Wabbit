@@ -34,6 +34,7 @@ const TaskSchema = new Schema({
   },
   type: {
     type: String  //this 
+    //Options - progress - timeUntil - timeGoal - Completion
   },
   habit: {
     type: Schema.Types.ObjectId,
@@ -52,7 +53,8 @@ const TaskSchema = new Schema({
     type: Number
   },
   currentProgress: {
-    type: Number
+    type: Number,
+    default: 0
   }
 },{
   timestamps: true
