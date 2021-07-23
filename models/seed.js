@@ -3,6 +3,7 @@
 // const User = require('./User')
 // const bcrypt = require('bcryptjs')
 // const mongoose = require('mongoose')
+// const moment = require('moment');
 
 // const db= "mongodb+srv://wabbits:QOFRIDVnt7d8ybb3@cluster0.c42bi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
@@ -39,12 +40,14 @@
       
 //       let habitTitle = ['Drink Water','Excercise', 'Meditate']
 //       const recurrence = ['Daily','Weekly','Daily']
+//       const type = ['progress', 'countdown', 'task'];
 //       const daysOfTheWeek = [null,'M_W_F_S',null]
 
 //       for(let i=0;i<habitTitle.length;i++){
 //         const newHabit = new Habit({
 //           title: habitTitle[i],
 //           user: userId,
+//           type: type[i],
 //           recurrence: recurrence[i],
 //           daysOfTheWeek: daysOfTheWeek[i]
 //         })
@@ -53,12 +56,13 @@
 
 //       let taskTitle = ['do homework', 'wash dishes', 'plan trip', 'attend a japanese tea ceremony','go to sea world','go to a swingers club','buy a watch','jump out of a cake','cook christmas dinner','attend beard and mustache competition','try every ice cream','learn to play guitar','sail down the yangtze river','handwrite letters','jump out a plane without a parachute','pour water','jump with jack','learn with larry','art with abe','jiggle joseph','put out the BFBF','run with ryan','tell tom i love him','reject suzy']
 //       const today = new Date()
-
-//       for(let i = 0;i<200; i++){
+//       let endDate = moment().add(7, 'days').toDate()
+//       for(let i = 0;i < 150; i++){
 //         const newTask = new Task({
 //           title: taskTitle[_getRandomInt(taskTitle.length)],
 //           user: userId,
-//           dueDate: _pushBackDays(_getRandomInt(70),today),
+//           type: type[_getRandomInt(type.length)],
+//           dueDate: _pushBackDays(_getRandomInt(70),endDate),
 //           completedAt: _pushBackDays(_getRandomInt(70),today),
 //           completed: true
 //         })
@@ -81,15 +85,15 @@
 // }
 
 
-// // helper functions
-// function _pushBackDays(numDays,date){
-//   const day = 24*60*60*1000
-//   date = new Date(date)
-//   date.setTime(date.getTime()-(day*numDays))
-//   return date
-// }
+// helper functions
+function _pushBackDays(numDays,date){
+  const day = 24*60*60*1000
+  date = new Date(date)
+  date.setTime(date.getTime()-(day*numDays))
+  return date
+}
 
 
-// function _getRandomInt(max) {
-//   return Math.floor(Math.random() * max);
-// }
+function _getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}

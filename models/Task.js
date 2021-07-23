@@ -32,13 +32,16 @@ const TaskSchema = new Schema({
     type: String, //this will just be the filename that can be used to fetch it from the api
     // required: true
   },
-  type: {
-    type: String  //this 
-    //Options - progress - timeUntil - timeGoal - Completion
-  },
   habit: {
     type: Schema.Types.ObjectId,
     ref: 'habits'
+  },
+  type: {
+    type: String  //this 
+    //Options - progress - countdown - timedGoal - task
+  },
+  goalTime: {
+    type: Date
   },
   counter: {
     type: Number

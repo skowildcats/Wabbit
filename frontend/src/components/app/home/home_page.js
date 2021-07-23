@@ -64,6 +64,14 @@ class HomePage extends React.Component {
       // todos.map(todo => {
       //   todo.recurrence !== "Never" ? habits.push(todo) : tasks.push(todo)
       // })
+      //identifier after this.props.tasks refers to type of task. 'task' refers to a regular complete/incomplete task
+
+      const tasks = this.props.tasks.task.map(task => {
+        return <Task task={task} key={task._id} />
+      })
+      const countDowns = this.props.tasks.countdown.map(task => {
+        
+      })
       return (
         <>
           <div id="home-page">
@@ -79,9 +87,7 @@ class HomePage extends React.Component {
               })}
             </ul>
             <ul id="tasks" className="sortable">
-              {this.props.tasks.map(task => {
-                return <Task task={task} key={task._id} />
-              })}
+              {tasks}
             </ul>
           </div>
           <CreateTaskMenuContainer actionType={this.state.actionType} open={this.state.menuOpen} closeMenu={() => this.setMenuOpen(false)}/>
