@@ -65,7 +65,7 @@ router.get("/all/:userId", async (req, res) => {
     process.env.LAST_CHECK = today
     refreshHabits(req.params.userId)
   }
-  let filter = moment().subtract(1, 'weeks').toDate()
+  let filter = moment().subtract(1, 'days').toDate()
   tasks = await Task.find({ user: req.params.userId, dueDate: {$gt: filter}});
   res.json(tasks);
 });

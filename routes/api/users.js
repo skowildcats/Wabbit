@@ -78,21 +78,23 @@ router.put('/password',passport.authenticate('jwt', {session: false}),async (req
 
 })
 
-// route for updating name
+// route for updating name/theme
 
 router.put('/info', passport.authenticate('jwt', {session: false}), async (req,res)=>{
-  const {email,firstName,lastName} = req.body
+  const {email,firstName,lastName, theme} = req.body
   const user = await User.findOne({email})
 
   user.firstName = firstName
   user.lastName = lastName
+  user.theme = theme
 
   await user.save()
   res.json({
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
-    id: user._id
+    id: user._id,
+    theme: user.theme
   })
 })
 

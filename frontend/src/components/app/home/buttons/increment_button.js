@@ -8,7 +8,7 @@ export const IncrementButton = (props) => {
   function update(increment = 1){
     increment = (props.type === 'increment' ? 1 : -1)
     let updated = props.task
-    if(updated.currentProgress += increment > 0){
+    if(updated.currentProgress + increment > 0){
       updated.currentProgress += increment;
     }
     if(updated.currentProgress >= updated.maxProgress){
