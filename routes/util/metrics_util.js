@@ -37,8 +37,8 @@ exports.tasksDonePerWeek=(tasks)=>{
   const week = 7 * 24 * 60 *60*1000
   for(const task of tasks){
     if(!task.completed) continue
-    const completedDate = new Date(task.completedAt)
-    const weeksElapsed = (now.getTime()-completedDate.getTime())/week
+    const weeksElapsed = (now.getTime()-task.completedAt.getTime())/week
+    // console.log(9-Math.floor(weeksElapsed))
     weeksChrono[9-Math.floor(weeksElapsed)]++
   }
   return weeksChrono
