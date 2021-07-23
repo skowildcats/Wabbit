@@ -27,13 +27,15 @@
 
 #button-list {
   position: relative;
+  box-sizing: border-box;
+  padding: 0px 15px; 
 
   > button {
     box-sizing: border-box;
     height: 100%;
-    width: calc(25% - 15px);
+    width: calc(25% - 24.25px);
     padding: 10px 0px;
-    &:not(:last-child) { margin-right: 20px; }
+    &:not(:last-child) { margin-right: 30px; }
     font-size: 15px;
     color: var(--theme-8);
     background-color: var(--theme-3);
