@@ -7,6 +7,8 @@ const router = express.Router();
 const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
+
+//for encryption
 const path = require('path')
 const crypto = require('crypto')
 

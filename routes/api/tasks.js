@@ -15,6 +15,7 @@ router.post("/new", async (req, res) => {
     dueDate: req.body.dueDate,
     color: req.body.color,
     icon: req.body.icon,
+    goalTime: req.body.goalTime,
     increment: req.body.increment,
     counter: req.body.counter,
     countdown: req.body.countdown,

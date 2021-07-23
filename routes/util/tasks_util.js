@@ -8,6 +8,7 @@ exports.createTaskFromHabit = async function(habit){
     dueDate: habit.dueDate,
     color: habit.color,
     icon: habit.icon,
+    type: habit.type
   });
   await newTask.save();
   return newTask

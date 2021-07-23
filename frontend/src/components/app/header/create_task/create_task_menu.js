@@ -1,20 +1,22 @@
 import React, {useState, useEffect} from 'react'
 import ReactDOM  from 'react-dom'
 import ColorPalette from './color_palette'
+import moment from 'moment'
 
 export default function CreateTaskMenu(props) {
+  window.moment = moment
   const [selected, setSelected] = useState('');
   const [icon, setIcon] = useState('');
   const [recurrence, setRecurrence] = useState("Never")
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [dueDate, setDueDate] = useState('');
+  const [dueDate, setDueDate] = useState();
   const [type, setType] = useState('');
   const [increment, setIncrement] = useState(undefined);
-  const [countdown, setCountdown] = useState(undefined);
   const [goal, setGoal] = useState(undefined); //maxProgress
-  const [defaultProgress, setDefaultProgress] = useState(0);
-  
+  const [minutes, setMinutes] = useState(0);
+  const [hours, setHours] = useState(0);
+
   useEffect(() => {
     props.fetchImages();
   }, [])
@@ -48,19 +50,29 @@ export default function CreateTaskMenu(props) {
   }
 
   function handleSubmit(){
-    let daysOfTheWeek = '' 
+    let daysOfTheWeek = '';
+    let goalTime = undefined;
     if(recurrence === "Weekly"){
       daysOfTheWeek = getRecurrenceStr();
     }
+
+    if(type === 'timedGoal'){
+      goalTime = moment().add(hours, 'hours').add(minutes, 'minutes').toDate();
+    }
+
     let newTodo = {
       title,
       description,
       recurrence,
       dueDate,
       daysOfTheWeek,
-      icon,
+      user: props.userId,
       color: selected,
-      user: props.userId
+      goalTime,
+      icon,
+      type,
+      increment,
+      goal
     }
     if(props.actionType === "TASK"){
       props.createTask(newTodo).then(task => {
@@ -93,6 +105,7 @@ export default function CreateTaskMenu(props) {
           <h1>CREATE A {props.actionType}</h1>
           <span onClick={closeMenu}>&times;</span>
         </div>
+
         <ColorPalette selected={selected} setSelected={setSelected}/>
 
         <div className="form-field">
@@ -105,6 +118,7 @@ export default function CreateTaskMenu(props) {
           <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" id="description"/>
         </div>
 
+        {props.actionType === "HABIT" ? 
         <div className="form-field">
           <label htmlFor="recurrence">REPEAT </label>
           <select name="recurrence" onChange={(e) => setRecurrence(e.target.value)} id="recurrence" defaultValue="Never">
@@ -155,12 +169,40 @@ export default function CreateTaskMenu(props) {
           </div>
           : null}
         </div>
+        : null }
         
+        <div className="form-field">
+          <label htmlFor="type">TYPE</label>
+          <select name="type" id="type" onChange={(e) => setType(e.target.value)} defaultValue="task">
+            <option value="progress">Progress</option>
+            <option value="countdown">Countdown</option>
+            <option value="timedGoal">Time Goals</option>
+            <option value="task">Task</option>
+          </select>
+        </div>
         
-        
-        {props.actionType === "TASK" ? 
+        {type === 'progress' ? 
+        <div className="form-field">
+          <label htmlFor="increment">INCREMENT BY</label>
+          <input type="number" value={increment} onChange={(e) => setIncrement(e.target.value)}/>
+
+          <label htmlFor="goal">GOAL</label>
+          <input type="number" value={goal} onChange={(e) => setGoal(e.target.value)}/>
+        </div>
+        : null}
+
+        {type === 'timedGoal' ?
+          <div className="form-field">
+            <label htmlFor="time">HOURS</label>
+            <input type="number" value={hours} onChange={(e) => setHours(e.target.value)} />
+
+            <label htmlFor="time">MINUTES</label>
+            <input type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} />
+          </div>
+        : null}
+        {props.actionType === "TASK" && type !== "timedGoal" ? 
         (<div className="form-field">
-          <label htmlFor="dueDate">DEADLINE:</label>
+          <label htmlFor="dueDate">{type==='countdown' ? "DATE COMPLETED" : "DEADLINE"}</label>
           <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date} />
         </div>)
         : null}
