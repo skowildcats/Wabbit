@@ -19,7 +19,7 @@ class Task extends React.Component {
         </div>
 
         <div className="body-wrapper">
-          <p>{task.title}</p>
+          <p id="todo-title">{task.title}</p>
           <p>{task.description}</p>
         </div>
 
