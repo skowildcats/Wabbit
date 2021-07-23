@@ -1,0 +1,21 @@
+#loading {
+  margin: 100px 60px;
+}
+
+#loading > div{
+  width: 125px;
+  margin-left: auto; margin-right: auto;
+}
+
+#loading-top {
+  height: 15vh;
+}
+
+#loading-middle {
+  height: 20vh;
+}
+
+#loading-bottom {
+  margin-top: 5vh;
+  height: 55vh;
+}

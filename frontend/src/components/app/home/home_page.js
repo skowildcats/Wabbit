@@ -3,6 +3,7 @@ import Task from './task'
 import Habit from './habit';
 import CreateTaskMenuContainer from '../header/create_task/create_task_menu_container';
 import OpenMenuButton from './buttons/create_task_button';
+import MyLoader from './loader';
 
 
 class HomePage extends React.Component {
@@ -26,13 +27,14 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     //wait until all fetching is complete before setting loading to false
+    setTimeout(() => {
     Promise.allSettled([this.props.fetchTasks(this.props.userId), this.props.fetchHabits(this.props.userId)])
     .then(data => {
       //hold data in this object for debugging purposes
       this.setState({
         loading: false
       })
-    })
+    })}, 1500)
   }
 
   componentDidUpdate() {
@@ -55,7 +57,18 @@ class HomePage extends React.Component {
 
   render() {
     if (this.state.loading) {
-      return null
+      return (
+        <div id="loading">
+          <div id="loading-top">
+          </div>
+          <div id="loading-middle">
+            <MyLoader />
+          </div>
+          <div id="loading-bottom">
+            <MyLoader />
+          </div>
+        </div>
+      )
     } else {
       //unecessary
       // const {todos} = this.props 
