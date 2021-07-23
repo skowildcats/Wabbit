@@ -9,6 +9,14 @@ const tasks = require('./routes/api/tasks')
 const metrics = require('./routes/api/metrics')
 const fileRouter = require('./routes/api/files')
 const habits = require('./routes/api/habits')
+const path = require('path');
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  })  
+}
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
