@@ -195,10 +195,11 @@
     display: flex;
     justify-content: flex-end;
     padding: 3px 0px;
-    &:hover {
+    &:hover, &.selected {
       cursor: pointer;
       background-color: $light-grey-0;
       border-radius: 5px;
     }
+    &.selected { cursor: default; }
   }
 }

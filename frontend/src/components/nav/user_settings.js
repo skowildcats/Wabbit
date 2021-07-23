@@ -8,6 +8,7 @@ export default class UserSettings extends React.Component {
       userUpdateFormOpen: true,
       colorThemeFormOpen: false,
       logOutConfirmation: false,
+      selectedTheme: null
     };
 
     this.logout = this.logout.bind(this);
@@ -33,10 +34,10 @@ export default class UserSettings extends React.Component {
     })
   }
 
-  updateTheme(e){
-    const palette = Array.from(e.target.children).map(li => li.style.backgroundColor);
+  updateTheme(e, palette){
+    e.preventDefault();
     this.setState({
-      ["theme"]: palette
+      ["theme"]: palette.slice(1), ["selectedTheme"]: palette[0]
     })
   }
 
@@ -51,11 +52,11 @@ export default class UserSettings extends React.Component {
     return (
       <>
         <p className="palette-name">{palette[0]}</p>
-        <ul className={"palette"} onClick={e => this.updateTheme(e)}>
+        <ul className={this.state.selectedTheme === palette[0] ? "palette selected" : "palette"} onClick={e => this.updateTheme(e, palette)}>
           {palette.slice(1).map(color => {
             const style = { backgroundColor: color };
             return (
-              <li className="color-bubble" key={palette.slice(0,1) + "-" + color} style={style}></li>
+              <li className="color-bubble" key={`${palette.slice(0,1)}-${color}`} style={style}></li>
             );
           })}
         </ul>
@@ -69,7 +70,7 @@ export default class UserSettings extends React.Component {
       ["ROSE", "#eeeeee", "#d8d8d8", "#cacaca", "#c2b4b4", "#aa9393", "#816969", "#706262", "#2b2525", "#1f1f1f"],
       ["FOREST", "#eeeeee", "#d8d8d8", "#cacaca", "#9c9c95", "#85857c", "#525c53", "#574d43", "#252b25", "#1f1f1f"],
       ["APRIL", "#eeeeee", "#d8d8d8", "#cacaca", "#e9e8a4", "#dddb81", "#435a75", "#5b7a5b", "#25262b", "#1f1f1f"],
-      ["SEASHELLS", "#eeeeee", "#d8d8d8", "#cacaca", "#dbb7ab", "#d39e93", "#4a818d", "#3f6d77", "#252b2b", "#1f1f1f"],
+      ["SEASHORE", "#eeeeee", "#d8d8d8", "#cacaca", "#dbb7ab", "#d39e93", "#4a818d", "#3f6d77", "#252b2b", "#1f1f1f"],
       ["COFFEE", "#eeeeee", "#d8d8d8", "#cacaca", "#daccb0", "#cab894", "#585475", "#413d5c", "#252b2b", "#1f1f1f"]
     ];
 
