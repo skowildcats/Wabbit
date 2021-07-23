@@ -37,6 +37,12 @@ export default function Metrics(props){
     })
   }
   
+  let color1;
+  let color2;
+  if(props.colors){
+    color1 = props.colors[5]
+    color2 = props.colors[3]
+  }
   return (
     <div className="metrics-page">
       <div className="header">
@@ -51,17 +57,17 @@ export default function Metrics(props){
       </div>
       <div className="bar-graph">
         <p className="graph-title">Task Completion for this Week</p>
-        <BarGraph data={setupBarGraphData(props.metrics.onTimeByWeekday, props.metrics.lateByWeekday)}/>
+        <BarGraph color1={color1} color2={color2} data={setupBarGraphData(props.metrics.onTimeByWeekday, props.metrics.lateByWeekday)}/>
       </div>
 
       <div className="pie-chart">
         <p className="graph-title">Percentage of Tasks Completed</p>
-        <PieChart data1={setupPieCount(props.metrics.count, props.metrics.percentOnTime)} data2={setupPieComplete(props.metrics.percentComplete)}/>
+        <PieChart color1={color1} color2={color2} data1={setupPieCount(props.metrics.count, props.metrics.percentOnTime)} data2={setupPieComplete(props.metrics.percentComplete)}/>
       </div>
 
       <div className="line-graph">
         <p className="graph-title">Lifetime Task Completions</p>
-        <LineGraph data={setupLineGraphData(props.metrics.taskDonePerWeek)}/>
+        <LineGraph color1={color1} color2={color2} data={setupLineGraphData(props.metrics.taskDonePerWeek)}/>
       </div>
     </div>
   )
