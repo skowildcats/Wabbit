@@ -1,7 +1,7 @@
 #root {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-color: $light-green-1;
+  background-color: $light-green-2;
   
   -webkit-user-select: none; // Safari
   -moz-user-select: none; // Firefox
@@ -35,5 +35,5 @@
 #splash > a:hover {
   cursor: pointer;
   color: $green-2;
-  background-color: $light-grey-0;
+  background-color: $light-green-1;
 }

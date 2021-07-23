@@ -1,22 +1,15 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import UserSettingsContainer from './user_settings_container';
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = { usersSettingOpen: false };
-    this.logoutUser = this.logoutUser.bind(this);
-    this.getLinks = this.getLinks.bind(this);
   }
 
   componentDidMount() {
     if (this.props.loggedIn) {this.props.getCurrentUser(this.props.currentUser.id)};
-  }
-
-  logoutUser(e) {
-    e.preventDefault();
-    this.props.logout();
-    this.props.history.push("/");
   }
 
   getLinks() {
@@ -30,7 +23,7 @@ class NavBar extends React.Component {
           <button onClick={() => this.setState({ usersSettingOpen: !this.state.usersSettingOpen })}>
             {this.props.currentUser.firstName ? this.props.currentUser.firstName.toUpperCase() : null}
           </button>
-          <button onClick={this.logoutUser}>LOGOUT</button>
+          {this.state.usersSettingOpen ? <UserSettingsContainer closeSettings={() => this.setState({ usersSettingOpen: false })}/> : null}
         </>
       );
     } else {
