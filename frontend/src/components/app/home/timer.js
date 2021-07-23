@@ -28,7 +28,7 @@ export default function Timer({ expiryTimestamp }) {
           </button>
         ) : (
           <button onClick={start}>
-            <img src={process.env.PUBLIC_URL + "/play.svg"} alt="play" />
+            <img className="play-btn" src={process.env.PUBLIC_URL + "/play.svg"} alt="play" />
           </button>
         )}
       </div>
