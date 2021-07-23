@@ -20,8 +20,8 @@ export default function MyStopwatch() {
         <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
       </div>
       <div id="timer-control">
-        <button onClick={start}>Start</button>
-        <button onClick={pause}>Pause</button>
+        {isRunning ? 
+        <button onClick={pause}>Pause</button> : <button onClick={start}>Start</button> }
       </div>
     </div>
   );
