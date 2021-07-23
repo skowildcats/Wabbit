@@ -26,6 +26,7 @@ export default class UserSettings extends React.Component {
 
   logout(e) {
     e.preventDefault();
+    this.props.closeSettings();
     this.props.logout();
     this.props.history.push("/");
   }

@@ -1,7 +1,14 @@
-
-
 .app-header > button:hover{
   color: $dark-green-0;
+}
+
+#home-nav {
+  background-color: var(--theme-4);
+  #home-btn > img {filter: brightness(0) invert(1);}
+  > a, > button {
+    color: var(--theme-5);
+    background-color: var(--theme-2);
+  }
 }
 
 #home-page {

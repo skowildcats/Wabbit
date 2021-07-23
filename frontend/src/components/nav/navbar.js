@@ -15,7 +15,7 @@ class NavBar extends React.Component {
   getLinks() {
     if (this.props.loggedIn) {
       return (
-        <>
+        <div id="home-nav" className="nav-bar">
           <Link id="home-btn" to="/">
             <img src={process.env.PUBLIC_URL + "/logo-image.png"} alt="home-btn" />
           </Link>
@@ -24,11 +24,11 @@ class NavBar extends React.Component {
             {this.props.currentUser.firstName ? this.props.currentUser.firstName.toUpperCase() : null}
           </button>
           {this.state.usersSettingOpen ? <UserSettingsContainer closeSettings={() => this.setState({ usersSettingOpen: false })}/> : null}
-        </>
+        </div>
       );
     } else {
       return (
-        <>
+        <div id="splash-nav" className="nav-bar">
           <Link id="home-btn" to="/">
             <img
               src={process.env.PUBLIC_URL + "/logo-image.png"}
@@ -37,7 +37,7 @@ class NavBar extends React.Component {
           </Link>
           <Link to={"/signup"}>SIGNUP</Link>
           <Link to={"/login"}>LOGIN</Link>
-        </>
+        </div>
       );
     }
   }
@@ -45,7 +45,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <>
-        <div id="nav-bar">{this.getLinks()}</div>
+        {this.getLinks()}
         {this.state.usersSettingOpen ? <form id="users-setting"></form> : null}
       </>
     );
