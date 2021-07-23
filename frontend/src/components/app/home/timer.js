@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTimer } from 'react-timer-hook';
 
-export default function Timer({ expiryTimestamp }) {
+export default function Timer({ expiryTimestamp,toggle}) {
   const {
     seconds,
     minutes,
@@ -12,7 +12,7 @@ export default function Timer({ expiryTimestamp }) {
     pause,
     resume,
     restart,
-  } = useTimer({ expiryTimestamp, onExpire: () => pause() });
+  } = useTimer({ expiryTimestamp, onExpire: () => pause(), autoStart: false});
 
   const totalHours = hours + ( days * 24 );
 
@@ -25,14 +25,17 @@ export default function Timer({ expiryTimestamp }) {
       </div>
       <div className="timer-control">
         {isRunning ? (
-          <button onClick={pause}>
+          <button onClick={pause} onMouseDown={toggle}>
             <img src={process.env.PUBLIC_URL + "/pause.svg"} alt="pause" />
           </button>
         ) : (
-          <button onClick={start}>
+          <button onClick={start} onMouseDown={toggle}>
             <img src={process.env.PUBLIC_URL + "/play.svg"} alt="play" />
           </button>
         )}
+        {/* <button onClick={resume}>
+          resume
+        </button> */}
       </div>
     </div>
   );

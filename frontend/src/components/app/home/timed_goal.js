@@ -1,10 +1,11 @@
-import React from 'react'
+import React,{useState} from 'react'
 import moment from 'moment'
 import Timer from './timer'
 import { DeleteTaskButton } from './buttons/delete_task_button'
 export default function TimedGoal(props) {
   const {task} = props
   console.log(task)
+  const [time, setTime] = useState(moment(task.goalTime).toDate())
   return (
     <div className="task">
       <div className="drag-handle">
@@ -15,7 +16,7 @@ export default function TimedGoal(props) {
         <p className="todo-description">{task.description}</p>
       </div>
       <div className="time">
-        <Timer expiryTimestamp={moment(task.goalTime).toDate()}/>
+        <Timer expiryTimestamp={time} toggle={props.toggle}/>
         <DeleteTaskButton taskId={task._id} />
       </div>
     </div>

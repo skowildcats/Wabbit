@@ -60,6 +60,13 @@ class HomePage extends React.Component {
     window.$(".sortable").sortable("destroy")
   }
 
+  _toggle(task){
+    return ()=>{
+      task.paused = !task.paused
+      this.props.updateTask(task)
+    }
+  }
+
   render() {
     if (this.state.loading) return <div id="loading"><Loader /></div>;
 
@@ -77,7 +84,7 @@ class HomePage extends React.Component {
         case 'task':
           return <Task task={task} key={task._id} />
         case 'timedGoal':
-          return <TimedGoal task={task} key={task._id} />
+          return <TimedGoal task={task} key={task._id} toggle={this._toggle(task)}/>
         default: 
         return null;
       }

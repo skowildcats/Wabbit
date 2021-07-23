@@ -31,14 +31,34 @@ router.post("/new", async (req, res) => {
 router.put("/:taskId", async (req, res) => {
   try {
     const task = await Task.findById(req.params.taskId);
+    //changing completedAt when completed is toggled
     if (!task.completed && req.body.completed) {
       task.completedAt = new Date();
     } else if (task.completed && !req.body.completed) {
       task.completedAt = null;
     }
+    //changing the endtime for timers when timer is unpaused
+    if(req.body.paused && !task.paused){
+
+      console.log('pause timer')
+      task.pauseStart = new Date()
+
+    } else if (!req.body.paused && task.paused && task.pauseStart){
+
+      console.log('resume timer')
+      const now = new Date()
+      console.log('goaltime',task.goalTime)
+      console.log('pausetie',task.pauseStart)
+      console.log('now', now)
+      console.log('difference',now.getTime()-task.pauseStart.getTime())
+      req.body.goalTime = task.goalTime.setTime(task.goalTime.getTime() + (now.getTime()-task.pauseStart.getTime()))
+      console.log('new goaltime', task.goalTime)
+    }
+      //updating the rest of the fields
     for (field in req.body) {
       task[field] = req.body[field];
     }
+    console.log(task)
     await task.save();
     res.json(task);
   } catch (error) {
