@@ -12,9 +12,9 @@ class NavBar extends React.Component {
     if (this.props.loggedIn) {
       this.props.getCurrentUser(this.props.currentUser.id)
       .then(({ currentUser }) => {
-        const style = getComputedStyle(document.body);
+        const app = document.getElementById("app")
         currentUser.theme.map((color, i) => {
-          style.setPropertyValue(`--theme-${i}`, color);
+          app.style.setProperty(`--theme-${i+1}`, color);
         })
       })
     };

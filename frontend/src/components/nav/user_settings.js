@@ -24,12 +24,19 @@ export default class UserSettings extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.patchUser(this.state);
+    if(this.props.currentUser.theme[3] !== this.state.theme[3]) { window.location.reload(); }
   }
 
-  updateField(e, field){
+  updateField(e, field) {
+    this.setState({
+      [field]: e.target.value
+    })
+  }
+
+  updateTheme(e){
     const palette = Array.from(e.target.children).map(li => li.style.backgroundColor);
     this.setState({
-      [field]: palette
+      ["theme"]: palette
     })
   }
 
@@ -44,7 +51,7 @@ export default class UserSettings extends React.Component {
     return (
       <>
         <p className="palette-name">{palette[0]}</p>
-        <ul className="palette" onClick={e => this.updateField(e, "theme")}>
+        <ul className={"palette"} onClick={e => this.updateTheme(e)}>
           {palette.slice(1).map(color => {
             const style = { backgroundColor: color };
             return (
@@ -95,26 +102,11 @@ export default class UserSettings extends React.Component {
           {this.state.userUpdateFormOpen ? (
             <form id="user-update-form" className="user-settings-form">
               <label htmlFor="update-first-name">FIRST NAME</label>
-              <input
-                type="text"
-                id="update-first-name"
-                onChange={(e) => this.updateField(e, "firstName")}
-                value={this.state.firstName}
-              />
+              <input type="text" id="update-first-name" onChange={(e) => this.updateField(e, "firstName")} value={this.state.firstName} />
               <label htmlFor="update-last-name">LAST NAME</label>
-              <input
-                type="text"
-                id="update-last-name"
-                onChange={(e) => this.updateField(e, "lastName")}
-                value={this.state.lastName}
-              />
+              <input type="text" id="update-last-name" onChange={(e) => this.updateField(e, "lastName")} value={this.state.lastName} />
               <label htmlFor="update-email">EMAIL</label>
-              <input
-                type="text"
-                id="update-email"
-                onChange={(e) => this.updateField(e, "email")}
-                value={this.state.email}
-              />
+              <input type="text" id="update-email" onChange={(e) => this.updateField(e, "email")} value={this.state.email} />
               <label htmlFor="update-password">CURRENT PASSWORD</label>
               <input type="password" id="update-password" />
               <div className="form-nav">
