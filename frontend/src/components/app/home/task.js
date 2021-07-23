@@ -15,9 +15,7 @@ class Task extends React.Component {
     return (
       <div>
         <div className="drag-handle">
-          <div>
-            Three dots here
-          </div>
+          <i className="fas fa-ellipsis-h"></i>
         </div>
 
         <div className="body-wrapper">
