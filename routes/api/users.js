@@ -45,7 +45,8 @@ router.post('/register',async (req,res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            id: user._id
+            id: user._id,
+            theme: user.theme,
           })
         })
     })
@@ -113,7 +114,7 @@ router.post('/login', async (req, res) => {
   const isMatch = await bcrypt.compare(password, user.password)
   if (!isMatch) return res.status(400).json({password: 'Incorrect password'})
 
-  const payload = {id: user.id, username: user.username}
+  const payload = {id: user.id, username: user.username, theme: user.theme}
   jwt.sign(payload, 
     keys.secretOrKey,
     {expiresIn: 3600},
