@@ -56,16 +56,13 @@
 
 //       let taskTitle = ['Do Homework', 'Wash Dishes', 'Plan Trip', 'Attend a Japanese Tea Ceremony','Go to Sea World','Go to a Swingers Club','Buy a Watch','Jump Out of a Cake','Cook Christmas Dinner','Learn to Play Guitar','Sail Down the Yangtze River','Handwrite Letters','Jump Out a Plane Without a Parachute','Pour Water','Jump with Jack','Learn with Larry','Art with Abe','Jiggle Joseph','Put Out the BFBF','Run with Ryan','Tell Jom I Love Him','Reject Suzy Bae']
 //       const today = new Date()
-//       let endDate = moment().add(4, 'days').toDate()
 //       for(let i = 0;i < 120; i++){
 //         const newTask = new Task({
 //           title: taskTitle[_getRandomInt(taskTitle.length)],
 //           user: userId,
-//           type: type[_getRandomInt(type.length)],
-//           dueDate: _pushBackDays(_getRandomInt(70),endDate),
+//           dueDate: _pushBackDays(_getRandomInt(70),today),
 //           completedAt: _pushBackDays(_getRandomInt(70),today),
 //           completed: true,
-//           maxProgress: _getRandomInt(20),
 //         })
 //         if(_getRandomInt(10)===3){
 //           newTask.completed = false
