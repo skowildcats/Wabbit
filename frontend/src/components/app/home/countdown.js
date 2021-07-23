@@ -5,11 +5,11 @@ export default function Countdown(props){
   let { task } = props
   function calcDiff(){
     let diffDays = moment(task.dueDate).diff(moment(), 'days')
-    if(diffDays > 0) return diffDays + "days";
+    if(diffDays > 0) return diffDays + " days";
     let diffHrs = moment(task.dueDate).diff(moment(), 'hours');
-    if(diffHrs > 0) return diffHrs + "hours";
+    if(diffHrs > 0) return diffHrs + " hours";
     let diffMins = moment(task.dueDate).diff(moment(), 'minutes');
-    return diffMins + "minutes";
+    return diffMins + " minutes";
   }
   return (
     <>
@@ -19,13 +19,13 @@ export default function Countdown(props){
       </div>
 
       <div className="body-wrapper">
-        <p>{task.title}</p>
-        <p>{task.description}</p>
+        <p className="todo-title">{task.title}</p>
+        <p className="todo-description">{task.description}</p>
       </div>
 
       <div>
         {/* Days away from occuring */}
-        <p>{calcDiff()} away</p>
+        <p className="time-left">{calcDiff()} away</p>
       </div>
       <DeleteTaskButton taskId={task._id}/>
     </div>

@@ -17,4 +17,5 @@
 @import 'metrics/metrics-page.scss';
 @import 'menu/update-habit.scss';
 
+html, body, #app, #root { height: 100%; }
 * { font-family: $secondary-font; }

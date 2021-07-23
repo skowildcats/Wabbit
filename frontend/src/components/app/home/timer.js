@@ -14,16 +14,26 @@ export default function Timer({ expiryTimestamp }) {
     restart,
   } = useTimer({ expiryTimestamp, onExpire: () => pause() });
 
+  const totalHours = hours + ( days * 24 );
 
   return (
-    <div style={{textAlign: 'center'}}>
-      <div style={{fontSize: '20px'}}>
-        <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
+    <div className="timer">
+      <div>
+        <span>{totalHours < 10 ? "0" + totalHours : totalHours}</span>:
+        <span>{minutes < 10 ? "0" + minutes : minutes}</span>:
+        <span>{seconds < 10 ? "0" + seconds : seconds}</span>
       </div>
-      <p>{isRunning ? 'Running' : 'Not running'}</p>
-      {/* <button onClick={start}>Start</button>
-      <button onClick={pause}>Pause</button>
-      <button onClick={resume}>Resume</button> */}
+      <div className="timer-control">
+        {isRunning ? (
+          <button onClick={pause}>
+            <img src={process.env.PUBLIC_URL + "/pause.svg"} alt="pause" />
+          </button>
+        ) : (
+          <button onClick={start}>
+            <img src={process.env.PUBLIC_URL + "/play.svg"} alt="play" />
+          </button>
+        )}
+      </div>
     </div>
   );
 }
