@@ -18,8 +18,8 @@ class Task extends React.Component {
           <i className="fas fa-ellipsis-h"></i>
         </div>
         <div className="body-wrapper">
-          <p id="todo-title">{task.title}</p>
-          <p>{task.description}</p>
+          <p className="todo-title">{task.title}</p>
+          <p className="todo-description">{task.description}</p>
         </div>
         <MyStopwatch />
         <div id="complete-delete">

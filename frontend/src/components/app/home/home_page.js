@@ -42,7 +42,7 @@ class HomePage extends React.Component {
   componentDidUpdate() {
     window.$(".sortable").sortable({
       items: "> div:not(.menu-btn-container)",
-      handle: ".drag-handle",
+      handle: ".drag-handle > i",
       helper: "clone",
       opacity: 0.7,
       revert: 200,

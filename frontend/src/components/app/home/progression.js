@@ -10,14 +10,13 @@ export default function Progression(props){
       </div>
 
       <div className="body-wrapper">
-        <p id="todo-title">{task.title}</p>
-        <p>{task.description}</p>
+        <p className="todo-title">{task.title}</p>
+        <p className="todo-description">{task.description}</p>
       </div>
 
       <div className="progress">
-        <span className="total">{task.maxProgress}</span>
+        <span className="counter">{task.currentProgress}/{task.maxProgress}</span>
         <IncrementButton type="increment" task={task} />
-        <span className="counter">{task.currentProgress}</span>
         <IncrementButton type="decrement" task={task} />
       </div>
 

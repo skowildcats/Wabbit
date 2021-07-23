@@ -4,7 +4,7 @@ import { deleteTask } from '../../../../actions/task_actions'
 
 export const DeleteTaskButton = (props) => {
   return (
-    <button onClick={() => props.deleteTask(props.taskId)}>Delete Task</button>
+    <button className="delete-task" onClick={() => props.deleteTask(props.taskId)}>&times;</button>
   )
 }
 
@@ -12,4 +12,4 @@ const mapDispatchToProps = dispatch => ({
   deleteTask: (taskId) => dispatch(deleteTask(taskId))
 })
 
-export default connect(null, mapDispatchToProps)(DeleteTaskButton)
+export default connect(null, mapDispatchToProps)(DeleteTaskButton);

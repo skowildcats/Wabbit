@@ -16,7 +16,7 @@ class Habit extends React.Component {
         <div className="drag-handle">
           <i className="fas fa-ellipsis-h"></i>
         </div>
-        <div id="todo-title">{habit.title}</div>
+        <div className="todo-title">{habit.title}</div>
         <div id="complete-delete">
           {/* <ToggleCompletedButton task={habit}/> */}
           {/* <DeleteTaskButton taskId={habit._id}/> */}
