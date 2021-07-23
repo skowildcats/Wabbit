@@ -6,6 +6,7 @@ export default function TimedGoal(props) {
   const {task} = props
   console.log(task)
   const [time, setTime] = useState(moment(task.goalTime).toDate())
+  console.log(time)
   return (
     <div className="task">
       <div className="drag-handle">

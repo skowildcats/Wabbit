@@ -86,15 +86,15 @@
 // }
 
 
-// helper functions
-function _pushBackDays(numDays,date){
-  const day = 24*60*60*1000
-  date = new Date(date)
-  date.setTime(date.getTime()-(day*numDays))
-  return date
-}
+// // helper functions
+// function _pushBackDays(numDays,date){
+//   const day = 24*60*60*1000
+//   date = new Date(date)
+//   date.setTime(date.getTime()-(day*numDays))
+//   return date
+// }
 
 
-function _getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
+// function _getRandomInt(max) {
+//   return Math.floor(Math.random() * max);
+// }

@@ -40,19 +40,12 @@ router.put("/:taskId", async (req, res) => {
     //changing the endtime for timers when timer is unpaused
     if(req.body.paused && !task.paused){
 
-      console.log('pause timer')
       task.pauseStart = new Date()
 
     } else if (!req.body.paused && task.paused && task.pauseStart){
 
-      console.log('resume timer')
       const now = new Date()
-      console.log('goaltime',task.goalTime)
-      console.log('pausetie',task.pauseStart)
-      console.log('now', now)
-      console.log('difference',now.getTime()-task.pauseStart.getTime())
       req.body.goalTime = task.goalTime.setTime(task.goalTime.getTime() + (now.getTime()-task.pauseStart.getTime()))
-      console.log('new goaltime', task.goalTime)
     }
       //updating the rest of the fields
     for (field in req.body) {

@@ -1,4 +1,4 @@
-const db = require('../../config/keys').mongoURI
+const db = require('../../config/keys_dev').mongoURI
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
