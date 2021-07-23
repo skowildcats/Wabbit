@@ -2,8 +2,8 @@ import React from 'react'
 import moment from 'moment'
 import Timer from './timer'
 export default function TimedGoal(props) {
-  window.moment = moment
   const {task} = props
+  console.log(task)
   return (
     <div className="task">
       <div className="drag-handle">
