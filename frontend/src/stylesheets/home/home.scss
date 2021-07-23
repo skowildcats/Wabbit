@@ -35,7 +35,6 @@
     width: calc(25% - 15px);
     padding: 10px 0px;
     &:not(:last-child) { margin-right: 20px; }
-
     font-size: 15px;
     color: var(--theme-8);
     background-color: var(--theme-3);
@@ -47,6 +46,7 @@
 }
 
 #todo-title {
+  margin-top: 5px;
   text-align: center;
   font-size: 12px;
   font-weight: bold;

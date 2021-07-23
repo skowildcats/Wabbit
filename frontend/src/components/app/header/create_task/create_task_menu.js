@@ -9,7 +9,12 @@ export default function CreateTaskMenu(props) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [dueDate, setDueDate] = useState('');
-
+  const [type, setType] = useState('');
+  const [increment, setIncrement] = useState(undefined);
+  const [countdown, setCountdown] = useState(undefined);
+  const [goal, setGoal] = useState(undefined); //maxProgress
+  const [defaultProgress, setDefaultProgress] = useState(0);
+  
   useEffect(() => {
     props.fetchImages();
   }, [])

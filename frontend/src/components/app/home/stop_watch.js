@@ -17,11 +17,11 @@ export default function MyStopwatch() {
   return (
     <div id="timer">
       <div>
-        <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
+        <span>{days < 10 ? "0" + days : days}</span>:<span>{hours < 10 ? "0" + hours : hours}</span>:<span>{minutes < 10 ? "0" + minutes : minutes}</span>:<span>{seconds < 10 ? "0" + seconds : seconds}</span>
       </div>
       <div id="timer-control">
-        <button onClick={start}>Start</button>
-        <button onClick={pause}>Pause</button>
+        {isRunning ? 
+        <button onClick={pause}>Pause</button> : <button onClick={start}>Start</button> }
       </div>
     </div>
   );

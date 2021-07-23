@@ -14,9 +14,7 @@ class Habit extends React.Component {
     return (
       <div>
         <div className="drag-handle">
-          <div>
-            Three dots here
-          </div>
+          <i className="fas fa-ellipsis-h"></i>
         </div>
         <div id="todo-title">{habit.title}</div>
         <div id="complete-delete">
