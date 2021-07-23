@@ -32,7 +32,7 @@
       transform: translateX(-50%);
       font-size: 14px;
       color: white;
-      line-height: 40px; width: 160px; height: 40px;
+      line-height: 40px; width: 60%; height: 40px;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
@@ -61,6 +61,9 @@
 
 .todo-description {
   text-align: center;
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 15px;
 }
 
 #complete-delete {
@@ -90,32 +93,35 @@
 
 .progress {
   display: flex;
-  justify-content: space-between;
-  width: 100px;
-  margin: 20px auto;
+  justify-content: space-evenly;
+  width: calc(100% - 50px);
+  margin: 0px auto;
+  padding: 0px 20px;
   font-size: 16px;
-  > .counter-buttons > button {
-    font-size: 16px;
-    height: 22px; width: 22px;
-    line-height: 20px;
-    border: 1px solid black;
-    border-radius: 50%;
-    transition: background-color 0.2s;
-    &:hover {
-      cursor: pointer;
-      background-color: rgba(255,255,255,0.07);
+  > .counter-buttons {
+    display: flex;
+    > button {
+      font-size: 16px;
+      height: 22px; width: 22px;
+      line-height: 20px;
+      border: 1px solid black;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+      &:first-child { margin-right: 10px; }
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(255,255,255,0.07);
+      }
     }
   }
 }
 
 .time-left {
-  margin-top: 20px;
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
 }
 
 .timer {
-  margin-top: 20px;
   text-align: center;
   > div { font-size: 14px; }
 
@@ -124,6 +130,14 @@
     img {
       width: 20px;
       height: 20px;
+      &.play-btn { width: 15px; }
     }
   }
+}
+
+.progress, .timer, .time-left {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 10px;
 }

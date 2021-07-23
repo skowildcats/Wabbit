@@ -11,7 +11,7 @@
 #splash {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-color: $light-green-2;
+  background-color: $light-green-0;
   > img {
     position: absolute;
     top: calc(50% - 40px); left: 50%;
@@ -28,7 +28,7 @@
   font-size: 18px;
   color: white;
   letter-spacing: 2px;
-  background-color: $green-1;
+  background-color: $green-0;
   border-radius: 5px;
   box-shadow: 3px 7px 10px $light-green-4;
   transition: all 0.2s;
