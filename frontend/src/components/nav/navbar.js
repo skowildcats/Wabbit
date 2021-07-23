@@ -9,7 +9,15 @@ class NavBar extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.loggedIn) {this.props.getCurrentUser(this.props.currentUser.id)};
+    if (this.props.loggedIn) {
+      this.props.getCurrentUser(this.props.currentUser.id)
+      .then(({ currentUser }) => {
+        const style = getComputedStyle(document.body);
+        currentUser.theme.map((color, i) => {
+          style.setPropertyValue(`--theme-${i}`, color);
+        })
+      })
+    };
   }
 
   getLinks() {

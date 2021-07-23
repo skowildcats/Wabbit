@@ -40,7 +40,11 @@ class LoginForm extends React.Component {
       password: this.state.password
     };
 
-    this.props.login(user).then(() => {
+    this.props.login(user).then(({ currentUser }) => {
+      const style = getComputedStyle(document.body);
+      currentUser.theme.map((color, i) => {
+        style.setPropertyValue(`--theme-${i}`, color);
+      })
       if (Object.values(this.state.errors).length) {
         window.$("#submit").effect("shake")   
       }

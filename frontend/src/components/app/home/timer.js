@@ -9,9 +9,7 @@ export default function Timer({ expiryTimestamp }) {
     days,
     isRunning,
     start,
-    pause,
-    resume,
-    restart,
+    pause
   } = useTimer({ expiryTimestamp, onExpire: () => pause() });
 
   const totalHours = hours + ( days * 24 );
