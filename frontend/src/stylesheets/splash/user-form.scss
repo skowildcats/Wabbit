@@ -41,6 +41,24 @@
     box-shadow: 0px 0px 15px $dark-green-0;
     animation: float-in-center 0.2s;
 
+    > button {
+      box-sizing: border-box;
+      width: 300px;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 3px;
+      border: 1px solid $light-green-3;
+      margin-bottom: 10px; border: none;
+        color: white;
+        background-color: $green-0;
+        transition: all 0.2s;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $green-1;
+        }
+    }
+
     > input {
       box-sizing: border-box;
       width: 300px;
@@ -93,7 +111,9 @@
   }
 }
 
-#login-form > form {height: 200px;}
+#login-form > form {height: 245px;}
 #signup-form > form {height: 375px;}
 
+
+#login-form > h1 { top: calc(50% - 178.5px);}
 #signup-form > h1 { top: calc(50% - 243.5px);}

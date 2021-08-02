@@ -89,8 +89,9 @@ class LoginForm extends React.Component {
               placeholder="Password"
               className={errors ? "has-errors" : ""}
             />
-            <input id="submit" type="submit" value="Log in" />
-            <p>Don't have an account? </p>
+            <input id="submit" type="submit" value="Log in" />  
+            <button id="demo-user">Demo User </button>
+              <p>Don't have an account? </p>
             <Link to="/signup">Register now</Link>
           </form>
         </div>
