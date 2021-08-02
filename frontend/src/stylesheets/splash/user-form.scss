@@ -66,6 +66,8 @@
       margin-top: 20px;
       &:first-of-type { margin-top: 27px; }
 
+      &:last-of-type { margin-bottom: 20px; }
+
       font-size: 14px;
       border-radius: 3px;
       border: 1px solid $light-green-3;
