@@ -9,14 +9,16 @@ import Loader from '../home/loader'
 
 export default function Metrics(props){
   const [loading, setLoading] = useState(true)
+  const [newUser, setNewUser] = useState(false);
   useEffect(() => {
+    console.log(props)
     props.fetchMetrics(props.userId).then(data => {
       setLoading(false)
+    }).catch(err => {
+      setNewUser(true);
+      setLoading(false);
     })
   }, []);
-  let habitStyle = { //later we wll dynamically style the habits
-
-  }
 
   //this page probably will need a loading page later
   if (loading) return <div id="loading"><Loader /></div>;
