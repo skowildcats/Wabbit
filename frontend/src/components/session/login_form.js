@@ -45,6 +45,7 @@ class LoginForm extends React.Component {
       currentUser.theme.map((color, i) => {
         app.style.setProperty(`--theme-${i+1}`, color);
       });
+    }).catch(() => {
       if (Object.values(this.state.errors).length) {
         window.$("#submit").effect("shake")   
       }
