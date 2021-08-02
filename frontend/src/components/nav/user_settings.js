@@ -102,12 +102,12 @@ export default class UserSettings extends React.Component {
           </p>
           {this.state.userUpdateFormOpen ? (
             <form id="user-update-form" className="user-settings-form">
+              <label htmlFor="update-email">EMAIL</label>
+              <input type="text" id="update-email" onChange={(e) => this.updateField(e, "email")} value={this.state.email} readOnly/>
               <label htmlFor="update-first-name">FIRST NAME</label>
               <input type="text" id="update-first-name" onChange={(e) => this.updateField(e, "firstName")} value={this.state.firstName} />
               <label htmlFor="update-last-name">LAST NAME</label>
               <input type="text" id="update-last-name" onChange={(e) => this.updateField(e, "lastName")} value={this.state.lastName} />
-              <label htmlFor="update-email">EMAIL</label>
-              <input type="text" id="update-email" onChange={(e) => this.updateField(e, "email")} value={this.state.email} />
               <label htmlFor="update-password">CURRENT PASSWORD</label>
               <input type="password" id="update-password" />
               <div className="form-nav">
