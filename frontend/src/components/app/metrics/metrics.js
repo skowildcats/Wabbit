@@ -9,14 +9,9 @@ import Loader from '../home/loader'
 
 export default function Metrics(props){
   const [loading, setLoading] = useState(true)
-  const [newUser, setNewUser] = useState(false);
   useEffect(() => {
-    console.log(props)
     props.fetchMetrics(props.userId).then(data => {
       setLoading(false)
-    }).catch(err => {
-      setNewUser(true);
-      setLoading(false);
     })
   }, []);
 
@@ -46,31 +41,43 @@ export default function Metrics(props){
     color2 = props.colors[3]
   }
   return (
-    <div className="metrics-page">
-      <div className="header">
-        <div className="this-week">{startOfWeek} – {endOfWeek}</div>
-        {/* <div className="habit">
-          <img src={`/api/files/image/${props.metrics.habit.icon}`} alt="Icon-placeholder" className="icon" />
-          <p>{props.metrics ? props.metrics.habit.title : "Habit"}</p>
-            <div className="checkboxes">
-              {progressTracker}
-            </div>
-        </div> */}
-      </div>
-      <div className="bar-graph">
-        <p className="graph-title">Task Completion for this Week</p>
-        <BarGraph color1={color1} color2={color2} data={setupBarGraphData(props.metrics.onTimeByWeekday, props.metrics.lateByWeekday)}/>
-      </div>
+      <div className="metrics-page">
+        <div className="header">
+          <div className="this-week">{startOfWeek} – {endOfWeek}</div>
+          {/* <div className="habit">
+            <img src={`/api/files/image/${props.metrics.habit.icon}`} alt="Icon-placeholder" className="icon" />
+            <p>{props.metrics ? props.metrics.habit.title : "Habit"}</p>
+              <div className="checkboxes">
+                {progressTracker}
+              </div>
+          </div> */}
+        </div>
 
-      <div className="pie-chart">
-        <p className="graph-title">Percentage of Tasks Completed</p>
-        <PieChart color1={color1} color2={color2} data1={setupPieCount(props.metrics.count, props.metrics.percentOnTime)} data2={setupPieComplete(props.metrics.percentComplete)}/>
-      </div>
+        {props.metrics.count > 0 ? 
+        <>
+          <div className="bar-graph">
+            <p className="graph-title">Task Completion for this Week</p>
+            <BarGraph color1={color1} color2={color2} data={setupBarGraphData(props.metrics.onTimeByWeekday, props.metrics.lateByWeekday)}/>
+          </div>
 
-      <div className="line-graph">
-        <p className="graph-title">Lifetime Task Completions</p>
-        <LineGraph color1={color1} color2={color2} data={setupLineGraphData(props.metrics.taskDonePerWeek)}/>
+          <div className="pie-chart">
+            <p className="graph-title">Percentage of Tasks Completed</p>
+            <PieChart color1={color1} color2={color2} data1={setupPieCount(props.metrics.count, props.metrics.percentOnTime)} data2={setupPieComplete(props.metrics.percentComplete)}/>
+          </div>
+
+          <div className="line-graph">
+            <p className="graph-title">Lifetime Task Completions</p>
+            <LineGraph color1={color1} color2={color2} data={setupLineGraphData(props.metrics.taskDonePerWeek)}/>
+          </div>
+        </>
+        : 
+        <>
+        <div id="no-metrics">Finish some tasks to see more in depth data on task completions</div>
+        <div className="line-graph">
+            <p className="graph-title">Lifetime Task Completions</p>
+            <LineGraph color1={color1} color2={color2} data={setupLineGraphData(props.metrics.taskDonePerWeek)}/>
+        </div>
+        </>}
       </div>
-    </div>
   )
 }
