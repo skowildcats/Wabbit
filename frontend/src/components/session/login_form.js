@@ -54,7 +54,9 @@ class LoginForm extends React.Component {
     })
   } 
 
-  loginDemo() {
+  loginDemo(e) {
+    e.preventDefault()
+    
     document.getElementById("submit").disabled = true
     let user = {
       email: "demo@demo.com",
