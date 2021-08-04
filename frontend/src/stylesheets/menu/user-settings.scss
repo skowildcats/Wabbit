@@ -37,14 +37,13 @@
 
   #user-settings-nav {
     position: absolute;
-    top: 100px; left: 100px; right: calc(70% - 5px); bottom: 100px;
+    top: 100px; left: 100px; right: 70%; bottom: 100px;
     box-sizing: border-box;
     height: calc(100vh - 200px);
     padding: 100px 0px;
     background: white;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
-    box-shadow: 0px 0px 10px var(--theme-2);
 
     > li {
       padding: 3px 50px;
@@ -72,8 +71,6 @@
     background: white;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
-    box-shadow: 0px 0px 10px var(--theme-2);
-    clip-path: inset(-100% -100% -100% 3px);
 
     &::before {
       content: "";
@@ -178,28 +175,36 @@
 #palettes {
   display: flex;
   flex-direction: column;
-  > .palette-name {
-    position: relative;
-    width: 100px;
-    text-align: right;
-    margin-top: 10px;
-    margin-left: -20px;
-    margin-bottom: -30px;
-    font-size: 12px;
-    letter-spacing: 1px;
-    color: $dark-grey-1;
-    z-index: 1;
-    &:first-child { margin-top: 30px;}
-  }
-  > .palette {
-    display: flex;
-    justify-content: flex-end;
-    padding: 3px 0px;
+  
+  > .palette-row {
+    padding: 3px;
+
     &:hover, &.selected {
-      cursor: pointer;
-      background-color: $light-grey-0;
-      border-radius: 5px;
+        cursor: pointer;
+        background-color: $light-grey-0;
+        border-radius: 5px;
+      }
+    &.selected, &.selected * { cursor: default; }
+
+    &:first-child { margin-top: 30px;}
+
+    > .palette-name {
+      position: absolute;
+      width: 100px;
+      text-align: right;
+      margin-top: 13px;
+      margin-left: -20px;
+      margin-bottom: -30px;
+      font-size: 12px;
+      line-height: 20px;
+      letter-spacing: 1px;
+      color: $dark-grey-1;
     }
-    &.selected { cursor: default; }
+
+    > .palette {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 3px;
+    }
   }
 }
