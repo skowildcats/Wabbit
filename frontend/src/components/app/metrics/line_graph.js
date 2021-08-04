@@ -15,7 +15,7 @@ export default class LineGraph extends Component {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" label="Week" />
+          <XAxis dataKey="date" />
           <YAxis allowDecimals={false}/>
           <Tooltip />
           <Legend />
