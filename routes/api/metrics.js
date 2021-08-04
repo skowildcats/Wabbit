@@ -16,10 +16,13 @@ router.get('/:userId',async (req,res)=>{
 
     let count = await Task.countDocuments({user: req.params.userId})
     let habit = await Habit.findOne({user: req.params.userId, recurrence: "Daily"});
-    let habitTasks = metricsUtil.filterByStartDate(
-      await Task.find({habit: habit._id}),
-      7
-    );
+    let habitTasks;
+    if(habit){
+        habitTasks = metricsUtil.filterByStartDate(
+        await Task.find({habit: habit._id}),
+        7
+      );
+    }
     res.json({
       taskDonePerWeek: metricsUtil.tasksDonePerWeek(past10Weeks),
       lateByWeekday: metricsUtil.lateByWeekday(tasks),

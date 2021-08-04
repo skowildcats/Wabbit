@@ -1,3 +1,4 @@
+import { deleteModel } from 'mongoose';
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -11,7 +12,8 @@ class LoginForm extends React.Component {
       errors: {}
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.loginUser = this.loginUser.bind(this);
+    this.loginDemo = this.loginDemo.bind(this)
   }
 
   // Once the user has been authenticated, redirect to the Tweets page
@@ -32,7 +34,7 @@ class LoginForm extends React.Component {
   }
 
   // Handle form submission
-  handleSubmit(e) {
+  loginUser(e) {
     e.preventDefault();
 
     let user = {
@@ -44,12 +46,32 @@ class LoginForm extends React.Component {
       const app = document.getElementById("app");
       if(currentUser) {currentUser.theme.map((color, i) => {
         app.style.setProperty(`--theme-${i+1}`, color);
-      });}
+      });
+    }).catch(() => {
       if (Object.values(this.state.errors).length) {
         window.$("#submit").effect("shake")   
       }
     })
   } 
+
+  loginDemo(e) {
+    e.preventDefault()
+    
+    document.getElementById("submit").disabled = true
+    let user = {
+      email: "demo@demo.com",
+      password: "password"
+    };
+
+    this.props.login(user).then(({ currentUser }) => {
+      const app = document.getElementById("app"); 
+      currentUser.theme.map((color, i) => {
+        app.style.setProperty(`--theme-${i+1}`, color);
+      });
+    }).catch(() => {
+      console.log("sucess")
+    })
+  }
 
   errors() {
     if (Object.values(this.state.errors.length)) {
@@ -88,8 +110,9 @@ class LoginForm extends React.Component {
               placeholder="Password"
               className={errors ? "has-errors" : ""}
             />
-            <input id="submit" type="submit" value="Log in" />
-            <p>Don't have an account? </p>
+            <button id="submit" onClick={this.loginUser}> Log in </button> 
+            <button onClick={this.loginDemo}>Demo User </button>
+              <p>Don't have an account? </p>
             <Link to="/signup">Register now</Link>
           </form>
         </div>
