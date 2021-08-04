@@ -115,7 +115,7 @@ router.post('/login', async (req, res) => {
   const isMatch = await bcrypt.compare(password, user.password)
   if (!isMatch) return res.status(400).json({password: 'Incorrect password'})
 
-  const payload = {id: user.id, username: user.username, theme: user.theme}
+  const payload = {id: user.id, username: user.username, theme: user.theme, walkthrough: user.walkthrough}
   jwt.sign(payload, 
     keys.secretOrKey,
     {expiresIn: 3600},

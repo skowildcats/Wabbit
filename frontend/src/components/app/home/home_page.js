@@ -8,6 +8,7 @@ import CreateTaskMenuContainer from '../header/create_task/create_task_menu_cont
 import OpenMenuButton from './buttons/create_task_button';
 import Loader from './loader';
 import moment from 'moment'
+import Walkthrough from './walkthrough/walkthrough';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -82,8 +83,10 @@ class HomePage extends React.Component {
         return null;
       }
     })
+    console.log(this.props);
     return (
       <>
+        { !this.props.user.walkthrough ? <Walkthrough open={true}/> : null}
         <div id="home-page">
           <ul id="button-list">
             <OpenMenuButton openMenu={() => this.setMenuOpen(true, "task", "TASK")} text={"NEW TASK"}/>
