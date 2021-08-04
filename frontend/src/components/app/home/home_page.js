@@ -17,9 +17,11 @@ class HomePage extends React.Component {
       loading: true,
       menuOpen: false,
       actionType: null,
-      menuText: ''
+      menuText: '',
+      walkthroughOpen: !this.props.user.walkthrough,
     }
-    this.setMenuOpen.bind(this);
+    this.setMenuOpen = this.setMenuOpen.bind(this);
+    this.setWalkthrough = this.setWalkthrough.bind(this)
   }
 
   //sets menu open with actionType corresponding to whether its making a task or a habit
@@ -28,6 +30,12 @@ class HomePage extends React.Component {
       menuOpen: val,
       actionType: type,
       menuText: text
+    })
+  }
+
+  setWalkthrough(val){
+    this.setState({
+      walkthroughOpen: val
     })
   }
 
@@ -86,7 +94,7 @@ class HomePage extends React.Component {
     console.log(this.props);
     return (
       <>
-        { !this.props.user.walkthrough ? <Walkthrough open={true}/> : null}
+        { !this.props.user.walkthrough ? <Walkthrough setWalkthrough={this.setWalkthrough} open={true}/> : null}
         <div id="home-page">
           <ul id="button-list">
             <OpenMenuButton openMenu={() => this.setMenuOpen(true, "task", "TASK")} text={"NEW TASK"}/>
