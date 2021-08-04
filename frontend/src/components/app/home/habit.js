@@ -8,10 +8,10 @@ class Habit extends React.Component {
   }
 
   render() {
-    const {habit} = this.props
+    const {habit, id} = this.props
 
     return (
-      <div>
+      <div id={`habit_${id}`}>
         <div className="drag-handle">
           <i className="fas fa-ellipsis-h"></i>
         </div>

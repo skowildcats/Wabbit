@@ -52,6 +52,10 @@ class HomePage extends React.Component {
       delay: 50,
       tolerance: "pointer",
       containment: "parent",
+      update: function(e, ui) {
+        let data = window.$(this).sortable('serialize')
+        console.log(data) 
+      }
     })
     window.$( "#sortable" ).disableSelection();
   }
@@ -70,14 +74,14 @@ class HomePage extends React.Component {
     const tasks = this.props.tasks.map(task => {
       switch(task.type){
         case 'progress':
-          return <Progression task={task} key={task._id} />
+          return <Progression task={task} key={task._id} id={task._id}/>
         case 'countdown':
           if(moment(task.dueDate) < moment()) return null;
-          return <Countdown task={task} key={task._id} />
+          return <Countdown task={task} key={task._id} id={task._id}/>
         case 'task':
-          return <Task task={task} key={task._id} />
+          return <Task task={task} key={task._id} id={task._id}/>
         case 'timedGoal':
-          return <TimedGoal task={task} key={task._id} />
+          return <TimedGoal task={task} key={task._id} id={task._id}/>
         default: 
         return null;
       }
@@ -93,7 +97,7 @@ class HomePage extends React.Component {
           </ul>
           <ul id="habits" className="sortable">
             {this.props.habits.map(habit => {
-              return <Habit habit={habit} key={habit._id} />
+              return <Habit habit={habit} key={habit._id} id={habit._id}/>
             })}
           </ul>
           <ul id="tasks" className="sortable">
