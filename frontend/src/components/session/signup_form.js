@@ -47,7 +47,7 @@ class SignupForm extends React.Component {
       if(currentUser) {currentUser.theme.map((color, i) => {
         app.style.setProperty(`--theme-${i+1}`, color);
       });
-    }).catch(() => {
+    }}).catch(() => {
       if (Object.values(this.state.errors).length) {
         window.$("#submit").effect("shake")   
       }
