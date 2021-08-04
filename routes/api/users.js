@@ -83,20 +83,21 @@ router.put('/password',passport.authenticate('jwt', {session: false}),async (req
 // route for updating name/theme
 
 router.put('/info', passport.authenticate('jwt', {session: false}), async (req,res)=>{
-  const {email,firstName,lastName, theme} = req.body
+  const {email,firstName,lastName, theme, walkthrough} = req.body
   const user = await User.findOne({email})
-
   user.firstName = firstName
   user.lastName = lastName
   user.theme = theme
-
+  user.walkthrough = walkthrough
   await user.save()
+  console.log(user)
   res.json({
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
     id: user._id,
-    theme: user.theme
+    theme: user.theme,
+    walkthrough: user.walkthrough
   })
 })
 
@@ -141,7 +142,8 @@ router.get('/:userId',async(req,res)=>{
     lastName: user.lastName,
     email: user.email,
     id: user._id,
-    theme: user.theme
+    theme: user.theme,
+    walkthrough: user.walkthrough
   })
 })
 

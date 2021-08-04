@@ -37,7 +37,10 @@
     margin-top: 40px;
   }
 
-  .bar-graph, .line-graph, .pie-chart { height: 350px; }
+  .bar-graph, .line-graph, .pie-chart { 
+    min-height: 300px;
+    max-height: 400px;
+  }
 
   .pie-chart > .header { margin-bottom: -30px; }
 
