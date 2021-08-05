@@ -73,10 +73,14 @@
 //           delete newTask.completedAt
 //         }
 //         let task = await newTask.save()
+//         user.tasks.push(task._id)
 //         console.log(task)
 //       }
-//       const tasks = await Task.find({user: userId})
-//       for(let task of tasks){
+//       await user.save()
+//       // const tasks = await Task.find({user: userId})
+//       const tasks = user.tasks
+//       for(let taskId of tasks){
+//         const task = await Task.findById(taskId)
 //         task.createdAt = _pushBackDays(70,today)
 //         let result = await task.save()
 //         console.log(result)
@@ -87,15 +91,15 @@
 // }
 
 
-// helper functions
-function _pushBackDays(numDays,date){
-  const day = 24*60*60*1000
-  date = new Date(date)
-  date.setTime(date.getTime()-(day*numDays))
-  return date
-}
+// // helper functions
+// function _pushBackDays(numDays,date){
+//   const day = 24*60*60*1000
+//   date = new Date(date)
+//   date.setTime(date.getTime()-(day*numDays))
+//   return date
+// }
 
 
-function _getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
+// function _getRandomInt(max) {
+//   return Math.floor(Math.random() * max);
+// }

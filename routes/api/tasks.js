@@ -25,7 +25,7 @@ router.post("/new", async (req, res) => {
   });
   await newTask.save();
   const taskUser = await User.findById(newTask.user)
-  taskUser.tasks.push(newTask._id)
+  taskUser.tasks.push(newTask)
   await taskUser.save()
   res.json(newTask);
 });
@@ -88,22 +88,10 @@ router.get("/all/:userId", async (req, res) => {
     process.env.LAST_CHECK = today
     refreshHabits(req.params.userId)
   }
-  
-  //get tasks
+
+  //retrieve tasks from user
   const user = await User.findById(req.params.userId)
-  const tasks = await user.tasks.map(async (task_id)=>{
-  //   let temp
-  //   Task.findById(task._id).then(response=>{
-  //     temp = response
-  //   })
-  //   return task
-    debugger
-    let response = await Task.findById(task_id)
-    debugger
-    // return await Task.findById(task_id)
-    return response
-  })
-  debugger
+  const tasks = await Promise.all(user.tasks.map((id)=>Task.findById(id)))
   res.json(tasks);
 });
 
