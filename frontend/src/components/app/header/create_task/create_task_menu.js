@@ -23,9 +23,10 @@ export default function CreateTaskMenu(props) {
       setIcon(task.icon);
       setTitle(task.title);
       setDescription(task.description)
-      
+      if(task.dueDate) setDueDate(moment(task.dueDate).format('YYYY-MM-DD'));
     }
-  })
+  }, [props])
+
   useEffect(() => {
     props.fetchImages();
   }, [])
@@ -80,7 +81,7 @@ export default function CreateTaskMenu(props) {
       title,
       description,
       recurrence,
-      dueDate: (dueDate ? dueDate : goalTime),
+      dueDate: (dueDate ? moment(dueDate) : goalTime),
       daysOfTheWeek,
       user: props.userId,
       color: selected,
@@ -208,7 +209,7 @@ export default function CreateTaskMenu(props) {
         {type !== "timedGoal" && recurrence === "Never" ? 
         (<div className="form-field">
           <label htmlFor="dueDate">{type==='countdown' ? "DATE COMPLETED" : "DEADLINE"}</label>
-          <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date} />
+          <input type="date" defaultValue={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date}/>
         </div>)
         : null}
 
