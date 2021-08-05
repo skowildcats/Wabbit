@@ -24,6 +24,9 @@ router.post("/new", async (req, res) => {
     currentProgress: req.body.currentProgress,
   });
   await newTask.save();
+  const taskUser = await User.findById(newTask.user)
+  taskUser.tasks.push(newTask)
+  await taskUser.save()
   res.json(newTask);
 });
 
@@ -86,7 +89,8 @@ router.get("/all/:userId", async (req, res) => {
     refreshHabits(req.params.userId)
   }
   let filter = moment().subtract(1, 'days').toDate()
-  tasks = await Task.find({ user: req.params.userId, dueDate: {$gt: filter}});
+  const user = await User.findById(req.params.userId)
+  const tasks = user.tasks.filter(task=>task.dueDate>filter)
   res.json(tasks);
 });
 
@@ -104,7 +108,7 @@ router.delete("/:taskId", async (req, res) => {
 router.post('/order', async (req,res)=>{
   const tasks = req.body.tasks
   for(const [index,task] of tasks.entries()){
-    const updateTask = Task.findById(task._id)
+    const updateTask = await Task.findById(task._id)
     updateTask.index = index
     await updateTask.save()
   }

@@ -21,6 +21,10 @@ const UserSchema = new Schema({
   theme: {
     type: Array,
     default: ["#eeeeee", "#d8d8d8", "#cacaca", "#808791", "#6c737c", "#5e6570", "#434349", "#26252b", "#1f1f1f" ],
+  },
+  tasks: {
+    type: Array,
+    default: []
   }
 },{
   timestamps: true
