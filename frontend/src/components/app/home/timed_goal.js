@@ -3,11 +3,11 @@ import moment from 'moment'
 import Timer from './timer'
 import { DeleteTaskButton } from './buttons/delete_task_button'
 export default function TimedGoal(props) {
-  const {task} = props
+  const {task, id} = props
   console.log(task)
   const [time, setTime] = useState(moment(task.goalTime).toDate())
   return (
-    <div className="task">
+    <div className="task" id={`task_${id}`}>
       <div className="drag-handle">
         <i className="fas fa-ellipsis-h"></i>
       </div>

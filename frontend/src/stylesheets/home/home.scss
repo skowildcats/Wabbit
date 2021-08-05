@@ -11,7 +11,7 @@
     &:hover:not(.visiting) { color: var(--theme-8); background-color: var(--theme-1); }
   }
   .visiting:hover { cursor: default; }
-  a.visiting:not(#home-btn) { background-color: var(--theme-2); }
+  a.visiting:not(#home-btn) { background-color: $light-grey-1; }
   #home-btn.visiting { filter: brightness(0) invert(0.9); }
 }
 
