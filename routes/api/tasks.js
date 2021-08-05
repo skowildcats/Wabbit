@@ -98,8 +98,11 @@ router.get("/all/:userId", async (req, res) => {
 // delete a task
 router.delete("/:taskId", async (req, res) => {
   try {
+    const task = await Task.findById(req.params.taskId)
+    const userId = task.user
+    await User.findByIdAndUpdate(userId, {$pull: {tasks: task._id}});
     await Task.deleteOne({ _id: req.params.taskId });
-    res.json({ msg: "deleted successfully" });
+    res.json({ msg: "deleted successfully", task});
   } catch (error) {
     console.log(error);
   }
