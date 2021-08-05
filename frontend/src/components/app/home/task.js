@@ -1,6 +1,7 @@
 import React from 'react';
 import ToggleCompletedButton from './buttons/toggle_completed_button'
 import DeleteTaskButton from './buttons/delete_task_button'
+import EditTaskButton from './buttons/edit_task_button'
 
 class Task extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class Task extends React.Component {
         <div id="complete-delete">
           <ToggleCompletedButton task={task} />
           <DeleteTaskButton taskId={task._id} />
+          <EditTaskButton task={task}/>
         </div>
       </div>
     );

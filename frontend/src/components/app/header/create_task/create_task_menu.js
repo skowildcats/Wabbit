@@ -17,6 +17,16 @@ export default function CreateTaskMenu(props) {
   const type = props.actionType;
 
   useEffect(() => {
+    const { task } = props;
+    if(task){
+      setSelected(task.color)
+      setIcon(task.icon);
+      setTitle(task.title);
+      setDescription(task.description)
+      
+    }
+  })
+  useEffect(() => {
     props.fetchImages();
   }, [])
 
@@ -108,7 +118,7 @@ export default function CreateTaskMenu(props) {
       <div className="overlay" onClick={closeMenu}></div>
       <div className="create-task-menu">
         <div className="header">
-          <h1>CREATE A {props.menuText ? props.menuText : ""}</h1>
+          <h1>{props.action === 'create' ? "CREATE A" : "EDIT A"} {props.menuText ? props.menuText : ""}</h1>
           <span onClick={closeMenu}>&times;</span>
         </div>
 

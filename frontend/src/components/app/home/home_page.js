@@ -111,7 +111,7 @@ class HomePage extends React.Component {
             {tasks}
           </ul>
         </div>
-        <CreateTaskMenuContainer menuText={this.state.menuText} actionType={this.state.actionType} open={this.state.menuOpen} closeMenu={() => this.setMenuOpen(false)}/>
+        <CreateTaskMenuContainer action="create" menuText={this.state.menuText} actionType={this.state.actionType} open={this.state.menuOpen} closeMenu={() => this.setMenuOpen(false)}/>
       </>
     );
   }
