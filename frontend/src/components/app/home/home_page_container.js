@@ -6,7 +6,8 @@ import HomePage from './home_page';
 const mapStateToProps = (state) => ({
   tasks: Object.values(state.entities.tasks),
   habits: Object.values(state.entities.habits),
-  userId: state.session.user.id
+  userId: state.session.user.id,
+  user: state.session.user
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -25,6 +25,10 @@ const UserSchema = new Schema({
   tasks: {
     type: Array,
     default: []
+  },
+  walkthrough: {
+    type: Boolean,
+    default: false
   }
 },{
   timestamps: true

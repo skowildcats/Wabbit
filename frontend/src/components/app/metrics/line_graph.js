@@ -6,8 +6,6 @@ export default class LineGraph extends Component {
     return (
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
-          width={500}
-          height={300}
           data={this.props.data}
           margin={{
             top: 5,
@@ -17,7 +15,7 @@ export default class LineGraph extends Component {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" label="Week" />
+          <XAxis dataKey="date" />
           <YAxis allowDecimals={false}/>
           <Tooltip />
           <Legend />

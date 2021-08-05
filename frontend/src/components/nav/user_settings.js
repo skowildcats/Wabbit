@@ -48,24 +48,8 @@ export default class UserSettings extends React.Component {
     this.props.history.push("/");
   }
 
-  _colorBubbles(palette) {
-    return (
-      <>
-        <p className="palette-name">{palette[0]}</p>
-        <ul className={this.state.selectedTheme === palette[0] ? "palette selected" : "palette"} onClick={e => this.updateTheme(e, palette)}>
-          {palette.slice(1).map(color => {
-            const style = { backgroundColor: color };
-            return (
-              <li className="color-bubble" key={`${palette.slice(0,1)}-${color}`} style={style}></li>
-            );
-          })}
-        </ul>
-      </>
-    )
-  }
-
-  colorOptions() {
-    const palettes = [
+  palettes() {
+    return [
       ["MIDNIGHT", "#eeeeee", "#d8d8d8", "#cacaca", "#808791", "#6c737c", "#5e6570", "#434349", "#26252b", "#1f1f1f"],
       ["ROSE", "#eeeeee", "#d8d8d8", "#cacaca", "#c2b4b4", "#aa9393", "#816969", "#706262", "#2b2525", "#1f1f1f"],
       ["FOREST", "#eeeeee", "#d8d8d8", "#cacaca", "#9c9c95", "#85857c", "#525c53", "#574d43", "#252b25", "#1f1f1f"],
@@ -73,10 +57,31 @@ export default class UserSettings extends React.Component {
       ["SEASHORE", "#eeeeee", "#d8d8d8", "#cacaca", "#dbb7ab", "#d39e93", "#4a818d", "#3f6d77", "#252b2b", "#1f1f1f"],
       ["COFFEE", "#eeeeee", "#d8d8d8", "#cacaca", "#daccb0", "#cab894", "#585475", "#413d5c", "#252b2b", "#1f1f1f"]
     ];
+  }
+
+  _colorBubbles(palette) {
+    const theme = this.state.selectedTheme
+      || this.palettes().filter(palette => palette[4] === this.props.currentUser.theme[3])[0][0];
 
     return (
+      <div key={palette[0]} className={theme === palette[0] ? "palette-row selected" : "palette-row"} onClick={e => this.updateTheme(e, palette)}>
+        <p className="palette-name">{palette[0]}</p>
+        <ul className="palette">
+          {palette.slice(1).map(color => {
+            const style = { backgroundColor: color };
+            return (
+              <li className="color-bubble" key={`${palette[0]}-${color}`} style={style}></li>
+            );
+          })}
+        </ul>
+      </div>
+    )
+  }
+
+  colorOptions() {
+    return (
       <ul id="palettes">
-        {palettes.map(palette => this._colorBubbles(palette))}
+        {this.palettes().map(palette => this._colorBubbles(palette))}
       </ul>
     );
   }
@@ -102,12 +107,12 @@ export default class UserSettings extends React.Component {
           </p>
           {this.state.userUpdateFormOpen ? (
             <form id="user-update-form" className="user-settings-form">
+              <label htmlFor="update-email">EMAIL</label>
+              <input type="text" id="update-email" onChange={(e) => this.updateField(e, "email")} value={this.state.email} readOnly/>
               <label htmlFor="update-first-name">FIRST NAME</label>
               <input type="text" id="update-first-name" onChange={(e) => this.updateField(e, "firstName")} value={this.state.firstName} />
               <label htmlFor="update-last-name">LAST NAME</label>
               <input type="text" id="update-last-name" onChange={(e) => this.updateField(e, "lastName")} value={this.state.lastName} />
-              <label htmlFor="update-email">EMAIL</label>
-              <input type="text" id="update-email" onChange={(e) => this.updateField(e, "email")} value={this.state.email} />
               <label htmlFor="update-password">CURRENT PASSWORD</label>
               <input type="password" id="update-password" />
               <div className="form-nav">

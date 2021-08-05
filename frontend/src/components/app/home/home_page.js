@@ -8,6 +8,7 @@ import CreateTaskMenuContainer from '../header/create_task/create_task_menu_cont
 import OpenMenuButton from './buttons/create_task_button';
 import Loader from './loader';
 import moment from 'moment'
+import Walkthrough from './walkthrough/walkthrough';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -16,9 +17,11 @@ class HomePage extends React.Component {
       loading: true,
       menuOpen: false,
       actionType: null,
-      menuText: ''
+      menuText: '',
+      walkthroughOpen: !this.props.user.walkthrough,
     }
-    this.setMenuOpen.bind(this);
+    this.setMenuOpen = this.setMenuOpen.bind(this);
+    this.setWalkthrough = this.setWalkthrough.bind(this)
   }
 
   //sets menu open with actionType corresponding to whether its making a task or a habit
@@ -27,6 +30,12 @@ class HomePage extends React.Component {
       menuOpen: val,
       actionType: type,
       menuText: text
+    })
+  }
+
+  setWalkthrough(val){
+    this.setState({
+      walkthroughOpen: val
     })
   }
 
@@ -52,6 +61,10 @@ class HomePage extends React.Component {
       delay: 50,
       tolerance: "pointer",
       containment: "parent",
+      update: function(e, ui) {
+        let data = window.$(this).sortable('serialize')
+        console.log(data) 
+      }
     })
     window.$( "#sortable" ).disableSelection();
   }
@@ -77,20 +90,22 @@ class HomePage extends React.Component {
     const tasks = this.props.tasks.map(task => {
       switch(task.type){
         case 'progress':
-          return <Progression task={task} key={task._id} />
+          return <Progression task={task} key={task._id} id={task._id}/>
         case 'countdown':
           if(moment(task.dueDate) < moment()) return null;
-          return <Countdown task={task} key={task._id} />
+          return <Countdown task={task} key={task._id} id={task._id}/>
         case 'task':
-          return <Task task={task} key={task._id} />
+          return <Task task={task} key={task._id} id={task._id}/>
         case 'timedGoal':
-          return <TimedGoal task={task} key={task._id} toggle={this._toggle(task)}/>
+          return <TimedGoal task={task} key={task._id} id={task._id}/>
         default: 
         return null;
       }
     })
+    console.log(this.props);
     return (
       <>
+        { !this.props.user.walkthrough ? <Walkthrough setWalkthrough={this.setWalkthrough} open={true}/> : null}
         <div id="home-page">
           <ul id="button-list">
             <OpenMenuButton openMenu={() => this.setMenuOpen(true, "task", "TASK")} text={"NEW TASK"}/>
@@ -100,7 +115,7 @@ class HomePage extends React.Component {
           </ul>
           <ul id="habits" className="sortable">
             {this.props.habits.map(habit => {
-              return <Habit habit={habit} key={habit._id} />
+              return <Habit habit={habit} key={habit._id} id={habit._id}/>
             })}
           </ul>
           <ul id="tasks" className="sortable">
