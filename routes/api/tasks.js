@@ -100,6 +100,17 @@ router.delete("/:taskId", async (req, res) => {
   }
 });
 
+//persist order of tasks to backend
+router.post('/order', async (req,res)=>{
+  const tasks = req.body.tasks
+  for(const [index,task] of tasks.entries()){
+    const updateTask = Task.findById(task._id)
+    updateTask.index = index
+    await updateTask.save()
+  }
+  res.json({msg: 'order updated'})
+})
+
 
 async function refreshHabits(userId){
   const habits = await Habit.find({user: userId})

@@ -65,6 +65,9 @@ const TaskSchema = new Schema({
   },
   pauseStart: {
     type: Date
+  },
+  index: {
+    type: Number
   }
 },{
   timestamps: true

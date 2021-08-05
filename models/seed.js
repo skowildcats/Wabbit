@@ -14,6 +14,7 @@
 //   .then(()=>Habit.deleteMany())
 //   .then(()=>User.deleteMany())
 //   .then(()=>seed())
+//   .then(()=>console.log('Success'))
 //   .catch(err => console.log(err));
 
 
