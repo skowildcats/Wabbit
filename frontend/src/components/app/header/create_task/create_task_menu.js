@@ -6,10 +6,10 @@ import moment from 'moment'
 export default function CreateTaskMenu(props) {
   const [selected, setSelected] = useState('');
   const [icon, setIcon] = useState('');
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
-  const [recurrence, setRecurrence] = useState("Never")
+  const [recurrence, setRecurrence] = useState("Never");
   const [increment, setIncrement] = useState(1);
   const [maxProgress, setMaxProgress] = useState(1); //maxProgress
   const [minutes, setMinutes] = useState(0);
@@ -237,7 +237,7 @@ export default function CreateTaskMenu(props) {
 
         <div className="form-submit">
           <button onClick={closeMenu}>Cancel</button>
-          <button onClick={handleSubmit}>{props.taskAction === 'create' ? "Create" : "Edit"}Task</button>
+          <button onClick={handleSubmit}>{props.taskAction === 'create' ? "Create" : "Edit"} Task</button>
         </div>
       </div>
     </div>, document.getElementById('portal')

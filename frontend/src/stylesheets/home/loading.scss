@@ -3,8 +3,8 @@
   top: 0; left: 0; right: 0; bottom: 0;
   z-index: 1;
   background-color: var(--theme-4);
+  transition: opacity 500ms;
 }
-
 #loading > * {
   position: absolute;
   top: 50%; left: 50%;
