@@ -4,7 +4,6 @@ import Timer from './timer'
 import { DeleteTaskButton } from './buttons/delete_task_button'
 export default function TimedGoal(props) {
   const {task} = props
-  console.log(task)
   return (
     <div className="task">
       <div className="drag-handle">

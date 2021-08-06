@@ -99,7 +99,6 @@ export default function CreateTaskMenu(props) {
       } else {
         newTodo._id = props.task._id
         props.updateTask(newTodo).then(data => {
-          console.log(data)
           closeMenu();
         })
       }
@@ -143,6 +142,7 @@ export default function CreateTaskMenu(props) {
           <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" id="description"/>
         </div>
 
+        {props.taskAction === 'create' ? 
         <div className="form-field">
           <label htmlFor="recurrence">REPEAT </label>
           <select name="recurrence" onChange={(e) => setRecurrence(e.target.value)} id="recurrence" defaultValue="Never">
@@ -193,6 +193,7 @@ export default function CreateTaskMenu(props) {
           </div>
           : null}
         </div>
+        : null} 
         
         {type === 'progress' ? 
         <div className="form-field">
