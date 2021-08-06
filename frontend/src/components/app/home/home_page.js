@@ -9,7 +9,7 @@ import OpenMenuButton from './buttons/create_task_button';
 import Loader from './loader';
 import moment from 'moment'
 import Walkthrough from './walkthrough/walkthrough';
-import {updateTaskOrder} from '../../../util/tasks_util';
+import {updateTask, updateTaskOrder} from '../../../util/tasks_util';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -23,6 +23,7 @@ class HomePage extends React.Component {
     }
     this.setMenuOpen = this.setMenuOpen.bind(this);
     this.setWalkthrough = this.setWalkthrough.bind(this)
+    this._minusOneSecond= this._minusOneSecond.bind(this)
   }
 
   //sets menu open with actionType corresponding to whether its making a task or a habit
@@ -74,19 +75,13 @@ class HomePage extends React.Component {
     window.$(".sortable").sortable("destroy")
   }
 
-  _toggle(task){
-    return ()=>{
-      task.paused = !task.paused
-      this.props.updateTask(task)
-    }
+  _minusOneSecond(task){
+    task.secondsLeft--
+    this.props.updateTask(task)
   }
 
   render() {
     if (this.state.loading) return <div id="loading"><Loader /></div>;
-
-    //unecessary
-    // const {todos} = this.props 
-    // let habits = [], tasks = []
 
     const tasks = this.props.tasks.map(task => {
       switch(task.type){
@@ -98,7 +93,7 @@ class HomePage extends React.Component {
         case 'task':
           return <Task task={task} key={task._id} id={task._id}/>
         case 'timedGoal':
-          return <TimedGoal task={task} key={task._id} id={task._id}/>
+          return <TimedGoal task={task} key={task._id} id={task._id} minusOneSecond={()=>this._minusOneSecond(task)}/>
         default: 
         return null;
       }

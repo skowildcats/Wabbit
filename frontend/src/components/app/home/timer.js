@@ -1,40 +1,63 @@
 import React, { useEffect, useState } from 'react';
-import { useTimer } from 'react-timer-hook';
 
-export default function Timer({ expiryTimestamp,toggle}) {
-  const {
-    seconds,
-    minutes,
-    hours,
-    days,
-    isRunning,
-    start,
-    pause
-  } = useTimer({ expiryTimestamp, onExpire: () => pause() });
+export default function Timer({secondsLeft,minusOneSecond}) {
+  
+  const[time,setTime] = useState(fromSecondsToTime(secondsLeft))
+  const[isRunning,toggleRunning] = useState(false)
+  const[timer,setTimer] = useState(null)
 
-  const totalHours = hours + ( days * 24 );
+  function _handleClick(){
+    toggleRunning(!isRunning)
+  }
+
+  //play and pause timer
+  useEffect(()=>{
+    if(isRunning) {
+      setTimer(setInterval(minusOneSecond,1000))
+      console.log('play')
+    }else{
+      clearInterval(timer)
+      setTimer(null)
+      console.log('pause')
+    }
+  },[isRunning])
+
+  //update display of timer
+  useEffect(()=>{
+    setTime(fromSecondsToTime(secondsLeft))
+    if(secondsLeft<=0){
+      clearInterval(timer)
+      setTimer(null)
+    }
+  },[secondsLeft])
 
   return (
     <div className="timer">
       <div>
-        <span>{totalHours < 10 ? "0" + totalHours : totalHours}</span>:
-        <span>{minutes < 10 ? "0" + minutes : minutes}</span>:
-        <span>{seconds < 10 ? "0" + seconds : seconds}</span>
+        <span>{time.hours < 10 ? "0" + time.hours : time.hours}</span>:
+        <span>{time.minutes < 10 ? "0" + time.minutes : time.minutes}</span>:
+        <span>{time.seconds < 10 ? "0" + time.seconds : time.seconds}</span>
       </div>
       <div className="timer-control">
         {isRunning ? (
-          <button onClick={pause} onMouseDown={toggle}>
+          <button onClick={_handleClick}>
             <img src={process.env.PUBLIC_URL + "/pause.svg"} alt="pause" />
           </button>
         ) : (
-          <button onClick={start}>
-            <img className="play-btn" src={process.env.PUBLIC_URL + "/play.svg"} alt="play" />
+          <button onClick={_handleClick}>
+            <img src={process.env.PUBLIC_URL + "/play.svg"} alt="play" />
           </button>
         )}
-        {/* <button onClick={resume}>
-          resume
-        </button> */}
       </div>
     </div>
   );
 }
+
+function fromSecondsToTime(secondsLeft){
+  const seconds = secondsLeft%60
+  const minutesLeft = Math.floor(secondsLeft/60)
+  const minutes = minutesLeft%60
+  const hours = Math.floor(minutesLeft/60)
+  return {seconds,minutes,hours}
+}
+
