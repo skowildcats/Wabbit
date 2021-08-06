@@ -16,7 +16,6 @@ export default function CreateTaskMenu(props) {
   const [hours, setHours] = useState(0);
   const type = props.actionType;
 
-  console.log(props.task);
   useEffect(() => {
     const { task } = props;
     if(task){
@@ -238,7 +237,7 @@ export default function CreateTaskMenu(props) {
 
         <div className="form-submit">
           <button onClick={closeMenu}>Cancel</button>
-          <button onClick={handleSubmit}>Create Task</button>
+          <button onClick={handleSubmit}>{props.taskAction === 'create' ? "Create" : "Edit"}Task</button>
         </div>
       </div>
     </div>, document.getElementById('portal')
