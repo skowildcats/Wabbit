@@ -90,7 +90,6 @@ router.put('/info', passport.authenticate('jwt', {session: false}), async (req,r
   user.theme = theme
   user.walkthrough = walkthrough
   await user.save()
-  console.log(user)
   res.json({
     firstName: user.firstName,
     lastName: user.lastName,

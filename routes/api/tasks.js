@@ -34,7 +34,6 @@ router.post("/new", async (req, res) => {
 router.put("/:taskId", async (req, res) => {
   try {
     const task = await Task.findById(req.params.taskId);
-    console.log(`Received Goaltime: ${task.goalTime.toString()}`)
 
     //changing completedAt when completed is toggled
     if (!task.completed && req.body.completed) {
@@ -78,7 +77,7 @@ router.get("/all/:userId", async (req, res) => {
   //retrieve tasks from user
   const user = await User.findById(req.params.userId)
   const tasks = await Promise.all(user.tasks.map((id)=>Task.findById(id)))
-  res.json(tasks);
+  res.json(tasks.filter(task=>task));
 });
 
 // delete a task

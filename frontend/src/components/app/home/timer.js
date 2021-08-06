@@ -1,14 +1,30 @@
 import React, { useEffect, useState } from 'react';
 
-export default function Timer({secondsLeft}) {
+export default function Timer({secondsLeft,minusOneSecond}) {
   
-  const time = fromSecondsToTime(secondsLeft)
-
+  const[time,setTime] = useState(fromSecondsToTime(secondsLeft))
   const[isRunning,toggleRunning] = useState(false)
+  const[timer,setTimer] = useState(null)
 
-  function _handleClick(){
+  async function _handleClick(){
     toggleRunning(!isRunning)
   }
+
+  useEffect(()=>{
+    if(isRunning) {
+      setTimer(setInterval(minusOneSecond,1000))
+      console.log('play')
+    }else{
+      clearInterval(timer)
+      setTimer(null)
+      console.log('pause')
+    }
+  },[isRunning])
+
+  useEffect(()=>{
+    setTime(fromSecondsToTime(secondsLeft))
+  },[secondsLeft])
+
   return (
     <div className="timer">
       <div>
@@ -38,3 +54,4 @@ function fromSecondsToTime(secondsLeft){
   const hours = Math.floor(minutesLeft/60)
   return {seconds,minutes,hours}
 }
+
