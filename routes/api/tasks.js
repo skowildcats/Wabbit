@@ -31,6 +31,8 @@ router.post("/new", async (req, res) => {
 router.put("/:taskId", async (req, res) => {
   try {
     const task = await Task.findById(req.params.taskId);
+    console.log(`Received Goaltime: ${task.goalTime.toString()}`)
+
     //changing completedAt when completed is toggled
     if (!task.completed && req.body.completed) {
       task.completedAt = new Date();
@@ -38,21 +40,33 @@ router.put("/:taskId", async (req, res) => {
       task.completedAt = null;
     }
     //changing the endtime for timers when timer is unpaused
-    if(req.body.paused && !task.paused){
-
-      task.pauseStart = new Date()
-
-    } else if (!req.body.paused && task.paused && task.pauseStart){
-
-      const now = new Date()
-      req.body.goalTime = task.goalTime.setTime(task.goalTime.getTime() + (now.getTime()-task.pauseStart.getTime()))
+    if(req.body.type === 'timedGoal'){
+      if(req.body.paused && !task.paused){
+        console.log('Pause')
+        task.pauseStart = new Date()
+        console.log(`Pause started at: ${task.pauseStart.toString()}`)
+        
+        
+      } else if (!req.body.paused && task.paused && task.pauseStart){
+        console.log('Play')
+        const now = new Date()
+        const changeInGoalTime = now.getTime()-task.pauseStart.getTime()
+        console.log(`Initial Goaltime: ${task.goalTime.toString()}`)
+        console.log(`Difference: ${changeInGoalTime/1000}`)
+        task.goalTime.setTime(task.goalTime.getTime() + changeInGoalTime)
+      }
     }
-      //updating the rest of the fields
+    //updating the rest of the fields
     for (field in req.body) {
+      if(field === 'goalTime' || field==='pauseStart') continue
       task[field] = req.body[field];
     }
-    console.log(task)
     await task.save();
+    
+    console.log(`Saved Goaltime: ${task.goalTime.toString()}`)
+    task.goalTime.setTime(100)
+    console.log(`Sent Goaltime: ${task.goalTime}`)
+    console.log('                                        ')
     res.json(task);
   } catch (error) {
     console.log(error);
@@ -104,8 +118,3 @@ async function refreshHabits(userId){
 
 
 module.exports = router;
-
-// user: 60f588bb3ee3cb100f85728c
-// task1: 60f5aa5dbebcb620da43d32f
-// task2: 60f5ab937372de2144b5f2d0
-// token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZjU4OGJiM2VlM2NiMTAwZjg1NzI4YyIsInVzZXJuYW1lIjoiam8iLCJpYXQiOjE2MjY3MTI1ODgsImV4cCI6MTYyNjcxNjE4OH0.bf_A9qfXNedVktiyaPWDOvstUsBkoSS6IONYHJXzq0k

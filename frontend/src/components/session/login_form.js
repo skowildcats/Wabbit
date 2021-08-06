@@ -41,7 +41,6 @@ class LoginForm extends React.Component {
     };
 
     this.props.login(user).then(({ currentUser }) => {
-      debugger
       const app = document.getElementById("app");
       currentUser.theme.map((color, i) => {
         app.style.setProperty(`--theme-${i+1}`, color);

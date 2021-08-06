@@ -19,6 +19,7 @@ class HomePage extends React.Component {
       menuText: ''
     }
     this.setMenuOpen.bind(this);
+    this._toggle = this._toggle.bind(this)
   }
 
   //sets menu open with actionType corresponding to whether its making a task or a habit

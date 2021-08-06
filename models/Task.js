@@ -61,7 +61,7 @@ const TaskSchema = new Schema({
   },
   paused: {
     type: Boolean,
-    default: true
+    default: false
   },
   pauseStart: {
     type: Date
