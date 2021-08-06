@@ -6,8 +6,6 @@ import MetricsContainer from './app/metrics/metrics_container';
 // import Upload from './files/upload';
 // import Files from './files/files'
 import HomePageContainer from './app/home/home_page_container';
-
-import Header from './app/header/header';
 import Splash from './splash/splash';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
@@ -20,7 +18,6 @@ const App = () => (
     <Switch>
         {/* <Route path="/upload" component={Upload} /> */}
         {/* <Route path='/files' component={Files}/> */}
-        <Route path="/header-test" component={Header}/>
         <ProtectedRoute path='/metrics' component={MetricsContainer} />
         <ProtectedRoute path="/home" component={HomePageContainer} />
         <AuthRoute path="/login" component={LoginFormContainer} />

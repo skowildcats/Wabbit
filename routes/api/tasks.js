@@ -24,6 +24,9 @@ router.post("/new", async (req, res) => {
     currentProgress: req.body.currentProgress,
   });
   await newTask.save();
+  const taskUser = await User.findById(newTask.user)
+  taskUser.tasks.push(newTask)
+  await taskUser.save()
   res.json(newTask);
 });
 
@@ -71,20 +74,40 @@ router.get("/all/:userId", async (req, res) => {
     process.env.LAST_CHECK = today
     refreshHabits(req.params.userId)
   }
-  let filter = moment().subtract(1, 'days').toDate()
-  tasks = await Task.find({ user: req.params.userId});
+
+  //retrieve tasks from user
+  const user = await User.findById(req.params.userId)
+  const tasks = await Promise.all(user.tasks.map((id)=>Task.findById(id)))
   res.json(tasks);
 });
 
 // delete a task
 router.delete("/:taskId", async (req, res) => {
   try {
+    const task = await Task.findById(req.params.taskId)
+    const userId = task.user
+    await User.findByIdAndUpdate(userId, {$pull: {tasks: task._id}});
     await Task.deleteOne({ _id: req.params.taskId });
-    res.json({ msg: "deleted successfully" });
+    res.json({ msg: "deleted successfully", task});
   } catch (error) {
     console.log(error);
   }
 });
+
+//persist order of tasks to backend
+router.post('/order', async (req,res)=>{
+  const tasks = req.body.tasks
+  for(const [index, task] of tasks.entries()){
+    let id = task.slice(5)
+    console.log(id)
+    console.log(Task.findById(id))
+    const updateTask = await Task.findById(id)
+    console.log(updateTask)
+    updateTask.index = index
+    await updateTask.save()
+  }
+  res.json({msg: 'order updated'})
+})
 
 
 async function refreshHabits(userId){

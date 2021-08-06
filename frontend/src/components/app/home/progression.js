@@ -2,9 +2,9 @@ import React from 'react'
 import IncrementButton from './buttons/increment_button'
 import DeleteTaskButton from './buttons/delete_task_button'
 export default function Progression(props){
-  const {task} = props
+  const {task, id} = props
   return (
-    <div className="task"> 
+    <div className="task" id={`task_${id}`}> 
       <div className="drag-handle">
         <i className="fas fa-ellipsis-h"></i>
       </div>

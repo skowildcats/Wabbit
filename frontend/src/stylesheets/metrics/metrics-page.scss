@@ -37,7 +37,10 @@
     margin-top: 40px;
   }
 
-  .bar-graph, .line-graph, .pie-chart { height: 350px; }
+  .bar-graph, .line-graph, .pie-chart { 
+    min-height: 350px;
+    max-height: 450px;
+  }
 
   .pie-chart > .header { margin-bottom: -30px; }
 
@@ -178,4 +181,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#no-metrics{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 500;
 }

@@ -6,8 +6,6 @@ export default class BarGraph extends Component{
     return (
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
-          width={500}
-          height={300}
           data={this.props.data}
           margin={{
             top: 20,
