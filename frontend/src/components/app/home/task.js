@@ -18,8 +18,8 @@ export default function Task(props){
       <div id="complete-delete">
         <ToggleCompletedButton task={task} />
         <DeleteTaskButton taskId={task._id} />
-        <EditTaskButton setMenuOpen={props.setMenuOpen} task={task}/>
       </div>
+        <EditTaskButton setMenuOpen={props.setMenuOpen} task={task}/>
     </div>
   );
 }
