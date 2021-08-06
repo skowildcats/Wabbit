@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchTasks, updateTask, updateTaskOrder } from '../../../actions/task_actions';
+import { fetchTasks, updateTask} from '../../../actions/task_actions';
 import { fetchHabits } from '../../../actions/habit_actions';
 import HomePage from './home_page';
 
@@ -14,7 +14,6 @@ const mapDispatchToProps = dispatch => ({
   fetchTasks: userId => dispatch(fetchTasks(userId)),
   fetchHabits: userId => dispatch(fetchHabits(userId)),
   updateTask: task => dispatch(updateTask(task)),
-  updateTaskOrder: taskArr => dispatch(updateTaskOrder(taskArr))
 })
 
 export default connect(
