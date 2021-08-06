@@ -8,10 +8,10 @@ class Task extends React.Component {
   }
 
   render() {
-    const {task} = this.props
+    const {task, id} = this.props
 
     return (
-      <div className="task">
+      <div className="task" id={`_${id}`}>
         <div className="drag-handle">
           <i className="fas fa-ellipsis-h"></i>
         </div>
