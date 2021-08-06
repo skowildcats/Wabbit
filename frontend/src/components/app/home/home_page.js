@@ -103,7 +103,7 @@ class HomePage extends React.Component {
         return null;
       }
     })
-    console.log(this.props);
+
     return (
       <>
         { !this.props.user.walkthrough ? <Walkthrough setWalkthrough={this.setWalkthrough} open={true}/> : null}

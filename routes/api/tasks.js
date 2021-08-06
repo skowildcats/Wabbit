@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const express = require("express");
 const router = express.Router();
 const Task = require("../../models/Task");
@@ -107,12 +108,9 @@ router.delete("/:taskId", async (req, res) => {
 //persist order of tasks to backend
 router.post('/order', async (req,res)=>{
   const tasks = req.body.tasks
+  console.log(tasks)
   for(const [index, task] of tasks.entries()){
-    let id = task.slice(5)
-    console.log(id)
-    console.log(Task.findById(id))
-    const updateTask = await Task.findById(id)
-    console.log(updateTask)
+    const updateTask = await Task.findById(mongoose.Types.ObjectId(task.slice(1)))
     updateTask.index = index
     await updateTask.save()
   }
