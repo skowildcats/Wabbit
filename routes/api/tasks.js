@@ -107,8 +107,12 @@ router.delete("/:taskId", async (req, res) => {
 //persist order of tasks to backend
 router.post('/order', async (req,res)=>{
   const tasks = req.body.tasks
-  for(const [index,task] of tasks.entries()){
-    const updateTask = await Task.findById(task._id)
+  for(const [index, task] of tasks.entries()){
+    let id = task.slice(5)
+    console.log(id)
+    console.log(Task.findById(id))
+    const updateTask = await Task.findById(id)
+    console.log(updateTask)
     updateTask.index = index
     await updateTask.save()
   }

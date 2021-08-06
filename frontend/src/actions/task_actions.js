@@ -44,3 +44,7 @@ export const deleteTask = (taskId) => dispatch => (
   .catch(err => console.log(err))
 )
 
+export const updateTaskOrder = (taskArr) => dispatch => (
+  TaskUtil.updateTaskOrder(taskArr).then(() => {})
+  .catch(err => console.log(err))
+)

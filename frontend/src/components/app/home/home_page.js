@@ -9,6 +9,7 @@ import OpenMenuButton from './buttons/create_task_button';
 import Loader from './loader';
 import moment from 'moment'
 import Walkthrough from './walkthrough/walkthrough';
+import {updateTaskOrder} from '../../../util/tasks_util';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -62,8 +63,8 @@ class HomePage extends React.Component {
       tolerance: "pointer",
       containment: "parent",
       update: function(e, ui) {
-        let data = window.$(this).sortable('serialize')
-        console.log(data) 
+        let data = window.$(this).sortable('toArray')
+        updateTaskOrder({"tasks": data})
       }
     })
     window.$( "#sortable" ).disableSelection();
