@@ -92,9 +92,17 @@ export default function CreateTaskMenu(props) {
       maxProgress
     }
     if(recurrence === 'Never'){
-      props.createTask(newTodo).then(data => {
-        closeMenu();
-      })
+      if(props.taskAction === 'create'){
+        props.createTask(newTodo).then(data => {
+          closeMenu();
+        })
+      } else {
+        newTodo._id = props.task._id
+        props.updateTask(newTodo).then(data => {
+          console.log(data)
+          closeMenu();
+        })
+      }
     } else {
       props.createHabit(newTodo).then(data => {
         closeMenu();
@@ -119,7 +127,7 @@ export default function CreateTaskMenu(props) {
       <div className="overlay" onClick={closeMenu}></div>
       <div className="create-task-menu">
         <div className="header">
-          <h1>{props.action === 'create' ? "CREATE A" : "EDIT A"} {props.menuText ? props.menuText : ""}</h1>
+          <h1>{props.taskAction === 'create' ? "CREATE A" : "EDIT A"} {props.menuText ? props.menuText : ""}</h1>
           <span onClick={closeMenu}>&times;</span>
         </div>
 

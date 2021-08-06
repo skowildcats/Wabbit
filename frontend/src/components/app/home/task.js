@@ -23,7 +23,7 @@ class Task extends React.Component {
         <div id="complete-delete">
           <ToggleCompletedButton task={task} />
           <DeleteTaskButton taskId={task._id} />
-          <EditTaskButton task={task}/>
+          <EditTaskButton setMenuOpen={this.props.setMenuOpen} task={task}/>
         </div>
       </div>
     );
