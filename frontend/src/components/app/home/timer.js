@@ -6,10 +6,11 @@ export default function Timer({secondsLeft,minusOneSecond}) {
   const[isRunning,toggleRunning] = useState(false)
   const[timer,setTimer] = useState(null)
 
-  async function _handleClick(){
+  function _handleClick(){
     toggleRunning(!isRunning)
   }
 
+  //play and pause timer
   useEffect(()=>{
     if(isRunning) {
       setTimer(setInterval(minusOneSecond,1000))
@@ -21,8 +22,13 @@ export default function Timer({secondsLeft,minusOneSecond}) {
     }
   },[isRunning])
 
+  //update display of timer
   useEffect(()=>{
     setTime(fromSecondsToTime(secondsLeft))
+    if(secondsLeft<=0){
+      clearInterval(timer)
+      setTimer(null)
+    }
   },[secondsLeft])
 
   return (
