@@ -14,11 +14,9 @@ export default function Timer({secondsLeft,minusOneSecond}) {
   useEffect(()=>{
     if(isRunning) {
       setTimer(setInterval(minusOneSecond,1000))
-      console.log('play')
     }else{
       clearInterval(timer)
       setTimer(null)
-      console.log('pause')
     }
   },[isRunning])
 
