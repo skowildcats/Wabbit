@@ -62,7 +62,7 @@ export default function CreateTaskMenu(props) {
     }
 
     if(type === 'timedGoal'){
-      secondsLeft = (hours*60+minutes)*60
+      secondsLeft = (parseInt(hours)*60+parseInt(minutes))*60
     }
 
     let newTodo = {
