@@ -58,6 +58,16 @@ const TaskSchema = new Schema({
   currentProgress: {
     type: Number,
     default: 0
+  },
+  paused: {
+    type: Boolean,
+    default: true
+  },
+  pauseStart: {
+    type: Date
+  },
+  index: {
+    type: Number
   }
 },{
   timestamps: true

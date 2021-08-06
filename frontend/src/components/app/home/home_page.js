@@ -73,6 +73,13 @@ class HomePage extends React.Component {
     window.$(".sortable").sortable("destroy")
   }
 
+  _toggle(task){
+    return ()=>{
+      task.paused = !task.paused
+      this.props.updateTask(task)
+    }
+  }
+
   render() {
     if (this.state.loading) return <div id="loading"><Loader /></div>;
 
