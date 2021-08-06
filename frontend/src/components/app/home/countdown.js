@@ -3,7 +3,7 @@ import moment from 'moment'
 import DeleteTaskButton from './buttons/delete_task_button'
 import EditTaskButton from './buttons/edit_task_button'
 export default function Countdown(props){
-  let { task } = props
+  let { task, id} = props
   function calcDiff(){
     let diffDays = moment(task.dueDate).diff(moment(), 'days')
     if(diffDays > 0) return diffDays + " days";
@@ -14,7 +14,7 @@ export default function Countdown(props){
   }
   return (
     <>
-    <div className="task">
+    <div className="task" id={`task_${id}`}>
       <div className="drag-handle">
         <i className="fas fa-ellipsis-h"></i>
       </div>

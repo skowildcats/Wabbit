@@ -19,3 +19,9 @@ export const updateTask = (taskData) => {
 export const deleteTask = (taskId) => {
   return axios.delete(`/api/tasks/${taskId}`)
 }
+
+export const updateTaskOrder = (taskArr) => {
+  return axios.post('/api/tasks/order', taskArr).then(res => {
+    console.log(res)}).catch(err => {
+      console.log(err)})
+}

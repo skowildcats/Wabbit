@@ -1,12 +1,14 @@
-import React from 'react'
-import moment from 'moment'
+import React,{useState,useEffect} from 'react'
 import Timer from './timer'
-import EditTaskButton from './buttons/edit_task_button';
-import { DeleteTaskButton } from './buttons/delete_task_button'
+import DeleteTaskButton from './buttons/delete_task_button'
 export default function TimedGoal(props) {
-  const {task} = props
+  const {task,toggle,id,minusOneSecond} = props
+  const [secondsLeft, setTime] = useState(task.secondsLeft)
+  useEffect(()=>{
+    setTime(task.secondsLeft)
+  },[task.secondsLeft])
   return (
-    <div className="task">
+    <div className="task" id={`task_${id}`}>
       <div className="drag-handle">
         <i className="fas fa-ellipsis-h"></i>
       </div>
@@ -15,7 +17,7 @@ export default function TimedGoal(props) {
         <p className="todo-description">{task.description}</p>
       </div>
       <div className="time">
-        <Timer expiryTimestamp={moment(task.goalTime).toDate()}/>
+        <Timer secondsLeft={task.secondsLeft} minusOneSecond={minusOneSecond}/>
         <DeleteTaskButton taskId={task._id} />
       </div>
       <EditTaskButton setMenuOpen={props.setMenuOpen} task={task}/>

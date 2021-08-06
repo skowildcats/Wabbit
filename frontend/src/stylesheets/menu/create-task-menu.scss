@@ -6,10 +6,10 @@
 
 .create-task-menu {
   position: absolute;
-  right: 0;
-  height: 100%;
+  top: 0; right: 0; bottom: 0;
   width: 500px;
   transform: translateX(150%);
+  overflow-y: scroll;
 
   display: flex;
   flex-direction: column;
@@ -48,6 +48,7 @@
       font-size: 14px;
       letter-spacing: 0.2px;
       color: $dark-grey-4;
+      &:not(:first-of-type) { margin-top: 10px; }
     }
     > input, select {
       box-sizing: border-box;
@@ -112,20 +113,21 @@
 .color-bubble > img { bottom: -3px; right: -3px; width: 5px; height: 5px;}
 
 .form-submit {
-  position: absolute;
-  left: 30px; bottom: 16px;
   display: flex;
+  padding: 20px 30px 16px;
   align-items: center;
+  border-top: 1px solid rgb(201, 201, 201);
 }
 
 .form-submit > button {
   margin-right: 16px;
   font-size: 16px; // make this one standardized unit larger than base size
   &:first-child {
+    padding: 2px 0px;
     color: $dark-grey-4;
     &:hover {
       cursor: pointer;
-      padding: 2px 0px;
+      padding-bottom: 1px;
       border-bottom: 1px solid $dark-grey-4;
     }
   }
