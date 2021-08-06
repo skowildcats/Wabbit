@@ -16,6 +16,7 @@ export default function CreateTaskMenu(props) {
   const [hours, setHours] = useState(0);
   const type = props.actionType;
 
+  console.log(props.task);
   useEffect(() => {
     const { task } = props;
     if(task){
@@ -24,6 +25,8 @@ export default function CreateTaskMenu(props) {
       setTitle(task.title);
       setDescription(task.description)
       if(task.dueDate) setDueDate(moment(task.dueDate).format('YYYY-MM-DD'));
+      setIncrement(task.increment)
+      setMaxProgress(task.maxProgress)
     }
   }, [props])
 

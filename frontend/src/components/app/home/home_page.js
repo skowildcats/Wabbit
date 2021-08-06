@@ -76,10 +76,6 @@ class HomePage extends React.Component {
   render() {
     if (this.state.loading) return <div id="loading"><Loader /></div>;
 
-    //unecessary
-    // const {todos} = this.props 
-    // let habits = [], tasks = []
-
     const tasks = this.props.tasks.map(task => {
       switch(task.type){
         case 'progress':
