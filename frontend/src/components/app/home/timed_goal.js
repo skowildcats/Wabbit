@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import Timer from './timer'
+import EditTaskButton from './buttons/edit_task_button';
 import { DeleteTaskButton } from './buttons/delete_task_button'
 export default function TimedGoal(props) {
   const {task} = props
@@ -17,6 +18,7 @@ export default function TimedGoal(props) {
         <Timer expiryTimestamp={moment(task.goalTime).toDate()}/>
         <DeleteTaskButton taskId={task._id} />
       </div>
+      <EditTaskButton setMenuOpen={props.setMenuOpen} task={task}/>
     </div>
   )
 }

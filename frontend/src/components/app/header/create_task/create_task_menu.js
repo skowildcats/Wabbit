@@ -10,8 +10,8 @@ export default function CreateTaskMenu(props) {
   const [description, setDescription] = useState('')
   const [dueDate, setDueDate] = useState('');
   const [recurrence, setRecurrence] = useState("Never")
-  const [increment, setIncrement] = useState(undefined);
-  const [maxProgress, setMaxProcess] = useState(undefined); //maxProgress
+  const [increment, setIncrement] = useState(1);
+  const [maxProgress, setMaxProgress] = useState(1); //maxProgress
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
   const type = props.actionType;
@@ -42,9 +42,9 @@ export default function CreateTaskMenu(props) {
   if(props.open === false) return null;
 
   function closeMenu(){
-    let initial = ['', '', '', '', '', 'Never', undefined, undefined, 0, 0];
+    let initial = ['', '', '', '', '', 'Never', 1, 1, 0, 0];
     [setSelected, setIcon, setTitle, setDescription, setDueDate,
-       setRecurrence, setIncrement, setMaxProcess, setMinutes, setHours
+       setRecurrence, setIncrement, setMaxProgress, setMinutes, setHours
     ].forEach((f, idx) => {
       f(initial[idx]) //reset all state variables to clean up
     })
@@ -201,7 +201,7 @@ export default function CreateTaskMenu(props) {
           <input type="number" value={increment} onChange={(e) => setIncrement(e.target.value)}/>
 
           <label htmlFor="goal">GOAL</label>
-          <input type="number" value={maxProgress} onChange={(e) => setMaxProcess(e.target.value)}/>
+          <input type="number" value={maxProgress} onChange={(e) => setMaxProgress(e.target.value)}/>
         </div>
         : null}
 
