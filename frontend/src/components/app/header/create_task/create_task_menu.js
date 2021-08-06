@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import ReactDOM  from 'react-dom'
 import ColorPalette from './color_palette'
-
+import moment from 'moment'
 export default function CreateTaskMenu(props) {
   const [selected, setSelected] = useState('');
   const [icon, setIcon] = useState('');
@@ -13,10 +13,10 @@ export default function CreateTaskMenu(props) {
   const [maxProgress, setMaxProgress] = useState(1); //maxProgress
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
-  const type = props.actionType;
 
+  const type = props.actionType;
+  const { task } = props;
   useEffect(() => {
-    const { task } = props;
     if(task){
       setSelected(task.color)
       setIcon(task.icon);
@@ -36,6 +36,10 @@ export default function CreateTaskMenu(props) {
     if(props.open === true){
       let menu = document.querySelector('.create-task-menu')
       if(menu) menu.classList.toggle('active') //toggle active selector
+      if(task){
+        setHours(Math.floor(task.secondsLeft / 3600))
+        setMinutes(Math.floor((task.secondsLeft % 3600) / 60))
+      }
     }
   }, [props.open])
 
