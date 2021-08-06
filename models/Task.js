@@ -40,9 +40,6 @@ const TaskSchema = new Schema({
     type: String  //this 
     //Options - progress - countdown - timedGoal - task
   },
-  goalTime: {
-    type: Date
-  },
   counter: {
     type: Number
   },
@@ -59,12 +56,8 @@ const TaskSchema = new Schema({
     type: Number,
     default: 0
   },
-  paused: {
-    type: Boolean,
-    default: false
-  },
-  pauseStart: {
-    type: Date
+  secondsLeft: {
+    type: Number
   }
 },{
   timestamps: true

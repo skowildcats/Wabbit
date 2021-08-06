@@ -15,7 +15,7 @@ router.post("/new", async (req, res) => {
     dueDate: req.body.dueDate,
     color: req.body.color,
     icon: req.body.icon,
-    goalTime: req.body.goalTime,
+    secondsLeft: req.body.secondsLeft,
     increment: req.body.increment,
     counter: req.body.counter,
     countdown: req.body.countdown,
@@ -40,33 +40,12 @@ router.put("/:taskId", async (req, res) => {
       task.completedAt = null;
     }
     //changing the endtime for timers when timer is unpaused
-    if(req.body.type === 'timedGoal'){
-      if(req.body.paused && !task.paused){
-        console.log('Pause')
-        task.pauseStart = new Date()
-        console.log(`Pause started at: ${task.pauseStart.toString()}`)
-        
-        
-      } else if (!req.body.paused && task.paused && task.pauseStart){
-        console.log('Play')
-        const now = new Date()
-        const changeInGoalTime = now.getTime()-task.pauseStart.getTime()
-        console.log(`Initial Goaltime: ${task.goalTime.toString()}`)
-        console.log(`Difference: ${changeInGoalTime/1000}`)
-        task.goalTime.setTime(task.goalTime.getTime() + changeInGoalTime)
-      }
-    }
+    
     //updating the rest of the fields
     for (field in req.body) {
-      if(field === 'goalTime' || field==='pauseStart') continue
       task[field] = req.body[field];
     }
     await task.save();
-    
-    console.log(`Saved Goaltime: ${task.goalTime.toString()}`)
-    task.goalTime.setTime(100)
-    console.log(`Sent Goaltime: ${task.goalTime}`)
-    console.log('                                        ')
     res.json(task);
   } catch (error) {
     console.log(error);
@@ -93,7 +72,7 @@ router.get("/all/:userId", async (req, res) => {
     refreshHabits(req.params.userId)
   }
   let filter = moment().subtract(1, 'days').toDate()
-  tasks = await Task.find({ user: req.params.userId, dueDate: {$gt: filter}});
+  tasks = await Task.find({ user: req.params.userId});
   res.json(tasks);
 });
 

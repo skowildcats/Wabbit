@@ -19,7 +19,6 @@ class HomePage extends React.Component {
       menuText: ''
     }
     this.setMenuOpen.bind(this);
-    this._toggle = this._toggle.bind(this)
   }
 
   //sets menu open with actionType corresponding to whether its making a task or a habit
@@ -60,20 +59,8 @@ class HomePage extends React.Component {
   componentWillUnmount() {
     window.$(".sortable").sortable("destroy")
   }
-
-  _toggle(task){
-    return ()=>{
-      task.paused = !task.paused
-      this.props.updateTask(task)
-    }
-  }
-
   render() {
     if (this.state.loading) return <div id="loading"><Loader /></div>;
-
-    //unecessary
-    // const {todos} = this.props 
-    // let habits = [], tasks = []
 
     const tasks = this.props.tasks.map(task => {
       switch(task.type){
@@ -85,7 +72,7 @@ class HomePage extends React.Component {
         case 'task':
           return <Task task={task} key={task._id} />
         case 'timedGoal':
-          return <TimedGoal task={task} key={task._id} toggle={this._toggle(task)}/>
+          return <TimedGoal task={task} key={task._id}/>
         default: 
         return null;
       }

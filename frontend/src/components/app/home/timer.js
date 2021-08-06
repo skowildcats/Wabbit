@@ -1,40 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import { useTimer } from 'react-timer-hook';
 
-export default function Timer({ expiryTimestamp,toggle}) {
-  const {
-    seconds,
-    minutes,
-    hours,
-    days,
-    isRunning,
-    start,
-    pause
-  } = useTimer({ expiryTimestamp, onExpire: () => pause() });
+export default function Timer({secondsLeft}) {
+  
+  const time = fromSecondsToTime(secondsLeft)
 
-  const totalHours = hours + ( days * 24 );
+  const[isRunning,toggleRunning] = useState(false)
 
+  function _handleClick(){
+    toggleRunning(!isRunning)
+  }
   return (
     <div className="timer">
       <div>
-        <span>{totalHours < 10 ? "0" + totalHours : totalHours}</span>:
-        <span>{minutes < 10 ? "0" + minutes : minutes}</span>:
-        <span>{seconds < 10 ? "0" + seconds : seconds}</span>
+        <span>{time.hours < 10 ? "0" + time.hours : time.hours}</span>:
+        <span>{time.minutes < 10 ? "0" + time.minutes : time.minutes}</span>:
+        <span>{time.seconds < 10 ? "0" + time.seconds : time.seconds}</span>
       </div>
       <div className="timer-control">
         {isRunning ? (
-          <button onClick={pause} onMouseDown={toggle}>
+          <button onClick={_handleClick}>
             <img src={process.env.PUBLIC_URL + "/pause.svg"} alt="pause" />
           </button>
         ) : (
-          <button onClick={start} onMouseDown={toggle}>
+          <button onClick={_handleClick}>
             <img src={process.env.PUBLIC_URL + "/play.svg"} alt="play" />
           </button>
         )}
-        {/* <button onClick={resume}>
-          resume
-        </button> */}
       </div>
     </div>
   );
+}
+
+function fromSecondsToTime(secondsLeft){
+  const seconds = secondsLeft%60
+  const minutesLeft = Math.floor(secondsLeft/60)
+  const minutes = minutesLeft%60
+  const hours = Math.floor(minutesLeft/60)
+  return {seconds,minutes,hours}
 }
