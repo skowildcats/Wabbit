@@ -42,7 +42,6 @@ router.post('/order', async (req,res)=>{
     const updateHabit = await Habit.findById(mongoose.Types.ObjectId(habit))
     updateHabit.index = index
     await updateHabit.save()
-    console.log(updateHabit)
   }
   res.json({msg: 'order updated'})
 })

@@ -116,11 +116,7 @@ class HomePage extends React.Component {
   render() {
     if (this.state.loading) return <div id="loading"><Loader /></div>;
 
-    //unecessary
-    // const {todos} = this.props 
-    // let habits = [], tasks = []
-
-    const tasks = this.props.tasks.map(task => {
+    const tasks = this.sort_object(this.props.tasks).map(task => {
       switch(task.type){
         case 'progress':
           return <Progression task={task} key={task._id} id={task._id}/>
@@ -135,9 +131,6 @@ class HomePage extends React.Component {
         return null;
       }
     })
-
-    // const habits = this.props.habits.map(habit => {
-    // })
 
     return (
       <>

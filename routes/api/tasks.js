@@ -109,7 +109,7 @@ router.delete("/:taskId", async (req, res) => {
 router.post('/order', async (req,res)=>{
   const tasks = req.body.tasks
   for(const [index, task] of tasks.entries()){
-    const updateTask = await Task.findById(mongoose.Types.ObjectId(task.slice(1)))
+    const updateTask = await Task.findById(mongoose.Types.ObjectId(task))
     updateTask.index = index
     await updateTask.save()
   }

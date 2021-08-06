@@ -7,7 +7,7 @@ export default function TimedGoal(props) {
   console.log(task)
   const [time, setTime] = useState(moment(task.goalTime).toDate())
   return (
-    <div className="task" id={`task_${id}`}>
+    <div className="task" id={`${id}`}>
       <div className="drag-handle">
         <i className="fas fa-ellipsis-h"></i>
       </div>
