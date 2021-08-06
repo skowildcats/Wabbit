@@ -15,3 +15,9 @@ export const updateHabit = (habit) => {
 export const deleteHabit = (habitId) => {
   return axios.delete(`/api/habits/${habitId}`)
 }
+
+export const updateHabitOrder = (habitArr) => {
+  return axios.post('/api/habits/order', habitArr).then(res => {
+    console.log(res)}).catch(err => {
+      console.log(err)})
+}

@@ -108,7 +108,6 @@ router.delete("/:taskId", async (req, res) => {
 //persist order of tasks to backend
 router.post('/order', async (req,res)=>{
   const tasks = req.body.tasks
-  console.log(tasks)
   for(const [index, task] of tasks.entries()){
     const updateTask = await Task.findById(mongoose.Types.ObjectId(task.slice(1)))
     updateTask.index = index
