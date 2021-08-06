@@ -11,7 +11,7 @@ class Task extends React.Component {
     const {task, id} = this.props
 
     return (
-      <div className="task" id={`task_${id}`}>
+      <div className="task" id={`_${id}`}>
         <div className="drag-handle">
           <i className="fas fa-ellipsis-h"></i>
         </div>
