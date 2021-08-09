@@ -29,6 +29,16 @@
   100% { opacity: 1; }
 }
 
+@keyframes slide-in-from-behind{
+  0%, 50% {
+    transform: translate(-360px, calc(-400px));
+    opacity: 0;
+  }
+  // 50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
 @keyframes bounceInBefore {
   0% {
     opacity: 0;

@@ -12,7 +12,7 @@
   }
   .visiting:hover { cursor: default; }
   a.visiting:not(#home-btn) { background-color: $light-grey-1; }
-  #home-btn.visiting { filter: brightness(0) invert(0.9); }
+  #home-btn.visiting > img { filter: brightness(0) invert(0.9); }
 }
 
 #home-page {

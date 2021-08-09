@@ -30,14 +30,19 @@
 
   > #home-btn {
     position: absolute;
-    left: 10px;
+    left: 20px;
     padding: 0;
     background-color: transparent;
     transform: translateY(2px);
+    cursor: default;
     > img { height: 30px; }
     &:hover:not(.visiting) {
+      cursor: pointer;
       filter: brightness(0.94);
       transform: translateY(0px);
     }
   }
+
+  .visiting:hover { cursor: default; }
+  a.visiting:not(#home-btn) { background-color: $light-green-3; }
 }
