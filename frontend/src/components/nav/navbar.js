@@ -24,9 +24,10 @@ class NavBar extends React.Component {
     if (this.props.loggedIn) {
       return (
         <div id={this.props.location.pathname === "/" ? null : "home-nav"} className="nav-bar">
-          <NavLink activeClassName="visiting" id="home-btn" to="/home">
+          <NavLink exact activeClassName="visiting" id="home-btn" to="/home">
             <img src={process.env.PUBLIC_URL + "/logo-image.png"} alt="home-btn" />
           </NavLink>
+          <NavLink activeClassName="visiting" to={"/about"}>ABOUT US</NavLink>
           <NavLink activeClassName="visiting" to="/metrics">METRICS</NavLink>
           <button onClick={() => this.setState({ usersSettingOpen: !this.state.usersSettingOpen })}>
             {this.props.currentUser.firstName ? this.props.currentUser.firstName.toUpperCase() : null}
@@ -37,9 +38,10 @@ class NavBar extends React.Component {
     } else {
       return (
         <div id="splash-nav" className="nav-bar">
-          <NavLink activeClassName="visiting" id="home-btn" to="/">
+          <NavLink exact activeClassName="visiting" id="home-btn" to="/">
             <img src={process.env.PUBLIC_URL + "/logo-image.png"} alt="home-btn" />
           </NavLink>
+          <NavLink activeClassName="visiting" to={"/about"}>ABOUT US</NavLink>
           <NavLink activeClassName="visiting" to={"/signup"}>SIGNUP</NavLink>
           <NavLink activeClassName="visiting" to={"/login"}>LOGIN</NavLink>
         </div>

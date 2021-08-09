@@ -1,0 +1,68 @@
+#our-team {
+  width: 250px;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-360px, calc(-100% - 410px));
+
+  font-family: $primary-font;
+  font-size: 40px;
+  text-align: center;
+  line-height: 50px;
+  letter-spacing: 1px;
+
+  animation: slide-in-from-behind 0.4s;
+}
+
+#about {
+  padding: 20px;
+  width: 680px;
+  display: flex;
+  flex-wrap: wrap;
+
+  > .team-member {
+    position: relative;
+    width: 300px;
+    margin: 20px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    > .team-pic {
+      width: 300px;
+    }
+
+    > .name {
+      margin-top: 8px;
+      margin-right: auto;
+      font-size: 14px;
+      color: $dark-grey-3;
+      line-height: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    > .team-role {
+      position: absolute;
+      bottom: -2px;
+      font-size: 10px;
+      color: $dark-grey-3;
+      line-height: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    > .contact-link {
+      width: 25px;
+      margin-top: 13px;
+      margin-left: 5px;
+      > img {
+        padding: 5px;
+        height: 15px;
+        transition: all 0.2s;
+
+        &:hover {
+          opacity: 0.7;
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}

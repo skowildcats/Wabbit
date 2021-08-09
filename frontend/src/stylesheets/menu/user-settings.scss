@@ -25,6 +25,7 @@
   box-sizing: border-box;
   position: fixed;
   top: 0; left: 0; right: 0;
+  min-width: 1100px;
   height: 100vh;
   z-index: 50;
   animation: float-out 0.2s;
@@ -38,9 +39,9 @@
 
   #user-settings-nav {
     position: absolute;
-    top: 50px; left: 50px; right: 70%; bottom: 50px;
+    top: 5vh; left: 5vh; right: 70%; bottom: 5vh;
     box-sizing: border-box;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 10vh);
     padding: 100px 0px;
     background: white;
     border-top-left-radius: 50px;
@@ -64,9 +65,9 @@
 
   #user-settings-content {
     position: absolute;
-    top: 50px; left: 30%; right: 50px; bottom: 50px;
+    top: 5vh; left: 30%; right: 5vh; bottom: 5vh;
     box-sizing: border-box;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 10vh);
     padding: 50px;
     padding-left: 100px;
     background: white;
