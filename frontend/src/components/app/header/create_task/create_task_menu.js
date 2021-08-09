@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import ReactDOM  from 'react-dom'
 import ColorPalette from './color_palette'
-import moment from 'moment'
 
 export default function CreateTaskMenu(props) {
   const [selected, setSelected] = useState('');
@@ -57,26 +56,26 @@ export default function CreateTaskMenu(props) {
 
   function handleSubmit(){
     let daysOfTheWeek = '';
-    let goalTime = undefined;
+    let secondsLeft = undefined;
     if(recurrence === "Weekly"){
       daysOfTheWeek = getRecurrenceStr();
     }
 
     if(type === 'timedGoal'){
-      goalTime = moment().add(hours, 'hours').add(minutes, 'minutes').toDate();
+      secondsLeft = (parseInt(hours)*60+parseInt(minutes))*60
     }
 
     let newTodo = {
       title,
       description,
       recurrence,
-      dueDate: (dueDate ? dueDate : goalTime),
+      dueDate,
       daysOfTheWeek,
       user: props.userId,
       color: selected,
-      goalTime,
       icon,
       type,
+      secondsLeft,
       increment,
       maxProgress
     }

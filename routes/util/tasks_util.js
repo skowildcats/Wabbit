@@ -1,4 +1,5 @@
 const Task = require('../../models/Task')
+const User = require('../../models/User')
 
 exports.createTaskFromHabit = async function(habit){
   const newTask = new Task({
@@ -10,7 +11,9 @@ exports.createTaskFromHabit = async function(habit){
     icon: habit.icon,
     type: habit.type
   });
-  await newTask.save();
+  const task = await newTask.save();
+  const user = await User.findById(habit.user)
+  user.tasks.push(task._id)
   return newTask
 }
 
