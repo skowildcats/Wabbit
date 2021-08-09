@@ -2,19 +2,31 @@ import React, {useState, useEffect} from 'react'
 import ReactDOM  from 'react-dom'
 import ColorPalette from './color_palette'
 import moment from 'moment'
-
 export default function CreateTaskMenu(props) {
   const [selected, setSelected] = useState('');
   const [icon, setIcon] = useState('');
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
-  const [recurrence, setRecurrence] = useState("Never")
-  const [increment, setIncrement] = useState(undefined);
-  const [maxProgress, setMaxProcess] = useState(undefined); //maxProgress
+  const [recurrence, setRecurrence] = useState("Never");
+  const [increment, setIncrement] = useState(1);
+  const [maxProgress, setMaxProgress] = useState(1); //maxProgress
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
+
   const type = props.actionType;
+  const { task } = props;
+  useEffect(() => {
+    if(task){
+      setSelected(task.color)
+      setIcon(task.icon);
+      setTitle(task.title);
+      setDescription(task.description)
+      if(task.dueDate) setDueDate(moment(task.dueDate).format('YYYY-MM-DD'));
+      setIncrement(task.increment)
+      setMaxProgress(task.maxProgress)
+    }
+  }, [props])
 
   useEffect(() => {
     props.fetchImages();
@@ -24,6 +36,10 @@ export default function CreateTaskMenu(props) {
     if(props.open === true){
       let menu = document.querySelector('.create-task-menu')
       if(menu) menu.classList.toggle('active') //toggle active selector
+      if(task){
+        setHours(Math.floor(task.secondsLeft / 3600))
+        setMinutes(Math.floor((task.secondsLeft % 3600) / 60))
+      }
     }
   }, [props.open])
 
@@ -31,9 +47,9 @@ export default function CreateTaskMenu(props) {
   if(props.open === false) return null;
 
   function closeMenu(){
-    let initial = ['', '', '', '', '', 'Never', undefined, undefined, 0, 0];
+    let initial = ['', '', '', '', '', 'Never', 1, 1, 0, 0];
     [setSelected, setIcon, setTitle, setDescription, setDueDate,
-       setRecurrence, setIncrement, setMaxProcess, setMinutes, setHours
+       setRecurrence, setIncrement, setMaxProgress, setMinutes, setHours
     ].forEach((f, idx) => {
       f(initial[idx]) //reset all state variables to clean up
     })
@@ -57,33 +73,40 @@ export default function CreateTaskMenu(props) {
 
   function handleSubmit(){
     let daysOfTheWeek = '';
-    let goalTime = undefined;
+    let secondsLeft = undefined;
     if(recurrence === "Weekly"){
       daysOfTheWeek = getRecurrenceStr();
     }
 
     if(type === 'timedGoal'){
-      goalTime = moment().add(hours, 'hours').add(minutes, 'minutes').toDate();
+      secondsLeft = (parseInt(hours)*60+parseInt(minutes))*60
     }
 
     let newTodo = {
       title,
       description,
       recurrence,
-      dueDate: (dueDate ? dueDate : goalTime),
+      dueDate,
       daysOfTheWeek,
       user: props.userId,
       color: selected,
-      goalTime,
       icon,
       type,
+      secondsLeft,
       increment,
       maxProgress
     }
     if(recurrence === 'Never'){
-      props.createTask(newTodo).then(data => {
-        closeMenu();
-      })
+      if(props.taskAction === 'create'){
+        props.createTask(newTodo).then(data => {
+          closeMenu();
+        })
+      } else {
+        newTodo._id = props.task._id
+        props.updateTask(newTodo).then(data => {
+          closeMenu();
+        })
+      }
     } else {
       props.createHabit(newTodo).then(data => {
         closeMenu();
@@ -108,7 +131,7 @@ export default function CreateTaskMenu(props) {
       <div className="overlay" onClick={closeMenu}></div>
       <div className="create-task-menu">
         <div className="header">
-          <h1>CREATE A {props.menuText ? props.menuText : ""}</h1>
+          <h1>{props.taskAction === 'create' ? "CREATE A" : "EDIT A"} {props.menuText ? props.menuText : ""}</h1>
           <span onClick={closeMenu}>&times;</span>
         </div>
 
@@ -124,6 +147,7 @@ export default function CreateTaskMenu(props) {
           <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" id="description"/>
         </div>
 
+        {props.taskAction === 'create' ? 
         <div className="form-field">
           <label htmlFor="recurrence">REPEAT </label>
           <select name="recurrence" onChange={(e) => setRecurrence(e.target.value)} id="recurrence" defaultValue="Never">
@@ -174,6 +198,7 @@ export default function CreateTaskMenu(props) {
           </div>
           : null}
         </div>
+        : null} 
         
         {type === 'progress' ? 
         <div className="form-field">
@@ -181,7 +206,7 @@ export default function CreateTaskMenu(props) {
           <input type="number" value={increment} onChange={(e) => setIncrement(e.target.value)}/>
 
           <label htmlFor="goal">GOAL</label>
-          <input type="number" value={maxProgress} onChange={(e) => setMaxProcess(e.target.value)}/>
+          <input type="number" value={maxProgress} onChange={(e) => setMaxProgress(e.target.value)}/>
         </div>
         : null}
 
@@ -198,7 +223,7 @@ export default function CreateTaskMenu(props) {
         {type !== "timedGoal" && recurrence === "Never" ? 
         (<div className="form-field">
           <label htmlFor="dueDate">{type==='countdown' ? "DATE COMPLETED" : "DEADLINE"}</label>
-          <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date} />
+          <input type="date" defaultValue={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date}/>
         </div>)
         : null}
 
@@ -215,7 +240,7 @@ export default function CreateTaskMenu(props) {
 
         <div className="form-submit">
           <button onClick={closeMenu}>Cancel</button>
-          <button onClick={handleSubmit}>Create Task</button>
+          <button onClick={handleSubmit}>{props.taskAction === 'create' ? "Create" : "Edit"} Task</button>
         </div>
       </div>
     </div>, document.getElementById('portal')

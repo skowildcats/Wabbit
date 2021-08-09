@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import DeleteTaskButton from './buttons/delete_task_button'
+import EditTaskButton from './buttons/edit_task_button'
 export default function Countdown(props){
   let { task, id} = props
   function calcDiff(){
@@ -13,7 +14,7 @@ export default function Countdown(props){
   }
   return (
     <>
-    <div className="task" id={`task_${id}`}>
+    <div className="task" id={`${id}`}>
       <div className="drag-handle">
         <i className="fas fa-ellipsis-h"></i>
       </div>
@@ -27,6 +28,7 @@ export default function Countdown(props){
         {/* Days away from occuring */}
         <p className="time-left">{calcDiff()} away</p>
       </div>
+      <EditTaskButton setMenuOpen={props.setMenuOpen} task={task}/>
       <DeleteTaskButton taskId={task._id}/>
     </div>
     </>

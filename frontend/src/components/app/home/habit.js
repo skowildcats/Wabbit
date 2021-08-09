@@ -11,7 +11,7 @@ class Habit extends React.Component {
     const {habit, id} = this.props
 
     return (
-      <div id={`habit_${id}`}>
+      <div id={`${id}`}>
         <div className="drag-handle">
           <i className="fas fa-ellipsis-h"></i>
         </div>
