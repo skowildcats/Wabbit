@@ -21,14 +21,14 @@
 
   > .team-member {
     position: relative;
-    width: 300px;
-    margin: 20px;
+    width: calc(300/680 * 100%);
+    margin: calc(20/680 * 100%);
 
     display: flex;
     flex-wrap: wrap;
 
     > .team-pic {
-      width: 300px;
+      width: 100%;
     }
 
     > .name {
@@ -89,5 +89,17 @@
     width: 400px;
     padding: 10px;
     transform: translate(-50%, calc(-50% + 50px));
+
+    > .team-member {
+      > .name {
+        margin-top: 10px;
+        font-size: 12px;
+        line-height: 15px;
+      }
+
+      > .team-role { font-size: 8px; }
+      
+      > .contact-link { margin-top: 9px; }
+    }
   }
 }
