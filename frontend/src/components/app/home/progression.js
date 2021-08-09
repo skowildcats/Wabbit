@@ -5,7 +5,7 @@ import EditTaskButton from './buttons/edit_task_button';
 export default function Progression(props){
   const {task, id} = props
   return (
-    <div className="task" id={`task_${id}`}> 
+    <div className="task" id={`${id}`}> 
       <div className="drag-handle">
         <i className="fas fa-ellipsis-h"></i>
       </div>

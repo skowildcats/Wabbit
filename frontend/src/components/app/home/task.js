@@ -7,7 +7,7 @@ export default function Task(props){
   const {task} = props
 
   return (
-    <div className="task">
+    <div className="task" id={`${props.id}`}>
       <div className="drag-handle">
         <i className="fas fa-ellipsis-h"></i>
       </div>

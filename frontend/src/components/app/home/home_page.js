@@ -9,6 +9,7 @@ import OpenMenuButton from './buttons/create_task_button';
 import Loader from './loader';
 import moment from 'moment'
 import Walkthrough from './walkthrough/walkthrough';
+import {updateHabitOrder} from '../../../util/habit_util'
 import {updateTask, updateTaskOrder} from '../../../util/tasks_util';
 
 class HomePage extends React.Component {
@@ -58,7 +59,22 @@ class HomePage extends React.Component {
   }
 
   componentDidUpdate() {
-    window.$(".sortable").sortable({
+    window.$(".sortable-habit").sortable({
+      items: "> div:not(.menu-btn-container)",
+      handle: ".drag-handle > i",
+      helper: "clone",
+      opacity: 0.7,
+      revert: 200,
+      delay: 50,
+      tolerance: "pointer",
+      containment: "parent",
+      update: function(e, ui) {
+        let data = window.$(this).sortable('toArray')
+        console.log(data)
+        updateHabitOrder({"habits": data}) 
+      }
+    })
+    window.$(".sortable-task").sortable({
       items: "> div:not(.menu-btn-container)",
       handle: ".drag-handle > i",
       helper: "clone",
@@ -72,11 +88,12 @@ class HomePage extends React.Component {
         updateTaskOrder({"tasks": data})
       }
     })
-    window.$( "#sortable" ).disableSelection();
+    // window.$( "#sortable" ).disableSelection();
   }
 
   componentWillUnmount() {
-    window.$(".sortable").sortable("destroy")
+    window.$(".sortable-task").sortable("destroy")
+    window.$(".sortable-habit").sortable("destroy")
   }
 
   _minusOneSecond(task){
@@ -84,10 +101,25 @@ class HomePage extends React.Component {
     this.props.updateTask(task)
   }
 
+  sort_object(obj) {
+    let items = Object.keys(obj).map(function(key) {
+      return [key, obj[key]];
+    });
+    items.sort(function(first, second) {
+      return first[1].index - second[1].index;
+    });
+    console.log(items)
+    let arr = []
+    items.forEach(el => {
+      arr.push(el[1])
+    })
+    return arr
+  } 
+
   render() {
     if (this.state.loading) return <div id="loading"><Loader /></div>;
 
-    const tasks = this.props.tasks.map(task => {
+    const tasks = this.sort_object(this.props.tasks).map(task => {
       switch(task.type){
         case 'progress':
           return <Progression setMenuOpen={this.setMenuOpen} task={task} key={task._id} id={task._id}/>
@@ -112,12 +144,12 @@ class HomePage extends React.Component {
             <OpenMenuButton openMenu={() => this.setMenuOpen(true, "timedGoal", "TIMER", "create")} text={"NEW TIMER"}/>
             <OpenMenuButton openMenu={() => this.setMenuOpen(true, "progress", "TRACKER", "create")} text={"NEW TRACKER"}/>
           </ul>
-          <ul id="habits" className="sortable">
-            {this.props.habits.map(habit => {
+          <ul id="habits" className="sortable-habit">
+            {this.sort_object(this.props.habits).map(habit => {
               return <Habit habit={habit} key={habit._id} id={habit._id}/>
             })}
           </ul>
-          <ul id="tasks" className="sortable">
+          <ul id="tasks" className="sortable-task">
             {tasks}
           </ul>
         </div>

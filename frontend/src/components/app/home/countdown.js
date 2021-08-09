@@ -14,7 +14,7 @@ export default function Countdown(props){
   }
   return (
     <>
-    <div className="task" id={`task_${id}`}>
+    <div className="task" id={`${id}`}>
       <div className="drag-handle">
         <i className="fas fa-ellipsis-h"></i>
       </div>

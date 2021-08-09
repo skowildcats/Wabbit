@@ -11,7 +11,7 @@ export default function TimedGoal(props) {
     setTime(task.secondsLeft)
   },[task.secondsLeft])
   return (
-    <div className="task" id={`task_${id}`}>
+    <div className="task" id={`${id}`}>
       <div className="drag-handle">
         <i className="fas fa-ellipsis-h"></i>
       </div>
