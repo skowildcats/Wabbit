@@ -99,7 +99,10 @@ export default function CreateTaskMenu(props) {
     if(recurrence === 'Never'){
       if(props.taskAction === 'create'){
         props.createTask(newTodo).then(data => {
-          closeMenu();
+          if (data.type !== "RECEIVE_SESSION_ERRORS") {
+            closeMenu();
+            props.clearError()
+          }
         })
       } else {
         newTodo._id = props.task._id
@@ -138,12 +141,18 @@ export default function CreateTaskMenu(props) {
         <ColorPalette selected={selected} setSelected={setSelected}/>
 
         <div className="form-field">
-          <label htmlFor="title">TITLE</label>
+          {props.errors.title ? 
+            <label> {props.errors.title} </label> :
+            <label htmlFor="title">TITLE</label>
+          }
           <input onChange={(e) => setTitle(e.target.value)} value={title} type="text" id="title"/>
         </div>
 
         <div className="form-field">
-          <label htmlFor="description">DESCRIPTION</label>
+          {props.errors.description ? 
+            <label> {props.errors.description} </label> :
+            <label htmlFor="description">DESCRIPTION</label>
+          }
           <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" id="description"/>
         </div>
 

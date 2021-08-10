@@ -6,9 +6,15 @@ const taskUtil = require('../util/tasks_util')
 const Habit = require('../../models/Habit')
 const seed = require('../../models/seed')
 const moment = require('moment')
+const validateTaskInput = require('../../validations/tasks')
 
 // new task route
 router.post("/new", async (req, res) => {
+
+  const{errors,isValid} = validateTaskInput(req.body)
+  console.log(errors)
+  if(!isValid) return res.status(400).json(errors)
+
   const newTask = new Task({
     title: req.body.title,
     user: req.body.user,
