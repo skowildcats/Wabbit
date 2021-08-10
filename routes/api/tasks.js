@@ -11,7 +11,6 @@ const validateTaskInput = require('../../validations/tasks')
 // new task route
 router.post("/new", async (req, res) => {
   const{errors,isValid} = validateTaskInput(req.body)
-  
   if(!isValid) return res.status(400).json(errors)
 
   const newTask = new Task({

@@ -233,7 +233,7 @@ export default function CreateTaskMenu(props) {
             <label id="errors"> Minute is required </label> :
             <label htmlFor="time">MINUTES</label>
             }
-            <input type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} min="0"/>
+            <input type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} min="0" max="60"/>
           </div>
         : null}
 
