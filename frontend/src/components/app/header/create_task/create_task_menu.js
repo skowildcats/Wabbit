@@ -46,7 +46,8 @@ export default function CreateTaskMenu(props) {
   //don't render if not set to open
   if(props.open === false) return null;
 
-  function closeMenu(){
+  function closeMenu() {
+    props.clearError()
     let initial = ['', '', '', '', '', 'Never', 1, 1, 0, 0];
     [setSelected, setIcon, setTitle, setDescription, setDueDate,
        setRecurrence, setIncrement, setMaxProgress, setMinutes, setHours
@@ -101,7 +102,6 @@ export default function CreateTaskMenu(props) {
         props.createTask(newTodo).then(data => {
           if (data.type !== "RECEIVE_SESSION_ERRORS") {
             closeMenu();
-            props.clearError()
           }
         })
       } else {
