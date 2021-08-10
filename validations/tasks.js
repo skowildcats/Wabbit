@@ -19,6 +19,16 @@ module.exports = function validateTaskInput(data) {
     errors.description = "Description field is required";
   }
 
+  if (data.type === "timedGoal") {
+    if (data.secondsLeft === 0) {
+      errors.secondsLeft = "Hours/minutes is required"
+    }
+  } else {
+    if (Validator.isEmpty(data.dueDate)) {
+      errors.dueDate = "Due date/completed date is required"
+    }
+  }
+
   return {
     errors,
     isValid: Object.keys(errors).length === 0

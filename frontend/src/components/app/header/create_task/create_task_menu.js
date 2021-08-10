@@ -221,17 +221,26 @@ export default function CreateTaskMenu(props) {
 
         {type === 'timedGoal' ?
           <div className="form-field">
+            {props.errors.secondsLeft ? 
+            <label id="errors"> Hour is required </label> :
             <label htmlFor="time">HOURS</label>
+            }
             <input type="number" value={hours} onChange={(e) => setHours(e.target.value)} />
-
+            
+            {props.errors.secondsLeft ? 
+            <label id="errors"> Minute is required </label> :
             <label htmlFor="time">MINUTES</label>
+            }
             <input type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} />
           </div>
         : null}
 
         {type !== "timedGoal" && recurrence === "Never" ? 
         (<div className="form-field">
-          <label htmlFor="dueDate">{type==='countdown' ? "DATE COMPLETED" : "DEADLINE"}</label>
+          {props.errors.dueDate ? 
+            <label id="errors"> {props.errors.dueDate} </label> :
+            <label htmlFor="dueDate">{type==='countdown' ? "DATE COMPLETED" : "DEADLINE"}</label>
+          }
           <input type="date" defaultValue={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date}/>
         </div>)
         : null}
