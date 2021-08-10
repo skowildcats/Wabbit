@@ -112,7 +112,9 @@ export default function CreateTaskMenu(props) {
       }
     } else {
       props.createHabit(newTodo).then(data => {
-        closeMenu();
+        if (data.type !== "RECEIVE_SESSION_ERRORS") {
+            closeMenu();
+          }
       })
     }
   }
