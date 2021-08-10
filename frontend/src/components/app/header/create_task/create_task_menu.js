@@ -142,7 +142,7 @@ export default function CreateTaskMenu(props) {
 
         <div className="form-field">
           {props.errors.title ? 
-            <label> {props.errors.title} </label> :
+            <label id="errors"> {props.errors.title} </label> :
             <label htmlFor="title">TITLE</label>
           }
           <input onChange={(e) => setTitle(e.target.value)} value={title} type="text" id="title"/>
@@ -150,7 +150,7 @@ export default function CreateTaskMenu(props) {
 
         <div className="form-field">
           {props.errors.description ? 
-            <label> {props.errors.description} </label> :
+            <label id="errors"> {props.errors.description} </label> :
             <label htmlFor="description">DESCRIPTION</label>
           }
           <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" id="description"/>
