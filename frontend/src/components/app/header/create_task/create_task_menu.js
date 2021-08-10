@@ -214,10 +214,10 @@ export default function CreateTaskMenu(props) {
         {type === 'progress' ? 
         <div className="form-field">
           <label htmlFor="increment">INCREMENT BY</label>
-          <input type="number" value={increment} onChange={(e) => setIncrement(e.target.value)}/>
+          <input type="number" value={increment} onChange={(e) => setIncrement(e.target.value)} min="1" />
 
           <label htmlFor="goal">GOAL</label>
-          <input type="number" value={maxProgress} onChange={(e) => setMaxProgress(e.target.value)}/>
+          <input type="number" value={maxProgress} onChange={(e) => setMaxProgress(e.target.value)} min="1"/>
         </div>
         : null}
 
@@ -227,13 +227,13 @@ export default function CreateTaskMenu(props) {
             <label id="errors"> Hour is required </label> :
             <label htmlFor="time">HOURS</label>
             }
-            <input type="number" value={hours} onChange={(e) => setHours(e.target.value)} />
+            <input type="number" value={hours} onChange={(e) => setHours(e.target.value)} min="0"/>
             
             {props.errors.secondsLeft ? 
             <label id="errors"> Minute is required </label> :
             <label htmlFor="time">MINUTES</label>
             }
-            <input type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} />
+            <input type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} min="0"/>
           </div>
         : null}
 
