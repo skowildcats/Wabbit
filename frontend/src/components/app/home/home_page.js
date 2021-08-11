@@ -70,7 +70,6 @@ class HomePage extends React.Component {
       containment: "parent",
       update: function(e, ui) {
         let data = window.$(this).sortable('toArray')
-        console.log(data)
         updateHabitOrder({"habits": data}) 
       }
     })

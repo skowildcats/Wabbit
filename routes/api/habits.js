@@ -3,8 +3,13 @@ const mongoose = require('mongoose');
 const router = express.Router()
 const Habit = require('./../../models/Habit')
 const taskUtil = require('../util/tasks_util')
+const validateHabitInput = require('../../validations/habits')
 
 router.post('/new',async (req,res)=>{
+  console.log(req.body)
+  const{errors,isValid} = validateHabitInput(req.body)
+  if(!isValid) return res.status(400).json(errors)
+
   const habitOptions = {}
   for(field in req.body){
     habitOptions[field] = req.body[field]
