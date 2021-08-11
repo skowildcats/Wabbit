@@ -14,6 +14,7 @@ exports.createTaskFromHabit = async function(habit){
   const task = await newTask.save();
   const user = await User.findById(habit.user)
   user.tasks.push(task._id)
+  await user.save()
   return newTask
 }
 
