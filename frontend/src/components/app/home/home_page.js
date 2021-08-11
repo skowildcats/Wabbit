@@ -108,7 +108,6 @@ class HomePage extends React.Component {
     items.sort(function(first, second) {
       return first[1].index - second[1].index;
     });
-    console.log(items)
     let arr = []
     items.forEach(el => {
       arr.push(el[1])
