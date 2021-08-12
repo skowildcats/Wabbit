@@ -1,7 +1,7 @@
 const Validator = require("validator");
 const validText = require("./valid-text");
 
-module.exports = function validateTaskInput(data) {
+module.exports = function validateHabitInput(data) {
   let errors = {};
 
   data.title = validText(data.title) ? data.title : "";
@@ -23,11 +23,7 @@ module.exports = function validateTaskInput(data) {
     if (data.secondsLeft === 0 || data.secondsLeft === null) {
       errors.secondsLeft = "Hours/minutes is required"
     }
-  } else {
-    if (Validator.isEmpty(data.dueDate)) {
-      errors.dueDate = "Due date/completed date is required"
-    }
-  }
+  } 
 
   return {
     errors,

@@ -58,6 +58,9 @@ const TaskSchema = new Schema({
   },
   secondsLeft: {
     type: Number
+  },
+  index: {
+    type: Number
   }
 },{
   timestamps: true
