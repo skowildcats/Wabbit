@@ -29,6 +29,10 @@ const UserSchema = new Schema({
   walkthrough: {
     type: Boolean,
     default: false
+  },
+  lastCheckedDate: {
+    type: Date,
+    default: new Date()
   }
 },{
   timestamps: true

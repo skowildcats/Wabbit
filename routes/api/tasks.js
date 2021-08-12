@@ -4,8 +4,6 @@ const router = express.Router();
 const Task = require("../../models/Task");
 const taskUtil = require('../util/tasks_util')
 const Habit = require('../../models/Habit')
-const seed = require('../../models/seed')
-const moment = require('moment')
 
 // new task route
 router.post("/new", async (req, res) => {
@@ -42,7 +40,6 @@ router.put("/:taskId", async (req, res) => {
     } else if (task.completed && !req.body.completed) {
       task.completedAt = null;
     }
-    //changing the endtime for timers when timer is unpaused
     
     //updating the rest of the fields
     for (field in req.body) {
@@ -67,16 +64,18 @@ router.get("/:taskId", async (req, res) => {
 
 // get all tasks
 router.get("/all/:userId", async (req, res) => {
+  const user = await User.findById(req.params.userId)
+
   //check if any habits need to build tasks for today
   const today = new Date()
-  const lastChecked = new Date(process.env.LAST_CHECK)
+  const lastChecked = new Date(user.lastCheckedDate)
   if(today.toDateString() !== lastChecked.toDateString()){
-    process.env.LAST_CHECK = today
+    user.lastCheckedDate = today
+    await user.save()
     refreshHabits(req.params.userId)
   }
 
   //retrieve tasks from user
-  const user = await User.findById(req.params.userId)
   const tasks = await Promise.all(user.tasks.map((id)=>Task.findById(id)))
   res.json(tasks.filter(task=>task));
 });
