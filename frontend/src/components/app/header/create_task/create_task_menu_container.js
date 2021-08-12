@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { createTask, updateTask } from '../../../../actions/task_actions'
 import { createHabit } from '../../../../actions/habit_actions'
-
+import { clearTaskError } from '../../../../actions/task_actions'
 import CreateTaskMenu from './create_task_menu'
 
 const mapStateToProps = (state) => ({
