@@ -1,9 +1,15 @@
 const express = require('express')
+const mongoose = require('mongoose');
 const router = express.Router()
 const Habit = require('./../../models/Habit')
 const taskUtil = require('../util/tasks_util')
+const validateHabitInput = require('../../validations/habits')
 
 router.post('/new',async (req,res)=>{
+  console.log(req.body)
+  const{errors,isValid} = validateHabitInput(req.body)
+  if(!isValid) return res.status(400).json(errors)
+
   const habitOptions = {}
   for(field in req.body){
     habitOptions[field] = req.body[field]
@@ -12,7 +18,7 @@ router.post('/new',async (req,res)=>{
   await newHabit.save()
   if(taskUtil.appliesToday(newHabit)){
     taskUtil.createTaskFromHabit(newHabit)
-  }
+  } 
   res.json(newHabit)
 })
 
@@ -33,6 +39,16 @@ router.put('/:habitId',async (req,res)=>{
 router.delete('/:habitId', async (req,res)=>{
   await Habit.deleteOne({_id: req.params.habitId})
   res.json({msg: 'success'})
+})
+
+router.post('/order', async (req,res)=>{
+  const habits = req.body.habits
+  for(const [index, habit] of habits.entries()){
+    const updateHabit = await Habit.findById(mongoose.Types.ObjectId(habit))
+    updateHabit.index = index
+    await updateHabit.save()
+  }
+  res.json({msg: 'order updated'})
 })
 
 

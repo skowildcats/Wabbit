@@ -1,0 +1,105 @@
+#our-team {
+  width: 250px;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-360px, calc(-100% - 410px));
+
+  font-family: $primary-font;
+  font-size: 40px;
+  text-align: center;
+  line-height: 50px;
+  letter-spacing: 1px;
+
+  animation: slide-in-from-behind-max 0.4s;
+}
+
+#about {
+  padding: 20px;
+  width: 680px;
+  display: flex;
+  flex-wrap: wrap;
+
+  > .team-member {
+    position: relative;
+    width: calc(300/680 * 100%);
+    margin: calc(20/680 * 100%);
+
+    display: flex;
+    flex-wrap: wrap;
+
+    > .team-pic {
+      width: 100%;
+    }
+
+    > .name {
+      margin-top: 8px;
+      margin-right: auto;
+      font-size: 14px;
+      color: $dark-grey-3;
+      line-height: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    > .team-role {
+      position: absolute;
+      bottom: -2px;
+      font-size: 10px;
+      color: $dark-grey-3;
+      line-height: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    > .contact-link {
+      width: 25px;
+      margin-top: 13px;
+      margin-left: 5px;
+      > img {
+        padding: 5px;
+        height: 15px;
+        transition: all 0.2s;
+
+        &:hover {
+          opacity: 0.7;
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+@media (max-height: 1050px) {
+  #our-team {
+    transform: translate(-270px, calc(-100% - 310px));
+    animation: slide-in-from-behind-med 0.4s;
+  }
+
+  #about {
+    width: 500px;
+    padding: 10px;
+  }
+}
+
+@media (max-height: 850px) {
+  #our-team {
+    transform: translate(-220px, calc(-100% - 210px));
+    animation: slide-in-from-behind-min 0.4s;
+  }
+
+  #about {
+    width: 400px;
+    padding: 10px;
+    transform: translate(-50%, calc(-50% + 50px));
+
+    > .team-member {
+      > .name {
+        margin-top: 10px;
+        font-size: 12px;
+        line-height: 15px;
+      }
+
+      > .team-role { font-size: 8px; }
+      
+      > .contact-link { margin-top: 9px; }
+    }
+  }
+}

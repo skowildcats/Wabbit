@@ -1,31 +1,24 @@
 import React from 'react';
 import ToggleCompletedButton from './buttons/toggle_completed_button'
 import DeleteTaskButton from './buttons/delete_task_button'
+import EditTaskButton from './buttons/edit_task_button'
 
-class Task extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+export default function Task(props){
+  const {task} = props
 
-  render() {
-    const {task, id} = this.props
-
-    return (
-      <div className="task" id={`_${id}`}>
-        <div className="drag-handle">
-          <i className="fas fa-ellipsis-h"></i>
-        </div>
-        <div className="body-wrapper">
-          <p className="todo-title">{task.title}</p>
-          <p className="todo-description">{task.description}</p>
-        </div>
-        <div id="complete-delete">
-          <ToggleCompletedButton task={task} />
-          <DeleteTaskButton taskId={task._id} />
-        </div>
+  return (
+    <div className="task">
+      <div className="drag-handle" style={{background: task.color}}>
+        <i className="fas fa-ellipsis-h"></i>
       </div>
-    );
-  }
+      <div className="body-wrapper">
+        <p className="todo-title">{task.title}</p>
+        <p className="todo-description">{task.description}</p>
+      </div>
+      <ToggleCompletedButton task={task} />
+      <DeleteTaskButton taskId={task._id} />
+      <img className="task-icon" src={`${process.env.PUBLIC_URL}/icons/${task.icon}.png`} alt="home-btn" />
+      <EditTaskButton setMenuOpen={props.setMenuOpen} task={task}/>
+    </div>
+  );
 }
-
-export default Task;

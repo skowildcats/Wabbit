@@ -1,47 +1,48 @@
 #home-nav {
-  background-color: var(--theme-6);
+  background-color: var(--theme-3);
 
-  #home-btn > img { filter: brightness(0) invert(1); }
-  #home-btn:hover:not(.visiting) > img { filter: brightness(0) invert(0.94); }
+  #splash-btn > img { filter: brightness(0) invert(1); }
+  #splash-btn:hover:not(.visiting) > img { filter: brightness(0) invert(0.94); }
 
-  > a:not(#home-btn), > button {
-    color: var(--theme-7);
+  > a:not(#splash-btn), > button {
+    color: var(--theme-4);
     background-color: white;
     transition: all 0.2s;
-    &:hover:not(.visiting) { color: var(--theme-8); background-color: var(--theme-1); }
+    &:hover:not(.visiting) { color: var(--theme-5); background-color: $light-grey-1; }
   }
   .visiting:hover { cursor: default; }
-  a.visiting:not(#home-btn) { background-color: $light-grey-1; }
-  #home-btn.visiting { filter: brightness(0) invert(0.9); }
+  a.visiting:not(#splash-btn) { background-color: $light-grey-2; }
+  #splash-btn.visiting > img { filter: brightness(0) invert(0.9); }
 }
 
 #home-page {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0; left: 25%; right: 0; bottom: 0;
   
   display: flex;
   flex-direction: column;
-  padding: 100px 60px;
-  background-color: var(--theme-1);
+  padding: 100px 60px 0px;
+  background-color: $light-grey-1;
 }
 
 #button-list {
   position: relative;
   box-sizing: border-box;
-  padding: 0px 15px; 
 
   > button {
-    box-sizing: border-box;
-    height: 100%;
-    width: calc(25% - 24.25px);
-    padding: 10px 0px;
-    &:not(:last-child) { margin-right: 30px; }
+    height: 40px;
+    &:not(:last-child) { margin-right: 15px; }
+    margin-bottom: 10px;
     font-size: 15px;
-    color: var(--theme-8);
-    background-color: var(--theme-3);
+    background-color: $light-grey-4;
     border-radius: 5px;
     transition: background-color 0.2s;
+
+    > img {
+      height: 40px;
+      width: 40px;
+    }
   }
 
-  > button:hover { cursor: pointer; background-color: var(--theme-2); }
+  > button:hover { cursor: pointer; background-color: $light-grey-3; }
 }

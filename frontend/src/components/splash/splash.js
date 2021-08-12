@@ -12,12 +12,9 @@ export default class Splash extends React.Component {
   render() {
     return (
       <div id="splash">
-        <div id="logo">
+        <div id="logo" className="splash-box" >
           <img src={process.env.PUBLIC_URL + "/logo.png"} />
           <Link to="/signup">HOP TO IT</Link>
-          {/* <footer>
-            Copyright &copy; 2019 Chirper
-          </footer> */}
         </div>
       </div>
     );

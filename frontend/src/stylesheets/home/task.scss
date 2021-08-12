@@ -2,10 +2,10 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  height: calc(100vh - 395px);
+  height: calc(100vh - 180px);
   overflow-y: scroll;
   border-radius: 5px;
-  background-color: var(--theme-2);
+  background-color: $light-grey-3;
 
   &::-webkit-scrollbar { width: 7px; }
   &::-webkit-scrollbar-thumb {
@@ -14,17 +14,18 @@
   }
 
   > .task {
-    border-radius: 5px;
-    width: calc(25% - 30px);
-    height: 200px;
-    margin: 15px;
-    background-color: var(--theme-4);
+    box-sizing: border-box;
     position: relative;
+    height: 200px;
+    width: calc(25% - 30px);
+    margin: 15px;
+    
+    background-color: $light-grey-1;
+    border: 1px solid $dark-grey-4;
+    overflow: hidden;
+    border-radius: 5px;
 
-    > .drag-handle {
-      color: white;
-      background-color: var(--theme-7);
-    }
+    > .drag-handle { color: white; }
     
     .todo-title {
       position: absolute;
@@ -37,13 +38,21 @@
       overflow: hidden;
       white-space: nowrap;
     }
+
+    > .task-icon {
+      height: 15px;
+      width: 15px;
+
+      position: absolute;
+      left: 15px; bottom: 15px;
+    }
   }
 }
 
 .drag-handle {
   position: relative;
   height: 30px;
-  border-radius: 5px 5px 0 0;
+  // border-radius: 5px 5px 0 0;
   padding-top: 10px;
   > i {
     position: absolute;
@@ -66,15 +75,9 @@
   line-height: 15px;
 }
 
-#complete-delete {
-  > #toggle-completed > img {
-    height: 30px; width: 30px;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-
-    &:hover { cursor: pointer; }
-  }
+.toggle-completed > img {
+  height: 30px; width: 30px;
+  &:hover { cursor: pointer; }
 }
 
 .delete-task, .delete-habit {
@@ -135,7 +138,7 @@
   }
 }
 
-.progress, .timer, .time-left {
+.progress, .timer, .time-left, .toggle-completed {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -143,4 +146,20 @@
   padding: 10px;
   background-color: rgba(0,0,0, 0.1);
   border-radius: 5px;
+}
+
+@media (max-width: 1300px) {
+  #tasks {
+    > .task {
+      width: calc(100%/3 - 30px);
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  #tasks {
+    > .task {
+      width: calc(50% - 30px);
+    }
+  }
 }

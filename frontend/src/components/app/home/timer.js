@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-export default function Timer({secondsLeft,minusOneSecond}) {
+export default function Timer({secondsLeft,minusOneSecond, isRunning, toggleRunning}) {
   
   const[time,setTime] = useState(fromSecondsToTime(secondsLeft))
-  const[isRunning,toggleRunning] = useState(false)
+  // const[isRunning,toggleRunning] = useState(false)
   const[timer,setTimer] = useState(null)
 
   function _handleClick(){
@@ -14,11 +14,9 @@ export default function Timer({secondsLeft,minusOneSecond}) {
   useEffect(()=>{
     if(isRunning) {
       setTimer(setInterval(minusOneSecond,1000))
-      console.log('play')
     }else{
       clearInterval(timer)
       setTimer(null)
-      console.log('pause')
     }
   },[isRunning])
 

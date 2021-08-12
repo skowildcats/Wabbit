@@ -31,6 +31,9 @@ const HabitSchema = new Schema({
   icon: {
     type: String, //this will just be the filename that can be used to fetch it from the api
     // required: true
+  },
+  index: {
+    type: Number
   }
 },{
   timestamps: true

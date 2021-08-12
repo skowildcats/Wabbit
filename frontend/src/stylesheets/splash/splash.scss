@@ -14,7 +14,7 @@
   background-color: $light-green-0;
 }
 
-#logo {
+.splash-box {
   display: flex;
   flex-wrap: wrap;
   width: 450px;
@@ -26,7 +26,7 @@
 
   padding: 50px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px $light-grey-1;
+  box-shadow: 0px 0px 10px $light-grey-2;
 
   > img { width: 450px; }
 

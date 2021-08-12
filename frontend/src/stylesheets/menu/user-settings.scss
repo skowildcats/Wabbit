@@ -17,7 +17,7 @@
     cursor: pointer;
     color: $dark-grey-1;
     border-color: $grey-2;
-    box-shadow: 0px 0px 5px $light-grey-2;
+    box-shadow: 0px 0px 5px $light-grey-5;
   }
 }
 
@@ -25,6 +25,7 @@
   box-sizing: border-box;
   position: fixed;
   top: 0; left: 0; right: 0;
+  min-width: 1100px;
   height: 100vh;
   z-index: 50;
   animation: float-out 0.2s;
@@ -33,14 +34,14 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 100%;
-    background-image: linear-gradient(to bottom right, var(--theme-4), white);
+    background-image: linear-gradient(to bottom right, var(--theme-1), white);
   }
 
   #user-settings-nav {
     position: absolute;
-    top: 50px; left: 50px; right: 70%; bottom: 50px;
+    top: 5vh; left: 5vh; right: 70%; bottom: 5vh;
     box-sizing: border-box;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 10vh);
     padding: 100px 0px;
     background: white;
     border-top-left-radius: 50px;
@@ -64,9 +65,9 @@
 
   #user-settings-content {
     position: absolute;
-    top: 50px; left: 30%; right: 50px; bottom: 50px;
+    top: 5vh; left: 30%; right: 5vh; bottom: 5vh;
     box-sizing: border-box;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 10vh);
     padding: 50px;
     padding-left: 100px;
     background: white;
@@ -96,7 +97,7 @@
 
   background: white;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px var(--theme-2);
+  box-shadow: 0px 0px 10px $light-grey-3;
   animation: fade-in 0.2s;
 
   > label {
@@ -111,7 +112,7 @@
     width: 100%;
     padding: 10px;
     font-size: 12px;
-    border: 1px solid $light-grey-1;
+    border: 1px solid $light-grey-2;
     border-radius: 3px;
     transition: border-color 0.2s;
 
@@ -144,8 +145,8 @@
     }
 
     > button {
-      background-color: var(--theme-4);
-      &:hover { background-color: var(--theme-5); }
+      background-color: var(--theme-1);
+      &:hover { background-color: var(--theme-2); }
     }
   }
 }
