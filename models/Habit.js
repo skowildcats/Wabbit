@@ -34,6 +34,9 @@ const HabitSchema = new Schema({
   },
   index: {
     type: Number
+  },
+  task: {
+    
   }
 },{
   timestamps: true

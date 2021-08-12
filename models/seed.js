@@ -3,7 +3,6 @@
 // const User = require('./User')
 // const bcrypt = require('bcryptjs')
 // const mongoose = require('mongoose')
-// const moment = require('moment');
 
 // const db= "mongodb+srv://wabbits:QOFRIDVnt7d8ybb3@cluster0.c42bi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
@@ -52,7 +51,8 @@
 //           recurrence: recurrence[i],
 //           daysOfTheWeek: daysOfTheWeek[i]
 //         })
-//         await newHabit.save()
+//         let habit = await newHabit.save()
+//         user.habits.push(habit._id)
 //       }
 
 //       let taskTitle = ['Do Homework', 'Wash Dishes', 'Plan Trip', 'Attend a Japanese Tea Ceremony','Go to Sea World','Go to a Swingers Club','Buy a Watch','Jump Out of a Cake','Cook Christmas Dinner','Learn to Play Guitar','Sail Down the Yangtze River','Handwrite Letters','Jump Out a Plane Without a Parachute','Pour Water','Jump with Jack','Learn with Larry','Art with Abe','Jiggle Joseph','Put Out the BFBF','Run with Ryan','Tell Jom I Love Him','Reject Suzy Bae']
@@ -71,7 +71,6 @@
 //         }
 //         let task = await newTask.save()
 //         user.tasks.push(task._id)
-//         console.log(task)
 //       }
 //       await user.save()
 //       // const tasks = await Task.find({user: userId})
@@ -80,7 +79,6 @@
 //         const task = await Task.findById(taskId)
 //         task.createdAt = _pushBackDays(70,today)
 //         let result = await task.save()
-//         console.log(result)
 //       }
 //       console.log('done')
 //     })

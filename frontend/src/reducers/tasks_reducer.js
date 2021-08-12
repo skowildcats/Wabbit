@@ -1,3 +1,4 @@
+import { RECEIVE_HABIT } from "../actions/habit_actions";
 import { RECEIVE_USER_TASKS, RECEIVE_TASK, REMOVE_TASK } from "../actions/task_actions";
 export default function(state = {}, action){
   const mergedState = Object.assign({}, state)
@@ -10,6 +11,12 @@ export default function(state = {}, action){
     case RECEIVE_TASK:
       mergedState[action.task._id] = action.task
       return mergedState;
+    case RECEIVE_HABIT:
+      if(action.habit.task){
+        const task = action.habit.task
+        mergedState[task._id] = task
+      }
+      return mergedState
     case REMOVE_TASK:
       delete mergedState[action.taskId]
       return mergedState;

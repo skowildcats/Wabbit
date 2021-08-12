@@ -3,25 +3,35 @@ const mongoose = require('mongoose');
 const router = express.Router()
 const Habit = require('./../../models/Habit')
 const taskUtil = require('../util/tasks_util')
+const User = require('./../../models/User')
 
+//create habits
 router.post('/new',async (req,res)=>{
   const habitOptions = {}
   for(field in req.body){
     habitOptions[field] = req.body[field]
   }
   const newHabit = new Habit(habitOptions)
-  await newHabit.save()
+  const userHabit = await newHabit.save()
+  const user = await User.findById(userHabit.user)
+  user.habits.push(userHabit._id)
+  await user.save()
   if(taskUtil.appliesToday(newHabit)){
-    taskUtil.createTaskFromHabit(newHabit)
-  } 
+    const task = await taskUtil.createTaskFromHabit(newHabit)
+    newHabit.task = task
+  }
   res.json(newHabit)
 })
 
+//index all habits
 router.get('/all/:userId', async (req,res)=>{
-  const habits = await Habit.find({user: req.params.userId})
+  const user = await User.findById(req.params.userId)
+
+  const habits = await Promise.all(user.habits.map((id)=>Habit.findById(id)))
   res.json(habits)
 })
 
+//update habit
 router.put('/:habitId',async (req,res)=>{
   const habit = await Habit.findById(req.params.habitId)
   for(field in req.body){
@@ -31,11 +41,17 @@ router.put('/:habitId',async (req,res)=>{
   res.json(habit)
 })
 
+//delete habit
 router.delete('/:habitId', async (req,res)=>{
-  await Habit.deleteOne({_id: req.params.habitId})
-  res.json({msg: 'success'})
+  const habitId = req.params.habitId
+  const habit = await Habit.findById(habitId)
+  const userId = habit.user
+  await User.findByIdAndUpdate(userId, {$pull: {habits: habit._id}})
+  await Habit.deleteOne({_id: habitId})
+  res.json({msg: 'deleted successfully success', habit})
 })
 
+//persistent order of tasks to backend
 router.post('/order', async (req,res)=>{
   const habits = req.body.habits
   for(const [index, habit] of habits.entries()){
