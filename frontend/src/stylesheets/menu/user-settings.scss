@@ -1,23 +1,23 @@
 .exit {
   position: absolute;
-  top: 15px;
-  right: -40px;
+  top: 30px;
+  right: 30px;
   padding: 5px;
   width: 20px;
   height: 20px;
   font-size: 15px;
-  color: $grey-2;
+  color: $grey-1;
   line-height: 20px;
   text-align: center;
-  border: 1px solid $grey-0;
+  border: 1px solid $light-grey-5;
   border-radius: 50%;
   transition: all 0.1s;
 
   &:hover {
     cursor: pointer;
-    color: $dark-grey-1;
-    border-color: $grey-2;
-    box-shadow: 0px 0px 5px $light-grey-5;
+    color: $grey-2;
+    border-color: $grey-1;
+    box-shadow: 0px 0px 5px $light-grey-4;
   }
 }
 
