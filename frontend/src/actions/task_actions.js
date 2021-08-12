@@ -1,4 +1,6 @@
 import * as TaskUtil from '../util/tasks_util'
+import { receiveErrors } from './session_actions';
+import { CLEAR_ERROR } from './session_actions';
 
 export const RECEIVE_USER_TASKS = "RECEIVE_TASKS"
 export const RECEIVE_TASK = "RECEIVE_TASK"
@@ -30,8 +32,9 @@ export const fetchTask = (taskId) => dispatch => (
 )
 
 export const createTask = (task) => dispatch => (
-  TaskUtil.createTask(task).then(task => dispatch(receiveTask(task.data)))
-  .catch(err => console.log(err))
+  TaskUtil.createTask(task).then(task => 
+    dispatch(receiveTask(task.data)))
+  .catch(err => dispatch(receiveErrors(err.response.data)))
 )
 
 export const updateTask = (task) => dispatch => (
@@ -42,4 +45,8 @@ export const updateTask = (task) => dispatch => (
 export const deleteTask = (taskId) => dispatch => (
   TaskUtil.deleteTask(taskId).then(() => dispatch(removeTask(taskId)))
   .catch(err => console.log(err))
+)
+
+export const clearTaskError = dispatch => (
+  dispatch({type: CLEAR_ERROR})
 )

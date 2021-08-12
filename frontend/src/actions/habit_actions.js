@@ -1,4 +1,5 @@
 import * as HabitUtil from "../util/habit_util"
+import { receiveErrors } from "./session_actions"
 
 export const RECEIVE_HABITS = "RECEIVE_HABITS"
 export const RECEIVE_HABIT = "RECEIVE_HABIT"
@@ -21,6 +22,7 @@ export const removeHabit = (habitId) => ({
 
 export const createHabit = habit => dispatch => (
   HabitUtil.createHabit(habit).then(habit => dispatch(receiveHabit(habit.data)))
+  .catch(err => dispatch(receiveErrors(err.response.data)))
 )
 
 export const fetchHabits = (userId) => dispatch => (
