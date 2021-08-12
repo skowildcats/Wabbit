@@ -28,7 +28,7 @@
   }
   > a:not(:first-child), > button:not(:first-child)  { margin-left: 20px; }
 
-  > #home-btn {
+  > #splash-btn {
     position: absolute;
     left: 20px;
     padding: 0;
@@ -44,5 +44,5 @@
   }
 
   .visiting:hover { cursor: default; }
-  a.visiting:not(#home-btn) { background-color: $light-green-3; }
+  a.visiting:not(#splash-btn) { background-color: $light-green-3; }
 }

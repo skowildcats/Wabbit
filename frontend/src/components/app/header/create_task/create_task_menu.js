@@ -28,9 +28,9 @@ export default function CreateTaskMenu(props) {
     }
   }, [props])
 
-  useEffect(() => {
-    props.fetchImages();
-  }, [])
+  // useEffect(() => {
+  //   props.fetchImages();
+  // }, [])
 
   useEffect(() => {
     if(props.open === true){
@@ -114,11 +114,11 @@ export default function CreateTaskMenu(props) {
     }
   }
 
-  const icons = props.images.data.map(img => {
+  const icons = ["general", "deadlines", "career", "studies", "personal", "health", "fitness", "errands"].map(img => {
     return (
-      <li key={img.filename} onClick={() => setIcon(img.filename)}>
-        <img src={`/api/files/image/${img.filename}`} alt="task-icon" />
-        {icon === img.filename ? (
+      <li key={img} className={icon === img ? "selected" : ""} onClick={() => setIcon(img)}>
+        <img src={`${process.env.PUBLIC_URL}/icons/${img}.png`} alt="task-icon" />
+        {icon === img ? (
           <img id="icon-check" src={process.env.PUBLIC_URL + "/checkmark.png"} alt="checkmark" />
         ) : null}
       </li>

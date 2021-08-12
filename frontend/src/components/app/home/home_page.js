@@ -137,17 +137,18 @@ class HomePage extends React.Component {
     return (
       <>
         { !this.props.user.walkthrough ? <Walkthrough setWalkthrough={this.setWalkthrough} open={true}/> : null}
+        <ul id="habits" className="sortable-habit">
+          <h3>HABITS</h3>
+          {this.sort_object(this.props.habits).map(habit => {
+            return <Habit habit={habit} key={habit._id} id={habit._id}/>
+          })}
+        </ul>
         <div id="home-page">
           <ul id="button-list">
-            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "task", "TASK", "create")} text={"NEW TASK"}/>
-            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "countdown", "COUNTDOWN", "create")} text={"NEW COUNTDOWN"}/>
-            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "timedGoal", "TIMER", "create")} text={"NEW TIMER"}/>
-            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "progress", "TRACKER", "create")} text={"NEW TRACKER"}/>
-          </ul>
-          <ul id="habits" className="sortable-habit">
-            {this.sort_object(this.props.habits).map(habit => {
-              return <Habit habit={habit} key={habit._id} id={habit._id}/>
-            })}
+            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "task", "TASK", "create")} icon={"checked"}/>
+            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "countdown", "COUNTDOWN", "create")} icon={"calendar"}/>
+            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "timedGoal", "TIMER", "create")} icon={"stopwatch"}/>
+            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "progress", "TRACKER", "create")} icon={"tallies"}/>
           </ul>
           <ul id="tasks" className="sortable-task">
             {tasks}

@@ -50,18 +50,18 @@ export default class UserSettings extends React.Component {
 
   palettes() {
     return [
-      ["MIDNIGHT", "#eeeeee", "#d8d8d8", "#cacaca", "#808791", "#6c737c", "#5e6570", "#434349", "#26252b", "#1f1f1f"],
-      ["ROSE", "#eeeeee", "#d8d8d8", "#cacaca", "#c2b4b4", "#aa9393", "#816969", "#706262", "#2b2525", "#1f1f1f"],
-      ["FOREST", "#eeeeee", "#d8d8d8", "#cacaca", "#9c9c95", "#85857c", "#525c53", "#574d43", "#252b25", "#1f1f1f"],
-      ["APRIL", "#eeeeee", "#d8d8d8", "#cacaca", "#e9e8a4", "#dddb81", "#435a75", "#5b7a5b", "#25262b", "#1f1f1f"],
-      ["SEASHORE", "#eeeeee", "#d8d8d8", "#cacaca", "#dbb7ab", "#d39e93", "#4a818d", "#3f6d77", "#252b2b", "#1f1f1f"],
-      ["COFFEE", "#eeeeee", "#d8d8d8", "#cacaca", "#daccb0", "#cab894", "#585475", "#413d5c", "#252b2b", "#1f1f1f"]
+      ["MIDNIGHT", "#808791", "#6c737c", "#5e6570", "#434349", "#26252b"],
+      ["ROSE", "#c2b4b4", "#aa9393", "#816969", "#706262", "#2b2525"],
+      ["FOREST", "#9c9c95", "#85857c", "#525c53", "#574d43", "#252b25"],
+      ["APRIL", "#e9e8a4", "#dddb81", "#435a75", "#5b7a5b", "#25262b"],
+      ["SEASHORE", "#dbb7ab", "#d39e93", "#4a818d", "#3f6d77", "#252b2b"],
+      ["COFFEE", "#daccb0", "#cab894", "#585475", "#413d5c", "#252b2b"]
     ];
   }
 
   _colorBubbles(palette) {
     const theme = this.state.selectedTheme
-      || this.palettes().filter(palette => palette[4] === this.props.currentUser.theme[3])[0][0];
+      || this.palettes().filter(palette => palette[1] === this.props.currentUser.theme[0])[0][0];
 
     return (
       <div key={palette[0]} className={theme === palette[0] ? "palette-row selected" : "palette-row"} onClick={e => this.updateTheme(e, palette)}>
