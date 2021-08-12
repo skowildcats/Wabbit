@@ -7,7 +7,6 @@ const passport = require('passport');
 const users = require('./routes/api/users')
 const tasks = require('./routes/api/tasks')
 const metrics = require('./routes/api/metrics')
-const fileRouter = require('./routes/api/files')
 const habits = require('./routes/api/habits')
 const path = require('path');
 
@@ -38,7 +37,6 @@ app.use(passport.initialize())
 //Routes
 app.use('/api/users', users)
 app.use('/api/tasks',tasks)
-app.use('/api/files', fileRouter)
 app.use('/api/metrics',metrics)
 app.use('/api/habits',habits)
 
