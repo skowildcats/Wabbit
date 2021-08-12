@@ -46,7 +46,8 @@ export default function CreateTaskMenu(props) {
   //don't render if not set to open
   if(props.open === false) return null;
 
-  function closeMenu(){
+  function closeMenu() {
+    props.clearError()
     let initial = ['', '', '', '', '', 'Never', 1, 1, 0, 0];
     [setSelected, setIcon, setTitle, setDescription, setDueDate,
        setRecurrence, setIncrement, setMaxProgress, setMinutes, setHours
@@ -99,7 +100,9 @@ export default function CreateTaskMenu(props) {
     if(recurrence === 'Never'){
       if(props.taskAction === 'create'){
         props.createTask(newTodo).then(data => {
-          closeMenu();
+          if (data.type !== "RECEIVE_SESSION_ERRORS") {
+            closeMenu();
+          }
         })
       } else {
         newTodo._id = props.task._id
@@ -109,7 +112,9 @@ export default function CreateTaskMenu(props) {
       }
     } else {
       props.createHabit(newTodo).then(data => {
-        closeMenu();
+        if (data.type !== "RECEIVE_SESSION_ERRORS") {
+            closeMenu();
+          }
       })
     }
   }
@@ -138,12 +143,18 @@ export default function CreateTaskMenu(props) {
         <ColorPalette selected={selected} setSelected={setSelected}/>
 
         <div className="form-field">
-          <label htmlFor="title">TITLE</label>
+          {props.errors.title ? 
+            <label id="errors"> {props.errors.title} </label> :
+            <label htmlFor="title">TITLE</label>
+          }
           <input onChange={(e) => setTitle(e.target.value)} value={title} type="text" id="title"/>
         </div>
 
         <div className="form-field">
-          <label htmlFor="description">DESCRIPTION</label>
+          {props.errors.description ? 
+            <label id="errors"> {props.errors.description} </label> :
+            <label htmlFor="description">DESCRIPTION</label>
+          }
           <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" id="description"/>
         </div>
 
@@ -203,26 +214,35 @@ export default function CreateTaskMenu(props) {
         {type === 'progress' ? 
         <div className="form-field">
           <label htmlFor="increment">INCREMENT BY</label>
-          <input type="number" value={increment} onChange={(e) => setIncrement(e.target.value)}/>
+          <input type="number" value={increment} onChange={(e) => setIncrement(e.target.value)} min="1" />
 
           <label htmlFor="goal">GOAL</label>
-          <input type="number" value={maxProgress} onChange={(e) => setMaxProgress(e.target.value)}/>
+          <input type="number" value={maxProgress} onChange={(e) => setMaxProgress(e.target.value)} min="1"/>
         </div>
         : null}
 
         {type === 'timedGoal' ?
           <div className="form-field">
+            {props.errors.secondsLeft ? 
+            <label id="errors"> Hour is required </label> :
             <label htmlFor="time">HOURS</label>
-            <input type="number" value={hours} onChange={(e) => setHours(e.target.value)} />
-
+            }
+            <input type="number" value={hours} onChange={(e) => setHours(e.target.value)} min="0"/>
+            
+            {props.errors.secondsLeft ? 
+            <label id="errors"> Minute is required </label> :
             <label htmlFor="time">MINUTES</label>
-            <input type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} />
+            }
+            <input type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} min="0" max="60"/>
           </div>
         : null}
 
         {type !== "timedGoal" && recurrence === "Never" ? 
         (<div className="form-field">
-          <label htmlFor="dueDate">{type==='countdown' ? "DATE COMPLETED" : "DEADLINE"}</label>
+          {props.errors.dueDate ? 
+            <label id="errors"> {props.errors.dueDate} </label> :
+            <label htmlFor="dueDate">{type==='countdown' ? "DATE COMPLETED" : "DEADLINE"}</label>
+          }
           <input type="date" defaultValue={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date}/>
         </div>)
         : null}
