@@ -3,6 +3,7 @@ import ReactDOM  from 'react-dom'
 import ColorPalette from './color_palette'
 import moment from 'moment'
 export default function CreateTaskMenu(props) {
+  const [page, setPage] = useState(1);
   const [selected, setSelected] = useState('');
   const [icon, setIcon] = useState('');
   const [title, setTitle] = useState('');
@@ -139,24 +140,29 @@ export default function CreateTaskMenu(props) {
           <h1>{props.taskAction === 'create' ? "CREATE A" : "EDIT A"} {props.menuText ? props.menuText : ""}</h1>
           <span onClick={closeMenu}>&times;</span>
         </div>
+      
+        {page === 1 ? 
+        <>
+          <div className="form-field">
+            {props.errors.title ? 
+              <label id="errors"> {props.errors.title} </label> :
+              <label htmlFor="title">TITLE</label>
+            }
+            <input onChange={(e) => setTitle(e.target.value)} value={title} type="text" id="title"/>
+          </div>
+
+          <div className="form-field">
+            {props.errors.description ? 
+              <label id="errors"> {props.errors.description} </label> :
+              <label htmlFor="description">DESCRIPTION</label>
+            }
+            <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" id="description"/>
+          </div>
+        </>
+        : 
+        <>
 
         <ColorPalette selected={selected} setSelected={setSelected}/>
-
-        <div className="form-field">
-          {props.errors.title ? 
-            <label id="errors"> {props.errors.title} </label> :
-            <label htmlFor="title">TITLE</label>
-          }
-          <input onChange={(e) => setTitle(e.target.value)} value={title} type="text" id="title"/>
-        </div>
-
-        <div className="form-field">
-          {props.errors.description ? 
-            <label id="errors"> {props.errors.description} </label> :
-            <label htmlFor="description">DESCRIPTION</label>
-          }
-          <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" id="description"/>
-        </div>
 
         {props.taskAction === 'create' ? 
         <div className="form-field">
@@ -169,7 +175,6 @@ export default function CreateTaskMenu(props) {
           </select>
           {recurrence === "Weekly" ? 
           <div className="form-field">
-            {/* <label htmlFor="">REPEAT ON</label> */}
             <div className="days">
               <div className="day-checkbox">
                 <input type="checkbox" readOnly={true} name="mon" id="mon" value="M"/>
@@ -262,6 +267,8 @@ export default function CreateTaskMenu(props) {
           <button onClick={closeMenu}>Cancel</button>
           <button onClick={handleSubmit}>{props.taskAction === 'create' ? "Create" : "Edit"} Task</button>
         </div>
+        </>
+        }
       </div>
     </div>, document.getElementById('portal')
   )
