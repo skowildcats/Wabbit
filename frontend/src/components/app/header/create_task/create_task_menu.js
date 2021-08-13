@@ -23,6 +23,7 @@ export default function CreateTaskMenu(props) {
       setSelected(task.color)
       setIcon(task.icon);
       setTitle(task.title);
+      setType(task.type);
       setDescription(task.description)
       if(task.dueDate){
         setDueDate(moment(task.dueDate).format('YYYY-MM-DD'));
@@ -215,6 +216,9 @@ export default function CreateTaskMenu(props) {
               </div>
               : null}
             </div>
+            </>
+            : null} 
+
             <div className="form-field">
               <label htmlFor="type">TYPE</label>
               <ul id="button-list">
@@ -224,8 +228,6 @@ export default function CreateTaskMenu(props) {
                 <button className={`task-type ${type === 'countdown' ? 'active' : ''}`} onClick={() => setType('countdown')}><img src={`${process.env.PUBLIC_URL}/calendar.png`} alt="calendar"/></button>
               </ul>
             </div>
-            </>
-            : null} 
         </>
         : 
         <>
