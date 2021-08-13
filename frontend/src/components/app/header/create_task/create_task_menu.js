@@ -49,6 +49,7 @@ export default function CreateTaskMenu(props) {
 
   function closeMenu() {
     props.clearError()
+    setPage(1);
     let initial = ['', '', '', '', '', 'Never', 1, 1, 0, 0];
     [setSelected, setIcon, setTitle, setDescription, setDueDate,
        setRecurrence, setIncrement, setMaxProgress, setMinutes, setHours
@@ -143,6 +144,8 @@ export default function CreateTaskMenu(props) {
       
         {page === 1 ? 
         <>
+          <ColorPalette selected={selected} setSelected={setSelected}/>
+
           <div className="form-field">
             {props.errors.title ? 
               <label id="errors"> {props.errors.title} </label> :
@@ -150,7 +153,7 @@ export default function CreateTaskMenu(props) {
             }
             <input onChange={(e) => setTitle(e.target.value)} value={title} type="text" id="title"/>
           </div>
-
+          
           <div className="form-field">
             {props.errors.description ? 
               <label id="errors"> {props.errors.description} </label> :
@@ -158,64 +161,67 @@ export default function CreateTaskMenu(props) {
             }
             <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" id="description"/>
           </div>
+
+          {/* For creating a habit */}
+          {props.taskAction === 'create' ? 
+            <div className="form-field">
+              <label htmlFor="recurrence">REPEAT </label>
+              <select name="recurrence" onChange={(e) => setRecurrence(e.target.value)} id="recurrence" defaultValue="Never">
+                <option>Never</option>
+                <option>Daily</option>
+                <option>Weekly</option>
+                <option>Monthly</option>
+              </select>
+              {recurrence === "Weekly" ? 
+              <div className="form-field">
+                <div className="days">
+                  <div className="day-checkbox">
+                    <input type="checkbox" readOnly={true} name="mon" id="mon" value="M"/>
+                    <label htmlFor="mon">Mon</label>
+                  </div>
+
+                  <div className="day-checkbox">
+                    <input type="checkbox" readOnly={true} name="tue" id="tue" value="T"/>
+                    <label htmlFor="tue">Tues</label>
+                  </div>
+
+                  <div className="day-checkbox">
+                    <input type="checkbox" readOnly={true} name="wed" id="wed" value="W"/>
+                    <label htmlFor="wed">Wed</label>
+                  </div>
+
+                  <div className="day-checkbox">
+                    <input type="checkbox" readOnly={true} name="thu" id="thu" value="R"/>
+                    <label htmlFor="thu">Thurs</label>
+                  </div>
+
+                  <div className="day-checkbox">
+                    <input type="checkbox" readOnly={true} name="fri" id="fri" value="F"/>
+                    <label htmlFor="fri">Fri</label>
+                  </div>
+
+                  <div className="day-checkbox">
+                    <input type="checkbox" readOnly={true} name="sat" id="sat" value="S"/>
+                    <label htmlFor="sat">Sat</label>
+                  </div>
+
+                  <div className="day-checkbox">
+                    <input type="checkbox" readOnly={true} name="sun" id="sun" value="N"/>
+                    <label htmlFor="sun">Sun</label>
+                  </div>
+                </div>
+              </div>
+              : null}
+            </div>
+            : null} 
+            <div id="icons-label" className="form-field"> 
+              <ul id="icons">
+                {icons}
+              </ul>
+            </div>
         </>
         : 
         <>
-
-        <ColorPalette selected={selected} setSelected={setSelected}/>
-
-        {props.taskAction === 'create' ? 
-        <div className="form-field">
-          <label htmlFor="recurrence">REPEAT </label>
-          <select name="recurrence" onChange={(e) => setRecurrence(e.target.value)} id="recurrence" defaultValue="Never">
-            <option>Never</option>
-            <option>Daily</option>
-            <option>Weekly</option>
-            <option>Monthly</option>
-          </select>
-          {recurrence === "Weekly" ? 
-          <div className="form-field">
-            <div className="days">
-              <div className="day-checkbox">
-                <input type="checkbox" readOnly={true} name="mon" id="mon" value="M"/>
-                <label htmlFor="mon">Mon</label>
-              </div>
-
-              <div className="day-checkbox">
-                <input type="checkbox" readOnly={true} name="tue" id="tue" value="T"/>
-                <label htmlFor="tue">Tues</label>
-              </div>
-
-              <div className="day-checkbox">
-                <input type="checkbox" readOnly={true} name="wed" id="wed" value="W"/>
-                <label htmlFor="wed">Wed</label>
-              </div>
-
-              <div className="day-checkbox">
-                <input type="checkbox" readOnly={true} name="thu" id="thu" value="R"/>
-                <label htmlFor="thu">Thurs</label>
-              </div>
-
-              <div className="day-checkbox">
-                <input type="checkbox" readOnly={true} name="fri" id="fri" value="F"/>
-                <label htmlFor="fri">Fri</label>
-              </div>
-
-              <div className="day-checkbox">
-                <input type="checkbox" readOnly={true} name="sat" id="sat" value="S"/>
-                <label htmlFor="sat">Sat</label>
-              </div>
-
-              <div className="day-checkbox">
-                <input type="checkbox" readOnly={true} name="sun" id="sun" value="N"/>
-                <label htmlFor="sun">Sun</label>
-              </div>
-            </div>
-          </div>
-          : null}
-        </div>
-        : null} 
-        
         {type === 'progress' ? 
         <div className="form-field">
           <label htmlFor="increment">INCREMENT BY</label>
@@ -248,27 +254,16 @@ export default function CreateTaskMenu(props) {
             <label id="errors"> {props.errors.dueDate} </label> :
             <label htmlFor="dueDate">{type==='countdown' ? "DATE COMPLETED" : "DEADLINE"}</label>
           }
-          <input type="date" defaultValue={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date}/>
+          <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date}/>
         </div>)
         : null}
-
-        {/* <div className="form-field">
-          <label id="color-label" htmlFor="color">COLORS</label>
-          <ColorPalette selected={selected} setSelected={setSelected}/>
-        </div> */}
-
-        <div id="icons-label" className="form-field"> 
-          <ul id="icons">
-            {icons}
-          </ul>
-        </div>
-
-        <div className="form-submit">
-          <button onClick={closeMenu}>Cancel</button>
-          <button onClick={handleSubmit}>{props.taskAction === 'create' ? "Create" : "Edit"} Task</button>
-        </div>
         </>
         }
+
+        <div className="form-submit">
+          {page === 1 ? <button onClick={closeMenu}>Cancel</button> : <button onClick={() => setPage(1)}>Back</button>}
+          {page === 1 ? <button onClick={() => setPage(2)}>Next Step</button> : <button onClick={handleSubmit}>{props.taskAction === 'create' ? "Create" : "Edit"} Task</button>}
+        </div>
       </div>
     </div>, document.getElementById('portal')
   )
