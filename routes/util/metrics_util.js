@@ -19,9 +19,8 @@ exports.percentOnTime = function (tasks) {
   for (const task of tasks) {
     if (task.dueDate && task.completed) {
       total++;
-      if (task.completed && task.completedAt < task.dueDate) {
+      if (task.completedAt < task.dueDate) {
         completed++;
-
       }
     }
   }
@@ -48,7 +47,7 @@ exports.onTimeByWeekday = function (tasks) {
 
   for (const task of tasks) {
     if(!task.completed) continue
-    if ((task.dueDate && task.completedAt<task.dueDate)||task.completed){
+    if ((task.dueDate && task.completedAt<task.dueDate)||(!task.dueDate && task.completed)){
       monToSun[convertToMonSun(task.completedAt)]++
     }
   }

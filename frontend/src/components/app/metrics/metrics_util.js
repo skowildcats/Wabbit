@@ -1,13 +1,17 @@
 import moment from 'moment';
 
-export function setupBarGraphData(completedArr, incompletedArr){
-  if(!completedArr || ! incompletedArr) return undefined;
+export function setupBarGraphData(completedArr, completedLateArr){
+  if(!completedArr || ! completedLateArr) return undefined;
   let data = [];
+  //completedArr/completeLateArr are arranged in monday-sunday order. rotating each array based on what day of the week today is.
+  
+
   for(let i = 6; i >= 0; i--){
     let obj = {}
     obj["date"] = moment().subtract(i, 'days').format('MMM DD')
-    obj["Completed"] = completedArr[i]
-    obj["Incomplete"] = incompletedArr[i]
+    obj["On Time"] = completedArr[i]
+    obj["Late"] = completedLateArr[i]
+    console.log(i,obj.date)
     data.push(obj)
   }
   return data;
@@ -27,8 +31,8 @@ export const setupLineGraphData = (tasksByWeek) => {
 
 export const setupPieCount = (count, percentOnTime) => {
   if(!count || !percentOnTime) return undefined;
-  return [{ inTime: "Tasks On Time", value: Math.trunc(count * percentOnTime)},
-   {inTime: "Late Tasks", value: Math.trunc(count * Math.abs(1 - percentOnTime))}]
+  return [{ inTime: "On Time", value: Math.trunc(count * percentOnTime)},
+   {inTime: "Late", value: Math.trunc(count * Math.abs(1 - percentOnTime))}]
 }
 
 export const setupPieComplete = (percentComplete) => {
