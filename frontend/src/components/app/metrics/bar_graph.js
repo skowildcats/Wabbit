@@ -19,8 +19,8 @@ export default class BarGraph extends Component{
           <YAxis allowDecimals={false}/>
           <Tooltip />
           <Legend />
-          <Bar dataKey="Completed" stackId="a" fill={this.props.color1 ? this.props.color1 : "#8884d8"} />
-          <Bar dataKey="Incomplete" stackId="a" fill={this.props.color2 ? this.props.color2 : "#82ca9d"} />
+          <Bar dataKey="On Time" stackId="a" fill={this.props.color1 ? this.props.color1 : "#8884d8"} />
+          <Bar dataKey="Late" stackId="a" fill={this.props.color2 ? this.props.color2 : "#82ca9d"} />
         </BarChart>
       </ResponsiveContainer>
     );
