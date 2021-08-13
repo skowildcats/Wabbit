@@ -14,8 +14,8 @@ export default function CreateTaskMenu(props) {
   const [maxProgress, setMaxProgress] = useState(1); //maxProgress
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
+  const [type, setType] = useState('')
 
-  const type = props.actionType;
   const { task } = props;
   useEffect(() => {
     if(task){
@@ -144,8 +144,6 @@ export default function CreateTaskMenu(props) {
       
         {page === 1 ? 
         <>
-          <ColorPalette selected={selected} setSelected={setSelected}/>
-
           <div className="form-field">
             {props.errors.title ? 
               <label id="errors"> {props.errors.title} </label> :
@@ -164,6 +162,7 @@ export default function CreateTaskMenu(props) {
 
           {/* For creating a habit */}
           {props.taskAction === 'create' ? 
+          <>
             <div className="form-field">
               <label htmlFor="recurrence">REPEAT </label>
               <select name="recurrence" onChange={(e) => setRecurrence(e.target.value)} id="recurrence" defaultValue="Never">
@@ -213,15 +212,22 @@ export default function CreateTaskMenu(props) {
               </div>
               : null}
             </div>
-            : null} 
-            <div id="icons-label" className="form-field"> 
-              <ul id="icons">
-                {icons}
+            <div className="form-field">
+              <label htmlFor="type">TYPE</label>
+              <ul id="button-list">
+                <button className="task-type" onClick={() => setType('progress')}><img src={`${process.env.PUBLIC_URL}/tallies.png`} alt="tallies" /></button>
+                <button className="task-type" onClick={() => setType('timedGoal')}><img src={`${process.env.PUBLIC_URL}/stopwatch.png`} alt="stopwatch"/></button>
+                <button className="task-type" onClick={() => setType('task')}><img src={`${process.env.PUBLIC_URL}/checked.png`} alt="checked"/></button>
+                <button className="task-type" onClick={() => setType('countdown')}><img src={`${process.env.PUBLIC_URL}/calendar.png`} alt="calendar"/></button>
               </ul>
             </div>
+            </>
+            : null} 
         </>
         : 
         <>
+        <ColorPalette selected={selected} setSelected={setSelected}/>
+
         {type === 'progress' ? 
         <div className="form-field">
           <label htmlFor="increment">INCREMENT BY</label>
@@ -257,12 +263,18 @@ export default function CreateTaskMenu(props) {
           <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date}/>
         </div>)
         : null}
+
+        <div id="icons-label" className="form-field"> 
+            <ul id="icons">
+              {icons}
+            </ul>
+        </div>
         </>
         }
 
         <div className="form-submit">
           {page === 1 ? <button onClick={closeMenu}>Cancel</button> : <button onClick={() => setPage(1)}>Back</button>}
-          {page === 1 ? <button onClick={() => setPage(2)}>Next Step</button> : <button onClick={handleSubmit}>{props.taskAction === 'create' ? "Create" : "Edit"} Task</button>}
+          {page === 1 ? <button disabled={type ? false : true} onClick={() => setPage(2)}>Next Step</button> : <button onClick={handleSubmit}>{props.taskAction === 'create' ? "Create" : "Edit"} Task</button>}
         </div>
       </div>
     </div>, document.getElementById('portal')

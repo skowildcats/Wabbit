@@ -9,6 +9,7 @@
   overflow-y: scroll;
   top: 50%; left: 50%;
   display: flex;
+  min-width: 500px;
   flex-direction: column;
   transform: scale(.1);
   border-radius: 8px;
@@ -44,6 +45,18 @@
   > .form-field {
     border-bottom: 1px solid rgb(201, 201, 201);
     padding: 15px 30px;
+    .task-type{
+      height: 50px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      background-color: #cacaca;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+      img{
+        width: 50px;
+        height: 50px;
+      }
+    }
     > label {
       display: block;
       margin-bottom: 5px;
@@ -142,7 +155,7 @@
   justify-content: flex-end;
   align-items: center;
   margin-top: auto;
-  border-top: 1px solid rgb(201, 201, 201);
+  // border-top: 1px solid rgb(201, 201, 201);
 }
 
 .form-submit > button {
