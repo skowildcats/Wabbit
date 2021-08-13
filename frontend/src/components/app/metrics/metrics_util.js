@@ -4,6 +4,9 @@ export function setupBarGraphData(completedArr, completedLateArr){
   if(!completedArr || ! completedLateArr) return undefined;
   let data = [];
   //completedArr/completeLateArr are arranged in monday-sunday order. rotating each array based on what day of the week today is.
+  const dayOfTheWeek = moment().diff(moment([2021,7,8]),'days')%7
+  completedArr = completedArr.slice(dayOfTheWeek).concat(completedArr.slice(0,dayOfTheWeek)).reverse()
+  completedLateArr = completedLateArr.slice(dayOfTheWeek).concat(completedLateArr.slice(0,dayOfTheWeek)).reverse()
   
 
   for(let i = 6; i >= 0; i--){
@@ -11,7 +14,6 @@ export function setupBarGraphData(completedArr, completedLateArr){
     obj["date"] = moment().subtract(i, 'days').format('MMM DD')
     obj["On Time"] = completedArr[i]
     obj["Late"] = completedLateArr[i]
-    console.log(i,obj.date)
     data.push(obj)
   }
   return data;
