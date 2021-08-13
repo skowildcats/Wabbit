@@ -69,10 +69,11 @@
   position: relative;
   display: inline-block;
   border-radius: 50%;
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
   margin: 10px;
-  cursor: pointer;
+  transition: all 0.2s;
+  &:hover:not(.selected) { cursor: pointer; }
 }
 
 #icons {
@@ -86,17 +87,34 @@
   padding: 18px;
   margin: 10px 20px;
 
-  height: 24px;
-  width: 24px;
+  height: 22px;
+  width: 22px;
   background-color: whitesmoke;
+  border: 1px solid whitesmoke;
   border-radius: 50%;
   
   > img:first-child {
-    height: 100%;
-    width: 100%;
-    filter: brightness(2)
+    margin-top: 10%;
+    margin-left: 10%;
+    height: 80%;
+    width: 80%;
+    filter: brightness(2);
+    transition: all 0.2s;
   }
-  &:hover { cursor: pointer; }
+
+  &.selected {
+    border: 1px solid $grey-0;
+
+    > img:first-child {
+      transform: scale(1.3);
+    }
+  }
+  
+  &:hover:not(.selected) {
+    cursor: pointer;
+    border: 1px solid $light-grey-2;
+    > img:first-child { transform: scale(1.1); }
+  }
 }
 
 .color-bubble > img, #icons img:not(:first-child) {
@@ -110,7 +128,11 @@
   border-radius: 50%;
 }
 
-.color-bubble > img { bottom: -3px; right: -3px; width: 5px; height: 5px;}
+.color-bubble > img {
+  bottom: -2px; right: -2px;
+  height: 5px;
+  width: 5px;
+}
 
 .form-submit {
   display: flex;

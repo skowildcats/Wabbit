@@ -7,19 +7,18 @@ export default function Task(props){
   const {task} = props
 
   return (
-    <div className="task" id={`${props.id}`}>
-      <div className="drag-handle">
+    <div className="task">
+      <div className="drag-handle" style={{background: task.color}}>
         <i className="fas fa-ellipsis-h"></i>
       </div>
       <div className="body-wrapper">
         <p className="todo-title">{task.title}</p>
         <p className="todo-description">{task.description}</p>
       </div>
-      <div id="complete-delete">
-        <ToggleCompletedButton task={task} />
-        <DeleteTaskButton taskId={task._id} />
-      </div>
-        <EditTaskButton setMenuOpen={props.setMenuOpen} task={task}/>
+      <ToggleCompletedButton task={task} />
+      <DeleteTaskButton taskId={task._id} />
+      <img className="task-icon" src={`${process.env.PUBLIC_URL}/icons/${task.icon}.png`} alt="home-btn" />
+      <EditTaskButton setMenuOpen={props.setMenuOpen} task={task}/>
     </div>
   );
 }
