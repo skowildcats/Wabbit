@@ -9,7 +9,7 @@ export const ToggleCompletedButton = (props) => {
   };
 
   return (
-    <button id="toggle-completed" onClick={toggleCompleted}>{
+    <button className="toggle-completed" onClick={toggleCompleted}>{
       props.task.completed ? (
         <img src={process.env.PUBLIC_URL + "/checked.png"} alt="checkmark" />
       ) : (
