@@ -10,8 +10,9 @@ export default function TimedGoal(props) {
   useEffect(()=>{
     setTime(task.secondsLeft)
   },[task.secondsLeft])
+
   return (
-    <div className="task" id={`${id}`}>
+    <div className="task" id={`${props.id}`}>
       <div className="drag-handle">
         <i className="fas fa-ellipsis-h"></i>
       </div>
