@@ -8,7 +8,7 @@ export default function CreateTaskMenu(props) {
   const [icon, setIcon] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [dueDate, setDueDate] = useState('');
+  const [dueDate, setDueDate] = useState();
   const [recurrence, setRecurrence] = useState("Never");
   const [increment, setIncrement] = useState(1);
   const [maxProgress, setMaxProgress] = useState(1); //maxProgress
@@ -18,12 +18,15 @@ export default function CreateTaskMenu(props) {
 
   const { task } = props;
   useEffect(() => {
+    setDueDate(moment().format('YYYY-MM-DD'));
     if(task){
       setSelected(task.color)
       setIcon(task.icon);
       setTitle(task.title);
       setDescription(task.description)
-      if(task.dueDate) setDueDate(moment(task.dueDate).format('YYYY-MM-DD'));
+      if(task.dueDate){
+        setDueDate(moment(task.dueDate).format('YYYY-MM-DD'));
+      }
       setIncrement(task.increment)
       setMaxProgress(task.maxProgress)
     }
@@ -138,7 +141,7 @@ export default function CreateTaskMenu(props) {
       <div className="overlay" onClick={closeMenu}></div>
       <div className="create-task-menu">
         <div className="header">
-          <h1>{props.taskAction === 'create' ? "CREATE A" : "EDIT A"} {props.menuText ? props.menuText : ""}</h1>
+          <h1>{props.taskAction === 'create' ? "CREATE A" : "EDIT A"} TASK</h1>
           <span onClick={closeMenu}>&times;</span>
         </div>
       
