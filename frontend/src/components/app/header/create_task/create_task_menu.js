@@ -50,9 +50,9 @@ export default function CreateTaskMenu(props) {
   function closeMenu() {
     props.clearError()
     setPage(1);
-    let initial = ['', '', '', '', '', 'Never', 1, 1, 0, 0];
+    let initial = ['', '', '', '', '', 'Never', 1, 1, 0, 0, ''];
     [setSelected, setIcon, setTitle, setDescription, setDueDate,
-       setRecurrence, setIncrement, setMaxProgress, setMinutes, setHours
+       setRecurrence, setIncrement, setMaxProgress, setMinutes, setHours, setType
     ].forEach((f, idx) => {
       f(initial[idx]) //reset all state variables to clean up
     })
@@ -215,10 +215,10 @@ export default function CreateTaskMenu(props) {
             <div className="form-field">
               <label htmlFor="type">TYPE</label>
               <ul id="button-list">
-                <button className="task-type" onClick={() => setType('progress')}><img src={`${process.env.PUBLIC_URL}/tallies.png`} alt="tallies" /></button>
-                <button className="task-type" onClick={() => setType('timedGoal')}><img src={`${process.env.PUBLIC_URL}/stopwatch.png`} alt="stopwatch"/></button>
-                <button className="task-type" onClick={() => setType('task')}><img src={`${process.env.PUBLIC_URL}/checked.png`} alt="checked"/></button>
-                <button className="task-type" onClick={() => setType('countdown')}><img src={`${process.env.PUBLIC_URL}/calendar.png`} alt="calendar"/></button>
+                <button className={`task-type ${type === 'progress' ? 'active' : ''}`} onClick={() => setType('progress')}><img src={`${process.env.PUBLIC_URL}/tallies.png`} alt="tallies" /></button>
+                <button className={`task-type ${type === 'timedGoal' ? 'active' : ''}`} onClick={() => setType('timedGoal')}><img src={`${process.env.PUBLIC_URL}/stopwatch.png`} alt="stopwatch"/></button>
+                <button className={`task-type ${type === 'task' ? 'active' : ''}`} onClick={() => setType('task')}><img src={`${process.env.PUBLIC_URL}/checked.png`} alt="checked"/></button>
+                <button className={`task-type ${type === 'countdown' ? 'active' : ''}`} onClick={() => setType('countdown')}><img src={`${process.env.PUBLIC_URL}/calendar.png`} alt="calendar"/></button>
               </ul>
             </div>
             </>
@@ -263,7 +263,7 @@ export default function CreateTaskMenu(props) {
           <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} id="deadline" min={date}/>
         </div>)
         : null}
-
+        
         <div id="icons-label" className="form-field"> 
             <ul id="icons">
               {icons}
