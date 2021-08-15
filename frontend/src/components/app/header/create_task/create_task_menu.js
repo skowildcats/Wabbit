@@ -33,10 +33,6 @@ export default function CreateTaskMenu(props) {
     }
   }, [props])
 
-  // useEffect(() => {
-  //   props.fetchImages();
-  // }, [])
-
   useEffect(() => {
     if(props.open === true){
       let menu = document.querySelector('.create-task-menu')
