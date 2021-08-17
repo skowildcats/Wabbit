@@ -148,7 +148,7 @@
   border-radius: 5px;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1700px) {
   #tasks {
     > .task {
       width: calc(100%/3 - 30px);
@@ -156,7 +156,7 @@
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   #tasks {
     > .task {
       width: calc(50% - 30px);
