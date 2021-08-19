@@ -14,7 +14,7 @@ export default class About extends React.Component {
         <p id="our-team">OUR TEAM</p>
         <div id="about" className="splash-box">
           <div className="team-member">
-            <img className="team-pic" src={process.env.PUBLIC_URL + "/kyle.jpg"} />
+            <img className="team-pic" src={process.env.PUBLIC_URL + "/team/kyle.jpg"} />
             <p className="name">KYLE</p>
             <a href="https://github.com/webbdevv/" className="contact-link">
               <img id="github" src={process.env.PUBLIC_URL + "/github.png"} alt="github" />
@@ -28,7 +28,7 @@ export default class About extends React.Component {
             <p className="team-role">TEAM LEAD</p>
           </div>
           <div className="team-member">
-            <img className="team-pic" src={process.env.PUBLIC_URL + "/joseph.png"} />
+            <img className="team-pic" src={process.env.PUBLIC_URL + "/team/joseph.png"} />
             <p className="name">JOSEPH</p>
             <a href="https://github.com/josephwyang/" className="contact-link">
               <img id="github" src={process.env.PUBLIC_URL + "/github.png"} alt="github" />
@@ -42,7 +42,7 @@ export default class About extends React.Component {
             <p className="team-role">FRONTEND LEAD</p>
           </div>
           <div className="team-member">
-            <img className="team-pic" src={process.env.PUBLIC_URL + "/jon.png"} />
+            <img className="team-pic" src={process.env.PUBLIC_URL + "/team/jon.png"} />
             <p className="name">JON</p>
             <a href="https://github.com/skowildcats/" className="contact-link">
               <img id="github" src={process.env.PUBLIC_URL + "/github.png"} alt="github" />
@@ -56,7 +56,7 @@ export default class About extends React.Component {
             <p className="team-role">FLEX DEVELOPER</p>
           </div>
           <div className="team-member">
-            <img className="team-pic" src={process.env.PUBLIC_URL + "/isaac.png"} />
+            <img className="team-pic" src={process.env.PUBLIC_URL + "/team/isaac.png"} />
             <p className="name">ISAAC</p>
             <a href="https://github.com/theonewei/" className="contact-link">
               <img id="github" src={process.env.PUBLIC_URL + "/github.png"} alt="github" />

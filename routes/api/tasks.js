@@ -22,11 +22,8 @@ router.post("/new", async (req, res) => {
     icon: req.body.icon,
     secondsLeft: req.body.secondsLeft,
     increment: req.body.increment,
-    counter: req.body.counter,
-    countdown: req.body.countdown,
     maxProgress: req.body.maxProgress,
-    type: req.body.type,
-    currentProgress: req.body.currentProgress,
+    type: req.body.type
   });
   await newTask.save();
   const taskUser = await User.findById(newTask.user)

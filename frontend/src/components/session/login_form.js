@@ -110,8 +110,8 @@ class LoginForm extends React.Component {
               placeholder="Password"
               className={errors ? "has-errors" : ""}
             />
-            <button id="submit" onClick={this.loginUser}> Log in </button> 
-            <button onClick={this.loginDemo}>Demo User </button>
+            <button id="submit" onClick={this.loginUser}> Log In</button> 
+            <button onClick={this.loginDemo}>Demo</button>
               <p>Don't have an account? </p>
             <Link to="/signup">Register now</Link>
           </form>

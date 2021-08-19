@@ -64,12 +64,10 @@ export default function CreateTaskMenu(props) {
   }
 
   function getRecurrenceStr(){
-    let checkboxes = document.querySelectorAll('.days > input');
+    let checkboxes = document.querySelectorAll('.day-checkbox > input');
     let daysOfTheWeek = ""
     checkboxes.forEach(box => {
-      if(box.checked){
-        daysOfTheWeek += box.value;
-      }
+      box.checked ? daysOfTheWeek += box.value : daysOfTheWeek += "_";
     })
     return daysOfTheWeek;
   }
@@ -77,8 +75,10 @@ export default function CreateTaskMenu(props) {
   function handleSubmit(){
     let daysOfTheWeek = '';
     let secondsLeft = undefined;
+    debugger
     if(recurrence === "Weekly"){
       daysOfTheWeek = getRecurrenceStr();
+      console.log(daysOfTheWeek);
     }
 
     if(type === 'timedGoal'){
@@ -188,24 +188,24 @@ export default function CreateTaskMenu(props) {
                     <input type="checkbox" readOnly={true} name="wed" id="wed" value="W"/>
                     <label htmlFor="wed">Wed</label>
                   </div>
-
+                  
                   <div className="day-checkbox">
-                    <input type="checkbox" readOnly={true} name="thu" id="thu" value="R"/>
+                    <input type="checkbox" readOnly={true} name="thu" id="thu" value="T"/>
                     <label htmlFor="thu">Thurs</label>
                   </div>
-
+                  
                   <div className="day-checkbox">
                     <input type="checkbox" readOnly={true} name="fri" id="fri" value="F"/>
                     <label htmlFor="fri">Fri</label>
                   </div>
-
+                  
                   <div className="day-checkbox">
                     <input type="checkbox" readOnly={true} name="sat" id="sat" value="S"/>
                     <label htmlFor="sat">Sat</label>
                   </div>
 
                   <div className="day-checkbox">
-                    <input type="checkbox" readOnly={true} name="sun" id="sun" value="N"/>
+                    <input type="checkbox" readOnly={true} name="sun" id="sun" value="S"/>
                     <label htmlFor="sun">Sun</label>
                   </div>
                 </div>
@@ -214,7 +214,6 @@ export default function CreateTaskMenu(props) {
             </div>
             </>
             : null} 
-
             <div className="form-field">
               <label htmlFor="type">TYPE</label>
               <ul id="button-list">
