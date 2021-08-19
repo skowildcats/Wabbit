@@ -26,9 +26,17 @@ const UserSchema = new Schema({
     type: Array,
     default: []
   },
+  habits: {
+    type: Array,
+    default: []
+  },
   walkthrough: {
     type: Boolean,
     default: false
+  },
+  lastCheckedDate: {
+    type: Date,
+    default: new Date()
   }
 },{
   timestamps: true

@@ -18,7 +18,7 @@ const HabitSchema = new Schema({
     type: String
   },
   daysOfTheWeek:{
-    // M_TW_F__ for a mon tues wed fri repeating task
+    // MTW_F__ for a mon tues wed fri repeating task
     type: String
   },
   type: {
@@ -32,8 +32,20 @@ const HabitSchema = new Schema({
     type: String, //this will just be the filename that can be used to fetch it from the api
     // required: true
   },
+  increment: {
+    type: Number
+  },
+  maxProgress: {
+    type: Number
+  },
+  secondsLeft: {
+    type: Number
+  },
   index: {
     type: Number
+  },
+  task: {
+    
   }
 },{
   timestamps: true

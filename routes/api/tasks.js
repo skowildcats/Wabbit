@@ -22,11 +22,8 @@ router.post("/new", async (req, res) => {
     icon: req.body.icon,
     secondsLeft: req.body.secondsLeft,
     increment: req.body.increment,
-    counter: req.body.counter,
-    countdown: req.body.countdown,
     maxProgress: req.body.maxProgress,
-    type: req.body.type,
-    currentProgress: req.body.currentProgress,
+    type: req.body.type
   });
   await newTask.save();
   const taskUser = await User.findById(newTask.user)
@@ -46,7 +43,6 @@ router.put("/:taskId", async (req, res) => {
     } else if (task.completed && !req.body.completed) {
       task.completedAt = null;
     }
-    //changing the endtime for timers when timer is unpaused
     
     //updating the rest of the fields
     for (field in req.body) {
@@ -71,16 +67,18 @@ router.get("/:taskId", async (req, res) => {
 
 // get all tasks
 router.get("/all/:userId", async (req, res) => {
+  const user = await User.findById(req.params.userId)
+
   //check if any habits need to build tasks for today
   const today = new Date()
-  const lastChecked = new Date(process.env.LAST_CHECK)
+  const lastChecked = new Date(user.lastCheckedDate)
   if(today.toDateString() !== lastChecked.toDateString()){
-    process.env.LAST_CHECK = today
+    user.lastCheckedDate = today
+    await user.save()
     refreshHabits(req.params.userId)
   }
 
   //retrieve tasks from user
-  const user = await User.findById(req.params.userId)
   const tasks = await Promise.all(user.tasks.map((id)=>Task.findById(id)))
   res.json(tasks.filter(task=>task));
 });

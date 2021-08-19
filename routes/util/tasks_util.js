@@ -9,8 +9,12 @@ exports.createTaskFromHabit = async function(habit){
     dueDate: habit.dueDate,
     color: habit.color,
     icon: habit.icon,
-    type: habit.type
+    type: habit.type,
+    increment: habit.increment,
+    maxProgress: habit.maxProgress,
+    secondsLeft: habit.secondsLeft
   });
+
   const task = await newTask.save();
   const user = await User.findById(habit.user)
   user.tasks.push(task._id)

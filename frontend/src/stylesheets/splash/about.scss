@@ -19,6 +19,9 @@
   display: flex;
   flex-wrap: wrap;
 
+  background-color: whitesmoke;
+  box-shadow: 0px 0px 10px $light-grey-2;
+
   > .team-member {
     position: relative;
     width: calc(300/680 * 100%);

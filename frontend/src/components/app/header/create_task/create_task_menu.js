@@ -62,12 +62,10 @@ export default function CreateTaskMenu(props) {
   }
 
   function getRecurrenceStr(){
-    let checkboxes = document.querySelectorAll('.days > input');
+    let checkboxes = document.querySelectorAll('.day-checkbox > input');
     let daysOfTheWeek = ""
     checkboxes.forEach(box => {
-      if(box.checked){
-        daysOfTheWeek += box.value;
-      }
+      box.checked ? daysOfTheWeek += box.value : daysOfTheWeek += "_";
     })
     return daysOfTheWeek;
   }
@@ -75,8 +73,10 @@ export default function CreateTaskMenu(props) {
   function handleSubmit(){
     let daysOfTheWeek = '';
     let secondsLeft = undefined;
+    debugger
     if(recurrence === "Weekly"){
       daysOfTheWeek = getRecurrenceStr();
+      console.log(daysOfTheWeek);
     }
 
     if(type === 'timedGoal'){
@@ -187,7 +187,7 @@ export default function CreateTaskMenu(props) {
               </div>
 
               <div className="day-checkbox">
-                <input type="checkbox" readOnly={true} name="thu" id="thu" value="R"/>
+                <input type="checkbox" readOnly={true} name="thu" id="thu" value="T"/>
                 <label htmlFor="thu">Thurs</label>
               </div>
 
@@ -202,7 +202,7 @@ export default function CreateTaskMenu(props) {
               </div>
 
               <div className="day-checkbox">
-                <input type="checkbox" readOnly={true} name="sun" id="sun" value="N"/>
+                <input type="checkbox" readOnly={true} name="sun" id="sun" value="S"/>
                 <label htmlFor="sun">Sun</label>
               </div>
             </div>
