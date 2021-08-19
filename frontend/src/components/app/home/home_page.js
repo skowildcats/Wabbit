@@ -30,11 +30,9 @@ class HomePage extends React.Component {
   }
 
   //sets menu open with actionType corresponding to whether its making a task or a habit
-  setMenuOpen(val, type, text, taskAction, task){
+  setMenuOpen(val, taskAction, task){
     this.setState({
       menuOpen: val,
-      actionType: type,
-      menuText: text,
       taskAction,
       task
     })
@@ -143,10 +141,11 @@ class HomePage extends React.Component {
         </ul>
         <div id="home-page">
           <ul id="button-list">
-            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "task", "TASK", "create")} icon={"checked"}/>
+            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "create")} icon={"add"}/>
+            {/* <OpenMenuButton openMenu={() => this.setMenuOpen(true, "task", "TASK", "create")} icon={"checked"}/>
             <OpenMenuButton openMenu={() => this.setMenuOpen(true, "countdown", "COUNTDOWN", "create")} icon={"calendar"}/>
             <OpenMenuButton openMenu={() => this.setMenuOpen(true, "timedGoal", "TIMER", "create")} icon={"stopwatch"}/>
-            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "progress", "TRACKER", "create")} icon={"tallies"}/>
+            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "progress", "TRACKER", "create")} icon={"tallies"}/> */}
           </ul>
           <ul id="tasks" className="sortable-task">
             {tasks}
