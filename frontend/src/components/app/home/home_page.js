@@ -116,7 +116,6 @@ class HomePage extends React.Component {
 
   render() {
     if (this.state.loading) return <div id="loading"><Loader /></div>;
-
     const tasks = this.sort_object(this.props.tasks).map(task => {
       switch(task.type){
         case 'progress':
@@ -129,7 +128,7 @@ class HomePage extends React.Component {
         case 'timedGoal':
           return <TimedGoal setMenuOpen={this.setMenuOpen} task={task} key={task._id} id={task._id} minusOneSecond={()=>this._minusOneSecond(task)}/>
         default: 
-        return null;
+          return null;
       }
     })
     return (

@@ -64,6 +64,7 @@
 //           dueDate: _pushBackDays(_getRandomInt(70),today),
 //           completedAt: _pushBackDays(_getRandomInt(70),today),
 //           completed: true,
+//           type: 'task',
 //         })
 //         if(_getRandomInt(10)===3){
 //           newTask.completed = false

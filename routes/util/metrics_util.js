@@ -35,6 +35,7 @@ exports.tasksDonePerWeek=(tasks)=>{
   const now = new Date()
   const week = 7 * 24 * 60 *60*1000
   for(const task of tasks){
+    console.log(task)
     if(!task.completed) continue
     const weeksElapsed = (now.getTime()-task.completedAt.getTime())/week
     weeksChrono[9-Math.floor(weeksElapsed)]++
@@ -69,7 +70,8 @@ exports.lateByWeekday = function(tasks){
 exports.filterByStartDate = function (tasks, days) {
   const now = new Date();
   const filteredResult = [];
-  for (task of tasks) {
+  for (const task of tasks) {
+    if(!task) continue
     const newDate = task.createdAt;
     newDate.setDate(newDate.getDate() + days);
     if (newDate > now) {
