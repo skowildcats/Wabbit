@@ -58,9 +58,13 @@
           width: 50px;
           height: 50px;
         }
+
+        &:hover {
+          background-color: $dark-grey-0;
+        }
       }
       .task-type.active{
-        background-color: $light-grey-3;
+        background-color: $dark-grey-0;
       }
     }
     > label {
