@@ -1,6 +1,14 @@
 .edit-task-btn{
   height: 13px; width: 13px;
+  padding: 10px;
   position: absolute;
-  right: 15px; bottom: 15px;
+  right: 5px; bottom: 5px;
   cursor: pointer;
+  filter: invert(0.5);
+  transition: all 0.2s;
+
+  &:hover {
+    filter: invert(0.3);
+    transform: scale(1.3);
+  }
 }

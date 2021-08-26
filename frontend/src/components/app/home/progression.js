@@ -6,7 +6,7 @@ export default function Progression(props){
   const {task, id} = props
   return (
     <div className="task" id={`${id}`}> 
-      <div className="drag-handle">
+      <div className="drag-handle" style={{background: task.color}}>
         <i className="fas fa-ellipsis-h"></i>
       </div>
 
@@ -16,7 +16,7 @@ export default function Progression(props){
       </div>
 
       <div className="progress">
-        <span className="counter">{task.currentProgress}/{task.maxProgress}</span>
+        <span className="counter">{task.currentProgress} / {task.maxProgress}</span>
         <div className="counter-buttons">
           <IncrementButton type="increment" task={task} />
           <IncrementButton type="decrement" task={task} />
@@ -24,6 +24,7 @@ export default function Progression(props){
       </div>
 
       <DeleteTaskButton taskId={task._id}/>
+      <img className="task-icon" src={`${process.env.PUBLIC_URL}/icons/${task.icon}.png`} alt="home-btn" />
       <EditTaskButton setMenuOpen={props.setMenuOpen} task={task}/>
     </div>
   )

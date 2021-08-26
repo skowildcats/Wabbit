@@ -113,9 +113,18 @@
   }
 }
 
-#login-form > form {height: 245px;}
+#login-form > form {height: 199.5px;}
 #signup-form > form {height: 375px;}
 
+#login-form > form > button {
+  width: 224px;
+  &:last-of-type {
+    width: 66px;
+    margin-left: 10px;
+    background-color: $grey-1;
+    &:hover { background-color: $grey-2; }
+  }
+}
 
-#login-form > h1 { top: calc(50% - 178.5px);}
+#login-form > h1 { top: calc(50% - 160.25px);}
 #signup-form > h1 { top: calc(50% - 243.5px);}

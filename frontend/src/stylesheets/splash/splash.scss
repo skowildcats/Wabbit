@@ -11,7 +11,6 @@
 #splash {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-color: $light-green-0;
 }
 
 .splash-box {
@@ -22,11 +21,9 @@
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  background-color: whitesmoke;
 
   padding: 50px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px $light-grey-2;
 
   > img { width: 450px; }
 
@@ -46,4 +43,8 @@
       background-color: $green-2;
     }
   }
+}
+
+#logo {
+
 }
