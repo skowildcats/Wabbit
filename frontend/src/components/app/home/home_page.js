@@ -100,7 +100,7 @@ class HomePage extends React.Component {
     this.props.updateTask(task)
   }
 
-  sort_object(obj) {
+  _objToSortedArray(obj) {
     let items = Object.keys(obj).map(function(key) {
       return [key, obj[key]];
     });
@@ -118,7 +118,7 @@ class HomePage extends React.Component {
     if (this.state.loading) return <div id="loading"><Loader /></div>;
 
     // rudimentary way to sort the tasks so that uncompleted tasks are all at the top and the completed ones are at the bottom
-    const completedTasks = this.sort_object(this.props.tasks).map(task => {
+    const completedTasks = this._objToSortedArray(this.props.tasks).map(task => {
       // only get completed tasks
       if(!task.completed) return null
       switch(task.type){
@@ -135,7 +135,7 @@ class HomePage extends React.Component {
           return null;
       }
     })
-    const incompleteTasks = this.sort_object(this.props.tasks).map(task => {
+    const incompleteTasks = this._objToSortedArray(this.props.tasks).map(task => {
       // only get incomplete tasks
       if(task.completed) return null
       switch(task.type){
@@ -152,12 +152,14 @@ class HomePage extends React.Component {
           return null;
       }
     })
+
+    
     return (
       <>
         { !this.props.user.walkthrough ? <Walkthrough setWalkthrough={this.setWalkthrough} open={true}/> : null}
         <ul id="habits" className="sortable-habit">
           <h3>HABITS</h3>
-          {this.sort_object(this.props.habits).map(habit => {
+          {this._objToSortedArray(this.props.habits).map(habit => {
             return <Habit habit={habit} key={habit._id} id={habit._id}/>
           })}
         </ul>
