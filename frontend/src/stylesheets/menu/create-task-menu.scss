@@ -47,9 +47,21 @@
     padding: 15px 30px;
     
     #button-list{
+      display: flex;
+
+      > div {
+        margin-right: 15px;
+
+        > div {
+          position: absolute;
+          width: 50px;
+          text-align: center;
+          display: none;
+        }
+      }
+
       .task-type{
         height: 50px;
-        margin-bottom: 10px;
         font-size: 15px;
         background-color: #cacaca;
         border-radius: 5px;
@@ -58,11 +70,17 @@
           width: 50px;
           height: 50px;
         }
+
+        &:hover {
+          cursor: pointer;
+          background-color: $light-grey-5;
+        }
       }
       .task-type.active{
-        background-color: $light-grey-3;
+        background-color: $light-grey-5;
       }
     }
+
     > label {
       display: block;
       margin-bottom: 5px;
