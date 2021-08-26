@@ -217,10 +217,30 @@ export default function CreateTaskMenu(props) {
             <div className="form-field">
               <label htmlFor="type">TYPE</label>
               <ul id="button-list">
-                <button className={`task-type ${type === 'progress' ? 'active' : ''}`} onClick={() => setType('progress')}><img src={`${process.env.PUBLIC_URL}/tallies.png`} alt="tallies" /></button>
-                <button className={`task-type ${type === 'timedGoal' ? 'active' : ''}`} onClick={() => setType('timedGoal')}><img src={`${process.env.PUBLIC_URL}/stopwatch.png`} alt="stopwatch"/></button>
-                <button className={`task-type ${type === 'task' ? 'active' : ''}`} onClick={() => setType('task')}><img src={`${process.env.PUBLIC_URL}/checked.png`} alt="checked"/></button>
-                <button className={`task-type ${type === 'countdown' ? 'active' : ''}`} onClick={() => setType('countdown')}><img src={`${process.env.PUBLIC_URL}/calendar.png`} alt="calendar"/></button>
+                <div>
+                  <button className={`task-type ${type === 'progress' ? 'active' : ''}`} onClick={() => setType('progress')}><img src={`${process.env.PUBLIC_URL}/tallies.png`}
+                  onMouseEnter={() => {document.getElementById("progress-text").style.display = "block"}}
+                  onMouseLeave={() => {document.getElementById("progress-text").style.display = "none"}} alt="tallies" /></button>
+                  <div id="progress-text">Progress</div>
+                </div>
+                <div>
+                  <button className={`task-type ${type === 'timedGoal' ? 'active' : ''}`} onClick={() => setType('timedGoal')}><img src={`${process.env.PUBLIC_URL}/stopwatch.png`} 
+                  onMouseEnter={() => {document.getElementById("timed-goal-text").style.display = "block"}}
+                  onMouseLeave={() => {document.getElementById("timed-goal-text").style.display = "none"}} alt="stopwatch"/></button>
+                  <div id="timed-goal-text">Timed goal</div>
+                </div>
+                <div>
+                  <button className={`task-type ${type === 'task' ? 'active' : ''}`} onClick={() => setType('task')}><img src={`${process.env.PUBLIC_URL}/checked.png`} 
+                  onMouseEnter={() => {document.getElementById("task-text").style.display = "block"}}
+                  onMouseLeave={() => {document.getElementById("task-text").style.display = "none"}} alt="checked"/></button>
+                  <div id="task-text">Task</div>
+                </div>
+                <div>
+                  <button className={`task-type ${type === 'countdown' ? 'active' : ''}`} onClick={() => setType('countdown')}><img src={`${process.env.PUBLIC_URL}/calendar.png`} 
+                  onMouseEnter={() => {document.getElementById("countdown-text").style.display = "block"}}
+                  onMouseLeave={() => {document.getElementById("countdown-text").style.display = "none"}} alt="calendar"/></button>
+                  <div id="countdown-text">Countdown</div>
+                </div>
               </ul>
             </div>
         </>
