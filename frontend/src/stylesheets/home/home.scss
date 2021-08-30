@@ -21,32 +21,40 @@
   
   display: flex;
   flex-direction: column;
-  // padding: 100px 60px 0px;
   background-color: $light-grey-1;
 }
 
-#button-list {
-  position: relative;
-  box-sizing: border-box;
+#open-menu {
+  position: absolute;
+  top: 30px; left: 100px;
+  height: 20px; width: 20px;
+  background-color: $light-grey-4;
+  border-radius: 50%;
+  transition: background-color 0.2s;
 
-  > button {
-    height: 40px;
-    &:not(:last-child) { margin-right: 15px; }
-    margin-bottom: 10px;
-    font-size: 15px;
-    background-color: $light-grey-4;
-    border-radius: 5px;
-    transition: background-color 0.2s;
-
-    > img {
-      height: 40px;
-      width: 40px;
-    }
+  > img {
+    height: 15px; width: 15px;
+    padding: 2.5px;
   }
 
-  > button:hover { cursor: pointer; background-color: $light-grey-3; }
+  &:hover {
+    // top: 29.5px; left: 99.5px;
+    cursor: pointer;
+    // border: 1px solid $light-grey-4;
+    background-color: $light-grey-2;
+    transform: scale(1.1);
+    > img { filter: brightness(0) invert(0.3); }
+  }
 }
 
-@media (min-width: 1300px) {
+.home-header {
+    margin-bottom: 13px;
+    font-size: 24px;
+    color: $dark-grey-3;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+
+@media (min-width: 1700px) {
   #home-page { left: 430px; }
 }
