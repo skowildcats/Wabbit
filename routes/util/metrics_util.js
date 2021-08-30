@@ -69,7 +69,8 @@ exports.lateByWeekday = function(tasks){
 exports.filterByStartDate = function (tasks, days) {
   const now = new Date();
   const filteredResult = [];
-  for (task of tasks) {
+  for (const task of tasks) {
+    if(!task) continue
     const newDate = task.createdAt;
     newDate.setDate(newDate.getDate() + days);
     if (newDate > now) {

@@ -11,8 +11,7 @@ router.get('/:userId',async (req,res)=>{
     const user = await User.findById(req.params.userId)
     let tasks = await Promise.all(user.tasks.map(id=>Task.findById(id)))
     tasks = metricsUtil.filterByStartDate(tasks,parseInt(range))
-    const past10Weeks = metricsUtil.filterByStartDate(
-      await Task.find({user: req.params.userId}),71)
+    const past10Weeks = metricsUtil.filterByStartDate(tasks,71)
 
     let count = await Task.countDocuments({user: req.params.userId, completed: true})
     let habit = await Habit.findOne({user: req.params.userId, recurrence: "Daily"});

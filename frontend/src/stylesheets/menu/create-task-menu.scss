@@ -98,6 +98,11 @@
             background-color: $light-grey-4;
           }
         }
+
+        &:hover {
+          cursor: pointer;
+          background-color: $light-grey-5;
+        }
       }
     }
 

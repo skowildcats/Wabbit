@@ -42,6 +42,20 @@
 //       const recurrence = ['Daily','Weekly','Daily']
 //       const type = ['progress', 'countdown', 'task'];
 //       const daysOfTheWeek = [null,'M_W_F_S',null]
+//       const colors = [
+//         "#9c3838", // red
+//         "#c28846", // dandelion
+//         "#ebdf8a", // mustard yellow
+//         "#91b58d", // pale green
+//         "#62805e", // forest green
+//         "#6883b3", // light blue
+//         "#59667d", // dark blue
+//         "#8b6f96", // lilac
+//         "#b5b6bd", // blue-grey
+//         "#525254"  // dark-blue-grey
+//       ];
+//       const habitColors = [colors[6], colors[0], colors[1]]
+//       const icons = ["general", "deadlines", "career", "studies", "personal", "health", "fitness", "errands"]
 
 //       for(let i=0;i<habitTitle.length;i++){
 //         const newHabit = new Habit({
@@ -49,12 +63,15 @@
 //           user: userId,
 //           type: type[i],
 //           recurrence: recurrence[i],
-//           daysOfTheWeek: daysOfTheWeek[i]
+//           daysOfTheWeek: daysOfTheWeek[i],
+//           color: habitColors[i],
+//           icon: icons[i],
 //         })
 //         let habit = await newHabit.save()
 //         user.habits.push(habit._id)
 //       }
 
+//       //generating tasks
 //       let taskTitle = ['Do Homework', 'Wash Dishes', 'Plan Trip', 'Attend a Japanese Tea Ceremony','Go to Sea World','Go to a Swingers Club','Buy a Watch','Jump Out of a Cake','Cook Christmas Dinner','Learn to Play Guitar','Sail Down the Yangtze River','Handwrite Letters','Jump Out a Plane Without a Parachute','Pour Water','Jump with Jack','Learn with Larry','Art with Abe','Jiggle Joseph','Put Out the BFBF','Run with Ryan','Tell Jom I Love Him','Reject Suzy Bae']
 //       const today = new Date()
 //       for(let i = 0;i < 120; i++){
@@ -64,6 +81,9 @@
 //           dueDate: _pushBackDays(_getRandomInt(70),today),
 //           completedAt: _pushBackDays(_getRandomInt(70),today),
 //           completed: true,
+//           type: 'task',
+//           color: colors[_getRandomInt(colors.length)],
+//           icon: icons[_getRandomInt(icons.length)]
 //         })
 //         if(_getRandomInt(10)===3){
 //           newTask.completed = false
@@ -73,7 +93,6 @@
 //         user.tasks.push(task._id)
 //       }
 //       await user.save()
-//       // const tasks = await Task.find({user: userId})
 //       const tasks = user.tasks
 //       for(let taskId of tasks){
 //         const task = await Task.findById(taskId)
