@@ -5,7 +5,7 @@
   #splash-btn:hover:not(.visiting) > img { filter: brightness(0) invert(0.94); }
 
   > a:not(#splash-btn), > button {
-    color: var(--theme-4);
+    color: $dark-grey-0;
     background-color: white;
     transition: all 0.2s;
     &:hover:not(.visiting) { color: var(--theme-5); background-color: $light-grey-1; }
