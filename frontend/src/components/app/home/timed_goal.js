@@ -10,9 +10,10 @@ export default function TimedGoal(props) {
   useEffect(()=>{
     setTime(task.secondsLeft)
   },[task.secondsLeft])
+
   return (
-    <div className="task" id={`${id}`}>
-      <div className="drag-handle">
+    <div className="task" id={`${props.id}`}>
+      <div className="drag-handle" style={{background: task.color}}>
         <i className="fas fa-ellipsis-h"></i>
       </div>
       <div className="body-wrapper">
@@ -21,8 +22,9 @@ export default function TimedGoal(props) {
       </div>
       <div className="time">
         <Timer isRunning={isRunning} toggleRunning={toggleRunning} secondsLeft={task.secondsLeft} minusOneSecond={minusOneSecond}/>
-        <DeleteTaskButton taskId={task._id} />
       </div>
+      <DeleteTaskButton taskId={task._id} />
+      <img className="task-icon" src={`${process.env.PUBLIC_URL}/icons/${task.icon}.png`} alt="home-btn" />
       <EditTaskButton toggleRunning={toggleRunning} setMenuOpen={props.setMenuOpen} task={task}/>
     </div>
   )

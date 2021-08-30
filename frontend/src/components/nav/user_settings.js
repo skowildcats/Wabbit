@@ -60,6 +60,7 @@ export default class UserSettings extends React.Component {
   }
 
   _colorBubbles(palette) {
+    debugger
     const theme = this.state.selectedTheme
       || this.palettes().filter(palette => palette[1] === this.props.currentUser.theme[0])[0][0];
 

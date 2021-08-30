@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export default function Timer({secondsLeft,minusOneSecond, isRunning, toggleRunning}) {
+export default function Timer({secondsLeft, minusOneSecond, isRunning, toggleRunning}) {
   
   const[time,setTime] = useState(fromSecondsToTime(secondsLeft))
   // const[isRunning,toggleRunning] = useState(false)
@@ -52,10 +52,9 @@ export default function Timer({secondsLeft,minusOneSecond, isRunning, toggleRunn
 }
 
 function fromSecondsToTime(secondsLeft){
-  const seconds = secondsLeft%60
-  const minutesLeft = Math.floor(secondsLeft/60)
-  const minutes = minutesLeft%60
-  const hours = Math.floor(minutesLeft/60)
-  return {seconds,minutes,hours}
-}
-
+  const seconds = secondsLeft % 60;
+  const minutesLeft = Math.floor(secondsLeft/60);
+  const minutes = minutesLeft % 60;
+  const hours = Math.floor(minutesLeft/60);
+  return {seconds, minutes, hours};
+};

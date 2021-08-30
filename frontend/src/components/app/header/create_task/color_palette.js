@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function ColorPalette(props) {
-  let colors = [
+  const colors = [
     "#9c3838", // red
     "#c28846", // dandelion
     "#ebdf8a", // mustard yellow

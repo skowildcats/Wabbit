@@ -17,11 +17,11 @@
 
 #home-page {
   position: absolute;
-  top: 0; left: 25%; right: 0; bottom: 0;
+  top: 67px; left: 25%; right: 0; bottom: 0;
   
   display: flex;
   flex-direction: column;
-  padding: 100px 60px 0px;
+  // padding: 100px 60px 0px;
   background-color: $light-grey-1;
 }
 
@@ -45,4 +45,8 @@
   }
 
   > button:hover { cursor: pointer; background-color: $light-grey-3; }
+}
+
+@media (min-width: 1300px) {
+  #home-page { left: 430px; }
 }

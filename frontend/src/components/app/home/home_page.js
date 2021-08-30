@@ -30,11 +30,9 @@ class HomePage extends React.Component {
   }
 
   //sets menu open with actionType corresponding to whether its making a task or a habit
-  setMenuOpen(val, type, text, taskAction, task){
+  setMenuOpen(val, taskAction, task){
     this.setState({
       menuOpen: val,
-      actionType: type,
-      menuText: text,
       taskAction,
       task
     })
@@ -100,7 +98,7 @@ class HomePage extends React.Component {
     this.props.updateTask(task)
   }
 
-  sort_object(obj) {
+  _objToSortedArray(obj) {
     let items = Object.keys(obj).map(function(key) {
       return [key, obj[key]];
     });
@@ -117,7 +115,10 @@ class HomePage extends React.Component {
   render() {
     if (this.state.loading) return <div id="loading"><Loader /></div>;
 
-    const tasks = this.sort_object(this.props.tasks).map(task => {
+    // rudimentary way to sort the tasks so that uncompleted tasks are all at the top and the completed ones are at the bottom
+    const completedTasks = this._objToSortedArray(this.props.tasks).map(task => {
+      // only get completed tasks
+      if(!task.completed) return null
       switch(task.type){
         case 'progress':
           return <Progression setMenuOpen={this.setMenuOpen} task={task} key={task._id} id={task._id}/>
@@ -129,27 +130,48 @@ class HomePage extends React.Component {
         case 'timedGoal':
           return <TimedGoal setMenuOpen={this.setMenuOpen} task={task} key={task._id} id={task._id} minusOneSecond={()=>this._minusOneSecond(task)}/>
         default: 
-        return null;
+          return null;
       }
     })
+    const incompleteTasks = this._objToSortedArray(this.props.tasks).map(task => {
+      // only get incomplete tasks
+      if(task.completed) return null
+      switch(task.type){
+        case 'progress':
+          return <Progression setMenuOpen={this.setMenuOpen} task={task} key={task._id} id={task._id}/>
+        case 'countdown':
+          if(moment(task.dueDate) < moment()) return null;
+          return <Countdown setMenuOpen={this.setMenuOpen} task={task} key={task._id} id={task._id}/>
+        case 'task':
+          return <Task setMenuOpen={this.setMenuOpen} task={task} key={task._id} id={task._id}/>
+        case 'timedGoal':
+          return <TimedGoal setMenuOpen={this.setMenuOpen} task={task} key={task._id} id={task._id} minusOneSecond={()=>this._minusOneSecond(task)}/>
+        default: 
+          return null;
+      }
+    })
+
+    
     return (
       <>
         { !this.props.user.walkthrough ? <Walkthrough setWalkthrough={this.setWalkthrough} open={true}/> : null}
         <ul id="habits" className="sortable-habit">
           <h3>HABITS</h3>
-          {this.sort_object(this.props.habits).map(habit => {
+          {this._objToSortedArray(this.props.habits).map(habit => {
             return <Habit habit={habit} key={habit._id} id={habit._id}/>
           })}
         </ul>
         <div id="home-page">
           <ul id="button-list">
-            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "task", "TASK", "create")} icon={"checked"}/>
+            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "create")} icon={"add"}/>
+            {/* <OpenMenuButton openMenu={() => this.setMenuOpen(true, "task", "TASK", "create")} icon={"checked"}/>
             <OpenMenuButton openMenu={() => this.setMenuOpen(true, "countdown", "COUNTDOWN", "create")} icon={"calendar"}/>
             <OpenMenuButton openMenu={() => this.setMenuOpen(true, "timedGoal", "TIMER", "create")} icon={"stopwatch"}/>
-            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "progress", "TRACKER", "create")} icon={"tallies"}/>
+            <OpenMenuButton openMenu={() => this.setMenuOpen(true, "progress", "TRACKER", "create")} icon={"tallies"}/> */}
           </ul>
           <ul id="tasks" className="sortable-task">
-            {tasks}
+            {incompleteTasks}
+            {completedTasks}
           </ul>
         </div>
         <CreateTaskMenuContainer task={this.state.task} taskAction={this.state.taskAction} menuText={this.state.menuText} actionType={this.state.actionType} open={this.state.menuOpen} closeMenu={() => this.setMenuOpen(false)}/>

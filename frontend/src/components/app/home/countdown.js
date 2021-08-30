@@ -30,6 +30,7 @@ export default function Countdown(props){
       </div>
       <EditTaskButton setMenuOpen={props.setMenuOpen} task={task}/>
       <DeleteTaskButton taskId={task._id}/>
+      <img className="task-icon" src={`${process.env.PUBLIC_URL}/icons/${task.icon}.png`} alt="home-btn" />
     </div>
     </>
   )

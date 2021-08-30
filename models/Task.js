@@ -40,13 +40,7 @@ const TaskSchema = new Schema({
     type: String  //this 
     //Options - progress - countdown - timedGoal - task
   },
-  counter: {
-    type: Number
-  },
   increment: {
-    type: Number
-  },
-  countdown: {
     type: Number
   },
   maxProgress: {

@@ -6,14 +6,13 @@
 
 .create-task-menu {
   position: absolute;
-  top: 0; right: 0; bottom: 0;
-  width: 500px;
-  transform: translateX(150%);
   overflow-y: scroll;
-
+  top: 50%; left: 50%;
   display: flex;
+  min-width: 500px;
   flex-direction: column;
-
+  transform: scale(.1);
+  border-radius: 8px;
   -webkit-user-select: none; // Safari
   -moz-user-select: none; // Firefox
   -ms-user-select: none; // IE10+/Edge
@@ -21,8 +20,12 @@
 
   background-color: white;
   z-index: 101; // place above overlay. overlay is z-index 100
-  transition: transform 0.3s ease-in-out; // transition the sidebar
-  &.active { transform: translateX(0%); }
+  transition: transform 0.3s ease-in; // transition the sidebar
+  &.active {
+    transform: scale(1);
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease-out;
+  }
 
   > .header {
     display: flex;
@@ -42,6 +45,42 @@
   > .form-field {
     border-bottom: 1px solid rgb(201, 201, 201);
     padding: 15px 30px;
+    
+    #button-list{
+      display: flex;
+
+      > div {
+        margin-right: 15px;
+
+        > div {
+          position: absolute;
+          width: 50px;
+          text-align: center;
+          display: none;
+        }
+      }
+
+      .task-type{
+        height: 50px;
+        font-size: 15px;
+        background-color: #cacaca;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+        img{
+          width: 50px;
+          height: 50px;
+        }
+
+        &:hover {
+          cursor: pointer;
+          background-color: $light-grey-5;
+        }
+      }
+      .task-type.active{
+        background-color: $light-grey-5;
+      }
+    }
+
     > label {
       display: block;
       margin-bottom: 5px;
@@ -137,8 +176,10 @@
 .form-submit {
   display: flex;
   padding: 20px 30px 16px;
+  justify-content: flex-end;
   align-items: center;
-  border-top: 1px solid rgb(201, 201, 201);
+  margin-top: auto;
+  // border-top: 1px solid rgb(201, 201, 201);
 }
 
 .form-submit > button {

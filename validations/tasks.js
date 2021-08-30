@@ -11,22 +11,14 @@ module.exports = function validateTaskInput(data) {
     errors.title = 'Title is required';
   }
 
-  if (!Validator.isLength(data.description, { min: 1, max: 100 })) {
-    errors.description = "Task must be within 1 and 100 characters";
-  }
-
-  if (Validator.isEmpty(data.description)) {
-    errors.description = "Description is required";
-  }
-
   if (data.type === "timedGoal") {
     if (data.secondsLeft === 0 || data.secondsLeft === null) {
       errors.secondsLeft = "Hours/minutes is required"
     }
   } else {
-    if (Validator.isEmpty(data.dueDate)) {
-      errors.dueDate = "Due date/completed date is required"
-    }
+    // if (Validator.isEmpty(data.dueDate)) {
+    //   errors.dueDate = "Due date/completed date is required"
+    // }
   }
 
   return {
