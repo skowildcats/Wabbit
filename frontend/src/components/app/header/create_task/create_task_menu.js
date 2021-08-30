@@ -246,7 +246,7 @@ export default function CreateTaskMenu(props) {
         </>
         : 
         <>
-        <ColorPalette selected={selected} setSelected={setSelected}/>
+        <ColorPalette errors={props.errors} selected={selected} setSelected={setSelected}/>
 
         {type === 'progress' ? 
         <div className="form-field">
