@@ -77,7 +77,7 @@
         }
       }
       .task-type.active{
-        background-color: $light-grey-5;
+        background-color: darken($light-grey-5, 10%);
       }
     }
 
