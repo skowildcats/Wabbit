@@ -8,7 +8,7 @@
     color: $dark-grey-0;
     background-color: white;
     transition: all 0.2s;
-    &:hover:not(.visiting) { color: var(--theme-5); background-color: $light-grey-1; }
+    &:hover:not(.visiting) { color: $dark-grey-3; background-color: $light-grey-1; }
   }
   .visiting:hover { cursor: default; }
   a.visiting:not(#splash-btn) { background-color: $light-grey-2; }

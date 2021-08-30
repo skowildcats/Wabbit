@@ -13,8 +13,11 @@ class NavBar extends React.Component {
       this.props.getCurrentUser(this.props.currentUser.id)
       .then(({ currentUser }) => {
         const app = document.getElementById("app")
-        currentUser.theme.map((color, i) => {
+        currentUser.theme.slice(0,3).map((color, i) => {
           app.style.setProperty(`--theme-${i+1}`, color);
+        })
+        currentUser.theme.slice(3).map((color, i) => {
+          app.style.setProperty(`--task-color-${i+1}`, color);
         })
       })
     };

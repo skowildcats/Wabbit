@@ -25,7 +25,7 @@ const TaskSchema = new Schema({
     type: Date
   },
   color: {
-    type: String,
+    type: Number,
     // required: true
   },
   icon: {

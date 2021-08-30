@@ -24,8 +24,10 @@ export default class Habit extends React.Component {
 
   render() {
     const {habit, id} = this.props
+    var style = getComputedStyle(document.getElementById("app"));
+
     return (
-      <div className="habit" style={{background: habit.color}}>
+      <div className="habit" style={{background: style.getPropertyValue(`--task-color-${habit.color}`)}}>
         <div className="drag-handle">
           <i className="fas fa-ellipsis-h"></i>
         </div>
