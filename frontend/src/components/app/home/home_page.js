@@ -21,7 +21,7 @@ class HomePage extends React.Component {
       actionType: null,
       menuText: '',
       taskAction: 'create',
-      walkthroughOpen: !this.props.user.walkthrough,
+      walkthroughOpen: false, //!this.props.user.walkthrough change this in the future to add walkthrough
       task: null
     }
     this.setMenuOpen = this.setMenuOpen.bind(this);
