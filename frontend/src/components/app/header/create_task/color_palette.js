@@ -26,7 +26,8 @@ export default function ColorPalette(props) {
   })
 
   return (
-    <ul className="color-selection">
+    <ul className="color-selection form-field">
+      {props.errors.color ? <label id="errors"> {props.errors.color} </label> : null}
       {colorBubbles}
     </ul>
   )
