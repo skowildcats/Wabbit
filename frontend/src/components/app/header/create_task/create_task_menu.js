@@ -75,7 +75,6 @@ export default function CreateTaskMenu(props) {
   function handleSubmit(){
     let daysOfTheWeek = '';
     let secondsLeft = undefined;
-    debugger
     if(recurrence === "Weekly"){
       daysOfTheWeek = getRecurrenceStr();
       console.log(daysOfTheWeek);

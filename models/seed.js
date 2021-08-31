@@ -181,7 +181,7 @@
 //         "#b5b6bd", // blue-grey
 //         "#525254"  // dark-blue-grey
 //       ];
-//       const habitColors = [colors[6], colors[0], colors[1]]
+//       const habitColors = [1,2,3]
 //       const icons = ['health', 'fitness', 'personal'];
 
 //       for(let i = 0; i < habitTitle.length; i++){
@@ -195,7 +195,7 @@
 //           increment: increments[i],
 //           maxProgress: goals[i],
 //           secondsLeft: seconds[i],
-//           color: habitColors[i],
+//           color: _getRandomInt(2)+1,
 //           icon: icons[i]
 //         });
 //         const habit = await newHabit.save();
@@ -214,6 +214,8 @@
 //           dueDate: _pushBackDays(_getRandomInt(70),today),
 //           completedAt: _pushBackDays(_getRandomInt(70),today),
 //           completed: true,
+//           color: _getRandomInt(5)+1,
+//           icon: icons[_getRandomInt(2)]
 //         })
 //         if(_getRandomInt(10)===3){
 //           newTask.completed = false
