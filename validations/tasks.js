@@ -10,6 +10,12 @@ module.exports = function validateTaskInput(data) {
   if (Validator.isEmpty(data.title)) {
     errors.title = 'Title is required';
   }
+  if (Validator.isEmpty(data.color)) {
+    errors.color = 'Select a color for this task';
+  }
+  if (Validator.isEmpty(data.icon)) {
+    errors.icon = 'Select an icon for this task';
+  }
 
   if (data.type === "timedGoal") {
     if (data.secondsLeft === 0 || data.secondsLeft === null) {
