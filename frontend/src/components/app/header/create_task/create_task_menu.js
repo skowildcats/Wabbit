@@ -224,25 +224,25 @@ export default function CreateTaskMenu(props) {
                   <button className={`task-type ${type === 'progress' ? 'active' : ''}`} onClick={() => setType('progress')}><img src={`${process.env.PUBLIC_URL}/tallies.png`}
                   onMouseEnter={() => {document.getElementById("progress-text").style.display = "block"}}
                   onMouseLeave={() => {document.getElementById("progress-text").style.display = "none"}} alt="tallies" /></button>
-                  <div id="progress-text">Progress</div>
+                  <div id="progress-text" className="task-text" >PROGRESS TRACKER</div>
                 </div>
                 <div className="task-option">
                   <button className={`task-type ${type === 'timedGoal' ? 'active' : ''}`} onClick={() => setType('timedGoal')}><img src={`${process.env.PUBLIC_URL}/stopwatch.png`} 
                   onMouseEnter={() => {document.getElementById("timed-goal-text").style.display = "block"}}
                   onMouseLeave={() => {document.getElementById("timed-goal-text").style.display = "none"}} alt="stopwatch"/></button>
-                  <div id="timed-goal-text">Timed goal</div>
+                  <div id="timed-goal-text" className="task-text" >TIMED GOAL</div>
                 </div>
                 <div className="task-option">
                   <button className={`task-type ${type === 'task' ? 'active' : ''}`} onClick={() => setType('task')}><img src={`${process.env.PUBLIC_URL}/checked.png`} 
                   onMouseEnter={() => {document.getElementById("task-text").style.display = "block"}}
                   onMouseLeave={() => {document.getElementById("task-text").style.display = "none"}} alt="checked"/></button>
-                  <div id="task-text">Task</div>
+                  <div id="task-text" className="task-text" >TO-DO</div>
                 </div>
                 <div className="task-option">
                   <button className={`task-type ${type === 'countdown' ? 'active' : ''}`} onClick={() => setType('countdown')}><img src={`${process.env.PUBLIC_URL}/calendar.png`} 
                   onMouseEnter={() => {document.getElementById("countdown-text").style.display = "block"}}
                   onMouseLeave={() => {document.getElementById("countdown-text").style.display = "none"}} alt="calendar"/></button>
-                  <div id="countdown-text">Countdown</div>
+                  <div id="countdown-text" className="task-text" >COUNTDOWN</div>
                 </div>
               </ul>
             </div>

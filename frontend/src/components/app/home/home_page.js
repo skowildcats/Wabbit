@@ -156,7 +156,8 @@ class HomePage extends React.Component {
       <>
         { !this.props.user.walkthrough ? <Walkthrough setWalkthrough={this.setWalkthrough} open={true}/> : null}
         <ul id="habits" className="sortable-habit">
-          <h3 className="home-header">HABITS</h3>
+          <h3 id="habit-header" className="home-header">HABITS</h3>
+          <p id="habit-description">RECURRING TASKS</p>
           {this._objToSortedArray(this.props.habits).map(habit => {
             return <Habit habit={habit} key={habit._id} id={habit._id}/>
           })}

@@ -19,6 +19,16 @@
     border-radius: 7px;
   }
 
+  #habit-header {
+    margin-top: 12px;
+    margin-bottom: 5px;
+    & + #habit-description {
+      margin-bottom: 10px;
+      color: $dark-grey-3;
+      letter-spacing: 1px;
+    }
+  }
+
   > .habit {
     border-radius: 5px;
     width: 100%;

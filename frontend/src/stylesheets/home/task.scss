@@ -1,12 +1,12 @@
 #task-header {
   position: absolute;
-  top: 25px; left: 15px;
+  top: 33px; left: 35px;
   line-height: 30px;
 }
 
 #tasks {
   position: absolute;
-  top: 50px;
+  top: 75px;
   left: 0; bottom: 0;
   right: 5px;
 
@@ -27,7 +27,7 @@
     position: relative;
     height: 200px;
     width: calc(25% - 30px);
-    margin: 15px;
+    margin: 5px 15px 20px;
     
     background-color: $light-grey-1;
     border: 1px solid $grey-0;

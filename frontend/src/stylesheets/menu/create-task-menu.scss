@@ -12,12 +12,13 @@
   min-width: 500px;
   flex-direction: column;
   border-radius: 8px;
+
   -webkit-user-select: none; // Safari
   -moz-user-select: none; // Firefox
   -ms-user-select: none; // IE10+/Edge
   user-select: none; // Standard
 
-  background-color: white;
+  background: linear-gradient(135deg, $light-grey-1 0%, white 100%);
   z-index: 101; // place above overlay. overlay is z-index 100
   animation: float-in-center 0.2s;
 
@@ -45,7 +46,7 @@
 
     > .required:not(.errors):after {
       position: absolute;
-      top: 19px;
+      top: 15px;
       margin-left: 5px;
       content: "*";
       font-size: 18px;
@@ -64,6 +65,10 @@
         border-color: red;
         &:hover, &:focus { border-color: red; }
       }
+
+      + #task-types > .task-option > button {
+        background-color: rgba(255, 0, 0, 0.5)
+      }
     }
     
     #task-types{
@@ -71,6 +76,7 @@
       justify-content: space-between;
 
       > .task-option {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -99,9 +105,13 @@
           }
         }
 
-        &:hover {
-          cursor: pointer;
-          background-color: $light-grey-5;
+        > .task-text {
+          width: 80px;
+          display: none;
+          position: absolute;
+          top: 55px; left: 50%;
+          transform: translateX(-50%);
+          text-align: center;
         }
       }
     }

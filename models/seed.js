@@ -24,11 +24,13 @@
 //   const emails = ['demo@demo.com']
 //   const firstNames = ['Demo']
 //   const lastNames = ['User']
+//   const themes = [["#808791", "#6C737C", "#5E6570", "#828079", "#C4B7A1", "#BFA49D", "#76848D", "#89664A", "#5D5449"]]
 //   const newUser = new User({
 //     email: emails[0],
 //     password: 'password',
 //     firstName: firstNames[0],
-//     lastName: lastNames[0]
+//     lastName: lastNames[0],
+//     theme: themes[0]
 //   })
 //   bcrypt.genSalt(10, (err, salt) => {
 //     bcrypt.hash(newUser.password, salt, async (err, hash) => {
