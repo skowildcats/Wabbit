@@ -100,7 +100,7 @@ export default function CreateTaskMenu(props) {
       recurrence,
       dueDate,
       daysOfTheWeek,
-      user: props.userId,
+      user: props.user.id,
       color: selected,
       icon,
       type,
@@ -249,7 +249,7 @@ export default function CreateTaskMenu(props) {
         </>
         : 
         <>
-        <ColorPalette selected={selected} setSelected={setSelected}/>
+        <ColorPalette selected={selected} setSelected={setSelected} colors={props.user.theme.slice(3)}/>
 
         {type === 'progress' ? 
         <div className="form-field">

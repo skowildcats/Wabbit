@@ -25,7 +25,7 @@ const HabitSchema = new Schema({
     type: String
   },
   color: {
-    type: String,
+    type: Number,
     // required: true
   },
   icon: {
