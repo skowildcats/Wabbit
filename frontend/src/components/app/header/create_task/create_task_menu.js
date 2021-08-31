@@ -84,7 +84,6 @@ export default function CreateTaskMenu(props) {
   function handleSubmit(){
     let daysOfTheWeek = '';
     let secondsLeft = undefined;
-    debugger
     if(recurrence === "Weekly"){
       daysOfTheWeek = getRecurrenceStr();
       console.log(daysOfTheWeek);
@@ -113,6 +112,8 @@ export default function CreateTaskMenu(props) {
         props.createTask(newTodo).then(data => {
           if (data.type !== "RECEIVE_SESSION_ERRORS") {
             closeMenu();
+          } else {
+            if(data.errors.title) setPage(1);
           }
         })
       } else {
@@ -129,7 +130,6 @@ export default function CreateTaskMenu(props) {
       })
     }
   }
-
   const icons = ["general", "deadlines", "career", "studies", "personal", "health", "fitness", "errands"].map(img => {
     return (
       <li key={img} className={icon === img ? "selected" : ""} onClick={() => setIcon(img)}>
@@ -249,7 +249,7 @@ export default function CreateTaskMenu(props) {
         </>
         : 
         <>
-        <ColorPalette selected={selected} setSelected={setSelected} colors={props.user.theme.slice(3)}/>
+        <ColorPalette errors={props.errors} selected={selected} setSelected={setSelected} colors={props.user.theme.slice(3)}/>
 
         {type === 'progress' ? 
         <div className="form-field">
@@ -282,6 +282,7 @@ export default function CreateTaskMenu(props) {
         : null}
         
         <div id="icons-label" className="form-field"> 
+        {props.errors.icon ? <label id="errors"> {props.errors.icon} </label> : null}
             <ul id="icons">
               {icons}
             </ul>

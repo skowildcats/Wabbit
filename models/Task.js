@@ -26,11 +26,11 @@ const TaskSchema = new Schema({
   },
   color: {
     type: Number,
-    // required: true
+    required: true
   },
   icon: {
     type: String, //this will just be the filename that can be used to fetch it from the api
-    // required: true
+    required: true
   },
   habit: {
     type: Schema.Types.ObjectId,
