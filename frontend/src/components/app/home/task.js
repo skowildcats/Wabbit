@@ -4,11 +4,12 @@ import DeleteTaskButton from './buttons/delete_task_button'
 import EditTaskButton from './buttons/edit_task_button'
 
 export default function Task(props){
-  const {task, id} = props
+  const {task, id} = props;
+  var style = getComputedStyle(document.getElementById("app"));
 
   return (
     <div className="task" id={`${id}`}>
-      <div className="drag-handle" style={{background: task.color}}>
+      <div className="drag-handle" style={{background: style.getPropertyValue(`--task-color-${task.color}`)}}>
         <i className="fas fa-ellipsis-h"></i>
       </div>
       <div className="body-wrapper">

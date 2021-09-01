@@ -34,12 +34,9 @@ export default function Metrics(props){
     })
   }
   
-  let color1;
-  let color2;
-  if(props.colors){
-    color1 = props.colors[5]
-    color2 = props.colors[3]
-  }
+  const color1 = props.colors[6];
+  const color2 = props.colors[3];
+
   return (
       <div className="metrics-page">
         <div className="header">

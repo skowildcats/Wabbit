@@ -4,7 +4,7 @@ import { createHabit } from '../../../../actions/habit_actions'
 import CreateTaskMenu from './create_task_menu'
 
 const mapStateToProps = (state) => ({
-  userId: state.session.user.id,
+  user: state.session.user,
   errors: state.errors.session
 })
 
