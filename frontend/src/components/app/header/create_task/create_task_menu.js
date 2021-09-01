@@ -49,6 +49,7 @@ export default function CreateTaskMenu(props) {
   if(props.open === false) return null;
 
   function closeMenu() {
+    document.querySelector('.create-task-menu').classList.toggle('active') //toggle active selector
     props.closeMenu()
     props.clearError();
     setPage(1);
@@ -59,7 +60,6 @@ export default function CreateTaskMenu(props) {
       f(initial[idx]) //reset all state variables to clean up
     })
 
-    document.querySelector('.create-task-menu').classList.toggle('active') //toggle active selector
   }
 
   function getRecurrenceStr(){
