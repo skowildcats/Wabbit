@@ -24,11 +24,13 @@
 //   const emails = ['demo@demo.com']
 //   const firstNames = ['Demo']
 //   const lastNames = ['User']
+//   const themes = [["#808791", "#6C737C", "#5E6570", "#828079", "#C4B7A1", "#BFA49D", "#76848D", "#89664A", "#5D5449"]]
 //   const newUser = new User({
 //     email: emails[0],
 //     password: 'password',
 //     firstName: firstNames[0],
-//     lastName: lastNames[0]
+//     lastName: lastNames[0],
+//     theme: themes[0]
 //   })
 //   bcrypt.genSalt(10, (err, salt) => {
 //     bcrypt.hash(newUser.password, salt, async (err, hash) => {
@@ -42,20 +44,9 @@
 //       const recurrence = ['Daily','Weekly','Daily']
 //       const type = ['progress', 'countdown', 'task'];
 //       const daysOfTheWeek = [null,'M_W_F_S',null]
-//       const colors = [
-//         "#9c3838", // red
-//         "#c28846", // dandelion
-//         "#ebdf8a", // mustard yellow
-//         "#91b58d", // pale green
-//         "#62805e", // forest green
-//         "#6883b3", // light blue
-//         "#59667d", // dark blue
-//         "#8b6f96", // lilac
-//         "#b5b6bd", // blue-grey
-//         "#525254"  // dark-blue-grey
-//       ];
-//       const habitColors = [colors[6], colors[0], colors[1]]
-//       const icons = ["general", "deadlines", "career", "studies", "personal", "health", "fitness", "errands"]
+//       const habitColors = [6, 3, 1];
+//       const icons = ["general", "deadlines", "career", "studies", "personal", "health", "fitness", "errands"];
+//       const habitIcons = ['health', 'fitness', 'personal'];
 
 //       for(let i=0;i<habitTitle.length;i++){
 //         const newHabit = new Habit({
@@ -65,7 +56,7 @@
 //           recurrence: recurrence[i],
 //           daysOfTheWeek: daysOfTheWeek[i],
 //           color: habitColors[i],
-//           icon: icons[i],
+//           icon: habitIcons[i],
 //         })
 //         let habit = await newHabit.save()
 //         user.habits.push(habit._id)
@@ -82,7 +73,7 @@
 //           completedAt: _pushBackDays(_getRandomInt(70),today),
 //           completed: true,
 //           type: 'task',
-//           color: colors[_getRandomInt(colors.length)],
+//           color: _getRandomInt(6) + 1,
 //           icon: icons[_getRandomInt(icons.length)]
 //         })
 //         if(_getRandomInt(10)===3){

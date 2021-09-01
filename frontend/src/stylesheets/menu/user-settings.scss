@@ -145,8 +145,8 @@
     }
 
     > button {
-      background-color: var(--theme-1);
-      &:hover { background-color: var(--theme-2); }
+      background-color: var(--theme-2);
+      &:hover { background-color: var(--theme-1); }
     }
   }
 }

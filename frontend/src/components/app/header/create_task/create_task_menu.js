@@ -14,7 +14,8 @@ export default function CreateTaskMenu(props) {
   const [maxProgress, setMaxProgress] = useState(1); //maxProgress
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
-  const [type, setType] = useState('')
+  const [type, setType] = useState('');
+  const [errors, setErrors] = useState({});
 
   const { task } = props;
   useEffect(() => {
@@ -48,19 +49,17 @@ export default function CreateTaskMenu(props) {
   if(props.open === false) return null;
 
   function closeMenu() {
-    props.clearError()
+    props.closeMenu()
+    props.clearError();
     setPage(1);
-    let initial = ['', '', '', '', '', 'Never', 1, 1, 0, 0, ''];
+    let initial = ['', '', '', '', '', 'Never', 1, 1, 0, 0, '', {}];
     [setSelected, setIcon, setTitle, setDescription, setDueDate,
-       setRecurrence, setIncrement, setMaxProgress, setMinutes, setHours, setType
+       setRecurrence, setIncrement, setMaxProgress, setMinutes, setHours, setType, setErrors
     ].forEach((f, idx) => {
       f(initial[idx]) //reset all state variables to clean up
     })
 
     document.querySelector('.create-task-menu').classList.toggle('active') //toggle active selector
-    setTimeout(() => {
-      props.closeMenu()
-    }, 250) //timeout 250ms to correspond with css animation time
   }
 
   function getRecurrenceStr(){
@@ -70,6 +69,16 @@ export default function CreateTaskMenu(props) {
       box.checked ? daysOfTheWeek += box.value : daysOfTheWeek += "_";
     })
     return daysOfTheWeek;
+  }
+
+  function handleNext() {
+    const newErrors = {};
+
+    if(!title.length) newErrors.title = true;
+    if(!type.length) newErrors.type = true;
+
+    setErrors(newErrors);
+    if(!Object.keys(newErrors).length) setPage(2);
   }
 
   function handleSubmit(){
@@ -90,7 +99,7 @@ export default function CreateTaskMenu(props) {
       recurrence,
       dueDate,
       daysOfTheWeek,
-      user: props.userId,
+      user: props.user.id,
       color: selected,
       icon,
       type,
@@ -145,19 +154,13 @@ export default function CreateTaskMenu(props) {
         {page === 1 ? 
         <>
           <div className="form-field">
-            {props.errors.title ? 
-              <label id="errors"> {props.errors.title} </label> :
-              <label htmlFor="title">TITLE</label>
-            }
-            <input onChange={(e) => setTitle(e.target.value)} value={title} type="text" id="title"/>
+            <label htmlFor="title" className={errors.title ? "errors" : "required"}>TITLE</label>
+            <input id="title" onChange={(e) => setTitle(e.target.value)} value={title} type="text" id="title"/>
           </div>
           
           <div className="form-field">
-            {props.errors.description ? 
-              <label id="errors"> {props.errors.description} </label> :
-              <label htmlFor="description">DESCRIPTION</label>
-            }
-            <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" id="description"/>
+            <label htmlFor="description">DESCRIPTION</label>
+            <input id="description" onChange={(e) => setDescription(e.target.value)} value={description} type="text"/>
           </div>
 
           {/* For creating a habit */}
@@ -215,38 +218,38 @@ export default function CreateTaskMenu(props) {
             </>
             : null} 
             <div className="form-field">
-              <label htmlFor="type">TYPE</label>
-              <ul id="button-list">
-                <div>
+              <label htmlFor="types" className={errors.type ? "errors" : "required"}>TYPE</label>
+              <ul id="task-types">
+                <div className="task-option">
                   <button className={`task-type ${type === 'progress' ? 'active' : ''}`} onClick={() => setType('progress')}><img src={`${process.env.PUBLIC_URL}/tallies.png`}
                   onMouseEnter={() => {document.getElementById("progress-text").style.display = "block"}}
                   onMouseLeave={() => {document.getElementById("progress-text").style.display = "none"}} alt="tallies" /></button>
-                  <div id="progress-text">Progress</div>
+                  <div id="progress-text" className="task-text" >PROGRESS TRACKER</div>
                 </div>
-                <div>
+                <div className="task-option">
                   <button className={`task-type ${type === 'timedGoal' ? 'active' : ''}`} onClick={() => setType('timedGoal')}><img src={`${process.env.PUBLIC_URL}/stopwatch.png`} 
                   onMouseEnter={() => {document.getElementById("timed-goal-text").style.display = "block"}}
                   onMouseLeave={() => {document.getElementById("timed-goal-text").style.display = "none"}} alt="stopwatch"/></button>
-                  <div id="timed-goal-text">Timed goal</div>
+                  <div id="timed-goal-text" className="task-text" >TIMED GOAL</div>
                 </div>
-                <div>
+                <div className="task-option">
                   <button className={`task-type ${type === 'task' ? 'active' : ''}`} onClick={() => setType('task')}><img src={`${process.env.PUBLIC_URL}/checked.png`} 
                   onMouseEnter={() => {document.getElementById("task-text").style.display = "block"}}
                   onMouseLeave={() => {document.getElementById("task-text").style.display = "none"}} alt="checked"/></button>
-                  <div id="task-text">Task</div>
+                  <div id="task-text" className="task-text" >TO-DO</div>
                 </div>
-                <div>
+                <div className="task-option">
                   <button className={`task-type ${type === 'countdown' ? 'active' : ''}`} onClick={() => setType('countdown')}><img src={`${process.env.PUBLIC_URL}/calendar.png`} 
                   onMouseEnter={() => {document.getElementById("countdown-text").style.display = "block"}}
                   onMouseLeave={() => {document.getElementById("countdown-text").style.display = "none"}} alt="calendar"/></button>
-                  <div id="countdown-text">Countdown</div>
+                  <div id="countdown-text" className="task-text" >COUNTDOWN</div>
                 </div>
               </ul>
             </div>
         </>
         : 
         <>
-        <ColorPalette errors={props.errors} selected={selected} setSelected={setSelected}/>
+        <ColorPalette errors={props.errors} selected={selected} setSelected={setSelected} colors={props.user.theme.slice(3)}/>
 
         {type === 'progress' ? 
         <div className="form-field">
@@ -260,17 +263,11 @@ export default function CreateTaskMenu(props) {
 
         {type === 'timedGoal' ?
           <div className="form-field">
-            {props.errors.secondsLeft ? 
-            <label id="errors"> Hour is required </label> :
-            <label htmlFor="time">HOURS</label>
-            }
-            <input type="number" value={hours} onChange={(e) => setHours(e.target.value)} min="0"/>
+            <label htmlFor="hours" className={props.errors.secondsLeft ? "errors" : ""}>HOURS</label>
+            <input id="hours" type="number" value={hours} onChange={(e) => {if(e.target.value.slice(-1)[0] !== "-") setHours(e.target.value)}} min="0"/>
             
-            {props.errors.secondsLeft ? 
-            <label id="errors"> Minute is required </label> :
-            <label htmlFor="time">MINUTES</label>
-            }
-            <input type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} min="0" max="60"/>
+            <label htmlFor="minutes" className={props.errors.secondsLeft ? "errors" : ""}>MINUTES</label>
+            <input id="minutes" type="number" value={minutes} onChange={(e) => {if(e.target.value.slice(-1)[0] !== "-") setMinutes(e.target.value)}} min="0" max="60"/>
           </div>
         : null}
 
@@ -295,7 +292,7 @@ export default function CreateTaskMenu(props) {
 
         <div className="form-submit">
           {page === 1 ? <button onClick={closeMenu}>Cancel</button> : <button onClick={() => setPage(1)}>Back</button>}
-          {page === 1 ? <button disabled={type ? false : true} onClick={() => setPage(2)}>Next Step</button> : <button onClick={handleSubmit}>{props.taskAction === 'create' ? "Create" : "Edit"} Task</button>}
+          {page === 1 ? <button onClick={() => handleNext()}>Next Step</button> : <button onClick={handleSubmit}>{props.taskAction === 'create' ? "Create" : "Edit"} Task</button>}
         </div>
       </div>
     </div>, document.getElementById('portal')

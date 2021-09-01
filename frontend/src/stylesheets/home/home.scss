@@ -5,10 +5,10 @@
   #splash-btn:hover:not(.visiting) > img { filter: brightness(0) invert(0.94); }
 
   > a:not(#splash-btn), > button {
-    color: var(--theme-4);
+    color: $dark-grey-0;
     background-color: white;
     transition: all 0.2s;
-    &:hover:not(.visiting) { color: var(--theme-5); background-color: $light-grey-1; }
+    &:hover:not(.visiting) { color: $dark-grey-3; background-color: $light-grey-1; }
   }
   .visiting:hover { cursor: default; }
   a.visiting:not(#splash-btn) { background-color: $light-grey-2; }
@@ -21,32 +21,37 @@
   
   display: flex;
   flex-direction: column;
-  // padding: 100px 60px 0px;
   background-color: $light-grey-1;
 }
 
-#button-list {
-  position: relative;
-  box-sizing: border-box;
+#open-menu {
+  position: absolute;
+  top: 25px; right: 25px;
+  height: 30px;
+  padding: 5px;
 
-  > button {
-    height: 40px;
-    &:not(:last-child) { margin-right: 15px; }
-    margin-bottom: 10px;
-    font-size: 15px;
-    background-color: $light-grey-4;
-    border-radius: 5px;
-    transition: background-color 0.2s;
+  background-color: var(--theme-3);
+  border-radius: 5px;
+  transition: background-color 0.2s;
+  cursor: pointer;
 
-    > img {
-      height: 40px;
-      width: 40px;
-    }
+  > img {
+    filter: brightness(0) invert(1);
+    height: 20px; width: 20px;
+    transition: all 0.2s;
   }
 
-  > button:hover { cursor: pointer; background-color: $light-grey-3; }
+  &:hover > img { transform: rotate(180deg); }
 }
 
-@media (min-width: 1300px) {
+.home-header {
+    margin-bottom: 13px;
+    font-size: 24px;
+    color: $dark-grey-3;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+
+@media (min-width: 1700px) {
   #home-page { left: 430px; }
 }

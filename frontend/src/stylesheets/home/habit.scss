@@ -19,12 +19,14 @@
     border-radius: 7px;
   }
 
-  > h3 {
-    margin-bottom: 10px;
-    font-size: 20px;
-    color: $dark-grey-3;
-    font-weight: 900;
-    letter-spacing: 1px;
+  #habit-header {
+    margin-top: 12px;
+    margin-bottom: 5px;
+    & + #habit-description {
+      margin-bottom: 10px;
+      color: $dark-grey-3;
+      letter-spacing: 1px;
+    }
   }
 
   > .habit {
@@ -51,6 +53,7 @@
         margin-bottom: 5px;
         font-size: 11px;
         letter-spacing: 0.5px;
+        padding: 0px 40px;
       }
 
       > .habit-title {
