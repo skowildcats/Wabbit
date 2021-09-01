@@ -30,11 +30,10 @@ export default function Timer({secondsLeft, minusOneSecond, isRunning, toggleRun
 
   //pause timer when page is closed
   useEffect(()=>{
+    debugger
     return ()=>{
-      clearInterval(timer)
-      toggleRunning(false)
-      setTimer(null)
       debugger
+      clearInterval(timer)
     }
   },[])
 
