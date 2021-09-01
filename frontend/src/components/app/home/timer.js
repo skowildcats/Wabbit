@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 export default function Timer({secondsLeft, minusOneSecond, isRunning, toggleRunning}) {
   
   const[time,setTime] = useState(fromSecondsToTime(secondsLeft))
-  const[timer,setTimer] = useState(null)
+  const[timer,setTimer] = useState('helloooooo')
 
   function _handleClick(){
     toggleRunning(!isRunning)
@@ -12,10 +12,11 @@ export default function Timer({secondsLeft, minusOneSecond, isRunning, toggleRun
   //play and pause timer
   useEffect(()=>{
     if(isRunning) {
+      debugger
       setTimer(setInterval(minusOneSecond,1000))
     }else{
+      debugger
       clearInterval(timer)
-      setTimer(null)
     }
   },[isRunning])
 
@@ -24,18 +25,17 @@ export default function Timer({secondsLeft, minusOneSecond, isRunning, toggleRun
     setTime(fromSecondsToTime(secondsLeft))
     if(secondsLeft<=0){
       clearInterval(timer)
-      setTimer(null)
+      debugger
     }
   },[secondsLeft])
 
   //pause timer when page is closed
   useEffect(()=>{
-    debugger
     return ()=>{
       debugger
       clearInterval(timer)
     }
-  },[])
+  },[timer])
 
   return (
     <div className="timer">
