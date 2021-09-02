@@ -32,7 +32,6 @@ router.post('/register',async (req,res) => {
       newUser.password = hash;
       const user = await newUser.save()
 
-
       // sign in user after signup
       const payload = {id: user._id, username: user.username}
       jwt.sign(payload, 
@@ -67,36 +66,57 @@ router.put('/password',passport.authenticate('jwt', {session: false}),async (req
 
   //check that password is correct
   const isMatch = await bcrypt.compare(password, user.password)
-  if(isMatch) return res.json({error: 'Incorrect Password'})
+  if(!isMatch) return res.status(400).json({error: 'Incorrect Password'})
 
   bcrypt.genSalt(10,(err,salt) =>{
     bcrypt.hash(newPassword,salt,async (err,hash)=>{
       if (err) throw err
       user.password = hash
       await user.save()
-      res.json(user)
+      res.json({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        id: user._id,
+        theme: user.theme,
+        walkthrough: user.walkthrough
+      })
     })
   })
 
 })
+//route for updating theme
+router.put('/theme', passport.authenticate('jwt',{session: false}), async (req,res)=>{
+  const {id,theme} = req.body
+  const user = await User.findOne({_id: id})
+  user.theme = theme
+  await user.save()
+  res.json({
+    theme: user.theme
+  })
+})
 
-// route for updating name/theme
+// route for updating user information
 
 router.put('/info', passport.authenticate('jwt', {session: false}), async (req,res)=>{
-  const {email,firstName,lastName, theme, walkthrough} = req.body
-  const user = await User.findOne({email})
+  const {firstName,lastName,email,id,theme,walkthrough,password} = req.body
+  const user = await User.findOne({_id: id})
   user.firstName = firstName
   user.lastName = lastName
-  user.theme = theme
-  user.walkthrough = walkthrough
+  user.email = email
+
+  //check that password is correct
+  const isMatch = await bcrypt.compare(password, user.password)
+  if(!isMatch) return res.status(400).json({error: 'Incorrect Password'})
+
   await user.save()
   res.json({
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
     id: user._id,
-    theme: user.theme,
-    walkthrough: user.walkthrough
+    theme,
+    walkthrough
   })
 })
 

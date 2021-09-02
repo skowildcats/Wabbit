@@ -8,40 +8,56 @@ export default class UserSettings extends React.Component {
       userUpdateFormOpen: true,
       colorThemeFormOpen: false,
       logOutConfirmation: false,
-      selectedTheme: null
+      selectedTheme: null,
+      password: ''
     };
 
-    this.logout = this.logout.bind(this);
-    this.updateField = this.updateField.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this._logout = this._logout.bind(this);
+    this._updateField = this._updateField.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this)
+    this._submitTheme = this._submitTheme.bind(this)
+
   }
 
-  openSetting(setting) {
+  _openSetting(setting) {
     setting === "userUpdateFormOpen"
       ? this.setState({ userUpdateFormOpen: true, colorThemeFormOpen: false })
       : this.setState({ userUpdateFormOpen: false, colorThemeFormOpen: true })
   }
 
-  handleSubmit(e) {
+  _handleSubmit(e) {
     e.preventDefault();
-    this.props.patchUser(this.state);
+    this.props.patchUser({
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      id: this.state.id,
+      theme: this.state.theme,
+      walkthrough: this.state.walkthrough,
+      password: this.state.password
+    });
+  }
+
+  _submitTheme(e){
+    e.preventDefault()
+    this.props.changeTheme({id: this.state.id, theme: this.state.theme})
     if(this.props.currentUser.theme[3] !== this.state.theme[3]) { window.location.reload(); }
   }
 
-  updateField(e, field) {
+  _updateField(e, field) {
     this.setState({
       [field]: e.target.value
     })
   }
 
-  updateTheme(e, palette){
+  _updateTheme(e, palette){
     e.preventDefault();
     this.setState({
       ["theme"]: palette.slice(1), ["selectedTheme"]: palette[0]
     })
   }
 
-  logout(e) {
+  _logout(e) {
     e.preventDefault();
     this.props.closeSettings();
     this.props.logout();
@@ -70,7 +86,7 @@ export default class UserSettings extends React.Component {
       || this.palettes().filter(palette => palette[1] === this.props.currentUser.theme[0])[0][0];
 
     return (
-      <div key={palette[0]} className={theme === palette[0] ? "palette-row selected" : "palette-row"} onClick={e => this.updateTheme(e, palette)}>
+      <div key={palette[0]} className={theme === palette[0] ? "palette-row selected" : "palette-row"} onClick={e => this._updateTheme(e, palette)}>
         <p className="palette-name">{palette[0]}</p>
         <ul className="palette">
           {palette.slice(4).map(color => {
@@ -97,10 +113,10 @@ export default class UserSettings extends React.Component {
       <div id="user-settings">
         <div id="users-settings-background" onClick={this.props.closeSettings} ></div>
         <ul id="user-settings-nav">
-          <li onClick={() => this.openSetting("userUpdateFormOpen")} className={this.state.userUpdateFormOpen ? "selected" : ""}>
+          <li onClick={() => this._openSetting("userUpdateFormOpen")} className={this.state.userUpdateFormOpen ? "selected" : ""}>
             MY ACCOUNT
           </li>
-          <li onClick={() => this.openSetting("colorThemeFormOpen")} className={this.state.colorThemeFormOpen ? "selected" : ""}>
+          <li onClick={() => this._openSetting("colorThemeFormOpen")} className={this.state.colorThemeFormOpen ? "selected" : ""}>
             COLOR THEME
           </li>
           <li onClick={() => this.setState({ logOutConfirmation: true })}>
@@ -114,24 +130,26 @@ export default class UserSettings extends React.Component {
           {this.state.userUpdateFormOpen ? (
             <form id="user-update-form" className="user-settings-form">
               <label htmlFor="update-email">EMAIL</label>
-              <input type="text" id="update-email" onChange={(e) => this.updateField(e, "email")} value={this.state.email} readOnly/>
+              <input type="text" id="update-email" onChange={(e) => this._updateField(e, "email")} value={this.state.email} readOnly/>
               <label htmlFor="update-first-name">FIRST NAME</label>
-              <input type="text" id="update-first-name" onChange={(e) => this.updateField(e, "firstName")} value={this.state.firstName} />
+              <input type="text" id="update-first-name" onChange={(e) => this._updateField(e, "firstName")} value={this.state.firstName} />
               <label htmlFor="update-last-name">LAST NAME</label>
-              <input type="text" id="update-last-name" onChange={(e) => this.updateField(e, "lastName")} value={this.state.lastName} />
+              <input type="text" id="update-last-name" onChange={(e) => this._updateField(e, "lastName")} value={this.state.lastName} />
               <label htmlFor="update-password">CURRENT PASSWORD</label>
-              <input type="password" id="update-password" />
+              <input type="password" id="update-password" onChange={(e)=>this._updateField(e, 'password')}value={this.state.password}/>
               <div className="form-nav">
-                <button onClick={this.handleSubmit}>Save</button>
+                <button onClick={this._handleSubmit}>Save</button>
                 <p>Change Password</p>
               </div>
             </form>
           ) : null}
+
+          {/* theme menu */}
           {this.state.colorThemeFormOpen ? (
             <form id="color-theme-form" className="user-settings-form">
               {this.colorOptions()}
               <div className="form-nav">
-                <button onClick={this.handleSubmit}>Save</button>
+                <button onClick={this._submitTheme}>Save</button>
               </div>
             </form>
           ) : null}
@@ -149,7 +167,7 @@ export default class UserSettings extends React.Component {
                 <p onClick={() => this.setState({ logOutConfirmation: false })}>
                   Cancel
                 </p>
-                <button onClick={this.logout}>Log Out</button>
+                <button onClick={this._logout}>Log Out</button>
               </div>
             </form>
           </>

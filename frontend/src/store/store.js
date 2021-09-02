@@ -8,8 +8,8 @@
     createStore(
       rootReducer,
       preloadedState,
-      applyMiddleware(thunk)
-      // applyMiddleware(thunk, logger)
+      // applyMiddleware(thunk)
+      applyMiddleware(thunk, logger)
     )
   );
 

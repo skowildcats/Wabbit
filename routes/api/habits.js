@@ -8,7 +8,6 @@ const validateHabitInput = require('../../validations/habits')
 
 //create habits
 router.post('/new',async (req,res)=>{
-  console.log(req.body)
   const{errors,isValid} = validateHabitInput(req.body)
   if(!isValid) return res.status(400).json(errors)
 
