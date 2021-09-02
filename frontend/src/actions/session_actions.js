@@ -75,11 +75,11 @@ export const getCurrentUser = currentUserId => dispatch => (
 export const patchUser = userData => dispatch => (
   APIUtil.patchUser(userData)
     .then(updatedUser => {
-      alert('Saved')
       dispatch(receiveCurrentUser(updatedUser))
+      return 'success'
     })
-    .catch(err=>{
-      alert('Incorrect Password')
+    .catch(err=> {
+      return err.response.data
     })
 );
 
