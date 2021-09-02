@@ -57,18 +57,21 @@ router.post('/register',async (req,res) => {
 
 router.put('/password',passport.authenticate('jwt', {session: false}),async (req,res)=>{
 
-  const {email,oldPassword,newPassword,confirmPassword} = req.body
+  const {email,currentPassword,newPassword,confirmPassword} = req.body
 
   // check if user exists
   const user = await User.findOne({email})
-  if(!user) return res.status(400).json({error: "user couldknt be found XD"})
+  if(!user) return res.status(400).json({email: "User could not be found with that email"})
 
   //check that password is correct
-  const isMatch = await bcrypt.compare(oldPassword, user.password)
-  if(!isMatch) return res.status(400).json({error: 'Incorrect Password'})
+  const isMatch = await bcrypt.compare(currentPassword, user.password)
+  if(!isMatch) return res.status(400).json({currentPassword: 'Incorrect Password'})
+
+  //validate password length
+  if(newPassword.length < 6 || newPassword.length > 30) return res.status(400).json({newPassword: "Password must be between 6 and 30 characters"})
 
   //check that confirmPW matches newPW
-  if(newPassword!==confirmPassword) return res.status(400).json({error: "Passwords do not match"})
+  if(newPassword!==confirmPassword) return res.status(400).json({confirmPassword: "Passwords do not match"})
 
   bcrypt.genSalt(10,(err,salt) =>{
     bcrypt.hash(newPassword,salt,async (err,hash)=>{
