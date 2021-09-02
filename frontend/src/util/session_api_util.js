@@ -24,3 +24,7 @@ export const getCurrentUser = currentUserId => (
 export const patchUser = userData => (
   axios.put(`/api/users/info`, userData)
 );
+
+export const changeTheme = userData => (
+  axios.put('/api/users/theme', userData)
+)

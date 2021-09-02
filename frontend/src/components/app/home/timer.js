@@ -12,10 +12,8 @@ export default function Timer({secondsLeft, minusOneSecond, isRunning, toggleRun
   //play and pause timer
   useEffect(()=>{
     if(isRunning) {
-      debugger
       setTimer(setInterval(minusOneSecond,1000))
     }else{
-      debugger
       clearInterval(timer)
     }
   },[isRunning])
@@ -25,14 +23,12 @@ export default function Timer({secondsLeft, minusOneSecond, isRunning, toggleRun
     setTime(fromSecondsToTime(secondsLeft))
     if(secondsLeft<=0){
       clearInterval(timer)
-      debugger
     }
   },[secondsLeft])
 
   //pause timer when page is closed
   useEffect(()=>{
     return ()=>{
-      debugger
       clearInterval(timer)
     }
   },[timer])
