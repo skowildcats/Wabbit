@@ -67,14 +67,21 @@ router.put('/password',passport.authenticate('jwt', {session: false}),async (req
 
   //check that password is correct
   const isMatch = await bcrypt.compare(password, user.password)
-  if(isMatch) return res.json({error: 'Incorrect Password'})
+  if(!isMatch) return res.status(400).json({error: 'Incorrect Password'})
 
   bcrypt.genSalt(10,(err,salt) =>{
     bcrypt.hash(newPassword,salt,async (err,hash)=>{
       if (err) throw err
       user.password = hash
       await user.save()
-      res.json(user)
+      res.json({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        id: user._id,
+        theme: user.theme,
+        walkthrough: user.walkthrough
+      })
     })
   })
 
