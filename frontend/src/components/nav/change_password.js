@@ -1,30 +1,41 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export default function ChangePasswordModal(props) {
   const [credentials, setCredentials] = useState({
-    email: null,
+    email: '',
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
   });
 
+  const [errors, setErrors] = useState({})
+
+  function close(){
+    props.onClose();
+    setErrors({});
+  }
+
   function handleSubmit(){
     props.updatePassword(credentials).then(data => {
-      console.log(data);
-      if(data === 'success') props.onClose();
+      if(data === 'success'){
+        close();
+      } else {
+        setErrors(data.errors)
+      }
     })
   }
-  
+
   if(!props.open) return null;
   const fields = ["email", "currentPassword", "newPassword", "confirmPassword"].map(field => 
     <div className="form-field" key={field}>
+      {errors[field] ? <p className="pass-errors">{errors[field]}</p> : null}
       <label htmlFor="">{field.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); })}</label>
-      <input type="text" onChange={(e) => setCredentials({...credentials, [field]: e.target.value})}/>
+      <input type={field === "email" ? "text" : "password"} onChange={(e) => setCredentials({...credentials, [field]: e.target.value})}/>
     </div>
     )
   return (
     <>
-      <div onClick={() => props.onClose()} className="overlay"></div>
+      <div onClick={close} className="overlay"></div>
 
       <div className="modal-menu">
         <div className="header">
@@ -33,7 +44,7 @@ export default function ChangePasswordModal(props) {
 
         {fields}
 
-        <button id="change-pass-btn" onClick={() => console.log(credentials)}>Submit</button>
+        <button id="change-pass-btn" onClick={handleSubmit}>Submit</button>
       </div>
     </>
   )
