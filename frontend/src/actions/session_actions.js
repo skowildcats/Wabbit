@@ -34,7 +34,6 @@ const processData = data => {
   localStorage.setItem("jwtToken", token);
   APIUtil.setAuthToken(token);
   const decoded = jwt_decode(token);
-  debugger
   const { email, firstName, lastName } = data;
   return { email, firstName, lastName, ...decoded };
 }

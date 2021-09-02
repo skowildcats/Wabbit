@@ -32,7 +32,6 @@ router.post('/register',async (req,res) => {
       newUser.password = hash;
       const user = await newUser.save()
 
-      console.log(user)
       // sign in user after signup
       const payload = {id: user._id, username: user.username}
       jwt.sign(payload, 

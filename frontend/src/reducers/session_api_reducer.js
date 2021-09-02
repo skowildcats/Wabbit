@@ -12,7 +12,6 @@ export default function(state = initialState, action) {
   
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      debugger
       return {
         isAuthenticated: !!action.currentUser,
         user: Object.assign({}, state.user, action.currentUser.data ? action.currentUser.data : action.currentUser)
