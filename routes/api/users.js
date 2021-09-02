@@ -62,10 +62,13 @@ router.put('/password',passport.authenticate('jwt', {session: false}),async (req
   // check if user exists
   const user = await User.findOne({email})
   if(!user) return res.status(400).json({email: "User could not be found with that email"})
-  
+
   //check that password is correct
   const isMatch = await bcrypt.compare(currentPassword, user.password)
   if(!isMatch) return res.status(400).json({currentPassword: 'Incorrect Password'})
+
+  //validate password length
+  if(newPassword.length < 6 || newPassword.length > 30) return res.status(400).json({newPassword: "Password must be between 6 and 30 characters"})
 
   //check that confirmPW matches newPW
   if(newPassword!==confirmPassword) return res.status(400).json({confirmPassword: "Passwords do not match"})
