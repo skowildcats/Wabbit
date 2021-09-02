@@ -1,5 +1,5 @@
 import React from "react";
-import ChangePasswordModal from "./change_password";
+import ChangePasswordModalContainer from "./change_password_container";
 export default class UserSettings extends React.Component {
   constructor(props) {
     super(props);
@@ -112,7 +112,7 @@ export default class UserSettings extends React.Component {
   render() {
     return (
       <div id="user-settings">
-        <ChangePasswordModal onClose={() => this.setState({open: false})} open={this.state.open} />
+        <ChangePasswordModalContainer onClose={() => this.setState({open: false})} open={this.state.open} />
         <div id="users-settings-background" onClick={this.props.closeSettings} ></div>
         <ul id="user-settings-nav">
           <li onClick={() => this._openSetting("userUpdateFormOpen")} className={this.state.userUpdateFormOpen ? "selected" : ""}>

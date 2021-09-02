@@ -28,3 +28,7 @@ export const patchUser = userData => (
 export const changeTheme = userData => (
   axios.put('/api/users/theme', userData)
 )
+
+export const updatePassword = userData => (
+  axios.put('/api/users/password', userData)
+)

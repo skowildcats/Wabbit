@@ -6,6 +6,7 @@ export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const CLEAR_ERROR = "CLEAR_ERROR"
 export const RECEIVE_THEME = 'RECEIVE_THEME'
+export const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
 
 // We'll dispatch this when our user signs in
 export const receiveCurrentUser = currentUser => ({
@@ -29,6 +30,8 @@ export const logoutUser = () => ({
     type: RECEIVE_USER_LOGOUT
 });
 
+
+
 const processData = data => {
   const { token } = data;
   localStorage.setItem("jwtToken", token);
@@ -37,6 +40,11 @@ const processData = data => {
   const { email, firstName, lastName } = data;
   return { email, firstName, lastName, ...decoded };
 }
+
+export const updatePassword = (userData) => dispatch => (
+  APIUtil.updatePassword(userData).then(() => "success")
+  .catch((err) => dispatch(receiveErrors(err.response.data)))
+)
 
 // Upon signup, dispatch the approporiate action depending on which type of response we receieve from the backend
 export const signup = (user) => (dispatch) => (
