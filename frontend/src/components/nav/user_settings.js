@@ -1,5 +1,5 @@
 import React from "react";
-
+import ChangePasswordModal from "./change_password";
 export default class UserSettings extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +8,8 @@ export default class UserSettings extends React.Component {
       userUpdateFormOpen: true,
       colorThemeFormOpen: false,
       logOutConfirmation: false,
-      selectedTheme: null
+      selectedTheme: null,
+      open: false
     };
 
     this.logout = this.logout.bind(this);
@@ -95,6 +96,7 @@ export default class UserSettings extends React.Component {
   render() {
     return (
       <div id="user-settings">
+        <ChangePasswordModal onClose={() => this.setState({open: false})} open={this.state.open} />
         <div id="users-settings-background" onClick={this.props.closeSettings} ></div>
         <ul id="user-settings-nav">
           <li onClick={() => this.openSetting("userUpdateFormOpen")} className={this.state.userUpdateFormOpen ? "selected" : ""}>
@@ -123,7 +125,7 @@ export default class UserSettings extends React.Component {
               <input type="password" id="update-password" />
               <div className="form-nav">
                 <button onClick={this.handleSubmit}>Save</button>
-                <p>Change Password</p>
+                <p onClick={() => this.setState({open: true})}>Change Password</p>
               </div>
             </form>
           ) : null}

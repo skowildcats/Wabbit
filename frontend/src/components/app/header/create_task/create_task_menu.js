@@ -36,7 +36,7 @@ export default function CreateTaskMenu(props) {
 
   useEffect(() => {
     if(props.open === true){
-      let menu = document.querySelector('.create-task-menu')
+      let menu = document.querySelector('.modal-menu')
       if(menu) menu.classList.toggle('active') //toggle active selector
       if(task){
         setHours(Math.floor(task.secondsLeft / 3600))
@@ -49,7 +49,7 @@ export default function CreateTaskMenu(props) {
   if(props.open === false) return null;
 
   function closeMenu() {
-    document.querySelector('.create-task-menu').classList.toggle('active') //toggle active selector
+    document.querySelector('.modal-menu').classList.toggle('active') //toggle active selector
     props.closeMenu()
     props.clearError();
     setPage(1);
@@ -145,7 +145,7 @@ export default function CreateTaskMenu(props) {
   return ReactDOM.createPortal(
     <div id="create-task-menu-modal">
       <div className="overlay" onClick={closeMenu}></div>
-      <div className="create-task-menu">
+      <div className="modal-menu">
         <div className="header">
           <h1>{props.taskAction === 'create' ? "CREATE A" : "EDIT A"} TASK</h1>
           <span onClick={closeMenu}>&times;</span>
