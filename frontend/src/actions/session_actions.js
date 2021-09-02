@@ -5,6 +5,7 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const CLEAR_ERROR = "CLEAR_ERROR"
+export const RECEIVE_THEME = 'RECEIVE_THEME'
 
 // We'll dispatch this when our user signs in
 export const receiveCurrentUser = currentUser => ({
@@ -18,6 +19,11 @@ export const receiveErrors = errors => ({
     errors
 });
 
+export const receiveTheme = theme => ({
+  type: RECEIVE_THEME,
+  theme
+})
+
 // When our user is logged out, we will dispatch this action to set isAuthenticated to false
 export const logoutUser = () => ({
     type: RECEIVE_USER_LOGOUT
@@ -28,6 +34,7 @@ const processData = data => {
   localStorage.setItem("jwtToken", token);
   APIUtil.setAuthToken(token);
   const decoded = jwt_decode(token);
+  debugger
   const { email, firstName, lastName } = data;
   return { email, firstName, lastName, ...decoded };
 }
@@ -61,4 +68,9 @@ export const getCurrentUser = currentUserId => dispatch => (
 export const patchUser = userData => dispatch => (
   APIUtil.patchUser(userData)
     .then(updatedUser => dispatch(receiveCurrentUser(updatedUser)))
+);
+
+export const updateTheme = userData => dispatch => (
+  APIUtil.changeTheme(userData)
+    .then(newTheme => dispatch(receiveTheme(newTheme)))
 );

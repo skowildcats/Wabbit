@@ -32,7 +32,7 @@ router.post('/register',async (req,res) => {
       newUser.password = hash;
       const user = await newUser.save()
 
-
+      console.log(user)
       // sign in user after signup
       const payload = {id: user._id, username: user.username}
       jwt.sign(payload, 
@@ -78,6 +78,16 @@ router.put('/password',passport.authenticate('jwt', {session: false}),async (req
     })
   })
 
+})
+//route for updating theme
+router.put('/theme', passport.authenticate('jwt',{session: false}), async (req,res)=>{
+  const {id,theme} = req.body
+  const user = await User.findOne({_id: id})
+  user.theme = theme
+  await user.save()
+  res.json({
+    theme: user.theme
+  })
 })
 
 // route for updating name/theme

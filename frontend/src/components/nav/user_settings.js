@@ -14,6 +14,8 @@ export default class UserSettings extends React.Component {
     this.logout = this.logout.bind(this);
     this.updateField = this.updateField.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
+    this._submitTheme = this._submitTheme.bind(this)
+
   }
 
   openSetting(setting) {
@@ -25,6 +27,11 @@ export default class UserSettings extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.patchUser(this.state);
+  }
+
+  _submitTheme(e){
+    e.preventDefault()
+    this.props.changeTheme({id: this.state.id, theme: this.state.theme})
     if(this.props.currentUser.theme[3] !== this.state.theme[3]) { window.location.reload(); }
   }
 
@@ -127,11 +134,13 @@ export default class UserSettings extends React.Component {
               </div>
             </form>
           ) : null}
+
+          {/* theme menu */}
           {this.state.colorThemeFormOpen ? (
             <form id="color-theme-form" className="user-settings-form">
               {this.colorOptions()}
               <div className="form-nav">
-                <button onClick={this.handleSubmit}>Save</button>
+                <button onClick={this._submitTheme}>Save</button>
               </div>
             </form>
           ) : null}
