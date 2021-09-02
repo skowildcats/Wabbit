@@ -61,7 +61,7 @@ router.put('/password',passport.authenticate('jwt', {session: false}),async (req
 
   // check if user exists
   const user = await User.findOne({email})
-  if(!user) return res.json({error: "user couldknt be found XD"})
+  if(!user) return res.status(400).json({error: "user couldknt be found XD"})
 
   //check that password is correct
   const isMatch = await bcrypt.compare(oldPassword, user.password)
