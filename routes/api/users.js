@@ -57,16 +57,18 @@ router.post('/register',async (req,res) => {
 
 router.put('/password',passport.authenticate('jwt', {session: false}),async (req,res)=>{
 
-  const email = req.body.email
-  const password = req.body.password
+  const {email,oldPassword,newPassword,confirmPassword} = req.body
 
   // check if user exists
   const user = await User.findOne({email})
-  if(!user) return res.json({error: "user couldknt be found XD"})
+  if(!user) return res.status(400).json({error: "user couldknt be found XD"})
 
   //check that password is correct
-  const isMatch = await bcrypt.compare(password, user.password)
+  const isMatch = await bcrypt.compare(oldPassword, user.password)
   if(!isMatch) return res.status(400).json({error: 'Incorrect Password'})
+
+  //check that confirmPW matches newPW
+  if(newPassword!==confirmPassword) return res.status(400).json({error: "Passwords do not match"})
 
   bcrypt.genSalt(10,(err,salt) =>{
     bcrypt.hash(newPassword,salt,async (err,hash)=>{
