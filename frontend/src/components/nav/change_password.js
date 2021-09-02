@@ -9,7 +9,10 @@ export default function ChangePasswordModal(props) {
   });
 
   function handleSubmit(){
-
+    props.updatePassword(credentials).then(data => {
+      console.log(data);
+      if(data === 'success') props.onClose();
+    })
   }
   
   if(!props.open) return null;
