@@ -66,7 +66,13 @@ export const getCurrentUser = currentUserId => dispatch => (
 
 export const patchUser = userData => dispatch => (
   APIUtil.patchUser(userData)
-    .then(updatedUser => dispatch(receiveCurrentUser(updatedUser)))
+    .then(updatedUser => {
+      alert('Saved')
+      dispatch(receiveCurrentUser(updatedUser))
+    })
+    .catch(err=>{
+      alert('Incorrect Password')
+    })
 );
 
 export const updateTheme = userData => dispatch => (
