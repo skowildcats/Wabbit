@@ -37,8 +37,8 @@ const processData = data => {
   localStorage.setItem("jwtToken", token);
   APIUtil.setAuthToken(token);
   const decoded = jwt_decode(token);
-  const { email, firstName, lastName } = data;
-  return { email, firstName, lastName, ...decoded };
+  const { email, firstName, lastName,theme } = data;
+  return { email, firstName, lastName,theme, ...decoded };
 }
 
 export const updatePassword = (userData) => dispatch => (
