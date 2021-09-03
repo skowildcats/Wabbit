@@ -10,7 +10,11 @@ module.exports = function validateTaskInput(data) {
   if (Validator.isEmpty(data.title)) {
     errors.title = 'Title is required';
   }
-  if (typeof data.color === 'number' && 1<=data.color && data.color<=6)
+
+  if (!data.color){
+    errors.color = 'Select a color for this task'
+  }
+
   if (Validator.isEmpty(data.icon)) {
     errors.icon = 'Select an icon for this task';
   }
@@ -19,10 +23,6 @@ module.exports = function validateTaskInput(data) {
     if (data.secondsLeft === 0 || data.secondsLeft === null) {
       errors.secondsLeft = "Hours/minutes is required"
     }
-  } else {
-    // if (Validator.isEmpty(data.dueDate)) {
-    //   errors.dueDate = "Due date/completed date is required"
-    // }
   }
 
   return {
