@@ -86,7 +86,6 @@ export default function CreateTaskMenu(props) {
     let secondsLeft = undefined;
     if(recurrence === "Weekly"){
       daysOfTheWeek = getRecurrenceStr();
-      console.log(daysOfTheWeek);
     }
 
     if(type === 'timedGoal'){
