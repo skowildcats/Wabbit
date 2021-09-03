@@ -31,14 +31,14 @@ export const setupLineGraphData = (tasksByWeek) => {
   return data;
 }
 
-export const setupPieCount = (count, percentOnTime) => {
-  if(!count || !percentOnTime) return undefined;
-  return [{ inTime: "On Time", value: Math.trunc(count * percentOnTime)},
-   {inTime: "Late", value: Math.trunc(count * Math.abs(1 - percentOnTime))}]
+export const setupPieCount = (percentOnTime) => {
+  return [
+    { inTime: "Percent On Time", value: Math.trunc(percentOnTime*100)},
+   {inTime: "Percent Late", value: Math.trunc((1 - percentOnTime)*100)}
+  ]
 }
 
 export const setupPieComplete = (percentComplete) => {
-  if(!percentComplete) return undefined;
   return [
     { portion: 'Percent Completed', value: Math.trunc(percentComplete * 100)},
     { portion: 'Percent Incomplete', value: 100 - Math.trunc(percentComplete * 100)}

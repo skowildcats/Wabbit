@@ -4,6 +4,8 @@ import DeleteTaskButton from './buttons/delete_task_button'
 import EditTaskButton from './buttons/edit_task_button'
 
 export default function TimedGoal(props) {
+  
+  let style = getComputedStyle(document.getElementById("app"));
   const {task,toggle,id,minusOneSecond} = props
   const [secondsLeft, setTime] = useState(task.secondsLeft)
   const[isRunning,toggleRunning] = useState(false)
@@ -13,7 +15,7 @@ export default function TimedGoal(props) {
 
   return (
     <div className="task" id={`${props.id}`}>
-      <div className="drag-handle" style={{background: task.color}}>
+      <div className="drag-handle" style={{background: style.getPropertyValue(`--task-color-${task.color}`)}}>
         <i className="fas fa-ellipsis-h"></i>
       </div>
       <div className="body-wrapper">

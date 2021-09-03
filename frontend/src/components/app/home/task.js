@@ -5,7 +5,7 @@ import EditTaskButton from './buttons/edit_task_button'
 
 export default function Task(props){
   const {task, id} = props;
-  var style = getComputedStyle(document.getElementById("app"));
+  let style = getComputedStyle(document.getElementById("app"));
 
   return (
     <div className="task" id={`${id}`}>

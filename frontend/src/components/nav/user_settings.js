@@ -42,7 +42,6 @@ export default class UserSettings extends React.Component {
         this.setState({errors: null})
         alert('Saved')
       } else{
-        debugger
         this.setState({errors: data.errors})
       }
     });

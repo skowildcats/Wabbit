@@ -19,7 +19,7 @@ export default function CreateTaskMenu(props) {
 
   const { task } = props;
   useEffect(() => {
-    setDueDate(moment().format('YYYY-MM-DD'));
+    setDueDate(moment().add(1,'d').format('YYYY-MM-DD'));
     if(task){
       setSelected(task.color)
       setIcon(task.icon);
@@ -86,7 +86,6 @@ export default function CreateTaskMenu(props) {
     let secondsLeft = undefined;
     if(recurrence === "Weekly"){
       daysOfTheWeek = getRecurrenceStr();
-      console.log(daysOfTheWeek);
     }
 
     if(type === 'timedGoal'){

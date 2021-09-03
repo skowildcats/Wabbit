@@ -76,7 +76,7 @@ class LoginForm extends React.Component {
           app.style.setProperty(`--task-color-${i+1}`, color);
         })
     }).catch(() => {
-      console.log("sucess")
+      console.log('error')
     })
   }
 

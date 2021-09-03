@@ -11,13 +11,13 @@ module.exports = function validateHabitInput(data) {
     errors.title = 'Title is required';
   }
 
-  // if (!Validator.isLength(data.description, { min: 1, max: 100 })) {
-  //   errors.description = "Task must be within 1 and 100 characters";
-  // }
+  if (!data.color){
+    errors.color = 'Select a color for this task'
+  }
 
-  // if (Validator.isEmpty(data.description)) {
-  //   errors.description = "Description is required";
-  // }
+  if (Validator.isEmpty(data.icon)) {
+    errors.icon = 'Select an icon for this task';
+  }
 
   if (data.type === "timedGoal") {
     if (data.secondsLeft === 0 || data.secondsLeft === null) {

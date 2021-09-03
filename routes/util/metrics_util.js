@@ -19,7 +19,7 @@ exports.percentOnTime = function (tasks) {
   for (const task of tasks) {
     if (task.dueDate && task.completed) {
       total++;
-      if (task.completedAt < task.dueDate) {
+      if (task.completedAt <= task.dueDate) {
         completed++;
       }
     }
@@ -27,7 +27,23 @@ exports.percentOnTime = function (tasks) {
   if (total > 0) {
     return completed / total;
   }
-  return;
+  return 0;
+};
+exports.percentLate = function (tasks) {
+  let total = 0;
+  let completed = 0;
+  for (const task of tasks) {
+    if (task.dueDate && task.completed) {
+      total++;
+      if (task.completedAt > task.dueDate) {
+        completed++;
+      }
+    }
+  }
+  if (total > 0) {
+    return completed / total;
+  }
+  return 0;
 };
 
 exports.tasksDonePerWeek=(tasks)=>{
