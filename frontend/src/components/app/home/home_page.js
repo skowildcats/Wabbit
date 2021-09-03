@@ -21,7 +21,6 @@ class HomePage extends React.Component {
       actionType: null,
       menuText: '',
       taskAction: 'create',
-      walkthroughOpen: false, //!this.props.user.walkthrough change this in the future to add walkthrough
       task: null
     }
     this.setMenuOpen = this.setMenuOpen.bind(this);
@@ -154,7 +153,6 @@ class HomePage extends React.Component {
     
     return (
       <>
-        { !this.props.user.walkthrough ? <Walkthrough setWalkthrough={this.setWalkthrough} open={true}/> : null}
         <ul id="habits" className="sortable-habit">
           <h3 id="habit-header" className="home-header">HABITS</h3>
           <p id="habit-description">RECURRING TASKS</p>
