@@ -112,7 +112,7 @@ router.put('/info', passport.authenticate('jwt', {session: false}), async (req,r
 
   //check that password is correct
   const isMatch = await bcrypt.compare(password, user.password)
-  if(!isMatch) return res.status(400).json({error: 'Incorrect Password'})
+  if(!isMatch) return res.status(400).json({errors: 'Incorrect Password'})
 
   await user.save()
   res.json({

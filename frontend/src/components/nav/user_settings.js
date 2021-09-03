@@ -10,7 +10,8 @@ export default class UserSettings extends React.Component {
       logOutConfirmation: false,
       selectedTheme: null,
       open: false,
-      password: ''
+      password: '',
+      errors: null
     };
 
     this._logout = this._logout.bind(this);
@@ -36,6 +37,14 @@ export default class UserSettings extends React.Component {
       theme: this.state.theme,
       walkthrough: this.state.walkthrough,
       password: this.state.password
+    }).then(data=>{
+      if(data ==='success'){
+        this.setState({errors: null})
+        alert('Saved')
+      } else{
+        debugger
+        this.setState({errors: data.errors})
+      }
     });
   }
 
@@ -139,6 +148,7 @@ export default class UserSettings extends React.Component {
               <input type="text" id="update-last-name" onChange={(e) => this._updateField(e, "lastName")} value={this.state.lastName} />
               <label htmlFor="update-password">CURRENT PASSWORD</label>
               <input type="password" id="update-password" onChange={(e)=>this._updateField(e, 'password')}value={this.state.password}/>
+              {this.state.errors ? <p className='errors'>{this.state.errors}</p>: null}
               <div className="form-nav">
                 <button onClick={this._handleSubmit}>Save</button>
                 <p onClick={() => this.setState({open: true})}>Change Password</p>
