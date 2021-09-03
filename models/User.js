@@ -32,7 +32,7 @@ const UserSchema = new Schema({
   },
   walkthrough: {
     type: Boolean,
-    default: false
+    default: true
   },
   lastCheckedDate: {
     type: Date,

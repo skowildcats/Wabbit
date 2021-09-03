@@ -25,6 +25,7 @@ router.post('/register',async (req,res) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName
   })
+  
   //encrypt the password
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(newUser.password, salt, async (err, hash) => {
@@ -111,6 +112,7 @@ router.put('/info', passport.authenticate('jwt', {session: false}), async (req,r
   user.email = email
 
   //check that password is correct
+  console.log(password,user.password)
   const isMatch = await bcrypt.compare(password, user.password)
   if(!isMatch) return res.status(400).json({errors: 'Incorrect Password'})
 

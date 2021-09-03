@@ -59,7 +59,7 @@ export default function Metrics(props){
 
           <div className="pie-chart">
             <p className="graph-title">Percentage of Tasks Completed</p>
-            <PieChart color1={color1} color2={color2} data1={setupPieCount(props.metrics.count, props.metrics.percentOnTime)} data2={setupPieComplete(props.metrics.percentComplete)}/>
+            <PieChart color1={color2} color2={color1} data1={setupPieCount(props.metrics.percentOnTime)} data2={setupPieComplete(props.metrics.percentComplete)} percentLate={props.metrics.percentLate} percentOnTime={props.metrics.percentOnTime}/>
           </div>
 
           <div className="line-graph">
