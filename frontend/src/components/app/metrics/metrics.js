@@ -10,10 +10,22 @@ import Loader from '../home/loader'
 export default function Metrics(props){
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-    props.fetchMetrics(props.userId).then(data => {
-      setLoading(false)
+    props.fetchUser(props.userId).then(({currentUser})=>{
+      const app = document.getElementById("app")
+      currentUser.theme.slice(0,3).map((color, i) => {
+        app.style.setProperty(`--theme-${i+1}`, color);
+      })
+      currentUser.theme.slice(3).map((color, i) => {
+        app.style.setProperty(`--task-color-${i+1}`, color);
+      })
+      props.fetchMetrics(props.userId).then(() => {
+        setLoading(false)
+      })
     })
   }, []);
+  // useEffect(()=>{
+  //   props.fetchMetrics(props.userId).then(()=>setLoading(false))
+  // },[])
 
   //this page probably will need a loading page later
   if (loading) return <div id="loading"><Loader /></div>;
